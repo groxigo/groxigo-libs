@@ -1,0 +1,19 @@
+# GitHub Packages Registry Configuration
+# Copy this file to your project root as .npmrc
+# Replace YOUR_GITHUB_TOKEN with your Personal Access Token
+
+# Configure GitHub Packages registry for @groxigo scope
+@groxigo:registry=https://npm.pkg.github.com
+
+# Authentication token
+# For local development, add this line with your Personal Access Token:
+# //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+
+# Or set as environment variable:
+# export NPM_TOKEN=YOUR_GITHUB_TOKEN
+
+# To create a Personal Access Token:
+# 1. Go to GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
+# 2. Generate new token with 'read:packages' and 'write:packages' scopes
+# 3. Use the token in your .npmrc file or as NPM_TOKEN environment variable
+

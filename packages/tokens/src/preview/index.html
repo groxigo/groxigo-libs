@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groxigo Design Tokens - Preview</title>
+  <link rel="stylesheet" href="../../dist/css/tokens.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size);
+      background: var(--surface-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: var(--transition-colors);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-default);
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: var(--font-weight-medium);
+    }
+
+    .subtitle {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .theme-toggle {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .theme-toggle button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-default);
+      background: var(--surface-secondary);
+      color: var(--text-primary);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition-button);
+    }
+
+    .theme-toggle button:hover {
+      background: var(--brand-primary-subtle);
+    }
+
+    .theme-toggle button.active {
+      background: var(--brand-primary);
+      color: white;
+      border-color: var(--brand-primary);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--surface-secondary);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-subtle);
+    }
+
+    nav button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: calc(var(--radius) - 2px);
+      cursor: pointer;
+      transition: var(--transition-colors);
+    }
+
+    nav button:hover {
+      background: var(--surface-tertiary);
+      color: var(--text-primary);
+    }
+
+    nav button.active {
+      background: var(--brand-primary);
+      color: white;
+    }
+
+    section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-medium);
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .color-swatch {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-primary);
+      transition: var(--transition-card);
+      cursor: pointer;
+    }
+
+    .color-swatch:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-default);
+    }
+
+    .color-preview {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .color-preview.dark-text {
+      color: var(--text-primary);
+      text-shadow: none;
+    }
+
+    .color-info {
+      padding: 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .color-name {
+      font-weight: var(--font-weight-medium);
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .color-value {
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+    }
+
+    .color-usage {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .usage-label {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .usage-code {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      background: var(--surface-tertiary);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .usage-code span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      padding: 2px;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+
+    .copy-btn:hover {
+      color: var(--brand-primary);
+    }
+
+    .copy-btn.copied {
+      color: var(--status-success);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-primary);
+      color: var(--surface-primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .spacing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+    }
+
+    .spacing-item {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .spacing-item:hover {
+      transform: scale(1.05);
+    }
+
+    .spacing-box {
+      background: var(--brand-primary);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .spacing-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .token-card {
+      padding: 1.5rem;
+      background: var(--surface-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+    }
+
+    .token-card h4 {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .token-card .usage {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--brand-primary);
+      background: var(--brand-primary-subtle);
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.75rem;
+      cursor: pointer;
+    }
+
+    .token-card .usage:hover {
+      background: var(--brand-primary-muted);
+    }
+
+    .typography-sample {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--surface-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+    }
+
+    .typography-label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.25rem;
+    }
+
+    .typography-usage {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--brand-primary);
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+
+    .radius-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .radius-item {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .radius-item:hover {
+      transform: scale(1.05);
+    }
+
+    .radius-box {
+      width: 80px;
+      height: 80px;
+      background: var(--brand-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .shadow-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .shadow-item {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .shadow-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .shadow-box {
+      width: 120px;
+      height: 80px;
+      background: var(--surface-primary);
+      border-radius: var(--radius);
+      margin-bottom: 0.5rem;
+    }
+
+    .shadow-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .component-card {
+      padding: 1.5rem;
+      background: var(--surface-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+    }
+
+    .component-card h4 {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .component-card .usage-block {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .component-card .usage-block code {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: var(--surface-tertiary);
+      padding: 0.75rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      cursor: pointer;
+    }
+
+    .component-card .usage-block code:hover {
+      background: var(--brand-primary-subtle);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: var(--transition-button);
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--button-primary-bg);
+      color: var(--button-primary-text);
+    }
+
+    .btn-primary:hover {
+      background: var(--button-primary-bg-hover);
+    }
+
+    .btn-secondary {
+      background: var(--button-secondary-bg);
+      color: var(--button-secondary-text);
+      border: 1px solid var(--button-secondary-border);
+    }
+
+    .btn-outline {
+      background: var(--button-outline-bg);
+      color: var(--button-outline-text);
+      border: 1px solid var(--button-outline-border);
+    }
+
+    .btn-outline:hover {
+      background: var(--button-outline-bg-hover);
+    }
+
+    .btn-ghost {
+      background: var(--button-ghost-bg);
+      color: var(--button-ghost-text);
+    }
+
+    .btn-ghost:hover {
+      background: var(--button-ghost-bg-hover);
+    }
+
+    .btn-danger {
+      background: var(--button-danger-bg);
+      color: var(--button-danger-text);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-medium);
+      border-radius: calc(var(--radius) - 2px);
+      margin: 0.25rem;
+    }
+
+    .badge-default { background: var(--badge-default-bg); color: var(--badge-default-text); }
+    .badge-primary { background: var(--badge-primary-bg); color: var(--badge-primary-text); }
+    .badge-secondary { background: var(--badge-secondary-bg); color: var(--badge-secondary-text); }
+    .badge-success { background: var(--badge-success-bg); color: var(--badge-success-text); }
+    .badge-warning { background: var(--badge-warning-bg); color: var(--badge-warning-text); }
+    .badge-error { background: var(--badge-error-bg); color: var(--badge-error-text); }
+    .badge-info { background: var(--badge-info-bg); color: var(--badge-info-text); }
+
+    .input-demo {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.875rem;
+      transition: var(--transition-input);
+    }
+
+    .input-demo:hover {
+      border-color: var(--input-border-hover);
+    }
+
+    .input-demo:focus {
+      outline: none;
+      border-color: var(--input-border-focus);
+      box-shadow: 0 0 0 3px var(--brand-primary-subtle);
+    }
+
+    .input-demo::placeholder {
+      color: var(--input-placeholder);
+    }
+
+    .glass-demo {
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-accent) 100%);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+    }
+
+    .glass-card {
+      padding: 1.5rem;
+      background: var(--glass-card-bg);
+      border: 1px solid var(--glass-card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(var(--blur-md));
+      -webkit-backdrop-filter: blur(var(--blur-md));
+    }
+
+    .glass-card p {
+      color: white;
+    }
+
+    .animation-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .anim-box {
+      width: 80px;
+      height: 80px;
+      background: var(--brand-primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .anim-box.hover-scale {
+      transition: var(--transition-scale);
+    }
+
+    .anim-box.hover-scale:hover {
+      transform: scale(1.1);
+    }
+
+    .anim-box.hover-fade {
+      transition: var(--transition-opacity);
+    }
+
+    .anim-box.hover-fade:hover {
+      opacity: 0.7;
+    }
+
+    .anim-box.hover-shadow {
+      transition: var(--transition-shadow);
+    }
+
+    .anim-box.hover-shadow:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .easing-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .easing-item {
+      padding: 1rem;
+      background: var(--surface-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .easing-bar {
+      height: 8px;
+      background: var(--surface-tertiary);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .easing-bar-inner {
+      width: 30%;
+      height: 100%;
+      background: var(--brand-primary);
+      border-radius: 4px;
+    }
+
+    .easing-item:hover .easing-bar-inner {
+      width: 100%;
+    }
+
+    .easing-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Usage Documentation Section */
+    .usage-section {
+      background: var(--surface-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .usage-section h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .usage-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .usage-tabs button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-primary);
+      color: var(--text-secondary);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.15s;
+    }
+
+    .usage-tabs button.active {
+      background: var(--brand-primary);
+      color: white;
+      border-color: var(--brand-primary);
+    }
+
+    .usage-code-block {
+      background: var(--surface-tertiary);
+      border-radius: 4px;
+      padding: 1rem;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .usage-code-block pre {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+    }
+
+    .usage-code-block .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--surface-primary);
+      border-radius: 4px;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Groxigo Design Tokens</h1>
+        <div class="subtitle">Generic, reusable design system foundation</div>
+      </div>
+      <div class="theme-toggle">
+        <button id="lightMode" class="active">Light</button>
+        <button id="darkMode">Dark</button>
+      </div>
+    </header>
+
+    <nav>
+      <button class="active" data-section="colors">Colors</button>
+      <button data-section="semantic">Semantic</button>
+      <button data-section="spacing">Spacing</button>
+      <button data-section="typography">Typography</button>
+      <button data-section="radius">Radius</button>
+      <button data-section="shadows">Shadows</button>
+      <button data-section="components">Components</button>
+      <button data-section="glass">Glass</button>
+      <button data-section="animation">Animation</button>
+      <button data-section="usage">Usage Guide</button>
+    </nav>
+
+    <!-- Colors Section -->
+    <section id="colors" class="active">
+      <h2>Primitive Colors</h2>
+      <p class="section-desc">Raw color values. Click any swatch to copy the CSS variable.</p>
+
+      <h3>Gray</h3>
+      <div class="color-grid" id="grayColors"></div>
+
+      <h3>Blue</h3>
+      <div class="color-grid" id="blueColors"></div>
+
+      <h3>Green</h3>
+      <div class="color-grid" id="greenColors"></div>
+
+      <h3>Red</h3>
+      <div class="color-grid" id="redColors"></div>
+
+      <h3>Yellow</h3>
+      <div class="color-grid" id="yellowColors"></div>
+
+      <h3>Orange</h3>
+      <div class="color-grid" id="orangeColors"></div>
+
+      <h3>Purple</h3>
+      <div class="color-grid" id="purpleColors"></div>
+
+      <h3>Cyan</h3>
+      <div class="color-grid" id="cyanColors"></div>
+
+      <h3>Pink</h3>
+      <div class="color-grid" id="pinkColors"></div>
+
+      <h3>Indigo</h3>
+      <div class="color-grid" id="indigoColors"></div>
+
+      <h3>Teal</h3>
+      <div class="color-grid" id="tealColors"></div>
+    </section>
+
+    <!-- Semantic Section -->
+    <section id="semantic">
+      <h2>Semantic Tokens</h2>
+      <p class="section-desc">Meaningful color names that reference primitives. Click to copy.</p>
+
+      <h3>Surface</h3>
+      <div class="color-grid" id="surfaceColors"></div>
+
+      <h3>Text</h3>
+      <div class="color-grid" id="textColors"></div>
+
+      <h3>Border</h3>
+      <div class="color-grid" id="borderColors"></div>
+
+      <h3>Brand</h3>
+      <div class="color-grid" id="brandColors"></div>
+
+      <h3>Status</h3>
+      <div class="color-grid" id="statusColors"></div>
+    </section>
+
+    <!-- Spacing Section -->
+    <section id="spacing">
+      <h2>Spacing Tokens</h2>
+      <p class="section-desc">Based on 4px base unit. Click to copy.</p>
+      <div class="spacing-grid" id="spacingGrid"></div>
+    </section>
+
+    <!-- Typography Section -->
+    <section id="typography">
+      <h2>Typography Tokens</h2>
+
+      <h3>Font Sizes</h3>
+      <div id="fontSizes"></div>
+
+      <h3>Font Weights</h3>
+      <div id="fontWeights"></div>
+    </section>
+
+    <!-- Radius Section -->
+    <section id="radius">
+      <h2>Border Radius Tokens</h2>
+      <p class="section-desc">Click to copy the CSS variable.</p>
+      <div class="radius-grid" id="radiusGrid"></div>
+    </section>
+
+    <!-- Shadows Section -->
+    <section id="shadows">
+      <h2>Shadow Tokens</h2>
+
+      <h3>Standard Shadows</h3>
+      <div class="shadow-grid" id="shadowGrid"></div>
+
+      <h3>Glass Shadows</h3>
+      <div class="shadow-grid" id="glassShadowGrid"></div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components">
+      <h2>Component Tokens</h2>
+      <p class="section-desc">Pre-configured tokens for common UI components.</p>
+
+      <h3>Buttons</h3>
+      <div class="component-grid">
+        <div class="component-card">
+          <h4>Button Variants</h4>
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-danger">Danger</button>
+          <div class="usage-block">
+            <code onclick="copyText('--button-primary-bg')">
+background: var(--button-primary-bg);
+color: var(--button-primary-text);
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <h3>Badges</h3>
+      <div class="component-card" style="max-width: 500px;">
+        <h4>Status Badges</h4>
+        <span class="badge badge-default">Default</span>
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-error">Error</span>
+        <span class="badge badge-info">Info</span>
+        <div class="usage-block">
+          <code onclick="copyText('--badge-success-bg')">
+background: var(--badge-success-bg);
+color: var(--badge-success-text);
+          </code>
+        </div>
+      </div>
+
+      <h3>Inputs</h3>
+      <div class="component-card" style="max-width: 400px;">
+        <h4>Text Input</h4>
+        <input type="text" class="input-demo" placeholder="Enter text...">
+        <div class="usage-block">
+          <code onclick="copyText('--input-border')">
+background: var(--input-bg);
+border: 1px solid var(--input-border);
+color: var(--input-text);
+          </code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glass Section -->
+    <section id="glass">
+      <h2>Glass Theme Tokens</h2>
+      <p class="section-desc">Apple Liquid Glass inspired design with backdrop blur effects.</p>
+
+      <div class="glass-demo">
+        <div class="glass-card">
+          <h4 style="margin-bottom: 0.5rem; color: white;">Glass Card</h4>
+          <p>This card uses glass morphism with backdrop blur and semi-transparent background.</p>
+        </div>
+      </div>
+
+      <div class="component-card" style="max-width: 500px;">
+        <h4>Usage</h4>
+        <div class="usage-block">
+          <code onclick="copyText('--glass-card-bg')">
+background: var(--glass-card-bg);
+border: 1px solid var(--glass-card-border);
+backdrop-filter: blur(var(--blur-md));
+          </code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animation Section -->
+    <section id="animation">
+      <h2>Animation Tokens</h2>
+
+      <h3>Transitions (Hover to see)</h3>
+      <div class="animation-demo">
+        <div class="anim-box hover-scale">Scale</div>
+        <div class="anim-box hover-fade">Fade</div>
+        <div class="anim-box hover-shadow">Shadow</div>
+      </div>
+
+      <h3>Easing Curves</h3>
+      <div class="easing-demo" id="easingDemo"></div>
+    </section>
+
+    <!-- Usage Guide Section -->
+    <section id="usage">
+      <h2>Usage Guide</h2>
+      <p class="section-desc">How to use tokens in your projects.</p>
+
+      <div class="usage-section">
+        <h4>CSS Usage</h4>
+        <div class="usage-tabs">
+          <button class="active" data-tab="css-import">Import</button>
+          <button data-tab="css-vars">Variables</button>
+          <button data-tab="css-example">Example</button>
+        </div>
+        <div class="usage-code-block" id="css-import">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>/* Import in your CSS file */
+@import '@groxigo/tokens/dist/css/tokens.css';
+
+/* Or link in HTML */
+&lt;link rel="stylesheet" href="node_modules/@groxigo/tokens/dist/css/tokens.css"&gt;</pre>
+        </div>
+        <div class="usage-code-block" id="css-vars" style="display:none;">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>/* Primitive colors */
+var(--color-blue-600)
+var(--color-gray-100)
+
+/* Semantic tokens */
+var(--surface-primary)
+var(--text-primary)
+var(--brand-primary)
+var(--status-success)
+
+/* Component tokens */
+var(--button-primary-bg)
+var(--input-border)
+var(--card-bg)</pre>
+        </div>
+        <div class="usage-code-block" id="css-example" style="display:none;">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>.button {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  border-radius: var(--radius);
+  padding: var(--spacing-2) var(--spacing-4);
+  transition: var(--transition-button);
+}
+
+.button:hover {
+  background: var(--button-primary-bg-hover);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}</pre>
+        </div>
+      </div>
+
+      <div class="usage-section">
+        <h4>React Native Usage</h4>
+        <div class="usage-tabs">
+          <button class="active" data-tab="rn-import">Import</button>
+          <button data-tab="rn-basic">Basic</button>
+          <button data-tab="rn-theme">Theming</button>
+        </div>
+        <div class="usage-code-block" id="rn-import">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>import { tokens, getThemeColors } from '@groxigo/tokens';</pre>
+        </div>
+        <div class="usage-code-block" id="rn-basic" style="display:none;">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>import { tokens } from '@groxigo/tokens';
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: tokens.colors.semantic.brand.primary.default,
+    padding: tokens.spacing[4],
+    borderRadius: tokens.radius.md,
+  },
+  text: {
+    color: tokens.colors.semantic.text.primary,
+    fontSize: tokens.typography.fontSize.base,
+  },
+});</pre>
+        </div>
+        <div class="usage-code-block" id="rn-theme" style="display:none;">
+          <button class="copy-btn" onclick="copyCodeBlock(this)">Copy</button>
+          <pre>import { getThemeColors } from '@groxigo/tokens';
+import { useColorScheme } from 'react-native';
+
+function MyComponent() {
+  const colorScheme = useColorScheme();
+  const theme = getThemeColors(colorScheme === 'dark');
+
+  return (
+    &lt;View style={{ backgroundColor: theme.semantic.surface.primary }}&gt;
+      &lt;Text style={{ color: theme.semantic.text.primary }}&gt;
+        Hello World
+      &lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</pre>
+        </div>
+      </div>
+
+      <div class="usage-section">
+        <h4>Three-Tier Architecture</h4>
+        <div class="usage-code-block">
+          <pre>/* Tier 1: Primitives - Raw color values */
+--color-blue-600: #2563eb;
+
+/* Tier 2: Semantic - Meaningful names */
+--brand-primary: var(--color-blue-600);
+
+/* Tier 3: Components - UI element tokens */
+--button-primary-bg: var(--brand-primary);
+
+/* Usage: Always use the highest abstraction level */
+.button {
+  background: var(--button-primary-bg); /* Correct */
+  /* NOT: var(--color-blue-600) */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Groxigo Design Tokens v1.0.1 | Run <code>npm run preview</code> to open this page</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <script>
+    // Toast notification
+    function showToast(message = 'Copied to clipboard!') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // Copy to clipboard
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => showToast(`Copied: ${text}`));
+    }
+
+    function copyCodeBlock(btn) {
+      const pre = btn.parentElement.querySelector('pre');
+      navigator.clipboard.writeText(pre.textContent).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        showToast();
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Theme Toggle
+    const lightBtn = document.getElementById('lightMode');
+    const darkBtn = document.getElementById('darkMode');
+
+    lightBtn.addEventListener('click', () => {
+      document.body.classList.remove('dark');
+      lightBtn.classList.add('active');
+      darkBtn.classList.remove('active');
+    });
+
+    darkBtn.addEventListener('click', () => {
+      document.body.classList.add('dark');
+      darkBtn.classList.add('active');
+      lightBtn.classList.remove('active');
+    });
+
+    // Navigation
+    const navButtons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('section');
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.section).classList.add('active');
+      });
+    });
+
+    // Usage tabs
+    document.querySelectorAll('.usage-tabs').forEach(tabGroup => {
+      tabGroup.querySelectorAll('button').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const section = tabGroup.parentElement;
+          section.querySelectorAll('.usage-tabs button').forEach(t => t.classList.remove('active'));
+          section.querySelectorAll('.usage-code-block').forEach(b => b.style.display = 'none');
+          tab.classList.add('active');
+          section.querySelector(`#${tab.dataset.tab}`).style.display = 'block';
+        });
+      });
+    });
+
+    // Color data
+    const primitives = {
+      gray: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a', 950: '#020617' },
+      blue: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' },
+      green: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#052e16' },
+      red: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a' },
+      yellow: { 50: '#fefce8', 100: '#fef9c3', 200: '#fef08a', 300: '#fde047', 400: '#facc15', 500: '#eab308', 600: '#ca8a04', 700: '#a16207', 800: '#854d0e', 900: '#713f12', 950: '#422006' },
+      orange: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', 950: '#431407' },
+      purple: { 50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe', 400: '#c084fc', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce', 800: '#6b21a8', 900: '#581c87', 950: '#3b0764' },
+      cyan: { 50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490', 800: '#155e75', 900: '#164e63', 950: '#083344' },
+      pink: { 50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4', 400: '#f472b6', 500: '#ec4899', 600: '#db2777', 700: '#be185d', 800: '#9d174d', 900: '#831843', 950: '#500724' },
+      indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81', 950: '#1e1b4b' },
+      teal: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e' }
+    };
+
+    const semanticColors = {
+      surface: { primary: '--surface-primary', secondary: '--surface-secondary', tertiary: '--surface-tertiary', elevated: '--surface-elevated', disabled: '--surface-disabled' },
+      text: { primary: '--text-primary', secondary: '--text-secondary', tertiary: '--text-tertiary', inverse: '--text-inverse', link: '--text-link' },
+      border: { subtle: '--border-subtle', default: '--border-default', strong: '--border-strong', focus: '--border-focus' },
+      brand: { primary: '--brand-primary', 'primary-hover': '--brand-primary-hover', secondary: '--brand-secondary', accent: '--brand-accent' },
+      status: { success: '--status-success', warning: '--status-warning', error: '--status-error', info: '--status-info' }
+    };
+
+    function isLightColor(hex) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return (r * 0.299 + g * 0.587 + b * 0.114) > 186;
+    }
+
+    function renderColorSwatches(containerId, colorFamily, familyName) {
+      const container = document.getElementById(containerId);
+      Object.entries(colorFamily).forEach(([shade, value]) => {
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        const cssVar = `--color-${familyName}-${shade}`;
+        const textClass = isLightColor(value) ? 'dark-text' : '';
+        swatch.innerHTML = `
+          <div class="color-preview ${textClass}" style="background: ${value};">${shade}</div>
+          <div class="color-info">
+            <div class="color-name">${familyName}-${shade}</div>
+            <div class="color-value">${value}</div>
+            <div class="color-usage">
+              <div class="usage-label">CSS Variable</div>
+              <div class="usage-code">
+                <span>var(${cssVar})</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyText('var(${cssVar})')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        swatch.addEventListener('click', () => copyText(`var(${cssVar})`));
+        container.appendChild(swatch);
+      });
+    }
+
+    function renderSemanticColors(containerId, tokens, category) {
+      const container = document.getElementById(containerId);
+      Object.entries(tokens).forEach(([name, cssVar]) => {
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        swatch.innerHTML = `
+          <div class="color-preview" style="background: var(${cssVar});">${name}</div>
+          <div class="color-info">
+            <div class="color-name">${category}/${name}</div>
+            <div class="color-usage">
+              <div class="usage-code">
+                <span>var(${cssVar})</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyText('var(${cssVar})')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        swatch.addEventListener('click', () => copyText(`var(${cssVar})`));
+        container.appendChild(swatch);
+      });
+    }
+
+    // Render primitive colors
+    renderColorSwatches('grayColors', primitives.gray, 'gray');
+    renderColorSwatches('blueColors', primitives.blue, 'blue');
+    renderColorSwatches('greenColors', primitives.green, 'green');
+    renderColorSwatches('redColors', primitives.red, 'red');
+    renderColorSwatches('yellowColors', primitives.yellow, 'yellow');
+    renderColorSwatches('orangeColors', primitives.orange, 'orange');
+    renderColorSwatches('purpleColors', primitives.purple, 'purple');
+    renderColorSwatches('cyanColors', primitives.cyan, 'cyan');
+    renderColorSwatches('pinkColors', primitives.pink, 'pink');
+    renderColorSwatches('indigoColors', primitives.indigo, 'indigo');
+    renderColorSwatches('tealColors', primitives.teal, 'teal');
+
+    // Render semantic colors
+    renderSemanticColors('surfaceColors', semanticColors.surface, 'Surface');
+    renderSemanticColors('textColors', semanticColors.text, 'Text');
+    renderSemanticColors('borderColors', semanticColors.border, 'Border');
+    renderSemanticColors('brandColors', semanticColors.brand, 'Brand');
+    renderSemanticColors('statusColors', semanticColors.status, 'Status');
+
+    // Spacing
+    const spacing = { 0: 0, 1: 4, 2: 8, 3: 12, 4: 16, 5: 20, 6: 24, 8: 32, 10: 40, 12: 48, 16: 64, 20: 80, 24: 96 };
+    const spacingGrid = document.getElementById('spacingGrid');
+
+    Object.entries(spacing).forEach(([key, value]) => {
+      const item = document.createElement('div');
+      item.className = 'spacing-item';
+      const cssVar = `--spacing-${key}`;
+      item.innerHTML = `
+        <div class="spacing-box" style="width: ${Math.max(value, 8)}px; height: ${Math.max(value, 8)}px;"></div>
+        <div class="spacing-label">${key} (${value}px)</div>
+      `;
+      item.addEventListener('click', () => copyText(`var(${cssVar})`));
+      spacingGrid.appendChild(item);
+    });
+
+    // Font Sizes
+    const fontSizes = { xs: 12, sm: 14, base: 16, lg: 18, xl: 20, '2xl': 24, '3xl': 30, '4xl': 36 };
+    const fontSizesContainer = document.getElementById('fontSizes');
+
+    Object.entries(fontSizes).forEach(([name, size]) => {
+      const sample = document.createElement('div');
+      sample.className = 'typography-sample';
+      const cssVar = `--font-size-${name}`;
+      sample.innerHTML = `
+        <div class="typography-label">${name} (${size}px)</div>
+        <div style="font-size: ${size}px;">The quick brown fox jumps over the lazy dog</div>
+        <div class="typography-usage" onclick="copyText('var(${cssVar})')">var(${cssVar})</div>
+      `;
+      fontSizesContainer.appendChild(sample);
+    });
+
+    // Font Weights
+    const fontWeights = { light: 300, normal: 400, medium: 500, semibold: 600, bold: 700 };
+    const fontWeightsContainer = document.getElementById('fontWeights');
+
+    Object.entries(fontWeights).forEach(([name, weight]) => {
+      const sample = document.createElement('div');
+      sample.className = 'typography-sample';
+      const cssVar = `--font-weight-${name}`;
+      sample.innerHTML = `
+        <div class="typography-label">${name} (${weight})</div>
+        <div style="font-weight: ${weight};">The quick brown fox jumps over the lazy dog</div>
+        <div class="typography-usage" onclick="copyText('var(${cssVar})')">var(${cssVar})</div>
+      `;
+      fontWeightsContainer.appendChild(sample);
+    });
+
+    // Radius
+    const radiusValues = { none: 0, sm: 6, md: 8, lg: 10, xl: 14, '2xl': 18, full: 9999 };
+    const radiusGrid = document.getElementById('radiusGrid');
+
+    Object.entries(radiusValues).forEach(([name, value]) => {
+      const item = document.createElement('div');
+      item.className = 'radius-item';
+      const displayValue = value > 100 ? '50%' : `${value}px`;
+      const cssVar = `--radius-${name}`;
+      item.innerHTML = `
+        <div class="radius-box" style="border-radius: ${displayValue};"></div>
+        <div class="spacing-label">${name} (${value}px)</div>
+      `;
+      item.addEventListener('click', () => copyText(`var(${cssVar})`));
+      radiusGrid.appendChild(item);
+    });
+
+    // Shadows
+    const shadows = {
+      xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+      sm: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+      md: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+      lg: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+      xl: '0 20px 25px -5px rgb(0 0 0 / 0.1)',
+      '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)'
+    };
+    const shadowGrid = document.getElementById('shadowGrid');
+
+    Object.entries(shadows).forEach(([name, value]) => {
+      const item = document.createElement('div');
+      item.className = 'shadow-item';
+      const cssVar = `--shadow-${name}`;
+      item.innerHTML = `
+        <div class="shadow-box" style="box-shadow: ${value};"></div>
+        <div class="shadow-label">${name}</div>
+      `;
+      item.addEventListener('click', () => copyText(`var(${cssVar})`));
+      shadowGrid.appendChild(item);
+    });
+
+    // Glass Shadows
+    const glassShadows = {
+      sm: '0 2px 8px rgba(0, 0, 0, 0.08)',
+      md: '0 4px 16px rgba(0, 0, 0, 0.12)',
+      lg: '0 8px 32px rgba(0, 0, 0, 0.16)'
+    };
+    const glassShadowGrid = document.getElementById('glassShadowGrid');
+
+    Object.entries(glassShadows).forEach(([name, value]) => {
+      const item = document.createElement('div');
+      item.className = 'shadow-item';
+      const cssVar = `--shadow-glass-${name}`;
+      item.innerHTML = `
+        <div class="shadow-box" style="box-shadow: ${value}; background: rgba(255,255,255,0.8);"></div>
+        <div class="shadow-label">glass-${name}</div>
+      `;
+      item.addEventListener('click', () => copyText(`var(${cssVar})`));
+      glassShadowGrid.appendChild(item);
+    });
+
+    // Easing curves
+    const easings = {
+      linear: 'linear',
+      ease: 'ease',
+      'ease-in': 'ease-in',
+      'ease-out': 'ease-out',
+      standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+      emphasized: 'cubic-bezier(0.2, 0.0, 0, 1)',
+      bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+    };
+    const easingDemo = document.getElementById('easingDemo');
+
+    Object.entries(easings).forEach(([name, value]) => {
+      const item = document.createElement('div');
+      item.className = 'easing-item';
+      const cssVar = `--easing-${name}`;
+      item.innerHTML = `
+        <div class="easing-bar">
+          <div class="easing-bar-inner" style="transition: width 500ms ${value};"></div>
+        </div>
+        <div class="easing-label">${name}</div>
+      `;
+      item.addEventListener('click', () => copyText(`var(${cssVar})`));
+      easingDemo.appendChild(item);
+    });
+  </script>
+</body>
+</html>

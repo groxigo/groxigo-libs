@@ -1,0 +1,33 @@
+/**
+ * Link Component Contract
+ *
+ * Platform-agnostic interface for Link component.
+ */
+
+import type { ReactNode } from 'react';
+
+export type LinkColorScheme = 'default' | 'primary' | 'secondary' | 'accent' | 'muted';
+
+/**
+ * Base Link props that all platforms must support
+ */
+export interface LinkPropsBase {
+  /** Link destination */
+  href?: string;
+  /** Whether link opens in new tab @default false */
+  isExternal?: boolean;
+  /** Color scheme @default 'primary' */
+  colorScheme?: LinkColorScheme;
+  /** Whether to show underline @default true */
+  underline?: boolean | 'hover' | 'always' | 'none';
+  /** Whether link is disabled */
+  disabled?: boolean;
+  /** Link content */
+  children?: ReactNode;
+  /** Press/click handler */
+  onPress?: () => void;
+  /** Additional CSS class (web only) */
+  className?: string;
+  /** Test ID for testing */
+  testID?: string;
+}

@@ -1,0 +1,66 @@
+{
+  "name": "@groxigo/ui-elements-web",
+  "version": "1.0.0",
+  "description": "Groxigo UI Elements for Web - Primitive building blocks using React + Tailwind",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/index.js",
+      "types": "./src/index.ts"
+    },
+    "./tailwind": {
+      "import": "./tailwind.config.js",
+      "require": "./tailwind.config.js"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "react",
+    "tailwind",
+    "ui",
+    "components",
+    "web",
+    "groxigo"
+  ],
+  "author": "Groxigo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groxigo/groxigo-libs.git",
+    "directory": "packages/ui-elements-web"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@groxigo/contracts": "*",
+    "@groxigo/tokens": "*",
+    "@groxigo/ui-core": "*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@storybook/react": "^10.2.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "src",
+    "dist",
+    "tailwind.config.js"
+  ]
+}

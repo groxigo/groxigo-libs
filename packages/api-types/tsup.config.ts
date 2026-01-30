@@ -1,0 +1,26 @@
+import { defineConfig } from "tsup";
+
+export default defineConfig({
+  entry: {
+    index: "src/index.ts",
+    "schemas/index": "src/schemas/index.ts",
+    "schemas/common": "src/schemas/common.ts",
+    "schemas/error-codes": "src/schemas/error-codes.ts",
+    "schemas/product": "src/schemas/product.ts",
+    "schemas/category": "src/schemas/category.ts",
+    "schemas/brand": "src/schemas/brand.ts",
+    "schemas/customer": "src/schemas/customer.ts",
+    "schemas/order": "src/schemas/order.ts",
+    "schemas/delivery": "src/schemas/delivery.ts",
+    "schemas/inventory": "src/schemas/inventory.ts",
+    "schemas/admin": "src/schemas/admin.ts",
+    "schemas/store": "src/schemas/store.ts",
+  },
+  format: ["cjs", "esm"],
+  dts: true,
+  splitting: false,
+  sourcemap: true,
+  clean: true,
+  treeshake: true,
+  minify: false,
+});

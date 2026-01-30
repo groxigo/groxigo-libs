@@ -1,0 +1,50 @@
+{
+  "name": "@groxigo/sdui",
+  "version": "1.0.0",
+  "description": "Server-Driven UI utilities for Groxigo",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./native": {
+      "import": "./src/native/index.ts",
+      "require": "./src/native/index.ts",
+      "types": "./src/native/index.ts"
+    },
+    "./web": {
+      "import": "./src/web/index.ts",
+      "require": "./src/web/index.ts",
+      "types": "./src/web/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "sdui",
+    "server-driven-ui",
+    "groxigo"
+  ],
+  "author": "Groxigo",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/react": "^19.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groxigo/groxigo-libs.git",
+    "directory": "packages/sdui"
+  }
+}

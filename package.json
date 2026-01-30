@@ -1,0 +1,52 @@
+{
+  "name": "groxigo-libs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Groxigo Libraries Monorepo - Shared packages for iOS, Android, and Web",
+  "packageManager": "bun@1.1.45",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "bun run build:core && bun run build:ui && bun run build:components",
+    "build:core": "bun run --filter '@groxigo/tokens' build && bun run --filter '@groxigo/contracts' build && bun run --filter '@groxigo/api-types' build && bun run --filter '@groxigo/sdui' build",
+    "build:ui": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements' build && bun run --filter '@groxigo/ui-elements-web' build",
+    "build:components": "bun run --filter '@groxigo/components' build && bun run --filter '@groxigo/components-web' build",
+    "clean": "bun run --filter '*' clean",
+    "test": "bun run --filter '*' test",
+    "lint": "bun run --filter '*' lint",
+    "changeset": "bunx changeset",
+    "changeset:add": "bunx changeset add",
+    "changeset:status": "bunx changeset status",
+    "version": "bunx changeset version",
+    "release": "bunx changeset publish",
+    "preview": "bun run --filter '@groxigo/preview' start",
+    "preview:web": "bun run --filter '@groxigo/preview' web",
+    "preview:ios": "bun run --filter '@groxigo/preview' ios",
+    "preview:android": "bun run --filter '@groxigo/preview' android",
+    "storybook": "bun run --filter '@groxigo/storybook-web' storybook",
+    "build-storybook": "bun run --filter '@groxigo/storybook-web' build-storybook"
+  },
+  "keywords": [
+    "monorepo",
+    "design-system",
+    "groxigo"
+  ],
+  "author": "Groxigo",
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@types/node": "^25.0.10",
+    "concurrently": "^8.2.2",
+    "react-native": "^0.83.1"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}

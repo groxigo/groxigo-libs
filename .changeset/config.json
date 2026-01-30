@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.2/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "groxigo/groxigo-libs" }],
+  "commit": false,
+  "fixed": [],
+  "linked": [
+    ["@groxigo/ui-elements", "@groxigo/ui-elements-web"],
+    ["@groxigo/components", "@groxigo/components-web"]
+  ],
+  "access": "restricted",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@groxigo/storybook-web", "@groxigo/preview"]
+}

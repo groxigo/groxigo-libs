@@ -1,0 +1,71 @@
+{
+  "name": "@groxigo/api-types",
+  "version": "1.0.0",
+  "description": "Shared API types and Zod schemas for Groxigo frontend and backend",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas/index.d.ts",
+      "import": "./dist/schemas/index.mjs",
+      "require": "./dist/schemas/index.js"
+    },
+    "./schemas/*": {
+      "types": "./dist/schemas/*.d.ts",
+      "import": "./dist/schemas/*.mjs",
+      "require": "./dist/schemas/*.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "groxigo",
+    "api",
+    "types",
+    "zod",
+    "schemas",
+    "typescript"
+  ],
+  "author": "Groxigo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groxigo/groxigo-libs.git",
+    "directory": "packages/api-types"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "zod": ">=3.20.0"
+  }
+}

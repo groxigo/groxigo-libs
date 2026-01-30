@@ -1,0 +1,23 @@
+export { Tabs, useTabsContext, default } from './Tabs';
+export type { TabsProps } from './Tabs';
+
+export { TabList } from './TabList';
+export type { TabListProps } from './TabList';
+
+export { Tab } from './Tab';
+export type { TabProps } from './Tab';
+
+export { TabPanels } from './TabPanels';
+export type { TabPanelsProps } from './TabPanels';
+
+export { TabPanel } from './TabPanel';
+export type { TabPanelProps } from './TabPanel';
+
+export type {
+  TabsVariant,
+  TabsSize,
+  TabsColorScheme,
+  TabsOrientation,
+  TabsAlign,
+  TabItem,
+} from '@groxigo/contracts';

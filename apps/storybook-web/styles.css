@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Load the Groxigo theme configuration */
+@config "./tailwind.config.js";

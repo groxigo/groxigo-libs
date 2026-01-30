@@ -1,0 +1,6 @@
+[install]
+peer = false
+optional = true
+
+[install.scopes]
+"@groxigo" = "https://npm.pkg.github.com"

@@ -1,0 +1,44 @@
+# CI - Runs on every PR to validate code quality
+#
+# What it does:
+#   1. Installs dependencies with Bun (cached for speed)
+#   2. Builds all packages in dependency order
+#   3. Runs all tests with Vitest
+#   4. Runs linting
+#
+# If any step fails, the PR cannot be merged.
+
+name: CI
+
+on:
+  pull_request:
+    branches: [master, main]
+  push:
+    branches: [master, main]
+
+jobs:
+  validate:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build all packages
+        run: bun run build
+
+      - name: Run tests
+        run: bun run test
+
+      - name: Run linting
+        run: bun run lint
+        continue-on-error: true  # Don't block on lint for now

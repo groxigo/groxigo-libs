@@ -1,0 +1,72 @@
+# Manual Publish - Publishes packages at their current versions
+#
+# USE THIS FOR:
+#   - Initial release (publish current versions as-is)
+#   - Emergency fixes (bypass changeset PR flow)
+#
+# HOW TO USE:
+#   1. Go to Actions → "Manual Publish"
+#   2. Click "Run workflow"
+#   3. Confirm by typing "PUBLISH"
+#   4. Click green "Run workflow" button
+
+name: Manual Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "PUBLISH" to confirm'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'PUBLISH'
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node.js (for npm publish)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@groxigo'
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build all packages
+        run: bun run build
+
+      - name: Publish packages
+        run: bunx changeset publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## Published Packages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The following packages were published:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          for pkg in packages/*/package.json; do
+            name=$(jq -r '.name' "$pkg")
+            version=$(jq -r '.version' "$pkg")
+            private=$(jq -r '.private // false' "$pkg")
+            if [ "$private" != "true" ]; then
+              echo "- **$name** @ $version" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
