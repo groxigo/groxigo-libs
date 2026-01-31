@@ -186,6 +186,7 @@ export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryProps>(
             <img
               src={currentImage.src}
               alt={currentImage.alt || `Image ${currentIndex + 1}`}
+              loading="lazy"
               className={cn(
                 'w-full h-full transition-opacity duration-300',
                 objectFit === 'cover' && 'object-cover',
@@ -298,6 +299,7 @@ export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryProps>(
                   <img
                     src={image.thumbnail || image.src}
                     alt={image.alt || `Thumbnail ${index + 1}`}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -336,6 +338,7 @@ export const ImageGallery = forwardRef<HTMLDivElement, ImageGalleryProps>(
             <img
               src={currentImage.src}
               alt={currentImage.alt || `Image ${currentIndex + 1}`}
+              loading="lazy"
               className="max-w-[90vw] max-h-[90vh] object-contain"
               onClick={(e) => e.stopPropagation()}
             />

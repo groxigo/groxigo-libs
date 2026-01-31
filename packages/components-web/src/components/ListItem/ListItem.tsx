@@ -134,6 +134,7 @@ export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
           <img
             src={leftImage}
             alt=""
+            loading="lazy"
             className={cn(
               sizeConfig.image,
               'rounded-lg object-cover flex-shrink-0'

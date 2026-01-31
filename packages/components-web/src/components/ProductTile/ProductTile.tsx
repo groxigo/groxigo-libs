@@ -148,6 +148,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
               <img
                 src={imageUrl}
                 alt={name}
+                loading="lazy"
                 className={cn(
                   'object-cover rounded-t-lg',
                   outOfStock && 'opacity-50'

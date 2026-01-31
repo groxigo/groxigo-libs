@@ -90,6 +90,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             <img
               src={imageUrl}
               alt={name}
+              loading="lazy"
               className="w-full h-full object-cover rounded-lg"
             />
             {badge && (
@@ -165,6 +166,7 @@ export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
           <img
             src={imageUrl}
             alt={name}
+            loading="lazy"
             className="w-full h-full object-cover rounded-t-lg"
           />
           {/* Discount badge */}

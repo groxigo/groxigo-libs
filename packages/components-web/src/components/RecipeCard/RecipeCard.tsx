@@ -102,6 +102,7 @@ export const RecipeCard = forwardRef<HTMLDivElement, RecipeCardProps>(
               <img
                 src={imageUrl}
                 alt={title}
+                loading="lazy"
                 className="w-full h-full object-cover rounded-lg"
               />
             </div>
@@ -149,6 +150,7 @@ export const RecipeCard = forwardRef<HTMLDivElement, RecipeCardProps>(
               <img
                 src={imageUrl}
                 alt={title}
+                loading="lazy"
                 className="w-full h-full object-cover rounded-lg"
               />
               {badge && (
@@ -220,6 +222,7 @@ export const RecipeCard = forwardRef<HTMLDivElement, RecipeCardProps>(
             <img
               src={imageUrl}
               alt={title}
+              loading="lazy"
               className={cn('w-full object-cover rounded-2xl', !width && sizeConfig.image)}
               style={width ? { height: `${width * 0.7}px` } : undefined}
             />

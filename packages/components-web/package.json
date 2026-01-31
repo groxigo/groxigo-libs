@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/components-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Groxigo Composite Components for Web - Built on ui-elements-web",
   "main": "dist/index.js",
   "module": "src/index.ts",
