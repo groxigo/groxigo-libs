@@ -1,0 +1,65 @@
+{
+  "name": "@groxigo/icons",
+  "version": "1.0.0",
+  "description": "Tree-shakable Unicons icon components for React Native and Web",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/index.js",
+      "types": "./src/index.ts"
+    },
+    "./line": {
+      "import": "./src/line/index.ts",
+      "types": "./src/line/index.ts"
+    },
+    "./solid": {
+      "import": "./src/solid/index.ts",
+      "types": "./src/solid/index.ts"
+    }
+  },
+  "scripts": {
+    "generate": "bun run scripts/generate.ts",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "icons",
+    "unicons",
+    "react-native",
+    "react",
+    "design-system"
+  ],
+  "author": "Groxigo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groxigo/groxigo-libs.git",
+    "directory": "packages/icons"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.1",
+    "react-native-svg": ">=15.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-svg": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@iconscout/unicons": "^4.0.8",
+    "@types/react": "^19.2.9",
+    "react-native-svg": ">=15.0.0",
+    "typescript": "~5.9.2"
+  },
+  "files": [
+    "src",
+    "dist"
+  ]
+}

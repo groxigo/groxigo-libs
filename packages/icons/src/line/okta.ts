@@ -1,0 +1,2 @@
+import { createIcon } from '../create-icon';
+export const Okta = createIcon('Okta', 'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm5 10c0 2.8-2.2 5-5 5s-5-2.2-5-5 2.2-5 5-5 5 2.2 5 5z');

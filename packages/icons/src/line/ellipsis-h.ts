@@ -1,0 +1,2 @@
+import { createIcon } from '../create-icon';
+export const EllipsisH = createIcon('EllipsisH', 'M12,10a2,2,0,1,0,2,2A2,2,0,0,0,12,10ZM5,10a2,2,0,1,0,2,2A2,2,0,0,0,5,10Zm14,0a2,2,0,1,0,2,2A2,2,0,0,0,19,10Z');

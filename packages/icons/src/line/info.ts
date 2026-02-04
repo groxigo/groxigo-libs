@@ -1,0 +1,2 @@
+import { createIcon } from '../create-icon';
+export const Info = createIcon('Info', 'M12,10a1,1,0,0,0-1,1v6a1,1,0,0,0,2,0V11A1,1,0,0,0,12,10Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,6Z');

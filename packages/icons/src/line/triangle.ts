@@ -1,0 +1,2 @@
+import { createIcon } from '../create-icon';
+export const Triangle = createIcon('Triangle', 'M21.87,19.29l-9-15.58a1,1,0,0,0-1.74,0l-9,15.58a1,1,0,0,0,0,1,1,1,0,0,0,.87.5H21a1,1,0,0,0,.87-.5A1,1,0,0,0,21.87,19.29Zm-17.14-.5L12,6.21l7.27,12.58Z');
