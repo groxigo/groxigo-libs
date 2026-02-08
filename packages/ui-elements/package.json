@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/ui-elements",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Groxigo UI Elements - Primitive building blocks for cross-platform UI components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/components",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Groxigo Components - Composite UI components built from ui-elements",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@groxigo/contracts": "^1.0.0",
-    "@groxigo/tokens": "^1.0.0",
-    "@groxigo/ui-core": "^1.0.0",
-    "@groxigo/ui-elements": "^1.0.0"
+    "@groxigo/tokens": "^1.0.1",
+    "@groxigo/ui-core": "^1.0.1",
+    "@groxigo/ui-elements": "^1.0.1"
   },
   "peerDependencies": {
     "react": ">=18.3.1",

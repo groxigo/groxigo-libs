@@ -1,4 +1,4 @@
-# @groxigo/ui-elements-web
+# @groxigo/ui-core
 
 ## 1.0.1
 
@@ -11,12 +11,3 @@
   - Per-element system font scale caps (DESIGN_RULES section 34): body 2.0x, heading 1.5x, label 1.3x
 - Updated dependencies [[`fc1e44c`](https://github.com/groxigo/groxigo-libs/commit/fc1e44c7304f63b31f14233d84e35f4d392b04cf)]:
   - @groxigo/tokens@1.0.1
-  - @groxigo/ui-core@1.0.1
-
-## 1.0.0
-
-### Major Changes
-
-- Initial release of Groxigo UI Elements for Web
-- 22 web components with Tailwind CSS
-- API parity with @groxigo/ui-elements
