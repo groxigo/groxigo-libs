@@ -21,8 +21,6 @@ import type {
   TabsPropsBase,
   TabsVariant,
   TabsSize,
-  TabsColorScheme,
-  TabsOrientation,
   TabItem,
 } from '@groxigo/contracts';
 import styles from './Tabs.module.css';
@@ -36,8 +34,6 @@ interface TabsContextValue {
   onChange: (key: string) => void;
   variant: TabsVariant;
   size: TabsSize;
-  colorScheme: TabsColorScheme;
-  orientation: TabsOrientation;
   isFitted: boolean;
   isManual: boolean;
   isLazy: boolean;
@@ -63,7 +59,6 @@ const tabVariantClassMap: Record<TabsVariant, { base: string; selected: string }
   enclosed: { base: styles.tabEnclosed, selected: styles.tabEnclosedSelected },
   'soft-rounded': { base: styles.tabSoftRounded, selected: styles.tabSoftRoundedSelected },
   'solid-rounded': { base: styles.tabSolidRounded, selected: styles.tabSolidRoundedSelected },
-  unstyled: { base: styles.tabUnstyled, selected: styles.tabUnstyledSelected },
 };
 
 const tabListVariantClassMap: Record<TabsVariant, string> = {
@@ -71,24 +66,20 @@ const tabListVariantClassMap: Record<TabsVariant, string> = {
   enclosed: styles.tabListEnclosed,
   'soft-rounded': styles.tabListSoftRounded,
   'solid-rounded': styles.tabListSolidRounded,
-  unstyled: styles.tabListUnstyled,
 };
 
 const tabListSizeClassMap: Record<TabsSize, string> = {
   sm: styles.tabListSm,
   md: styles.tabListMd,
-  lg: styles.tabListLg,
 };
 
 const tabSizeClassMap: Record<TabsSize, string> = {
   sm: styles.tabSm,
   md: styles.tabMd,
-  lg: styles.tabLg,
 };
 
 export function getTabVariantClasses(
   variant: TabsVariant,
-  _colorScheme: TabsColorScheme,
   isSelected: boolean
 ): string {
   const variantClasses = tabVariantClassMap[variant];
@@ -112,8 +103,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
       items,
       variant = 'line',
       size = 'md',
-      colorScheme = 'primary',
-      orientation = 'horizontal',
       align = 'start',
       isFitted = false,
       isLazy = false,
@@ -152,8 +141,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
         onChange: handleChange,
         variant,
         size,
-        colorScheme,
-        orientation,
         isFitted,
         isManual,
         isLazy,
@@ -164,17 +151,12 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
         handleChange,
         variant,
         size,
-        colorScheme,
-        orientation,
         isFitted,
         isManual,
         isLazy,
         keepMounted,
       ]
     );
-
-    const orientationClass =
-      orientation === 'vertical' ? styles.vertical : styles.horizontal;
 
     // Render using items prop if provided
     if (items && items.length > 0) {
@@ -183,17 +165,15 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
           <div
             ref={ref}
             id={id}
-            className={clsx(styles.tabs, orientationClass, className)}
+            className={clsx(styles.tabs, styles.horizontal, className)}
             data-testid={testID}
           >
             <div
               role="tablist"
-              aria-orientation={orientation}
+              aria-orientation="horizontal"
               className={clsx(
                 styles.tabList,
-                orientation === 'vertical'
-                  ? styles.tabListVertical
-                  : styles.tabListHorizontal,
+                styles.tabListHorizontal,
                 tabListVariantClassMap[variant],
                 tabListSizeClassMap[size]
               )}
@@ -235,7 +215,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
         <div
           ref={ref}
           id={id}
-          className={clsx(styles.tabs, orientationClass, className)}
+          className={clsx(styles.tabs, styles.horizontal, className)}
           data-testid={testID}
         >
           {children}
@@ -259,7 +239,7 @@ interface TabButtonProps {
 }
 
 function TabButton({ value, disabled, icon, children }: TabButtonProps) {
-  const { value: selectedValue, onChange, variant, size, colorScheme, isFitted } =
+  const { value: selectedValue, onChange, variant, size, isFitted } =
     useTabsContext();
 
   const isSelected = selectedValue === value;
@@ -270,7 +250,7 @@ function TabButton({ value, disabled, icon, children }: TabButtonProps) {
     }
   };
 
-  const variantClasses = getTabVariantClasses(variant, colorScheme, isSelected);
+  const variantClasses = getTabVariantClasses(variant, isSelected);
 
   return (
     <button

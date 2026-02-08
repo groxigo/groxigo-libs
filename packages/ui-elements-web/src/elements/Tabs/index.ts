@@ -16,8 +16,6 @@ export type { TabPanelProps } from './TabPanel';
 export type {
   TabsVariant,
   TabsSize,
-  TabsColorScheme,
-  TabsOrientation,
   TabsAlign,
   TabItem,
 } from '@groxigo/contracts';

@@ -106,7 +106,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
         title: options.title,
         description: options.description,
         status: options.status || defaultOptions.status || 'info',
-        variant: options.variant || defaultOptions.variant || 'solid',
+        variant: options.variant || defaultOptions.variant || 'subtle',
         position,
         duration: options.duration !== undefined ? options.duration : (defaultOptions.duration !== undefined ? defaultOptions.duration : 5000),
         isClosable: options.isClosable !== undefined ? options.isClosable : (defaultOptions.isClosable !== undefined ? defaultOptions.isClosable : true),

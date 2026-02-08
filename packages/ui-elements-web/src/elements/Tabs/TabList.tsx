@@ -22,7 +22,6 @@ const variantClassMap: Record<TabsVariant, string> = {
   enclosed: styles.tabListEnclosed,
   'soft-rounded': styles.tabListSoftRounded,
   'solid-rounded': styles.tabListSolidRounded,
-  unstyled: styles.tabListUnstyled,
 };
 
 // ============================================
@@ -32,7 +31,6 @@ const variantClassMap: Record<TabsVariant, string> = {
 const sizeClassMap: Record<TabsSize, string> = {
   sm: styles.tabListSm,
   md: styles.tabListMd,
-  lg: styles.tabListLg,
 };
 
 // ============================================
@@ -48,13 +46,11 @@ export interface TabListProps extends TabListPropsBase {
 
 export const TabList = forwardRef<HTMLDivElement, TabListProps>(
   ({ children, className }, ref) => {
-    const { variant, size, orientation, isFitted } = useTabsContext();
+    const { variant, size, isFitted } = useTabsContext();
 
     const classes = clsx(
       styles.tabList,
-      orientation === 'vertical'
-        ? styles.tabListVertical
-        : styles.tabListHorizontal,
+      styles.tabListHorizontal,
       variantClassMap[variant],
       sizeClassMap[size],
       isFitted && styles.tabListFitted,
@@ -65,7 +61,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
       <div
         ref={ref}
         role="tablist"
-        aria-orientation={orientation}
+        aria-orientation="horizontal"
         className={classes}
       >
         {children}

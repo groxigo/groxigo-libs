@@ -64,19 +64,6 @@ export function useToast(): UseToastReturn {
     [addToast]
   );
 
-  const loading = useCallback(
-    (options: Omit<ToastOptions, 'status'>): string => {
-      // Loading toasts don't auto-dismiss by default
-      return addToast({
-        ...options,
-        status: 'loading',
-        duration: options.duration !== undefined ? options.duration : null,
-        isClosable: options.isClosable !== undefined ? options.isClosable : false,
-      });
-    },
-    [addToast]
-  );
-
   const update = useCallback(
     (id: string, options: Partial<ToastOptions>): void => {
       updateToast(id, options);
@@ -102,13 +89,12 @@ export function useToast(): UseToastReturn {
       success,
       warning,
       error,
-      loading,
       update,
       close,
       closeAll,
       isActive,
     }),
-    [toast, info, success, warning, error, loading, update, close, closeAll, isActive]
+    [toast, info, success, warning, error, update, close, closeAll, isActive]
   );
 }
 

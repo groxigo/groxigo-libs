@@ -20,7 +20,6 @@ import styles from './Tabs.module.css';
 const sizeClassMap: Record<TabsSize, string> = {
   sm: styles.tabSm,
   md: styles.tabMd,
-  lg: styles.tabLg,
 };
 
 // ============================================
@@ -47,7 +46,6 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
       onChange,
       variant,
       size,
-      colorScheme,
       isFitted,
       isManual,
     } = useTabsContext();
@@ -110,7 +108,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
       [isManual, onChange]
     );
 
-    const variantStyles = getTabVariantClasses(variant, colorScheme, isSelected);
+    const variantStyles = getTabVariantClasses(variant, isSelected);
 
     const classes = clsx(
       styles.tab,
