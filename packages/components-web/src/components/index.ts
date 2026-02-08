@@ -212,3 +212,22 @@ export type { NavSidebarProps } from './NavSidebar';
 // Modals
 export { ProductListModal } from './ProductListModal';
 export type { ProductListModalProps } from './ProductListModal';
+
+// Landing Page
+export { LandingHeader } from './LandingHeader';
+export type { LandingHeaderProps } from './LandingHeader';
+
+export { HeroSection } from './HeroSection';
+export type { HeroSectionProps } from './HeroSection';
+
+export { PillarCard } from './PillarCard';
+export type { PillarCardProps } from './PillarCard';
+
+export { LandingCuisineCard } from './LandingCuisineCard';
+export type { LandingCuisineCardProps } from './LandingCuisineCard';
+
+export { StepCard } from './StepCard';
+export type { StepCardProps } from './StepCard';
+
+export { TrustStat } from './TrustStat';
+export type { TrustStatProps } from './TrustStat';

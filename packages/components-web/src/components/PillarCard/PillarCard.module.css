@@ -1,0 +1,79 @@
+/* PillarCard — vertical card with 16:9 image, title, description, CTA */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg, 10px);
+  overflow: hidden;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+/* 16:9 image area */
+.imageArea {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  border-radius: var(--radius-lg, 10px) var(--radius-lg, 10px) 0 0;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-tertiary, #f1f5f9);
+}
+
+/* Content area */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-4, 16px);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg, 10px) var(--radius-lg, 10px);
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #0f172a);
+  line-height: var(--line-height-tight, 1.25);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-secondary, #475569);
+  line-height: var(--line-height-relaxed, 1.5);
+}
+
+.cta {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-link, var(--brand-primary, #2563eb));
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.cta:hover {
+  text-decoration: underline;
+}
+
+.cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-xs, 4px);
+}

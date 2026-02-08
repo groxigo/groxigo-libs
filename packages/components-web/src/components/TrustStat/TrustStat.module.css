@@ -1,0 +1,30 @@
+/* TrustStat — horizontal icon + label */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+/* Icon container — 32px circle */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--brand-primary-subtle, rgba(37, 99, 235, 0.1));
+  color: var(--brand-primary, #2563eb);
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+}

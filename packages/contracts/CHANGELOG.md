@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.2.0
+
+### Minor Changes
+
+- Add 6 landing page components (LandingHeader, HeroSection, PillarCard, LandingCuisineCard, StepCard, TrustStat) and 4 new SDUI section types (HeroSection, StepSection, PillarSection, TrustBarSection)
+
 ## 1.1.0
 
 ### Minor Changes

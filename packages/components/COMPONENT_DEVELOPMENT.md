@@ -26,9 +26,10 @@ Composite components are higher-level components built from `@groxigo/ui-element
 5. [Styling Guidelines](#styling-guidelines)
 6. [Design Tokens Integration](#design-tokens-integration)
 7. [Responsive Sizing](#responsive-sizing)
-8. [Best Practices](#best-practices)
-9. [Step-by-Step Example](#step-by-step-example)
-10. [Advanced Patterns: Refactoring for Code Reuse](#advanced-patterns-refactoring-for-code-reuse)
+8. [Storybook Stories](#storybook-stories)
+9. [Best Practices](#best-practices)
+10. [Step-by-Step Example](#step-by-step-example)
+11. [Advanced Patterns: Refactoring for Code Reuse](#advanced-patterns-refactoring-for-code-reuse)
 
 ## Component Structure
 
@@ -314,6 +315,84 @@ const inputSize = isWeb ? 'lg' : 'md'; // 48px web, 40px mobile
 <Input size={inputSize} ... />
 ```
 
+## Storybook Stories
+
+Every web composite component **must** have a co-located Storybook story file in the `components-web` package.
+
+### Story File Location
+
+```
+packages/components-web/src/components/
+  ComponentName/
+    ComponentName.tsx
+    ComponentName.module.css
+    ComponentName.stories.tsx    ← Required
+    index.ts
+```
+
+### Story Template
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/{Category}/ComponentName',
+  component: ComponentName,
+  parameters: {
+    layout: 'centered',  // 'centered' for cards, 'padded' for full-width, 'fullscreen' for heroes
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    title: 'Sample Title',
+    onPress: () => {},
+  },
+};
+```
+
+### Required Stories Per Component
+
+1. **`Default`** — component with typical props and realistic data
+2. **Variant/state stories** — one per major visual state (e.g., `WithImage`, `WithoutImage`, `Loading`, `Empty`)
+3. **Composition story** — a `render` function showing how multiple instances work together (e.g., grid layout, carousel row, list)
+
+### Category Naming
+
+Use these title categories to organize the Storybook sidebar:
+
+| Category | Used For |
+|---|---|
+| `Components/Layout` | Header, Footer, StickyBottomBar, FloatingCartButton |
+| `Components/Browse` | CategoryCard, BrandCard, BannerCard, StoryAvatar |
+| `Components/Product` | ProductTile, ProductImageCarousel, VariantSelector |
+| `Components/Recipe` | RecipeCard, CuisineCard, MealTypeCard, RecipeHero |
+| `Components/Cart` | CartItem, BillDetails, TipSelector, CheckoutStepper |
+| `Components/Account` | AccountMenuItem, ProfileHeader, OrderCard |
+| `Components/Landing` | LandingHeader, HeroSection, PillarCard, StepCard, TrustStat |
+| `Components/Forms` | AddressForm, FilterBar, PaginationBar |
+| `Components/Info` | NutritionTable, DeliveryInfoCard, PolicyCard |
+
+### Conventions
+
+- **Tags:** Always `['autodocs']` for auto-generated prop docs
+- **Images:** Use `https://placehold.co/{WxH}/{bg}/{text}?text={Label}` for placeholders
+- **Handlers:** Use `() => {}` for required callbacks, `(arg) => console.log(arg)` for demos
+- **ArgTypes:** Add `control: 'select'` for enum props, `control: 'boolean'` for toggles
+- **Decorators:** Use decorators when the component needs specific context (e.g., dark background for transparent headers)
+- **Sample data:** Use `Array.from()` for generating lists, provide realistic product names/prices
+
+### Running Storybook
+
+```bash
+cd apps/storybook-web && bun run storybook  # http://localhost:6006
+```
+
 ## Best Practices
 
 ### 1. Composition Over Duplication
@@ -558,6 +637,49 @@ Add to `src/index.ts`:
 export * from './components/DatePicker';
 ```
 
+### 7. Add Storybook Story
+
+Create `packages/components-web/src/components/DatePicker/DatePicker.stories.tsx`:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { DatePicker } from './DatePicker';
+
+const meta: Meta<typeof DatePicker> = {
+  title: 'Components/Forms/DatePicker',
+  component: DatePicker,
+  parameters: { layout: 'centered' },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    label: 'Delivery Date',
+    placeholder: 'Select date',
+    onChange: (date) => console.log('Selected:', date),
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    label: 'Delivery Date',
+    value: new Date('2026-03-15'),
+    onChange: (date) => console.log('Selected:', date),
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    label: 'Delivery Date',
+    error: 'Please select a valid date',
+    onChange: (date) => console.log('Selected:', date),
+  },
+};
+```
+
 ## Testing Checklist
 
 Before considering a component complete:
@@ -570,6 +692,8 @@ Before considering a component complete:
 - [ ] Platform-specific optimizations (web file if needed)
 - [ ] Component exported from index.ts
 - [ ] Added to main package exports
+- [ ] **Storybook story created** (`ComponentName.stories.tsx` co-located with web component)
+- [ ] **Story includes**: Default, variant stories, composition story, `['autodocs']` tag
 - [ ] **Tests created**:
   - [ ] Shared hooks tests (if hooks exist)
   - [ ] Mobile-specific tests

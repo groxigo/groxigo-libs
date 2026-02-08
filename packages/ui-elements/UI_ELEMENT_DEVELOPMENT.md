@@ -33,8 +33,9 @@ import { tokens } from '@groxigo/tokens/react-native';
 4. [Styling Guidelines](#styling-guidelines)
 5. [Design Tokens Integration](#design-tokens-integration)
 6. [Responsive Sizing](#responsive-sizing)
-7. [Best Practices](#best-practices)
-8. [Step-by-Step Example](#step-by-step-example)
+7. [Storybook Stories](#storybook-stories)
+8. [Best Practices](#best-practices)
+9. [Step-by-Step Example](#step-by-step-example)
 
 ## Component Structure
 
@@ -929,6 +930,93 @@ const BUTTON_PADDING_HORIZONTAL: Record<ButtonSize, number> = {
 - **`COMPONENT_SIZING_REFERENCE.md`**: Detailed component size tables
 - **`utils/responsive.ts`**: Responsive sizing utility functions
 
+## Storybook Stories
+
+Every web UI element **must** have a co-located Storybook story file in the `ui-elements-web` package.
+
+### Story File Location
+
+```
+packages/ui-elements-web/src/elements/
+  ComponentName/
+    ComponentName.web.tsx
+    ComponentName.stories.tsx    ← Required
+    index.ts
+```
+
+### Story Template
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Elements/{ComponentName}',
+  component: ComponentName,
+  parameters: {
+    layout: 'centered',  // 'centered' for small elements, 'padded' for full-width
+  },
+  tags: ['autodocs'],     // Auto-generates prop documentation
+  argTypes: {
+    variant: { control: 'select', options: ['primary', 'secondary', 'outline'] },
+    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+    disabled: { control: 'boolean' },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: 'Button Text',
+    variant: 'primary',
+    size: 'md',
+  },
+};
+
+// One story per major variant
+export const Secondary: Story = {
+  args: { ...Default.args, variant: 'secondary' },
+};
+
+// A composition story showing all variants together
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+      <ComponentName variant="primary">Primary</ComponentName>
+      <ComponentName variant="secondary">Secondary</ComponentName>
+      <ComponentName variant="outline">Outline</ComponentName>
+    </div>
+  ),
+};
+```
+
+### Required Stories Per Element
+
+1. **`Default`** — element with typical/default props
+2. **Variant stories** — one per visual variant (e.g., `Primary`, `Secondary`, `Outline`, `Ghost`)
+3. **Size stories** — one per size or an `AllSizes` composition story
+4. **State stories** — `Disabled`, `Loading`, `Error` (if applicable)
+5. **Composition story** — a `render` function showing multiple variants/sizes together
+
+### Conventions
+
+| Convention | Value |
+|---|---|
+| Title pattern | `'Elements/{ComponentName}'` |
+| Tags | Always `['autodocs']` |
+| Layout | `'centered'` for small elements, `'padded'` for inputs/full-width |
+| Placeholder images | `https://placehold.co/{WxH}/{bg}/{text}?text={label}` |
+| Handlers | `() => {}` for required callbacks |
+| ArgTypes | Add `control: 'select'` for enum props, `control: 'boolean'` for booleans |
+
+### Running Storybook
+
+```bash
+cd apps/storybook-web && bun run storybook  # http://localhost:6006
+```
+
 ## Best Practices
 
 ### 1. Component Composition
@@ -1302,6 +1390,45 @@ Add to `src/index.ts`:
 export * from './elements/Chip';
 ```
 
+### 7. Add Storybook Story
+
+Create `packages/ui-elements-web/src/elements/Chip/Chip.stories.tsx`:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { Chip } from './Chip';
+
+const meta: Meta<typeof Chip> = {
+  title: 'Elements/Chip',
+  component: Chip,
+  parameters: { layout: 'centered' },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: { control: 'select', options: ['primary', 'secondary', 'outline', 'ghost'] },
+    size: { control: 'select', options: ['sm', 'md'] },
+    selected: { control: 'boolean' },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: { children: 'Chip Label', variant: 'primary', onPress: () => {} },
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      <Chip variant="primary">Primary</Chip>
+      <Chip variant="secondary">Secondary</Chip>
+      <Chip variant="outline">Outline</Chip>
+      <Chip variant="ghost">Ghost</Chip>
+    </div>
+  ),
+};
+```
+
 ## Common Patterns
 
 ### Handling Children
@@ -1352,6 +1479,8 @@ Before considering a component complete:
 - [ ] Platform-specific optimizations implemented
 - [ ] Component exported from index.ts
 - [ ] Added to main package exports
+- [ ] **Storybook story created** (`ComponentName.stories.tsx` co-located with web component)
+- [ ] **Story includes**: Default, variant stories, composition story, `['autodocs']` tag
 - [ ] Tested on iOS, Android, and Web
 - [ ] Tested at mobile width (375px) and web width (up to 1440px)
 - [ ] Touch targets verified on mobile (min 44×44px)

@@ -444,9 +444,13 @@ groxigo-libs/
    - `index.ts`
 
 4. **Create web component** in `packages/components-web/src/components/NewComponent/`:
-   - Same structure, use Tailwind
+   - `NewComponent.tsx` — `'use client'`, `forwardRef`, extends `*PropsBase`, CSS Modules
+   - `NewComponent.module.css` — design token CSS vars with fallbacks, `@container` queries
+   - `index.ts` — barrel export
 
-5. **Add Storybook story** for web component
+5. **Add Storybook story** in `packages/components-web/src/components/NewComponent/`:
+   - `NewComponent.stories.tsx` — co-located with the component
+   - See [Storybook Guide](#storybook-stories) below
 
 6. **Add tests** for both versions
 
@@ -461,6 +465,51 @@ cd packages/ui-core && bun run test
 
 # With coverage
 cd packages/ui-core && bun run test:coverage
+```
+
+### Storybook Stories
+
+Every web component (`components-web`, `ui-elements-web`) **must** have a co-located Storybook story file.
+
+**Location:** `packages/components-web/src/components/ComponentName/ComponentName.stories.tsx`
+
+**Template:**
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/{Category}/ComponentName',  // e.g., 'Components/Browse/BrandCard'
+  component: ComponentName,
+  parameters: {
+    layout: 'centered',  // 'centered' for cards, 'padded' for full-width, 'fullscreen' for heroes
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: { /* default props */ },
+};
+```
+
+**Required stories per component:**
+1. `Default` — component with typical props
+2. Variant stories — one per major variant/state (e.g., `WithIcon`, `Small`, `Scrolled`)
+3. Composition story — a `render` function showing multiple instances together (e.g., grid, row)
+
+**Conventions:**
+- **Title categories:** `Layout`, `Browse`, `Product`, `Recipe`, `Cart`, `Account`, `Landing`, `Forms`
+- **Tags:** Always include `['autodocs']` for auto-generated prop docs
+- **Images:** Use `placehold.co` URLs (e.g., `https://placehold.co/200x200/e2e8f0/475569?text=Label`)
+- **Handlers:** Use `() => {}` for required callbacks, `console.log` for demos
+- **Interactive controls:** Add `argTypes` for enum props (`control: 'select'`) and booleans
+
+**Running Storybook:**
+```bash
+cd apps/storybook-web && bun run storybook  # http://localhost:6006
 ```
 
 ### Publishing (for Claude)

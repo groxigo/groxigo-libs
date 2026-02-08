@@ -1,0 +1,46 @@
+/* StepCard — icon circle + title + description */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  text-align: center;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+/* Icon container — 48px circle */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--brand-primary-subtle, rgba(37, 99, 235, 0.1));
+  color: var(--brand-primary, #2563eb);
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.stepNumber {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--brand-primary, #2563eb);
+}
+
+.title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  line-height: var(--line-height-tight, 1.25);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-secondary, #475569);
+  line-height: var(--line-height-relaxed, 1.5);
+}

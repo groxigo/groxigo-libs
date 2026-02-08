@@ -1,0 +1,65 @@
+/* LandingCuisineCard — square image + label card */
+/* Mobile-first: container queries for responsive sizing */
+
+.root {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 150ms ease;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.root:hover {
+  transform: scale(1.04);
+}
+
+.root:focus-visible {
+  outline: none;
+  border-radius: var(--radius-lg, 10px);
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
+}
+
+/* Square image frame */
+.imageFrame {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-lg, 10px);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+/* Label */
+.name {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  text-align: center;
+  line-height: normal;
+}
+
+/* ------- Container: 1024px+ (Large) ------- */
+@container (min-width: 1024px) {
+  .imageFrame {
+    width: 120px;
+    height: 120px;
+  }
+}
