@@ -1,5 +1,13 @@
 # @groxigo/contracts
 
+## 1.1.0
+
+### Minor Changes
+
+- Contracts: Simplify element contracts, add Button xs/xl sizes per DESIGN_RULES §5, add 65 composite component contracts.
+
+  ui-elements-web: Production readiness — all 22 components extend contract base interfaces, a11y improvements (Modal aria-labelledby, Tooltip conditional tabIndex, Switch readOnly, TabPanel focus management), removed stale props, added 24 test files (373 tests), added 14 Storybook stories.
+
 ## 1.0.1
 
 ### Patch Changes

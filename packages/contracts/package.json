@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/contracts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Shared component contracts for cross-platform UI consistency",
   "main": "dist/index.js",
   "module": "src/index.ts",
@@ -45,6 +45,10 @@
   ],
   "author": "Groxigo",
   "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/groxigo/groxigo-libs.git",

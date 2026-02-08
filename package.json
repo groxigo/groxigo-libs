@@ -9,10 +9,12 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "bun run build:core && bun run build:ui && bun run build:components",
+    "build": "bun run build:core && bun run build:ui",
     "build:core": "bun run --filter '@groxigo/tokens' build && bun run --filter '@groxigo/contracts' build && bun run --filter '@groxigo/api-types' build && bun run --filter '@groxigo/sdui' build",
-    "build:ui": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements' build && bun run --filter '@groxigo/ui-elements-web' build",
-    "build:components": "bun run --filter '@groxigo/components' build && bun run --filter '@groxigo/components-web' build",
+    "build:ui": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements-web' build",
+    "build:ui:all": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements' build && bun run --filter '@groxigo/ui-elements-web' build",
+    "build:components": "bun run --filter '@groxigo/components-web' build",
+    "build:components:all": "bun run --filter '@groxigo/components' build && bun run --filter '@groxigo/components-web' build",
     "clean": "bun run --filter '*' clean",
     "test": "bun run --filter '*' test",
     "lint": "bun run --filter '*' lint",
@@ -41,8 +43,10 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
+    "@groxigo/components-web": "workspace:*",
     "@storybook/addon-actions": "^8.5.0",
     "@types/node": "^25.0.10",
+    "@vitejs/plugin-react": "^5.1.3",
     "concurrently": "^8.2.2",
     "react-native": "^0.83.1"
   },
