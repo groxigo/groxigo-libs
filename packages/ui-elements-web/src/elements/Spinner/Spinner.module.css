@@ -1,0 +1,38 @@
+.wrapper {
+  display: inline-flex;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.xs { height: 12px; width: 12px; }
+.sm { height: 16px; width: 16px; }
+.md { height: 24px; width: 24px; }
+.lg { height: 32px; width: 32px; }
+.xl { height: 48px; width: 48px; }
+
+.primary { color: var(--brand-primary, #2563eb); }
+.secondary { color: var(--brand-secondary, #f97316); }
+.accent { color: var(--brand-accent, #06b6d4); }
+.white { color: #fff; }
+
+.trackCircle { opacity: 0.25; }
+.arcPath { opacity: 0.75; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

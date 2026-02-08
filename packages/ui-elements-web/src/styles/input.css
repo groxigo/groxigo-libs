@@ -4,11 +4,11 @@
 
 /* Base layer customizations */
 @layer base {
-  /* Import Poppins font */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  /* Import Google Sans Flex font */
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300;400;500;600;700&display=swap');
 
   html {
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

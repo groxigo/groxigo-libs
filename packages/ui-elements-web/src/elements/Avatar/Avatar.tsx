@@ -6,32 +6,33 @@
  */
 
 import React, { forwardRef, useState, useCallback, useMemo } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { AvatarPropsBase, AvatarSize, AvatarVariant } from '@groxigo/contracts';
+import styles from './Avatar.module.css';
 
-// Size configuration for avatar dimensions and text
-const sizeClasses: Record<AvatarSize, { container: string; text: string; badge: string }> = {
-  xs: { container: 'h-6 w-6', text: 'text-[10px]', badge: 'h-1.5 w-1.5 border' },
-  sm: { container: 'h-8 w-8', text: 'text-xs', badge: 'h-2 w-2 border' },
-  md: { container: 'h-10 w-10', text: 'text-sm', badge: 'h-2.5 w-2.5 border-2' },
-  lg: { container: 'h-12 w-12', text: 'text-base', badge: 'h-3 w-3 border-2' },
-  xl: { container: 'h-16 w-16', text: 'text-xl', badge: 'h-3.5 w-3.5 border-2' },
-  '2xl': { container: 'h-20 w-20', text: 'text-2xl', badge: 'h-4 w-4 border-2' },
+// Size configuration for avatar — maps to CSS module classes
+const sizeConfig: Record<AvatarSize, { container: string; text: string; badge: string }> = {
+  xs: { container: styles.sizeXs, text: styles.textXs, badge: styles.badgeXs },
+  sm: { container: styles.sizeSm, text: styles.textSm, badge: styles.badgeSm },
+  md: { container: styles.sizeMd, text: styles.textMd, badge: styles.badgeMd },
+  lg: { container: styles.sizeLg, text: styles.textLg, badge: styles.badgeLg },
+  xl: { container: styles.sizeXl, text: styles.textXl, badge: styles.badgeXl },
+  '2xl': { container: styles.size2xl, text: styles.text2xl, badge: styles.badge2xl },
 };
 
 // Variant (shape) configuration
-const variantClasses: Record<AvatarVariant, string> = {
-  circle: 'rounded-full',
-  rounded: 'rounded-lg',
-  square: 'rounded-none',
+const variantClassMap: Record<AvatarVariant, string> = {
+  circle: styles.circle,
+  rounded: styles.rounded,
+  square: styles.square,
 };
 
 // Badge color configuration
-const badgeColorClasses: Record<string, string> = {
-  green: 'bg-success',
-  red: 'bg-error',
-  yellow: 'bg-warning',
-  gray: 'bg-text-tertiary',
+const badgeColorClassMap: Record<string, string> = {
+  green: styles.badgeGreen,
+  red: styles.badgeRed,
+  yellow: styles.badgeYellow,
+  gray: styles.badgeGray,
 };
 
 /**
@@ -85,9 +86,9 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const initials = useMemo(() => getInitials(name), [name]);
     const displayText = initials || '?';
 
-    const sizeConfig = sizeClasses[size];
-    const variantClass = variantClasses[variant];
-    const badgeColorClass = badgeColorClasses[badgeColor] || badgeColorClasses.green;
+    const currentSize = sizeConfig[size];
+    const variantClass = variantClassMap[variant];
+    const badgeColorClass = badgeColorClassMap[badgeColor] || badgeColorClassMap.green;
 
     // Build inline styles for border color if provided
     const style: React.CSSProperties = {};
@@ -97,31 +98,29 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       style.borderStyle = 'solid';
     }
 
-    const containerClasses = cn(
-      'relative inline-flex items-center justify-center overflow-hidden',
-      'bg-surface-secondary text-text-secondary',
-      'select-none flex-shrink-0',
-      sizeConfig.container,
+    const containerClasses = clsx(
+      styles.avatar,
+      currentSize.container,
       variantClass,
-      onClick && 'cursor-pointer hover:opacity-90 transition-opacity',
+      onClick && styles.clickable,
       className
     );
 
-    const imageClasses = cn(
-      'w-full h-full object-cover transition-opacity duration-200',
+    const imageClasses = clsx(
+      styles.image,
       variantClass,
-      !imageLoaded && 'opacity-0',
-      imageLoaded && 'opacity-100'
+      !imageLoaded && styles.imageHidden,
+      imageLoaded && styles.imageVisible
     );
 
-    const fallbackTextClasses = cn(
-      'font-semibold text-text-secondary',
-      sizeConfig.text
+    const fallbackTextClasses = clsx(
+      styles.fallbackText,
+      currentSize.text
     );
 
-    const badgeClasses = cn(
-      'absolute bottom-0 right-0 rounded-full border-white',
-      sizeConfig.badge,
+    const badgeClasses = clsx(
+      styles.statusBadge,
+      currentSize.badge,
       badgeColorClass
     );
 

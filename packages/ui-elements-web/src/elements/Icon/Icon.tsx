@@ -3,35 +3,37 @@
  *
  * Implements @groxigo/contracts IconPropsBase for web platform.
  * Uses inline SVG icons for optimal performance and styling flexibility.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { IconPropsBase, IconName, IconSize, IconColorScheme } from '@groxigo/contracts';
+import styles from './Icon.module.css';
 
-// Size classes mapping
-const sizeClasses: Record<string, string> = {
-  xs: 'w-3 h-3',     // 12px
-  sm: 'w-4 h-4',     // 16px
-  md: 'w-5 h-5',     // 20px
-  lg: 'w-6 h-6',     // 24px
-  xl: 'w-8 h-8',     // 32px
-  '2xl': 'w-10 h-10', // 40px
-  '3xl': 'w-12 h-12', // 48px
-  '4xl': 'w-16 h-16', // 64px
+// Size class mapping to CSS module classes
+const sizeStyleMap: Record<string, string> = {
+  xs: styles.xs,
+  sm: styles.sm,
+  md: styles.md,
+  lg: styles.lg,
+  xl: styles.xl,
+  '2xl': styles.xxl,
+  '3xl': styles.xxxl,
+  '4xl': styles.xxxxl,
 };
 
-// Color scheme classes
-const colorSchemeClasses: Record<IconColorScheme, string> = {
-  default: 'text-gray-900',
-  primary: 'text-primary-500',
-  secondary: 'text-secondary-500',
-  accent: 'text-accent-500',
-  success: 'text-success',
-  warning: 'text-warning-dark',
-  error: 'text-error',
-  info: 'text-info',
-  muted: 'text-gray-400',
+// Color scheme mapping to CSS module classes
+const colorSchemeStyleMap: Record<IconColorScheme, string> = {
+  default: styles.default,
+  primary: styles.primary,
+  secondary: styles.secondary,
+  accent: styles.accent,
+  success: styles.success,
+  warning: styles.warning,
+  error: styles.error,
+  info: styles.info,
+  muted: styles.muted,
 };
 
 // SVG icon paths - using standard 24x24 viewBox
@@ -558,11 +560,11 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
   ) => {
     // Handle numeric size
     const sizeStyle = typeof size === 'number' ? { width: size, height: size } : undefined;
-    const sizeClass = typeof size === 'string' ? sizeClasses[size] : '';
+    const sizeClass = typeof size === 'string' ? sizeStyleMap[size] : '';
 
     // Handle color - custom color takes precedence
     const colorStyle = color ? { color } : undefined;
-    const colorClass = !color ? colorSchemeClasses[colorScheme] : '';
+    const colorClass = !color ? colorSchemeStyleMap[colorScheme] : '';
 
     // Get the icon path
     const iconPath = iconPaths[name as string];
@@ -570,8 +572,8 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
     // Determine if this is a filled icon
     const isFilled = filledIcons.has(name as string);
 
-    const classes = cn(
-      'inline-block shrink-0',
+    const classes = clsx(
+      styles.icon,
       sizeClass,
       colorClass,
       className

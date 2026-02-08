@@ -8,8 +8,9 @@
 'use client';
 
 import React, { forwardRef, type ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { TabPanelsPropsBase } from '@groxigo/contracts';
+import styles from './Tabs.module.css';
 
 // ============================================
 // TAB PANELS COMPONENT
@@ -25,7 +26,7 @@ export interface TabPanelsProps extends TabPanelsPropsBase {
 export const TabPanels = forwardRef<HTMLDivElement, TabPanelsProps>(
   ({ children, className }, ref) => {
     return (
-      <div ref={ref} className={cn('mt-4', className)}>
+      <div ref={ref} className={clsx(styles.tabPanels, className)}>
         {children}
       </div>
     );

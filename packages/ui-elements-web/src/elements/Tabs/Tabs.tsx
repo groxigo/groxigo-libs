@@ -16,7 +16,7 @@ import React, {
   useCallback,
   type ReactNode,
 } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type {
   TabsPropsBase,
   TabsVariant,
@@ -25,6 +25,7 @@ import type {
   TabsOrientation,
   TabItem,
 } from '@groxigo/contracts';
+import styles from './Tabs.module.css';
 
 // ============================================
 // CONTEXT
@@ -54,26 +55,45 @@ export function useTabsContext() {
 }
 
 // ============================================
-// SIZE CLASSES
+// VARIANT CLASS HELPERS
 // ============================================
 
-const sizeClasses: Record<TabsSize, string> = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
+const tabVariantClassMap: Record<TabsVariant, { base: string; selected: string }> = {
+  line: { base: styles.tabLine, selected: styles.tabLineSelected },
+  enclosed: { base: styles.tabEnclosed, selected: styles.tabEnclosedSelected },
+  'soft-rounded': { base: styles.tabSoftRounded, selected: styles.tabSoftRoundedSelected },
+  'solid-rounded': { base: styles.tabSolidRounded, selected: styles.tabSolidRoundedSelected },
+  unstyled: { base: styles.tabUnstyled, selected: styles.tabUnstyledSelected },
 };
 
-// ============================================
-// VARIANT CLASSES
-// ============================================
-
-const containerVariantClasses: Record<TabsVariant, string> = {
-  line: 'border-b border-gray-200',
-  enclosed: 'border border-gray-200 rounded-lg p-1 bg-gray-50',
-  'soft-rounded': '',
-  'solid-rounded': 'bg-gray-100 p-1 rounded-lg',
-  unstyled: '',
+const tabListVariantClassMap: Record<TabsVariant, string> = {
+  line: styles.tabListLine,
+  enclosed: styles.tabListEnclosed,
+  'soft-rounded': styles.tabListSoftRounded,
+  'solid-rounded': styles.tabListSolidRounded,
+  unstyled: styles.tabListUnstyled,
 };
+
+const tabListSizeClassMap: Record<TabsSize, string> = {
+  sm: styles.tabListSm,
+  md: styles.tabListMd,
+  lg: styles.tabListLg,
+};
+
+const tabSizeClassMap: Record<TabsSize, string> = {
+  sm: styles.tabSm,
+  md: styles.tabMd,
+  lg: styles.tabLg,
+};
+
+export function getTabVariantClasses(
+  variant: TabsVariant,
+  _colorScheme: TabsColorScheme,
+  isSelected: boolean
+): string {
+  const variantClasses = tabVariantClassMap[variant];
+  return clsx(variantClasses.base, isSelected && variantClasses.selected);
+}
 
 // ============================================
 // TABS COMPONENT
@@ -153,8 +173,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
       ]
     );
 
-    const orientationClasses =
-      orientation === 'vertical' ? 'flex-row' : 'flex-col';
+    const orientationClass =
+      orientation === 'vertical' ? styles.vertical : styles.horizontal;
 
     // Render using items prop if provided
     if (items && items.length > 0) {
@@ -163,17 +183,19 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
           <div
             ref={ref}
             id={id}
-            className={cn('flex', orientationClasses, className)}
+            className={clsx(styles.tabs, orientationClass, className)}
             data-testid={testID}
           >
             <div
               role="tablist"
               aria-orientation={orientation}
-              className={cn(
-                'flex',
-                orientation === 'vertical' ? 'flex-col' : 'flex-row',
-                containerVariantClasses[variant],
-                sizeClasses[size]
+              className={clsx(
+                styles.tabList,
+                orientation === 'vertical'
+                  ? styles.tabListVertical
+                  : styles.tabListHorizontal,
+                tabListVariantClassMap[variant],
+                tabListSizeClassMap[size]
               )}
             >
               {items.map((item: TabItem) => (
@@ -188,7 +210,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                 </TabButton>
               ))}
             </div>
-            <div className="mt-4">
+            <div className={styles.itemPanels}>
               {items.map((item: TabItem) => (
                 <div
                   key={item.key}
@@ -213,7 +235,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
         <div
           ref={ref}
           id={id}
-          className={cn('flex', orientationClasses, className)}
+          className={clsx(styles.tabs, orientationClass, className)}
           data-testid={testID}
         >
           {children}
@@ -248,11 +270,7 @@ function TabButton({ value, disabled, icon, children }: TabButtonProps) {
     }
   };
 
-  const baseClasses =
-    'flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
-
   const variantClasses = getTabVariantClasses(variant, colorScheme, isSelected);
-  const sizeClass = sizeClasses[size];
 
   return (
     <button
@@ -264,12 +282,12 @@ function TabButton({ value, disabled, icon, children }: TabButtonProps) {
       tabIndex={isSelected ? 0 : -1}
       disabled={disabled}
       onClick={handleClick}
-      className={cn(
-        baseClasses,
+      className={clsx(
+        styles.tab,
+        tabSizeClassMap[size],
         variantClasses,
-        sizeClass,
-        isFitted && 'flex-1',
-        disabled && 'opacity-50 cursor-not-allowed'
+        isFitted && styles.tabFitted,
+        disabled && styles.tabDisabled
       )}
     >
       {icon}
@@ -278,79 +296,4 @@ function TabButton({ value, disabled, icon, children }: TabButtonProps) {
   );
 }
 
-// ============================================
-// VARIANT CLASS HELPERS
-// ============================================
-
-function getTabVariantClasses(
-  variant: TabsVariant,
-  colorScheme: TabsColorScheme,
-  isSelected: boolean
-): string {
-  const colorMap: Record<TabsColorScheme, { active: string; ring: string }> = {
-    primary: { active: 'text-primary-600', ring: 'focus:ring-primary-500' },
-    secondary: { active: 'text-secondary-600', ring: 'focus:ring-secondary-500' },
-    accent: { active: 'text-accent-600', ring: 'focus:ring-accent-500' },
-    gray: { active: 'text-gray-700', ring: 'focus:ring-gray-500' },
-  };
-
-  const colors = colorMap[colorScheme];
-
-  switch (variant) {
-    case 'line':
-      return cn(
-        'border-b-2 -mb-px',
-        isSelected
-          ? cn('border-current', colors.active)
-          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-        colors.ring
-      );
-
-    case 'enclosed':
-      return cn(
-        'rounded-md',
-        isSelected
-          ? cn('bg-white shadow-sm', colors.active)
-          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100',
-        colors.ring
-      );
-
-    case 'soft-rounded':
-      return cn(
-        'rounded-full',
-        isSelected
-          ? cn(
-              colorScheme === 'primary' && 'bg-primary-100 text-primary-700',
-              colorScheme === 'secondary' && 'bg-secondary-100 text-secondary-700',
-              colorScheme === 'accent' && 'bg-accent-100 text-accent-700',
-              colorScheme === 'gray' && 'bg-gray-200 text-gray-700'
-            )
-          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100',
-        colors.ring
-      );
-
-    case 'solid-rounded':
-      return cn(
-        'rounded-md',
-        isSelected
-          ? cn(
-              colorScheme === 'primary' && 'bg-primary-500 text-white',
-              colorScheme === 'secondary' && 'bg-secondary-500 text-white',
-              colorScheme === 'accent' && 'bg-accent-500 text-white',
-              colorScheme === 'gray' && 'bg-gray-700 text-white'
-            )
-          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200',
-        colors.ring
-      );
-
-    case 'unstyled':
-    default:
-      return cn(
-        isSelected ? colors.active : 'text-gray-500 hover:text-gray-700',
-        colors.ring
-      );
-  }
-}
-
-export { getTabVariantClasses };
 export default Tabs;

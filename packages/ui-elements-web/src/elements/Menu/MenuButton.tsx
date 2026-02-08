@@ -6,9 +6,10 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { useMenuContext } from './Menu';
 import type { MenuButtonPropsBase } from '@groxigo/contracts';
+import styles from './Menu.module.css';
 
 // ============================================
 // MENU BUTTON COMPONENT
@@ -91,16 +92,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
       <button
         ref={buttonRef as React.RefObject<HTMLButtonElement>}
         type={type}
-        className={cn(
-          'inline-flex items-center justify-center gap-2 px-4 py-2',
-          'text-sm font-medium rounded-md',
-          'bg-surface-primary border border-border',
-          'hover:bg-surface-secondary',
-          'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2',
-          'disabled:opacity-50 disabled:cursor-not-allowed',
-          'transition-colors duration-200',
-          className
-        )}
+        className={clsx(styles.menuButton, className)}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         disabled={disabled}
@@ -111,9 +103,9 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
         {children}
         {showIcon && (
           <svg
-            className={cn(
-              'w-4 h-4 transition-transform duration-200',
-              isOpen && 'rotate-180'
+            className={clsx(
+              styles.menuButtonIcon,
+              isOpen && styles.menuButtonIconOpen
             )}
             fill="none"
             viewBox="0 0 24 24"

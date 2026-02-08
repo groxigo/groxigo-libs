@@ -1,0 +1,254 @@
+/**
+ * TextArea Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Same base styling as Input per DESIGN_RULES §22, §26, §13.
+ * Min-height per size. Resize handle styling.
+ */
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #111827);
+  margin-bottom: 6px;
+}
+
+.required {
+  color: var(--status-error, #dc2626);
+  margin-left: 2px;
+}
+
+/* ============================================
+   WRAPPER
+   ============================================ */
+
+.wrapper {
+  position: relative;
+}
+
+.wrapperAuto {
+  width: auto;
+}
+
+/* ============================================
+   BASE TEXTAREA
+   ============================================ */
+
+.textarea {
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  color: var(--text-primary, #111827);
+  transition: all var(--duration-normal, 200ms) ease;
+}
+
+.textarea::placeholder {
+  color: var(--text-tertiary, #9ca3af);
+}
+
+/* ============================================
+   SIZES — §26: 12px horizontal, 12px vertical
+   §13: Standard inputs → --radius-md (8px)
+   Min-heights per size
+   ============================================ */
+
+.sm {
+  padding: 12px;
+  font-size: var(--font-size-sm, 14px);
+  border-radius: var(--radius-md, 8px);
+  min-height: 80px;
+}
+
+.md {
+  padding: 12px;
+  font-size: var(--font-size-base, 16px);
+  border-radius: var(--radius-md, 8px);
+  min-height: 100px;
+}
+
+.lg {
+  padding: 12px;
+  font-size: var(--font-size-lg, 18px);
+  border-radius: var(--radius-md, 8px);
+  min-height: 140px;
+}
+
+/* ============================================
+   VARIANTS — §22 Input States
+   Default: border=--input-border, bg=--input-bg
+   Hover: border=--border-strong
+   Focus: border=--border-focus + 3px ring
+   ============================================ */
+
+.outline {
+  background: var(--input-bg, var(--surface-primary, #fff));
+  border: 1px solid var(--input-border, var(--border-default, #d1d5db));
+}
+
+.outline:hover:not(:disabled):not(:focus) {
+  border-color: var(--border-strong, #6b7280);
+}
+
+.outline:focus {
+  border-color: var(--border-focus, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.filled {
+  background: var(--surface-secondary, #f9fafb);
+  border: 1px solid transparent;
+}
+
+.filled:hover:not(:disabled):not(:focus) {
+  border-color: var(--border-strong, #6b7280);
+}
+
+.filled:focus {
+  background: var(--surface-primary, #fff);
+  border-color: var(--border-focus, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.flushed {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--input-border, var(--border-default, #d1d5db));
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.flushed:hover:not(:disabled):not(:focus) {
+  border-bottom-color: var(--border-strong, #6b7280);
+}
+
+.flushed:focus {
+  border-bottom-color: var(--border-focus, #3b82f6);
+}
+
+.unstyled {
+  background: transparent;
+  border: none;
+}
+
+/* ============================================
+   ERROR STATES — §22
+   Error: border=--status-error, ring=--status-error
+   ============================================ */
+
+.outlineError {
+  border-color: var(--status-error, #dc2626);
+}
+
+.outlineError:focus {
+  border-color: var(--status-error, #dc2626);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.filledError {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+}
+
+.filledError:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+}
+
+.flushedError {
+  border-bottom-color: var(--status-error, #dc2626);
+}
+
+.flushedError:focus {
+  border-bottom-color: var(--status-error, #dc2626);
+}
+
+/* ============================================
+   RESIZE HANDLE
+   ============================================ */
+
+.resizeNone {
+  resize: none;
+}
+
+.resizeVertical {
+  resize: vertical;
+}
+
+.resizeHorizontal {
+  resize: horizontal;
+}
+
+.resizeBoth {
+  resize: both;
+}
+
+/* ============================================
+   DISABLED STATE — §22
+   ============================================ */
+
+.disabled {
+  background: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
+  color: var(--text-disabled, #94a3b8);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ============================================
+   FOOTER ROW (error/helper + char count)
+   ============================================ */
+
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.footerContent {
+  flex: 1;
+}
+
+/* ============================================
+   ERROR & HELPER TEXT
+   ============================================ */
+
+.errorText {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--status-error-text, var(--status-error, #dc2626));
+}
+
+.helperText {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-secondary, #6b7280);
+}
+
+/* ============================================
+   CHARACTER COUNT
+   ============================================ */
+
+.charCount {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-secondary, #6b7280);
+  margin-left: 8px;
+}
+
+.charCountError {
+  color: var(--status-error-text, var(--status-error, #dc2626));
+}

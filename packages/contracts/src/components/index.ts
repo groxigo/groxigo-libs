@@ -120,3 +120,37 @@ export type {
   CuisineCardVariant,
   CuisineCardPropsBase,
 } from './cuisine-card';
+
+export type {
+  FooterLink,
+  FooterSection,
+  FooterPropsBase,
+} from './footer';
+
+export type {
+  ReviewCardPropsBase,
+} from './review-card';
+
+export type {
+  ProductCarouselPropsBase,
+} from './product-carousel';
+
+export type {
+  RecipeCarouselPropsBase,
+} from './recipe-carousel';
+
+export type {
+  CategoryCarouselPropsBase,
+} from './category-carousel';
+
+export type {
+  ProductListGridPropsBase,
+} from './product-list-grid';
+
+export type {
+  RecipeListGridPropsBase,
+} from './recipe-list-grid';
+
+export type {
+  CategoryListGridPropsBase,
+} from './category-list-grid';

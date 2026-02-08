@@ -52,11 +52,11 @@ npm run changeset:add
 
 # Select: @groxigo/tokens
 # Select: patch (for bug fixes) / minor (for features) / major (for breaking changes)
-# Enter: "Added Poppins font as primary font family"
+# Enter: "Added Google Sans Flex as primary font family"
 
 # 3. Commit your changes AND the changeset file
 git add .
-git commit -m "feat(tokens): add Poppins font family"
+git commit -m "feat(tokens): add Google Sans Flex font family"
 git push
 ```
 

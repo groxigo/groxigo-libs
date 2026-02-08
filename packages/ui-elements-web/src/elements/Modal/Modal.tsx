@@ -13,7 +13,7 @@ import React, {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type {
   ModalPropsBase,
   ModalHeaderPropsBase,
@@ -22,29 +22,23 @@ import type {
   ModalSize,
   ModalPlacement,
 } from '@groxigo/contracts';
+import styles from './Modal.module.css';
 
-// Size configuration for max-width
-const sizeClasses: Record<ModalSize, string> = {
-  xs: 'max-w-xs',
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-xl',
-  full: 'max-w-full h-full',
+// Size configuration mapped to CSS module classes
+const sizeClassMap: Record<ModalSize, string> = {
+  xs: styles.sizeSm, // xs uses sm styling (400px)
+  sm: styles.sizeSm,
+  md: styles.sizeMd,
+  lg: styles.sizeLg,
+  xl: styles.sizeXl,
+  full: styles.sizeFull,
 };
 
-// Placement configuration
-const placementClasses: Record<ModalPlacement, string> = {
-  center: 'items-center justify-center',
-  top: 'items-start justify-center pt-16',
-  bottom: 'items-end justify-center pb-16',
-};
-
-// Modal container placement classes
-const containerPlacementClasses: Record<ModalPlacement, string> = {
-  center: '',
-  top: '',
-  bottom: '',
+// Placement configuration mapped to CSS module classes
+const placementClassMap: Record<ModalPlacement, string> = {
+  center: styles.placementCenter,
+  top: styles.placementTop,
+  bottom: styles.placementBottom,
 };
 
 export interface ModalProps extends ModalPropsBase {
@@ -217,17 +211,17 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     const modalContent = (
       <div
-        className={cn(
-          'fixed inset-0 z-50 flex overflow-y-auto',
-          placementClasses[placement]
+        className={clsx(
+          styles.overlay,
+          placementClassMap[placement]
         )}
         role="presentation"
       >
         {/* Overlay/Backdrop */}
         <div
-          className={cn(
-            'fixed inset-0 bg-black/50 transition-opacity duration-200',
-            isOpen ? 'opacity-100' : 'opacity-0'
+          className={clsx(
+            styles.backdrop,
+            isOpen ? styles.backdropVisible : styles.backdropHidden
           )}
           aria-hidden="true"
           onClick={handleOverlayClick}
@@ -250,16 +244,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           aria-modal="true"
           aria-labelledby={id ? `${id}-title` : undefined}
           tabIndex={-1}
-          className={cn(
-            'relative z-10 w-full bg-surface-primary rounded-lg shadow-xl',
-            'transform transition-all duration-200',
+          className={clsx(
+            styles.modal,
             isOpen && !isAnimating
-              ? 'opacity-100 scale-100'
-              : 'opacity-0 scale-95',
-            sizeClasses[size],
-            size === 'full' && 'rounded-none',
-            containerPlacementClasses[placement],
-            'm-4',
+              ? styles.modalVisible
+              : styles.modalEntering,
+            sizeClassMap[size],
             className
           )}
           data-testid={testID}
@@ -268,19 +258,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           {showCloseButton && (
             <button
               type="button"
-              className={cn(
-                'absolute top-3 right-3 z-10',
-                'w-8 h-8 flex items-center justify-center',
-                'rounded-full bg-surface-secondary text-text-secondary',
-                'hover:bg-surface-tertiary hover:text-text-primary',
-                'focus:outline-none focus:ring-2 focus:ring-primary-500',
-                'transition-colors duration-150'
-              )}
+              className={styles.closeButton}
               onClick={handleCloseClick}
               aria-label="Close modal"
             >
               <svg
-                className="w-5 h-5"
+                className={styles.closeIcon}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -325,16 +308,12 @@ export const ModalHeader = forwardRef<HTMLDivElement, ModalHeaderProps>(
   ({ children, className, id, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(
-        'px-5 py-4 border-b border-border',
-        'flex items-center justify-between',
-        className
-      )}
+      className={clsx(styles.header, className)}
       {...props}
     >
-      <div className="flex-1 pr-8">
+      <div className={styles.headerContent}>
         {typeof children === 'string' ? (
-          <h2 id={id} className="text-lg font-semibold text-text-primary">{children}</h2>
+          <h2 id={id} className={styles.headerTitle}>{children}</h2>
         ) : (
           <div id={id}>{children}</div>
         )}
@@ -355,7 +334,7 @@ export const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(
   ({ children, className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('px-5 py-4 overflow-y-auto', className)}
+      className={clsx(styles.body, className)}
       {...props}
     >
       {children}
@@ -375,11 +354,7 @@ export const ModalFooter = forwardRef<HTMLDivElement, ModalFooterProps>(
   ({ children, className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(
-        'px-5 py-4 border-t border-border',
-        'flex items-center justify-end gap-3',
-        className
-      )}
+      className={clsx(styles.footer, className)}
       {...props}
     >
       {children}

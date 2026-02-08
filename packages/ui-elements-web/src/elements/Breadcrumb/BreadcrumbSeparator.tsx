@@ -6,8 +6,9 @@
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { BreadcrumbSeparatorPropsBase } from '@groxigo/contracts';
+import styles from './Breadcrumb.module.css';
 
 export interface BreadcrumbSeparatorProps extends BreadcrumbSeparatorPropsBase {}
 
@@ -25,10 +26,7 @@ export const BreadcrumbSeparator = forwardRef<HTMLSpanElement, BreadcrumbSeparat
         ref={ref}
         role="presentation"
         aria-hidden="true"
-        className={cn(
-          'text-text-secondary select-none',
-          className
-        )}
+        className={clsx(styles.separator, className)}
         {...props}
       >
         {children}

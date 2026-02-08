@@ -8,9 +8,10 @@
 'use client';
 
 import React, { forwardRef, useRef, type ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { useTabsContext } from './Tabs';
 import type { TabPanelPropsBase } from '@groxigo/contracts';
+import styles from './Tabs.module.css';
 
 // ============================================
 // TAB PANEL COMPONENT
@@ -63,9 +64,9 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
         aria-labelledby={`tab-${value}`}
         hidden={!isSelected}
         tabIndex={0}
-        className={cn(
-          'focus:outline-none',
-          !isSelected && 'hidden',
+        className={clsx(
+          styles.tabPanel,
+          !isSelected && styles.tabPanelHidden,
           className
         )}
       >

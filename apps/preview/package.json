@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo-google-fonts/kanit": "^0.4.1",
+    "@expo-google-fonts/google-sans-flex": "^0.4.1",
     "@groxigo/components": "*",
     "@groxigo/ui-core": "*",
     "@groxigo/ui-elements": "*",

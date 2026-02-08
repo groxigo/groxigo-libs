@@ -1,45 +1,24 @@
-/**
- * SearchBar Component (Web)
- */
+'use client';
 
-import React, { forwardRef, useState, useRef, useEffect } from 'react';
-import { cn } from '@groxigo/ui-elements-web';
-import type { SearchBarPropsBase } from '@groxigo/contracts';
-
-const variantClasses: Record<string, string> = {
-  outline: 'border border-border bg-white focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-100',
-  filled: 'bg-surface-secondary focus-within:bg-white focus-within:ring-2 focus-within:ring-primary-100',
-};
-
-const sizeClasses: Record<string, { container: string; input: string; icon: string }> = {
-  sm: {
-    container: 'h-9 px-3 rounded-lg',
-    input: 'text-sm',
-    icon: 'w-4 h-4',
-  },
-  md: {
-    container: 'h-11 px-4 rounded-xl',
-    input: 'text-base',
-    icon: 'w-5 h-5',
-  },
-  lg: {
-    container: 'h-14 px-5 rounded-2xl',
-    input: 'text-lg',
-    icon: 'w-6 h-6',
-  },
-};
+import { forwardRef, useState, useRef, useCallback, type KeyboardEvent } from 'react';
+import { Search, Times } from '@groxigo/icons/line';
+import type { SearchBarPropsBase } from '@groxigo/contracts/components';
+import { Button } from '@groxigo/ui-elements-web';
+import clsx from 'clsx';
+import styles from './SearchBar.module.css';
 
 export interface SearchBarProps extends SearchBarPropsBase {}
 
-export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
+
+export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
   (
     {
-      value,
-      placeholder = 'Search...',
+      value = '',
+      placeholder = 'Search groceries...',
       variant = 'filled',
       size = 'md',
-      autoFocus,
-      showCancel,
+      autoFocus = false,
+      showCancel = false,
       onChangeText,
       onSubmit,
       onFocus,
@@ -47,137 +26,104 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       onCancel,
       className,
       testID,
-      ...props
     },
     ref
   ) => {
-    const [localValue, setLocalValue] = useState(value || '');
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Sync with controlled value
-    useEffect(() => {
-      if (value !== undefined) {
-        setLocalValue(value);
-      }
-    }, [value]);
-
-    const sizeConfig = sizeClasses[size];
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setLocalValue(newValue);
-      onChangeText?.(newValue);
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        onSubmit?.(localValue);
-      }
-      if (e.key === 'Escape') {
-        inputRef.current?.blur();
-        onCancel?.();
-      }
-    };
-
-    const handleFocus = () => {
+    const handleFocus = useCallback(() => {
       setIsFocused(true);
       onFocus?.();
-    };
+    }, [onFocus]);
 
-    const handleBlur = () => {
+    const handleBlur = useCallback(() => {
       setIsFocused(false);
       onBlur?.();
-    };
+    }, [onBlur]);
 
-    const handleClear = () => {
-      setLocalValue('');
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChangeText?.(e.target.value);
+      },
+      [onChangeText]
+    );
+
+    const handleKeyDown = useCallback(
+      (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+          onSubmit?.(value);
+        }
+      },
+      [onSubmit, value]
+    );
+
+    const handleClear = useCallback(() => {
       onChangeText?.('');
       inputRef.current?.focus();
-    };
+    }, [onChangeText]);
 
-    const handleCancel = () => {
-      setLocalValue('');
+    const handleCancel = useCallback(() => {
       onChangeText?.('');
+      setIsFocused(false);
       inputRef.current?.blur();
       onCancel?.();
-    };
+    }, [onChangeText, onCancel]);
+
+    const hasValue = value.length > 0;
 
     return (
-      <div className={cn('flex items-center gap-3', className)}>
-        <div
-          className={cn(
-            'flex-1 flex items-center gap-3 transition-all',
-            variantClasses[variant],
-            sizeConfig.container
-          )}
-        >
-          {/* Search icon */}
-          <svg
-            className={cn('text-text-secondary flex-shrink-0', sizeConfig.icon)}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      <div
+        ref={ref}
+        className={clsx(
+          styles.root,
+          styles[variant],
+          styles[size],
+          isFocused && styles.focused,
+          className
+        )}
+        data-testid={testID}
+      >
+        <span className={styles.searchIcon}>
+          <Search size={20} />
+        </span>
+
+        <input
+          ref={inputRef}
+          type="text"
+          className={styles.input}
+          value={value}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          role="searchbox"
+          aria-label={placeholder}
+        />
+
+        {hasValue && (
+          <Button
+            variant="ghost"
+            size="xs"
+            onPress={handleClear}
+            className={styles.clearButton}
+            aria-label="Clear search"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+            <Times size={20} />
+          </Button>
+        )}
 
-          {/* Input */}
-          <input
-            ref={(node) => {
-              (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
-              if (typeof ref === 'function') ref(node);
-              else if (ref) ref.current = node;
-            }}
-            type="text"
-            value={localValue}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            className={cn(
-              'flex-1 bg-transparent outline-none text-text-primary placeholder:text-text-tertiary',
-              sizeConfig.input
-            )}
-            data-testid={testID}
-            {...props}
-          />
-
-          {/* Clear button */}
-          {localValue && (
-            <button
-              type="button"
-              onClick={handleClear}
-              className="flex-shrink-0 text-text-tertiary hover:text-text-secondary"
-            >
-              <svg className={sizeConfig.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          )}
-        </div>
-
-        {/* Cancel button */}
         {showCancel && isFocused && (
-          <button
-            type="button"
-            onClick={handleCancel}
-            className="text-primary-600 font-medium hover:text-primary-700 whitespace-nowrap"
+          <Button
+            variant="ghost"
+            size="sm"
+            onPress={handleCancel}
+            className={styles.cancelButton}
           >
             Cancel
-          </button>
+          </Button>
         )}
       </div>
     );
@@ -185,5 +131,4 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 );
 
 SearchBar.displayName = 'SearchBar';
-
 export default SearchBar;

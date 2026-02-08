@@ -2,36 +2,22 @@
  * Input Component (Web)
  *
  * Implements @groxigo/contracts InputPropsBase for web platform.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useState, useCallback, type ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
+import styles from './Input.module.css';
 
 export type InputSize = 'xs' | 'sm' | 'md' | 'lg';
 export type InputVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
 
-// Size classes
-const sizeClasses: Record<string, string> = {
-  xs: 'h-7 px-2 text-xs rounded-sm',
-  sm: 'h-9 px-3 text-sm rounded',
-  md: 'h-11 px-4 text-base rounded-md',
-  lg: 'h-13 px-5 text-md rounded-lg',
-};
-
-// Base variant classes
-const variantClasses: Record<string, string> = {
-  outline: 'bg-surface-primary border border-border focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20',
-  filled: 'bg-surface-secondary border-0 focus:bg-surface-primary focus:ring-2 focus:ring-primary-500/20',
-  flushed: 'bg-transparent border-0 border-b-2 border-border focus:border-primary-500 rounded-none px-0',
-  unstyled: 'bg-transparent border-0',
-};
-
-// Error state classes
-const errorClasses: Record<string, string> = {
-  outline: 'border-error focus:border-error focus:ring-error/20',
-  filled: 'ring-2 ring-error/20 focus:ring-error/30',
-  flushed: 'border-error focus:border-error',
-  unstyled: '',
+/** Maps variant + error → CSS module error class */
+const errorStyleMap: Record<string, string | undefined> = {
+  outline: styles.outlineError,
+  filled: styles.filledError,
+  flushed: styles.flushedError,
+  unstyled: undefined,
 };
 
 export interface InputProps {
@@ -142,36 +128,36 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const inputId = id || name;
 
-    const wrapperClasses = cn(
-      'relative flex items-center',
-      fullWidth ? 'w-full' : 'w-auto'
+    const wrapperClasses = clsx(
+      styles.wrapper,
+      fullWidth ? styles.fullWidth : styles.wrapperAuto
     );
 
-    const inputClasses = cn(
-      'w-full transition-all duration-200 outline-none font-sans text-text-primary placeholder:text-text-tertiary',
-      sizeClasses[size],
-      variantClasses[variant],
-      hasError && errorClasses[variant],
-      disabled && 'opacity-50 cursor-not-allowed bg-surface-secondary',
-      leftElement && 'pl-10',
-      rightElement && 'pr-10',
+    const inputClasses = clsx(
+      styles.input,
+      styles[size],
+      styles[variant],
+      hasError && errorStyleMap[variant],
+      disabled && styles.disabled,
+      leftElement && styles.hasLeftElement,
+      rightElement && styles.hasRightElement,
       className
     );
 
     return (
-      <div className={cn('flex flex-col', fullWidth && 'w-full')}>
+      <div className={clsx(styles.container, fullWidth && styles.fullWidth)}>
         {label && (
           <label
             htmlFor={inputId}
-            className="text-sm font-medium text-text-primary mb-1.5"
+            className={styles.label}
           >
             {label}
-            {required && <span className="text-error ml-0.5">*</span>}
+            {required && <span className={styles.required}>*</span>}
           </label>
         )}
         <div className={wrapperClasses}>
           {leftElement ? (
-            <div className="absolute left-3 flex items-center justify-center text-text-secondary">
+            <div className={styles.leftElement}>
               {leftElement}
             </div>
           ) : null}
@@ -197,7 +183,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {rightElement ? (
-            <div className="absolute right-3 flex items-center justify-center text-text-secondary">
+            <div className={styles.rightElement}>
               {rightElement}
             </div>
           ) : null}
@@ -205,7 +191,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && (
           <p
             id={`${inputId}-error`}
-            className="text-xs text-error mt-1"
+            className={styles.errorText}
             role="alert"
           >
             {error}
@@ -214,7 +200,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {!error && helperText && (
           <p
             id={`${inputId}-helper`}
-            className="text-xs text-text-secondary mt-1"
+            className={styles.helperText}
           >
             {helperText}
           </p>

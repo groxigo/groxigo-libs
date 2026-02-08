@@ -3,18 +3,20 @@
  *
  * Implements @groxigo/contracts ImagePropsBase for web platform.
  * Works with both regular <img> and can be wrapped with Next.js Image.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useState, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { ImagePropsBase } from '@groxigo/contracts';
+import styles from './Image.module.css';
 
-// Resize mode to object-fit mapping
-const resizeModeClasses: Record<string, string> = {
-  cover: 'object-cover',
-  contain: 'object-contain',
-  stretch: 'object-fill',
-  center: 'object-none',
+// Resize mode to CSS module class mapping
+const resizeModeStyleMap: Record<string, string> = {
+  cover: styles.cover,
+  contain: styles.contain,
+  stretch: styles.stretch,
+  center: styles.center,
 };
 
 export interface ImageProps extends ImagePropsBase {
@@ -84,18 +86,17 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
       style.borderRadius = `${borderRadius}px`;
     }
 
-    const containerClasses = cn(
-      'relative overflow-hidden',
-      circular && 'rounded-full',
+    const containerClasses = clsx(
+      styles.container,
+      circular && styles.circular,
       className
     );
 
-    const imageClasses = cn(
-      'w-full h-full transition-opacity duration-200',
-      resizeModeClasses[resizeMode] || 'object-cover',
-      circular && 'rounded-full',
-      isLoading && 'opacity-0',
-      !isLoading && 'opacity-100',
+    const imageClasses = clsx(
+      styles.image,
+      resizeModeStyleMap[resizeMode] || styles.cover,
+      circular && styles.circular,
+      isLoading ? styles.loading : styles.loaded,
       borderRadius && !circular && `rounded-[${borderRadius}px]`
     );
 
@@ -108,9 +109,10 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
       if (fallbackType === 'skeleton') {
         return (
           <div
-            className={cn(
-              'absolute inset-0 animate-skeleton bg-surface-secondary',
-              circular && 'rounded-full'
+            className={clsx(
+              styles.fallback,
+              styles.skeleton,
+              circular && styles.circular
             )}
           />
         );
@@ -119,13 +121,14 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
       if (fallbackType === 'placeholder') {
         return (
           <div
-            className={cn(
-              'absolute inset-0 bg-surface-secondary flex items-center justify-center',
-              circular && 'rounded-full'
+            className={clsx(
+              styles.fallback,
+              styles.placeholder,
+              circular && styles.circular
             )}
           >
             <svg
-              className="w-8 h-8 text-text-tertiary"
+              className={styles.placeholderIcon}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

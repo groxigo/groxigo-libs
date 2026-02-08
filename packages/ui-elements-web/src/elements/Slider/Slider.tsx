@@ -3,57 +3,43 @@
  *
  * A range slider component for web platform.
  * Implements @groxigo/contracts SliderPropsBase.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useState, useCallback, useRef, useEffect } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { SliderPropsBase, SliderSize, SliderColorScheme } from '@groxigo/contracts';
+import styles from './Slider.module.css';
 
 // ============================================
-// SIZE CONFIGURATIONS
+// SIZE CLASS MAPS
 // ============================================
 
-const sizeClasses: Record<SliderSize, { track: string; thumb: string; label: string }> = {
-  sm: { track: 'h-1', thumb: 'w-4 h-4', label: 'text-xs' },
-  md: { track: 'h-1.5', thumb: 'w-5 h-5', label: 'text-sm' },
-  lg: { track: 'h-2', thumb: 'w-6 h-6', label: 'text-base' },
+const trackSizeClass: Record<SliderSize, string> = {
+  sm: styles.trackSm,
+  md: styles.trackMd,
+  lg: styles.trackLg,
 };
 
-// ============================================
-// COLOR SCHEME CONFIGURATIONS
-// ============================================
+const thumbSizeClass: Record<SliderSize, string> = {
+  sm: styles.thumbSm,
+  md: styles.thumbMd,
+  lg: styles.thumbLg,
+};
 
-const colorSchemeClasses: Record<SliderColorScheme, { fill: string; thumb: string; focus: string }> = {
-  primary: {
-    fill: 'bg-primary-500',
-    thumb: 'border-primary-500 hover:border-primary-600',
-    focus: 'focus:ring-primary-500/30',
-  },
-  secondary: {
-    fill: 'bg-secondary-500',
-    thumb: 'border-secondary-500 hover:border-secondary-600',
-    focus: 'focus:ring-secondary-500/30',
-  },
-  accent: {
-    fill: 'bg-accent-500',
-    thumb: 'border-accent-500 hover:border-accent-600',
-    focus: 'focus:ring-accent-500/30',
-  },
-  success: {
-    fill: 'bg-success',
-    thumb: 'border-success hover:border-success/80',
-    focus: 'focus:ring-success/30',
-  },
-  warning: {
-    fill: 'bg-warning',
-    thumb: 'border-warning hover:border-warning/80',
-    focus: 'focus:ring-warning/30',
-  },
-  error: {
-    fill: 'bg-error',
-    thumb: 'border-error hover:border-error/80',
-    focus: 'focus:ring-error/30',
-  },
+const labelSizeClass: Record<SliderSize, string> = {
+  sm: styles.labelSm,
+  md: styles.labelMd,
+  lg: styles.labelLg,
+};
+
+const colorSchemeClass: Record<SliderColorScheme, string> = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  accent: styles.accent,
+  success: styles.success,
+  warning: styles.warning,
+  error: styles.error,
 };
 
 // ============================================
@@ -110,9 +96,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const [isDragging, setIsDragging] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
     const trackRef = useRef<HTMLDivElement>(null);
-
-    const sizeConfig = sizeClasses[size];
-    const colorConfig = colorSchemeClasses[colorScheme];
 
     // Clamp and step value
     const clampValue = useCallback(
@@ -246,34 +229,49 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       (tooltipVisibility === 'always' ||
         (tooltipVisibility === 'focus' && (isDragging || isFocused)));
 
-    const containerClasses = cn('w-full', disabled && 'opacity-50', className);
-
-    const trackClasses = cn(
-      'relative w-full bg-border rounded-full cursor-pointer',
-      sizeConfig.track,
-      disabled && 'cursor-not-allowed'
+    const containerClasses = clsx(
+      styles.container,
+      disabled && styles.disabled,
+      className
     );
 
-    const fillClasses = cn('absolute left-0 top-0 h-full rounded-full', colorConfig.fill);
-
-    const thumbClasses = cn(
-      'absolute top-1/2 -translate-y-1/2 rounded-full bg-surface-primary border-2 shadow-sm',
-      'transition-shadow duration-150 cursor-grab active:cursor-grabbing',
-      'focus:outline-none focus:ring-2',
-      sizeConfig.thumb,
-      colorConfig.thumb,
-      colorConfig.focus,
-      disabled && 'cursor-not-allowed'
+    const trackClasses = clsx(
+      styles.track,
+      trackSizeClass[size],
+      disabled && styles.trackDisabled
     );
 
-    const labelClasses = cn('text-text-primary font-medium', sizeConfig.label, labelClassName);
+    const fillClasses = clsx(
+      styles.fill,
+      colorSchemeClass[colorScheme],
+      disabled && styles.fillDisabled
+    );
 
-    const valueClasses = cn('text-text-secondary', sizeConfig.label, valueClassName);
+    const thumbClasses = clsx(
+      styles.thumb,
+      thumbSizeClass[size],
+      colorSchemeClass[colorScheme],
+      disabled && styles.thumbDisabled
+    );
+
+    const labelClasses = clsx(
+      styles.label,
+      labelSizeClass[size],
+      disabled && styles.labelDisabled,
+      labelClassName
+    );
+
+    const valueClasses = clsx(
+      styles.value,
+      labelSizeClass[size],
+      disabled && styles.valueDisabled,
+      valueClassName
+    );
 
     return (
       <div ref={ref} className={containerClasses} data-testid={testID}>
         {(label || showValue) && (
-          <div className="flex justify-between items-center mb-2">
+          <div className={styles.header}>
             {label && <span className={labelClasses}>{label}</span>}
             {showValue && <span className={valueClasses}>{displayValue}</span>}
           </div>
@@ -300,7 +298,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
             onBlur={() => setIsFocused(false)}
           >
             {shouldShowTooltip && (
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-surface-inverse text-text-inverse text-xs rounded whitespace-nowrap">
+              <div className={styles.tooltip}>
                 {displayValue}
               </div>
             )}

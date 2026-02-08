@@ -6,9 +6,10 @@
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { BreadcrumbItemPropsBase } from '@groxigo/contracts';
 import { BreadcrumbLink } from './BreadcrumbLink';
+import styles from './Breadcrumb.module.css';
 
 export interface BreadcrumbItemProps extends BreadcrumbItemPropsBase {}
 
@@ -29,8 +30,8 @@ export const BreadcrumbItemComponent = forwardRef<HTMLSpanElement, BreadcrumbIte
         <span
           ref={ref}
           aria-current="page"
-          className={cn(
-            'font-semibold text-text-primary',
+          className={clsx(
+            styles.itemCurrent,
             className
           )}
           {...props}

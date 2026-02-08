@@ -1,0 +1,255 @@
+/**
+ * Progress Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Uses semantic color tokens from @groxigo/tokens.
+ */
+
+/* ============================================
+   LINEAR PROGRESS — CONTAINER
+   ============================================ */
+
+.wrapper {
+  width: 100%;
+}
+
+/* ============================================
+   LINEAR PROGRESS — TRACK
+   ============================================ */
+
+.track {
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-secondary);
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* ============================================
+   LINEAR PROGRESS — SIZE (height)
+   ============================================ */
+
+.trackXs {
+  height: 4px;
+}
+
+.trackSm {
+  height: 8px;
+}
+
+.trackMd {
+  height: 12px;
+}
+
+.trackLg {
+  height: 16px;
+}
+
+/* ============================================
+   LINEAR PROGRESS — BAR
+   ============================================ */
+
+.bar {
+  height: 100%;
+  transition: width 300ms ease-out;
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* ============================================
+   LINEAR PROGRESS — BAR COLORS
+   ============================================ */
+
+.barPrimary {
+  background: var(--brand-primary);
+}
+
+.barSecondary {
+  background: var(--brand-secondary);
+}
+
+.barAccent {
+  background: var(--brand-accent);
+}
+
+.barSuccess {
+  background: var(--status-success);
+}
+
+.barWarning {
+  background: var(--status-warning);
+}
+
+.barError {
+  background: var(--status-error);
+}
+
+.barInfo {
+  background: var(--status-info);
+}
+
+/* ============================================
+   LINEAR PROGRESS — STRIPE PATTERN
+   ============================================ */
+
+.stripe {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.stripeAnimated {
+  animation: stripe-move 1s linear infinite;
+}
+
+@keyframes stripe-move {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* ============================================
+   LINEAR PROGRESS — INDETERMINATE
+   ============================================ */
+
+.indeterminate {
+  width: 33.333%;
+  animation: indeterminate-slide 1.5s ease-in-out infinite;
+}
+
+@keyframes indeterminate-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* ============================================
+   LINEAR PROGRESS — VALUE LABEL
+   ============================================ */
+
+.valueContainer {
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.valueLabel {
+  color: var(--text-secondary);
+}
+
+.labelXs {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.labelSm {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.labelMd {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.labelLg {
+  font-size: var(--font-size-base, 16px);
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — CONTAINER
+   ============================================ */
+
+.circularWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — TRACK
+   ============================================ */
+
+.circularTrack {
+  color: var(--surface-secondary);
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — INDICATOR COLORS
+   ============================================ */
+
+.circularPrimary {
+  color: var(--brand-primary);
+}
+
+.circularSecondary {
+  color: var(--brand-secondary);
+}
+
+.circularAccent {
+  color: var(--brand-accent);
+}
+
+.circularSuccess {
+  color: var(--status-success);
+}
+
+.circularWarning {
+  color: var(--status-warning);
+}
+
+.circularError {
+  color: var(--status-error);
+}
+
+.circularInfo {
+  color: var(--status-info);
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — TRANSITION
+   ============================================ */
+
+.circularTransition {
+  transition: stroke-dashoffset 300ms ease-out;
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — SPIN (indeterminate)
+   ============================================ */
+
+.spin {
+  animation: circular-spin 1.4s linear infinite;
+}
+
+@keyframes circular-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   CIRCULAR PROGRESS — CENTER VALUE
+   ============================================ */
+
+.circularValue {
+  position: absolute;
+  color: var(--text-secondary);
+  font-weight: 500;
+}

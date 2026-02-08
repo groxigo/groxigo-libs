@@ -214,6 +214,7 @@ export type {
 // Link
 export type {
   LinkColorScheme,
+  LinkSize,
   LinkPropsBase,
 } from './link';
 

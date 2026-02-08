@@ -3,6 +3,7 @@
  *
  * A versatile radio button component for web platform.
  * Implements RadioPropsBase from @groxigo/contracts.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  *
  * Accessibility notes:
  * - Uses native <input type="radio"> which has implicit role="radio"
@@ -11,36 +12,54 @@
  */
 
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { RadioPropsBase } from '@groxigo/contracts';
 import { RadioGroupContext } from './RadioGroup';
+import styles from './Radio.module.css';
 
 export type RadioSize = 'sm' | 'md' | 'lg';
 export type RadioColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error';
 
-const sizeClasses: Record<RadioSize, { outer: string; inner: string; label: string; gap: string }> = {
-  sm: { outer: 'w-4 h-4', inner: 'w-2 h-2', label: 'text-sm', gap: 'gap-2' },
-  md: { outer: 'w-5 h-5', inner: 'w-2.5 h-2.5', label: 'text-base', gap: 'gap-2.5' },
-  lg: { outer: 'w-6 h-6', inner: 'w-3 h-3', label: 'text-lg', gap: 'gap-3' },
+// ============================================
+// SIZE CLASS MAPS
+// ============================================
+
+const outerSizeClass: Record<RadioSize, string> = {
+  sm: styles.outerSm,
+  md: styles.outerMd,
+  lg: styles.outerLg,
 };
 
-const colorSchemeClasses: Record<RadioColorScheme, { checked: string; focus: string }> = {
-  primary: { checked: 'border-primary-500', focus: 'focus:ring-primary-500/20' },
-  secondary: { checked: 'border-secondary-500', focus: 'focus:ring-secondary-500/20' },
-  accent: { checked: 'border-accent-500', focus: 'focus:ring-accent-500/20' },
-  success: { checked: 'border-success', focus: 'focus:ring-success/20' },
-  warning: { checked: 'border-warning', focus: 'focus:ring-warning/20' },
-  error: { checked: 'border-error', focus: 'focus:ring-error/20' },
+const innerSizeClass: Record<RadioSize, string> = {
+  sm: styles.innerSm,
+  md: styles.innerMd,
+  lg: styles.innerLg,
 };
 
-const innerColorClasses: Record<RadioColorScheme, string> = {
-  primary: 'bg-primary-500',
-  secondary: 'bg-secondary-500',
-  accent: 'bg-accent-500',
-  success: 'bg-success',
-  warning: 'bg-warning',
-  error: 'bg-error',
+const gapClass: Record<RadioSize, string> = {
+  sm: styles.gapSm,
+  md: styles.gapMd,
+  lg: styles.gapLg,
 };
+
+const labelSizeClass: Record<RadioSize, string> = {
+  sm: styles.labelSm,
+  md: styles.labelMd,
+  lg: styles.labelLg,
+};
+
+const colorSchemeClass: Record<RadioColorScheme, string> = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  accent: styles.accent,
+  success: styles.success,
+  warning: styles.warning,
+  error: styles.error,
+};
+
+// ============================================
+// RADIO PROPS
+// ============================================
 
 export interface RadioProps extends RadioPropsBase {
   /** HTML input name */
@@ -52,6 +71,10 @@ export interface RadioProps extends RadioPropsBase {
   /** Callback when radio is selected */
   onSelect?: () => void;
 }
+
+// ============================================
+// RADIO COMPONENT
+// ============================================
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
@@ -83,10 +106,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       ? groupContext.value === value
       : false;
 
-    const sizeConfig = sizeClasses[effectiveSize];
-    const colorConfig = colorSchemeClasses[effectiveColorScheme];
-    const innerColor = innerColorClasses[effectiveColorScheme];
-
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -102,38 +121,38 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
     const inputId = id || `radio-${value}`;
 
-    const containerClasses = cn(
-      'inline-flex items-center',
-      sizeConfig.gap,
-      effectiveDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+    const containerClasses = clsx(
+      styles.container,
+      gapClass[effectiveSize],
+      effectiveDisabled ? styles.cursorDisabled : styles.cursorPointer,
       className
     );
 
-    const outerClasses = cn(
-      'relative flex items-center justify-center border-2 rounded-full transition-all duration-150',
-      sizeConfig.outer,
-      colorConfig.focus,
-      'focus-within:ring-2',
-      isSelected ? colorConfig.checked : 'border-border bg-surface-primary hover:border-text-secondary',
-      isInvalid && 'border-error',
-      effectiveDisabled && 'pointer-events-none'
+    const outerClasses = clsx(
+      styles.outer,
+      outerSizeClass[effectiveSize],
+      isSelected && styles.selected,
+      isSelected && colorSchemeClass[effectiveColorScheme],
+      isInvalid && styles.invalid,
+      effectiveDisabled && styles.disabled
     );
 
-    const innerClasses = cn(
-      sizeConfig.inner,
-      'rounded-full',
-      innerColor
+    const innerClasses = clsx(
+      styles.inner,
+      innerSizeClass[effectiveSize],
+      colorSchemeClass[effectiveColorScheme],
+      effectiveDisabled && styles.innerDisabled
     );
 
-    const labelClasses = cn(
-      sizeConfig.label,
-      'text-text-primary select-none',
-      effectiveDisabled && 'text-text-disabled',
+    const labelClasses = clsx(
+      styles.label,
+      labelSizeClass[effectiveSize],
+      effectiveDisabled && styles.labelDisabled,
       labelClassName
     );
 
     return (
-      <div className="inline-flex flex-col" data-testid={testID}>
+      <div className={styles.wrapper} data-testid={testID}>
         <label className={containerClasses}>
           <input
             ref={ref}
@@ -144,7 +163,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             checked={isSelected}
             disabled={effectiveDisabled}
             onChange={handleChange}
-            className="sr-only"
+            className={styles.srOnly}
             // Note: role="radio" and aria-checked are redundant on native <input type="radio">
             // The browser automatically exposes these semantics
             aria-invalid={isInvalid || undefined}
@@ -154,12 +173,12 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             {isSelected && <span className={innerClasses} />}
           </span>
           {label && (
-            <div className="flex flex-col">
+            <div className={styles.labelContent}>
               <span className={labelClasses}>{label}</span>
               {helperText && (
                 <span
                   id={`${inputId}-helper`}
-                  className="text-sm text-text-secondary"
+                  className={styles.helperText}
                 >
                   {helperText}
                 </span>

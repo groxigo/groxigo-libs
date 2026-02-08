@@ -7,7 +7,7 @@
 
 import React, { createContext, useContext, useCallback, useState, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { Toast } from './Toast';
 import type {
   ToastOptions,
@@ -16,6 +16,7 @@ import type {
   ToastProviderPropsBase,
   UseToastReturn,
 } from '@groxigo/contracts';
+import styles from './Toast.module.css';
 
 // Internal toast state with full props
 interface ToastState extends ToastPropsBase {
@@ -40,14 +41,14 @@ function generateToastId(): string {
   return `toast-${++toastIdCounter}-${Date.now()}`;
 }
 
-// Position container classes
-const positionClasses: Record<ToastPosition, string> = {
-  top: 'top-4 left-1/2 -translate-x-1/2',
-  'top-left': 'top-4 left-4',
-  'top-right': 'top-4 right-4',
-  bottom: 'bottom-4 left-1/2 -translate-x-1/2',
-  'bottom-left': 'bottom-4 left-4',
-  'bottom-right': 'bottom-4 right-4',
+// Position container class mapping
+const positionClassMap: Record<ToastPosition, string> = {
+  top: styles.containerTop,
+  'top-left': styles.containerTopLeft,
+  'top-right': styles.containerTopRight,
+  bottom: styles.containerBottom,
+  'bottom-left': styles.containerBottomLeft,
+  'bottom-right': styles.containerBottomRight,
 };
 
 // Group toasts by position
@@ -202,14 +203,13 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
           return (
             <div
               key={position}
-              className={cn(
-                'fixed z-50 flex flex-col gap-2 pointer-events-none',
-                positionClasses[position]
+              className={clsx(
+                styles.container,
+                positionClassMap[position]
               )}
-              style={{ zIndex: 9999 }}
             >
               {(isTop ? positionToasts : [...positionToasts].reverse()).map((toast) => (
-                <div key={toast.id} className="pointer-events-auto">
+                <div key={toast.id} className={styles.toastWrapper}>
                   <Toast
                     id={toast.id}
                     title={toast.title}

@@ -20,11 +20,12 @@ bun install             # Install dependencies
 # 1. Create changeset describing your changes
 bunx changeset add
 
-# 2. Commit and push to master
+# 2. Commit and push to main
 git add . && git commit -m "chore: add changeset"
-git push origin master
+git push origin main
 
-# 3. GitHub creates "Version Packages" PR → Merge it → Published!
+# 3. Publish via manual workflow (local npm publish does NOT work)
+gh workflow run "Manual Publish" --repo groxigo/groxigo-libs --field confirm=PUBLISH
 ```
 
 ### Release Commands (for Claude)
@@ -35,8 +36,9 @@ When asked to release a new version, follow these steps:
 ```bash
 cd /Users/pavanikondapalli/projects/groxigo/groxigo-libs
 
-# 1. Build all packages to verify no errors
+# 1. Build and test all packages
 bun run build
+bun run test
 
 # 2. Create changeset with patch bump for affected packages
 bunx changeset add
@@ -48,15 +50,21 @@ bunx changeset version
 # 4. Commit and push
 git add .
 git commit -m "chore: release patch version"
-git push origin master
+git push origin main
+
+# 5. Publish via GitHub Actions (DO NOT use local npm publish)
+gh workflow run "Manual Publish" --repo groxigo/groxigo-libs --field confirm=PUBLISH
+# Then watch: gh run list --repo groxigo/groxigo-libs --workflow "Manual Publish" --limit 1
+# gh run watch <RUN_ID> --repo groxigo/groxigo-libs
 ```
 
 **Minor Release** (new features, non-breaking):
 ```bash
 cd /Users/pavanikondapalli/projects/groxigo/groxigo-libs
 
-# 1. Build all packages
+# 1. Build and test all packages
 bun run build
+bun run test
 
 # 2. Create changeset with minor bump
 bunx changeset add
@@ -68,15 +76,19 @@ bunx changeset version
 # 4. Commit and push
 git add .
 git commit -m "chore: release minor version"
-git push origin master
+git push origin main
+
+# 5. Publish via GitHub Actions
+gh workflow run "Manual Publish" --repo groxigo/groxigo-libs --field confirm=PUBLISH
 ```
 
 **Major Release** (breaking changes):
 ```bash
 cd /Users/pavanikondapalli/projects/groxigo/groxigo-libs
 
-# 1. Build all packages
+# 1. Build and test all packages
 bun run build
+bun run test
 
 # 2. Create changeset with major bump
 bunx changeset add
@@ -90,7 +102,10 @@ bunx changeset version
 # 5. Commit and push
 git add .
 git commit -m "chore: release major version"
-git push origin master
+git push origin main
+
+# 6. Publish via GitHub Actions
+gh workflow run "Manual Publish" --repo groxigo/groxigo-libs --field confirm=PUBLISH
 ```
 
 **Syncing Dependent Packages:**
@@ -448,21 +463,38 @@ cd packages/ui-core && bun run test
 cd packages/ui-core && bun run test:coverage
 ```
 
-### Publishing
+### Publishing (for Claude)
+
+When asked to publish packages, use the GitHub Actions manual publish workflow.
+Local `npm publish` does NOT work (GitHub OAuth tokens are incompatible with npm auth).
 
 ```bash
-# 1. Create changeset
-bunx changeset add
-
-# 2. Version packages
-bunx changeset version
-
-# 3. Build all
+# 1. Build and test locally first
 bun run build
+bun run test
 
-# 4. Publish
-bunx changeset publish
+# 2. Commit and push any changes
+git add .
+git commit -m "chore: prepare release"
+git push origin main
+
+# 3. Trigger the manual publish workflow via gh CLI
+gh workflow run "Manual Publish" --repo groxigo/groxigo-libs --field confirm=PUBLISH
+
+# 4. Watch the workflow (get run ID first)
+gh run list --repo groxigo/groxigo-libs --workflow "Manual Publish" --limit 1
+# Copy the run ID from output, then:
+gh run watch <RUN_ID> --repo groxigo/groxigo-libs
+
+# 5. Verify published packages
+gh run view <RUN_ID> --repo groxigo/groxigo-libs --log 2>&1 | grep "packages published successfully" -A 15
 ```
+
+**Important notes:**
+- The workflow uses `GITHUB_TOKEN` (auto-provided by GitHub Actions) for auth
+- Do NOT attempt `bunx changeset publish` or `npm publish` locally - it will fail with 401/403
+- Ensure `gh auth` has `workflow` scope: `gh auth refresh --scopes workflow,write:packages`
+- All 9 publishable packages are published in a single workflow run
 
 ---
 

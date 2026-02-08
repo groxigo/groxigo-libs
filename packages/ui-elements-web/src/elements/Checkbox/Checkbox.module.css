@@ -1,0 +1,271 @@
+/**
+ * Checkbox Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Follows DESIGN_RULES §22 for checkbox states and §18 for focus ring.
+ */
+
+/* ============================================
+   BASE WRAPPER
+   ============================================ */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.container.cursorPointer {
+  cursor: pointer;
+}
+
+.container.cursorDisabled {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   BOX (base)
+   ============================================ */
+
+.box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border-default, #d1d5db);
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--surface-primary, #fff);
+  transition: all 150ms ease;
+}
+
+.box:hover {
+  border-color: var(--border-strong, #9ca3af);
+}
+
+/* §18: Focus ring — 3px width, 2px offset */
+.container:focus-within .box {
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
+}
+
+/* §22: Disabled — semantic tokens, NOT opacity */
+.box.disabled {
+  background-color: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
+  pointer-events: none;
+}
+
+.box.disabled:hover {
+  border-color: var(--border-disabled, #e2e8f0);
+}
+
+/* ============================================
+   BOX CHECKED STATE (color schemes)
+   ============================================ */
+
+.box.checked {
+  background-color: var(--brand-primary, #2563eb);
+  border-color: var(--brand-primary, #2563eb);
+}
+
+.box.checked:hover {
+  background-color: var(--brand-primary-hover, #1d4ed8);
+  border-color: var(--brand-primary-hover, #1d4ed8);
+}
+
+.box.checked.primary {
+  background-color: var(--brand-primary, #2563eb);
+  border-color: var(--brand-primary, #2563eb);
+}
+.box.checked.primary:hover {
+  background-color: var(--brand-primary-hover, #1d4ed8);
+  border-color: var(--brand-primary-hover, #1d4ed8);
+}
+
+.box.checked.secondary {
+  background-color: var(--brand-secondary, #f97316);
+  border-color: var(--brand-secondary, #f97316);
+}
+.box.checked.secondary:hover {
+  background-color: var(--brand-secondary-hover, #ea580c);
+  border-color: var(--brand-secondary-hover, #ea580c);
+}
+
+.box.checked.accent {
+  background-color: var(--brand-accent, #06b6d4);
+  border-color: var(--brand-accent, #06b6d4);
+}
+.box.checked.accent:hover {
+  background-color: var(--brand-accent-hover, #0891b2);
+  border-color: var(--brand-accent-hover, #0891b2);
+}
+
+.box.checked.success {
+  background-color: var(--status-success, #16a34a);
+  border-color: var(--status-success, #16a34a);
+}
+.box.checked.success:hover {
+  background-color: var(--status-success-hover, #15803d);
+  border-color: var(--status-success-hover, #15803d);
+}
+
+.box.checked.warning {
+  background-color: var(--status-warning, #eab308);
+  border-color: var(--status-warning, #eab308);
+}
+.box.checked.warning:hover {
+  background-color: var(--status-warning-hover, #ca8a04);
+  border-color: var(--status-warning-hover, #ca8a04);
+}
+
+.box.checked.error {
+  background-color: var(--status-error, #dc2626);
+  border-color: var(--status-error, #dc2626);
+}
+.box.checked.error:hover {
+  background-color: var(--status-error-hover, #b91c1c);
+  border-color: var(--status-error-hover, #b91c1c);
+}
+
+.box.checked.info {
+  background-color: var(--status-info, #3b82f6);
+  border-color: var(--status-info, #3b82f6);
+}
+.box.checked.info:hover {
+  background-color: var(--status-info-hover, #2563eb);
+  border-color: var(--status-info-hover, #2563eb);
+}
+
+/* Disabled + checked */
+.box.checked.disabled {
+  background-color: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
+}
+
+/* ============================================
+   BOX SIZES
+   ============================================ */
+
+.boxSm {
+  width: 16px;
+  height: 16px;
+}
+
+.boxMd {
+  width: 20px;
+  height: 20px;
+}
+
+.boxLg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   ICON
+   §22: check icon = --text-inverse (NOT text-white)
+   ============================================ */
+
+.icon {
+  color: var(--text-inverse, #fff);
+}
+
+.iconSm {
+  width: 10px;
+  height: 10px;
+}
+
+.iconMd {
+  width: 12px;
+  height: 12px;
+}
+
+.iconLg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Disabled icon */
+.icon.iconDisabled {
+  color: var(--text-disabled, #94a3b8);
+}
+
+/* ============================================
+   CONTAINER GAPS (per size)
+   ============================================ */
+
+.gapSm {
+  gap: 8px;
+}
+
+.gapMd {
+  gap: 10px;
+}
+
+.gapLg {
+  gap: 12px;
+}
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.labelContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--text-primary, #111827);
+  user-select: none;
+}
+
+.label.labelDisabled {
+  color: var(--text-disabled, #94a3b8);
+}
+
+.labelSm {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.labelMd {
+  font-size: var(--font-size-base, 16px);
+}
+
+.labelLg {
+  font-size: var(--font-size-md, 17px);
+}
+
+/* ============================================
+   DESCRIPTION / ERROR TEXT
+   ============================================ */
+
+.description {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-secondary, #6b7280);
+}
+
+.errorText {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--status-error, #dc2626);
+  margin-top: 4px;
+}
+
+/* ============================================
+   HIDDEN INPUT
+   ============================================ */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

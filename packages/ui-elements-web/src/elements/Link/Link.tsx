@@ -5,23 +5,31 @@
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
-import type { LinkPropsBase, LinkColorScheme } from '@groxigo/contracts';
+import { clsx } from 'clsx';
+import type { LinkPropsBase, LinkColorScheme, LinkSize } from '@groxigo/contracts';
+import styles from './Link.module.css';
 
-// Color scheme to Tailwind classes
-const colorSchemeClasses: Record<LinkColorScheme, string> = {
-  default: 'text-text-primary',
-  primary: 'text-primary-600 hover:text-primary-700',
-  secondary: 'text-secondary-600 hover:text-secondary-700',
-  accent: 'text-accent-600 hover:text-accent-700',
-  muted: 'text-text-secondary hover:text-text-primary',
+// Color scheme to CSS module classes
+const colorSchemeClassMap: Record<LinkColorScheme, string> = {
+  default: styles.colorDefault,
+  primary: styles.colorPrimary,
+  secondary: styles.colorSecondary,
+  accent: styles.colorAccent,
+  muted: styles.colorMuted,
+};
+
+// Size classes
+const sizeClassMap: Record<LinkSize, string> = {
+  sm: styles.sm,
+  md: styles.md,
+  lg: styles.lg,
 };
 
 // Underline variant classes
-const underlineClasses: Record<string, string> = {
-  always: 'underline',
-  hover: 'no-underline hover:underline',
-  none: 'no-underline',
+const underlineClassMap: Record<string, string> = {
+  always: styles.underlineAlways,
+  hover: styles.underlineHover,
+  none: styles.underlineNone,
 };
 
 /**
@@ -56,6 +64,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
     {
       href,
       isExternal,
+      size = 'md',
       colorScheme = 'primary',
       underline = true,
       disabled = false,
@@ -94,12 +103,12 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       onClick?.(event);
     };
 
-    const classes = cn(
-      'inline transition-colors duration-200',
-      'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 rounded-sm',
-      colorSchemeClasses[colorScheme],
-      underlineClasses[underlineValue],
-      disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+    const classes = clsx(
+      styles.link,
+      sizeClassMap[size],
+      !disabled && colorSchemeClassMap[colorScheme],
+      underlineClassMap[underlineValue],
+      disabled && styles.disabled,
       className
     );
 
@@ -117,7 +126,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
       >
         {children}
         {shouldOpenExternal && (
-          <span className="inline-block ml-1 text-xs" aria-hidden="true">
+          <span className={styles.externalIcon} aria-hidden="true">
             ↗
           </span>
         )}

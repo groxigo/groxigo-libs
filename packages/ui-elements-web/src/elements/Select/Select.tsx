@@ -2,11 +2,13 @@
  * Select Component (Web)
  *
  * A dropdown select component for web platform.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  * Uses native select for better accessibility and mobile experience.
  */
 
 import React, { forwardRef, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
+import styles from './Select.module.css';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 export type SelectVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
@@ -19,24 +21,12 @@ export interface SelectOption {
   icon?: React.ReactNode;
 }
 
-const sizeClasses: Record<SelectSize, string> = {
-  sm: 'h-9 px-3 text-sm rounded',
-  md: 'h-11 px-4 text-base rounded-md',
-  lg: 'h-13 px-5 text-md rounded-lg',
-};
-
-const variantClasses: Record<SelectVariant, string> = {
-  outline: 'bg-surface-primary border border-border focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20',
-  filled: 'bg-surface-secondary border-0 focus:bg-surface-primary focus:ring-2 focus:ring-primary-500/20',
-  flushed: 'bg-transparent border-0 border-b-2 border-border focus:border-primary-500 rounded-none px-0',
-  unstyled: 'bg-transparent border-0',
-};
-
-const errorClasses: Record<SelectVariant, string> = {
-  outline: 'border-error focus:border-error focus:ring-error/20',
-  filled: 'ring-2 ring-error/20 focus:ring-error/30',
-  flushed: 'border-error focus:border-error',
-  unstyled: '',
+/** Maps variant + error → CSS module error class */
+const errorStyleMap: Record<string, string | undefined> = {
+  outline: styles.outlineError,
+  filled: styles.filledError,
+  flushed: styles.flushedError,
+  unstyled: undefined,
 };
 
 export interface SelectProps {
@@ -120,34 +110,29 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       [onChange, onNativeChange, options]
     );
 
-    const selectClasses = cn(
-      'w-full transition-all duration-200 outline-none font-sans text-text-primary cursor-pointer appearance-none',
-      'bg-no-repeat bg-[length:16px] bg-[right_12px_center]',
-      sizeClasses[size],
-      variantClasses[variant],
-      hasError && errorClasses[variant],
-      disabled && 'opacity-50 cursor-not-allowed bg-surface-secondary',
+    const selectClasses = clsx(
+      styles.select,
+      styles[size],
+      styles[variant],
+      hasError && errorStyleMap[variant],
+      disabled && styles.disabled,
       className
     );
 
     // Custom chevron as background image using data URI
     const chevronStyle: React.CSSProperties = {
       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239E9E9E'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-      paddingRight: '2.5rem',
     };
 
     return (
-      <div className={cn('flex flex-col', fullWidth && 'w-full')}>
+      <div className={clsx(styles.container, fullWidth && styles.fullWidth)}>
         {label && (
           <label
             htmlFor={inputId}
-            className={cn(
-              'text-sm font-medium text-text-primary mb-1.5',
-              labelClassName
-            )}
+            className={clsx(styles.label, labelClassName)}
           >
             {label}
-            {required && <span className="text-error ml-0.5">*</span>}
+            {required && <span className={styles.required}>*</span>}
           </label>
         )}
         <select
@@ -182,7 +167,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {error && (
           <p
             id={`${inputId}-error`}
-            className="text-xs text-error mt-1"
+            className={styles.errorText}
             role="alert"
           >
             {error}
@@ -191,7 +176,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {!error && helperText && (
           <p
             id={`${inputId}-helper`}
-            className="text-xs text-text-secondary mt-1"
+            className={styles.helperText}
           >
             {helperText}
           </p>

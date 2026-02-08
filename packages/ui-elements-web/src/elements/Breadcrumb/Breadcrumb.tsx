@@ -6,16 +6,17 @@
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { BreadcrumbPropsBase, BreadcrumbItem } from '@groxigo/contracts';
 import { BreadcrumbItemComponent } from './BreadcrumbItem';
 import { BreadcrumbSeparator } from './BreadcrumbSeparator';
+import styles from './Breadcrumb.module.css';
 
-// Font size classes
-const fontSizeClasses: Record<string, string> = {
-  sm: 'text-xs',
-  md: 'text-sm',
-  lg: 'text-base',
+// Font size class map
+const fontSizeClassMap: Record<string, string> = {
+  sm: styles.sizeSm,
+  md: styles.sizeMd,
+  lg: styles.sizeLg,
 };
 
 export interface BreadcrumbProps extends BreadcrumbPropsBase {
@@ -56,39 +57,35 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
       ];
     }, [items, maxItems, itemsBeforeCollapse, itemsAfterCollapse]);
 
-    const gapClass = spacing
-      ? `gap-[${spacing}px]`
-      : 'gap-1.5';
-
     return (
       <nav
         ref={ref}
         aria-label="Breadcrumb"
-        className={cn('flex items-center', className)}
+        className={clsx(styles.breadcrumb, className)}
         data-testid={testID}
         {...props}
       >
         <ol
-          className={cn(
-            'flex flex-wrap items-center',
-            gapClass,
-            fontSizeClasses[fontSize]
+          className={clsx(
+            styles.list,
+            fontSizeClassMap[fontSize]
           )}
+          style={spacing ? { gap: `${spacing}px` } : undefined}
         >
           {displayItems.map((item, index) => {
             const isLast = index === displayItems.length - 1;
             const isCollapsed = (item as any).isCollapsed;
 
             return (
-              <li key={index} className="flex items-center">
+              <li key={index} className={styles.item}>
                 {index > 0 && (
-                  <BreadcrumbSeparator className="mx-1.5 text-text-secondary">
+                  <BreadcrumbSeparator>
                     {separator}
                   </BreadcrumbSeparator>
                 )}
 
                 {isCollapsed ? (
-                  <span className="text-text-secondary select-none">
+                  <span className={styles.itemCollapsed}>
                     {item.label}
                   </span>
                 ) : (
@@ -98,7 +95,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                     onClick={item.onClick}
                   >
                     {item.icon && (
-                      <span className="mr-1.5 flex items-center">
+                      <span className={styles.itemIcon}>
                         {item.icon}
                       </span>
                     )}

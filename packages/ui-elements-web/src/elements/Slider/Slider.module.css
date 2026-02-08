@@ -1,0 +1,252 @@
+/**
+ * Slider Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Follows DESIGN_RULES §22 for slider states and §18 for focus ring.
+ */
+
+/* ============================================
+   BASE CONTAINER
+   ============================================ */
+
+.container {
+  width: 100%;
+}
+
+/* §22: Disabled — semantic tokens, NOT opacity */
+.container.disabled {
+  pointer-events: none;
+}
+
+/* ============================================
+   HEADER (label + value)
+   ============================================ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.label {
+  color: var(--text-primary, #111827);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.label.labelDisabled {
+  color: var(--text-disabled, #94a3b8);
+}
+
+.labelSm {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.labelMd {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.labelLg {
+  font-size: var(--font-size-base, 16px);
+}
+
+/* ============================================
+   VALUE DISPLAY
+   ============================================ */
+
+.value {
+  color: var(--text-secondary, #6b7280);
+}
+
+.value.valueDisabled {
+  color: var(--text-disabled, #94a3b8);
+}
+
+/* ============================================
+   TRACK
+   ============================================ */
+
+.track {
+  position: relative;
+  width: 100%;
+  background-color: var(--surface-secondary, #f1f5f9);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.track.trackDisabled {
+  background-color: var(--surface-disabled, #f1f5f9);
+  cursor: not-allowed;
+}
+
+/* Track sizes */
+.trackSm {
+  height: 4px;
+}
+
+.trackMd {
+  height: 6px;
+}
+
+.trackLg {
+  height: 8px;
+}
+
+/* ============================================
+   FILL (colored portion)
+   ============================================ */
+
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 9999px;
+}
+
+/* Fill color schemes */
+.fill.primary {
+  background-color: var(--brand-primary, #2563eb);
+}
+
+.fill.secondary {
+  background-color: var(--brand-secondary, #f97316);
+}
+
+.fill.accent {
+  background-color: var(--brand-accent, #06b6d4);
+}
+
+.fill.success {
+  background-color: var(--status-success, #16a34a);
+}
+
+.fill.warning {
+  background-color: var(--status-warning, #eab308);
+}
+
+.fill.error {
+  background-color: var(--status-error, #dc2626);
+}
+
+/* Disabled fill */
+.fill.fillDisabled {
+  background-color: var(--border-disabled, #e2e8f0);
+}
+
+/* ============================================
+   THUMB
+   ============================================ */
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  background-color: var(--surface-primary, #fff);
+  border: 2px solid;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 150ms ease;
+  cursor: grab;
+  outline: none;
+}
+
+.thumb:active {
+  cursor: grabbing;
+}
+
+/* §18: Focus ring — 3px width, 2px offset */
+.thumb:focus-visible {
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
+}
+
+/* Thumb color schemes (border color) */
+.thumb.primary {
+  border-color: var(--brand-primary, #2563eb);
+}
+.thumb.primary:hover {
+  border-color: var(--brand-primary-hover, #1d4ed8);
+}
+
+.thumb.secondary {
+  border-color: var(--brand-secondary, #f97316);
+}
+.thumb.secondary:hover {
+  border-color: var(--brand-secondary-hover, #ea580c);
+}
+
+.thumb.accent {
+  border-color: var(--brand-accent, #06b6d4);
+}
+.thumb.accent:hover {
+  border-color: var(--brand-accent-hover, #0891b2);
+}
+
+.thumb.success {
+  border-color: var(--status-success, #16a34a);
+}
+.thumb.success:hover {
+  border-color: var(--status-success-hover, #15803d);
+}
+
+.thumb.warning {
+  border-color: var(--status-warning, #eab308);
+}
+.thumb.warning:hover {
+  border-color: var(--status-warning-hover, #ca8a04);
+}
+
+.thumb.error {
+  border-color: var(--status-error, #dc2626);
+}
+.thumb.error:hover {
+  border-color: var(--status-error-hover, #b91c1c);
+}
+
+/* Disabled thumb */
+.thumb.thumbDisabled {
+  background-color: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
+  cursor: not-allowed;
+}
+
+.thumb.thumbDisabled:hover {
+  border-color: var(--border-disabled, #e2e8f0);
+}
+
+/* Thumb sizes */
+.thumbSm {
+  width: 16px;
+  height: 16px;
+}
+
+.thumbMd {
+  width: 20px;
+  height: 20px;
+}
+
+.thumbLg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   TOOLTIP
+   ============================================ */
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background-color: var(--surface-inverse, #1f2937);
+  color: var(--text-inverse, #fff);
+  font-size: var(--font-size-xs, 12px);
+  border-radius: var(--radius-sm, 4px);
+  white-space: nowrap;
+}

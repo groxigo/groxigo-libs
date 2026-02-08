@@ -1,0 +1,427 @@
+/**
+ * Toast Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * z-index: 1700 (DESIGN_RULES section 9).
+ * Auto-dismiss timing per status (section 10).
+ * Radius: --radius-lg (10px).
+ * Shadow: --shadow-2xl.
+ *
+ * Status colors use semantic status tokens.
+ * Variants: solid, subtle, left-accent, top-accent.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Animations                                                         */
+/* ------------------------------------------------------------------ */
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Toast Base                                                         */
+/* ------------------------------------------------------------------ */
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2xl);
+  min-width: 300px;
+  max-width: 448px;
+  animation: toastSlideIn var(--duration-normal, 200ms) ease-out;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Icons                                                              */
+/* ------------------------------------------------------------------ */
+
+.icon {
+  flex-shrink: 0;
+}
+
+.iconSvg {
+  width: 20px;
+  height: 20px;
+}
+
+.spinnerSvg {
+  width: 20px;
+  height: 20px;
+  animation: toastSpin 1s linear infinite;
+}
+
+.spinnerTrack {
+  opacity: 0.25;
+}
+
+.spinnerHead {
+  opacity: 0.75;
+}
+
+.closeIconSvg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Content                                                            */
+/* ------------------------------------------------------------------ */
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+.titleSubtle {
+  color: var(--text-primary);
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  margin-top: 2px;
+}
+
+.descriptionSolid {
+  opacity: 0.9;
+}
+
+.descriptionSubtle {
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Action Button                                                      */
+/* ------------------------------------------------------------------ */
+
+.actionButton {
+  margin-top: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-underline-offset: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-xs, 4px);
+}
+
+.actionButton:hover {
+  text-decoration: underline;
+}
+
+.actionButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--border-focus);
+}
+
+.actionButtonSolid {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.actionButtonSolid:hover {
+  color: #ffffff;
+}
+
+.actionButtonSolid:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Close Button                                                       */
+/* ------------------------------------------------------------------ */
+
+.closeButton {
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin: -4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) ease,
+              background-color var(--duration-fast, 150ms) ease;
+}
+
+.closeButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--border-focus);
+}
+
+.closeButtonSolid {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.closeButtonSolid:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.closeButtonSolid:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.closeButtonSubtle {
+  color: var(--text-tertiary, #9ca3af);
+}
+
+.closeButtonSubtle:hover {
+  color: var(--text-secondary);
+  background-color: var(--surface-secondary);
+}
+
+.closeButtonSubtle:focus {
+  box-shadow: 0 0 0 2px var(--border-focus);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Status + Variant — Solid                                           */
+/* ------------------------------------------------------------------ */
+
+.solidSuccess {
+  background-color: var(--status-success);
+  color: var(--text-inverse);
+}
+
+.solidError {
+  background-color: var(--status-error);
+  color: var(--text-inverse);
+}
+
+.solidWarning {
+  background-color: var(--status-warning);
+  color: var(--text-primary);
+}
+
+.solidInfo {
+  background-color: var(--status-info);
+  color: var(--text-inverse);
+}
+
+.solidLoading {
+  background-color: var(--surface-tertiary);
+  color: var(--text-inverse);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Status + Variant — Subtle                                          */
+/* ------------------------------------------------------------------ */
+
+.subtleSuccess {
+  background-color: var(--status-success-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--status-success);
+}
+
+.subtleError {
+  background-color: var(--status-error-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--status-error);
+}
+
+.subtleWarning {
+  background-color: var(--status-warning-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--status-warning);
+}
+
+.subtleInfo {
+  background-color: var(--status-info-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--status-info);
+}
+
+.subtleLoading {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Status + Variant — Left Accent                                     */
+/* ------------------------------------------------------------------ */
+
+.leftAccentSuccess {
+  background-color: var(--status-success-subtle);
+  color: var(--text-primary);
+  border-left: 4px solid var(--status-success);
+}
+
+.leftAccentError {
+  background-color: var(--status-error-subtle);
+  color: var(--text-primary);
+  border-left: 4px solid var(--status-error);
+}
+
+.leftAccentWarning {
+  background-color: var(--status-warning-subtle);
+  color: var(--text-primary);
+  border-left: 4px solid var(--status-warning);
+}
+
+.leftAccentInfo {
+  background-color: var(--status-info-subtle);
+  color: var(--text-primary);
+  border-left: 4px solid var(--status-info);
+}
+
+.leftAccentLoading {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+  border-left: 4px solid var(--border-subtle);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Status + Variant — Top Accent                                      */
+/* ------------------------------------------------------------------ */
+
+.topAccentSuccess {
+  background-color: var(--status-success-subtle);
+  color: var(--text-primary);
+  border-top: 4px solid var(--status-success);
+}
+
+.topAccentError {
+  background-color: var(--status-error-subtle);
+  color: var(--text-primary);
+  border-top: 4px solid var(--status-error);
+}
+
+.topAccentWarning {
+  background-color: var(--status-warning-subtle);
+  color: var(--text-primary);
+  border-top: 4px solid var(--status-warning);
+}
+
+.topAccentInfo {
+  background-color: var(--status-info-subtle);
+  color: var(--text-primary);
+  border-top: 4px solid var(--status-info);
+}
+
+.topAccentLoading {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+  border-top: 4px solid var(--border-subtle);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Icon Colors (for non-solid variants)                               */
+/* ------------------------------------------------------------------ */
+
+.iconSuccess {
+  color: var(--status-success);
+}
+
+.iconError {
+  color: var(--status-error);
+}
+
+.iconWarning {
+  color: var(--status-warning);
+}
+
+.iconInfo {
+  color: var(--status-info);
+}
+
+.iconLoading {
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Action Button — Status Colors (for non-solid variants)             */
+/* ------------------------------------------------------------------ */
+
+.actionSuccess {
+  color: var(--status-success);
+}
+
+.actionError {
+  color: var(--status-error);
+}
+
+.actionWarning {
+  color: var(--status-warning);
+}
+
+.actionInfo {
+  color: var(--status-info);
+}
+
+.actionLoading {
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Toast Provider — Container                                         */
+/* ------------------------------------------------------------------ */
+
+.container {
+  position: fixed;
+  z-index: 1700;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.containerTop {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.containerTopLeft {
+  top: 16px;
+  left: 16px;
+}
+
+.containerTopRight {
+  top: 16px;
+  right: 16px;
+}
+
+.containerBottom {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.containerBottomLeft {
+  bottom: 16px;
+  left: 16px;
+}
+
+.containerBottomRight {
+  bottom: 16px;
+  right: 16px;
+}
+
+.toastWrapper {
+  pointer-events: auto;
+}

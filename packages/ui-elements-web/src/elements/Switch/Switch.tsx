@@ -3,60 +3,52 @@
  *
  * A versatile toggle switch component for web platform.
  * Follows the SwitchPropsBase contract from @groxigo/contracts.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useCallback, useState } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { SwitchPropsBase, SwitchSize, SwitchColorScheme } from '@groxigo/contracts';
+import styles from './Switch.module.css';
 
 // Re-export types for convenience
 export type { SwitchSize, SwitchColorScheme };
 
 // ============================================
-// SIZE CONFIGURATIONS
+// SIZE CLASS MAPS
 // ============================================
 
-const sizeClasses: Record<SwitchSize, {
-  track: string;
-  thumb: string;
-  thumbTranslate: string;
-  label: string;
-  gap: string;
-}> = {
-  sm: {
-    track: 'w-9 h-5',
-    thumb: 'w-4 h-4',
-    thumbTranslate: 'translate-x-4',
-    label: 'text-sm',
-    gap: 'gap-2'
-  },
-  md: {
-    track: 'w-11 h-6',
-    thumb: 'w-5 h-5',
-    thumbTranslate: 'translate-x-5',
-    label: 'text-base',
-    gap: 'gap-2.5'
-  },
-  lg: {
-    track: 'w-[52px] h-7',
-    thumb: 'w-6 h-6',
-    thumbTranslate: 'translate-x-6',
-    label: 'text-lg',
-    gap: 'gap-3'
-  },
+const trackSizeClass: Record<SwitchSize, string> = {
+  sm: styles.trackSm,
+  md: styles.trackMd,
+  lg: styles.trackLg,
 };
 
-// ============================================
-// COLOR SCHEME CONFIGURATIONS
-// ============================================
+const thumbSizeClass: Record<SwitchSize, string> = {
+  sm: styles.thumbSm,
+  md: styles.thumbMd,
+  lg: styles.thumbLg,
+};
 
-const colorSchemeClasses: Record<SwitchColorScheme, { checked: string; focus: string }> = {
-  primary: { checked: 'bg-primary-500', focus: 'focus-visible:ring-primary-500/20' },
-  secondary: { checked: 'bg-secondary-500', focus: 'focus-visible:ring-secondary-500/20' },
-  accent: { checked: 'bg-accent-500', focus: 'focus-visible:ring-accent-500/20' },
-  success: { checked: 'bg-success', focus: 'focus-visible:ring-success/20' },
-  warning: { checked: 'bg-warning', focus: 'focus-visible:ring-warning/20' },
-  error: { checked: 'bg-error', focus: 'focus-visible:ring-error/20' },
+const gapClass: Record<SwitchSize, string> = {
+  sm: styles.gapSm,
+  md: styles.gapMd,
+  lg: styles.gapLg,
+};
+
+const labelSizeClass: Record<SwitchSize, string> = {
+  sm: styles.labelSm,
+  md: styles.labelMd,
+  lg: styles.labelLg,
+};
+
+const colorSchemeClass: Record<SwitchColorScheme, string> = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  accent: styles.accent,
+  success: styles.success,
+  warning: styles.warning,
+  error: styles.error,
 };
 
 // ============================================
@@ -104,9 +96,6 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     const isControlled = checked !== undefined;
     const isChecked = isControlled ? checked : internalChecked;
 
-    const sizeConfig = sizeClasses[size];
-    const colorConfig = colorSchemeClasses[colorScheme];
-
     const handleToggle = useCallback(() => {
       if (disabled) return;
 
@@ -131,42 +120,40 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
 
     const inputId = id || name;
 
-    // Container classes based on label position
-    const containerClasses = cn(
-      'inline-flex items-center',
-      sizeConfig.gap,
-      labelPosition === 'left' ? 'flex-row-reverse' : 'flex-row',
-      disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+    // Container classes
+    const containerClasses = clsx(
+      styles.container,
+      gapClass[size],
+      labelPosition === 'left' ? styles.labelLeft : undefined,
+      disabled ? styles.cursorDisabled : styles.cursorPointer,
       className
     );
 
     // Track classes
-    const trackClasses = cn(
-      'relative inline-flex shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out',
-      sizeConfig.track,
-      colorConfig.focus,
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-      isChecked ? colorConfig.checked : 'bg-border',
-      disabled ? 'pointer-events-none' : ''
+    const trackClasses = clsx(
+      styles.track,
+      trackSizeClass[size],
+      isChecked && styles.checked,
+      isChecked && colorSchemeClass[colorScheme]
     );
 
     // Thumb classes
-    const thumbClasses = cn(
-      'pointer-events-none inline-block rounded-full bg-white shadow-sm ring-0 transition-transform duration-200 ease-in-out',
-      sizeConfig.thumb,
-      isChecked ? sizeConfig.thumbTranslate : 'translate-x-0.5'
+    const thumbClasses = clsx(
+      styles.thumb,
+      thumbSizeClass[size],
+      isChecked ? styles.thumbChecked : styles.unchecked
     );
 
     // Label classes
-    const labelClasses = cn(
-      sizeConfig.label,
-      'text-text-primary select-none',
-      disabled && 'text-text-disabled',
+    const labelClasses = clsx(
+      styles.label,
+      labelSizeClass[size],
+      disabled && styles.disabled,
       labelClassName
     );
 
     return (
-      <div className="inline-flex flex-col" data-testid={testID}>
+      <div className={styles.wrapper} data-testid={testID}>
         <div className={containerClasses}>
           {/* Hidden input for form submission */}
           <input
@@ -178,7 +165,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             disabled={disabled}
             required={required}
             onChange={() => {}} // Handled by button
-            className="sr-only"
+            className={styles.srOnly}
             tabIndex={-1}
           />
 
@@ -214,11 +201,11 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
 
         {/* Helper text */}
         {helperText && !error && (
-          <span className="text-sm text-text-secondary mt-1">{helperText}</span>
+          <span className={styles.helperText}>{helperText}</span>
         )}
 
         {/* Error message */}
-        {error && <span className="text-sm text-error mt-1">{error}</span>}
+        {error && <span className={styles.errorText}>{error}</span>}
       </div>
     );
   }

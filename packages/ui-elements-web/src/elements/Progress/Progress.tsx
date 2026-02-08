@@ -3,57 +3,59 @@
  *
  * A progress bar component that supports linear and circular variants.
  * Fully accessible with proper ARIA attributes.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type {
   ProgressPropsBase,
   CircularProgressPropsBase,
   ProgressSize,
   ProgressColorScheme,
 } from '@groxigo/contracts';
+import styles from './Progress.module.css';
 
 // ============================================
 // SIZE CONFIGURATIONS
 // ============================================
 
-const sizeClasses: Record<ProgressSize, string> = {
-  xs: 'h-1',
-  sm: 'h-2',
-  md: 'h-3',
-  lg: 'h-4',
+const trackSizeStyleMap: Record<ProgressSize, string> = {
+  xs: styles.trackXs,
+  sm: styles.trackSm,
+  md: styles.trackMd,
+  lg: styles.trackLg,
 };
 
-const labelSizeClasses: Record<ProgressSize, string> = {
-  xs: 'text-xs',
-  sm: 'text-xs',
-  md: 'text-sm',
-  lg: 'text-base',
+const labelSizeStyleMap: Record<ProgressSize, string> = {
+  xs: styles.labelXs,
+  sm: styles.labelSm,
+  md: styles.labelMd,
+  lg: styles.labelLg,
 };
 
 // ============================================
 // COLOR CONFIGURATIONS
 // ============================================
 
-const colorClasses: Record<ProgressColorScheme, string> = {
-  primary: 'bg-primary-500',
-  secondary: 'bg-secondary-500',
-  accent: 'bg-accent-500',
-  success: 'bg-success',
-  warning: 'bg-warning',
-  error: 'bg-error',
-  info: 'bg-info',
+const barColorStyleMap: Record<ProgressColorScheme, string> = {
+  primary: styles.barPrimary,
+  secondary: styles.barSecondary,
+  accent: styles.barAccent,
+  success: styles.barSuccess,
+  warning: styles.barWarning,
+  error: styles.barError,
+  info: styles.barInfo,
 };
 
-const circularColorClasses: Record<ProgressColorScheme, string> = {
-  primary: 'text-primary-500',
-  secondary: 'text-secondary-500',
-  accent: 'text-accent-500',
-  success: 'text-success',
-  warning: 'text-warning',
-  error: 'text-error',
-  info: 'text-info',
+const circularColorStyleMap: Record<ProgressColorScheme, string> = {
+  primary: styles.circularPrimary,
+  secondary: styles.circularSecondary,
+  accent: styles.circularAccent,
+  success: styles.circularSuccess,
+  warning: styles.circularWarning,
+  error: styles.circularError,
+  info: styles.circularInfo,
 };
 
 // ============================================
@@ -113,7 +115,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     return (
       <div
         ref={ref}
-        className={cn('w-full', className)}
+        className={clsx(styles.wrapper, className)}
         style={style}
         data-testid={testID}
         {...props}
@@ -124,21 +126,19 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           aria-valuemin={min}
           aria-valuemax={max}
           aria-label={ariaLabel || `Progress: ${isIndeterminate ? 'loading' : displayValue}`}
-          className={cn(
-            'w-full overflow-hidden bg-gray-200',
-            sizeClasses[size],
-            borderRadius === 'full' ? 'rounded-full' : borderRadius !== undefined ? '' : 'rounded-full'
+          className={clsx(
+            styles.track,
+            trackSizeStyleMap[size]
           )}
           style={{ borderRadius: radiusStyle }}
         >
           <div
-            className={cn(
-              'h-full transition-[width] duration-300 ease-out',
-              colorClasses[colorScheme],
-              hasStripe && 'bg-stripe',
-              isAnimated && hasStripe && 'animate-stripe',
-              isIndeterminate && 'animate-indeterminate w-1/3',
-              borderRadius === 'full' ? 'rounded-full' : borderRadius !== undefined ? '' : 'rounded-full'
+            className={clsx(
+              styles.bar,
+              barColorStyleMap[colorScheme],
+              hasStripe && styles.stripe,
+              isAnimated && hasStripe && styles.stripeAnimated,
+              isIndeterminate && styles.indeterminate
             )}
             style={{
               width: isIndeterminate ? undefined : `${normalizedValue}%`,
@@ -147,8 +147,8 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           />
         </div>
         {showValue && displayValue && (
-          <div className="mt-1 flex justify-end">
-            <span className={cn('text-gray-600', labelSizeClasses[size])}>
+          <div className={styles.valueContainer}>
+            <span className={clsx(styles.valueLabel, labelSizeStyleMap[size])}>
               {displayValue}
             </span>
           </div>
@@ -226,7 +226,7 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
         aria-valuemin={min}
         aria-valuemax={max}
         aria-label={ariaLabel || `Progress: ${isIndeterminate ? 'loading' : displayValue}`}
-        className={cn('relative inline-flex items-center justify-center', className)}
+        className={clsx(styles.circularWrapper, className)}
         style={{ width: svgSize, height: svgSize, ...style }}
         data-testid={testID}
         {...props}
@@ -235,7 +235,7 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
           width={svgSize}
           height={svgSize}
           viewBox={`0 0 ${svgSize} ${svgSize}`}
-          className={cn(isIndeterminate && 'animate-spin')}
+          className={clsx(isIndeterminate && styles.spin)}
           style={{ transform: `rotate(${startAngle}deg)` }}
         >
           {/* Track circle */}
@@ -246,7 +246,7 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
             fill="none"
             stroke={trackColor || 'currentColor'}
             strokeWidth={thickness}
-            className={cn(!trackColor && 'text-gray-200')}
+            className={clsx(!trackColor && styles.circularTrack)}
           />
           {/* Progress circle */}
           <circle
@@ -259,15 +259,15 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={isIndeterminate ? circumference * 0.75 : strokeDashoffset}
-            className={cn(
-              circularColorClasses[colorScheme],
-              !isIndeterminate && 'transition-[stroke-dashoffset] duration-300 ease-out'
+            className={clsx(
+              circularColorStyleMap[colorScheme],
+              !isIndeterminate && styles.circularTransition
             )}
           />
         </svg>
         {showValue && displayValue && !isIndeterminate && (
           <span
-            className="absolute text-gray-700 font-medium"
+            className={styles.circularValue}
             style={{ fontSize }}
           >
             {displayValue}

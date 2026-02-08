@@ -1,2 +1,2 @@
-export { RecipeCard, type RecipeCardProps } from './RecipeCard';
-export { default } from './RecipeCard';
+export { RecipeCard, default } from './RecipeCard';
+export type { RecipeCardProps } from './RecipeCard';

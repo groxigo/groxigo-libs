@@ -7,7 +7,7 @@
 
 import React, { forwardRef, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type {
   DrawerPropsBase,
   DrawerHeaderPropsBase,
@@ -16,57 +16,42 @@ import type {
   DrawerPlacement,
   DrawerSize,
 } from '@groxigo/contracts';
+import styles from './Drawer.module.css';
 
-// Size configurations (percentage of viewport)
-const sizeClasses: Record<DrawerPlacement, Record<DrawerSize, string>> = {
-  left: {
-    xs: 'w-64',
-    sm: 'w-80',
-    md: 'w-96',
-    lg: 'w-[32rem]',
-    xl: 'w-[40rem]',
-    full: 'w-full',
-  },
-  right: {
-    xs: 'w-64',
-    sm: 'w-80',
-    md: 'w-96',
-    lg: 'w-[32rem]',
-    xl: 'w-[40rem]',
-    full: 'w-full',
-  },
-  top: {
-    xs: 'h-32',
-    sm: 'h-48',
-    md: 'h-64',
-    lg: 'h-96',
-    xl: 'h-[32rem]',
-    full: 'h-full',
-  },
-  bottom: {
-    xs: 'h-32',
-    sm: 'h-48',
-    md: 'h-64',
-    lg: 'h-96',
-    xl: 'h-[32rem]',
-    full: 'h-full',
-  },
+// Size class maps for horizontal (left/right) placement
+const horizontalSizeClassMap: Record<DrawerSize, string> = {
+  xs: styles.horizontalXs,
+  sm: styles.horizontalSm,
+  md: styles.horizontalMd,
+  lg: styles.horizontalLg,
+  xl: styles.horizontalXl,
+  full: styles.horizontalFull,
 };
 
-// Position classes for drawer placement
-const placementClasses: Record<DrawerPlacement, string> = {
-  left: 'inset-y-0 left-0',
-  right: 'inset-y-0 right-0',
-  top: 'inset-x-0 top-0',
-  bottom: 'inset-x-0 bottom-0',
+// Size class maps for vertical (top/bottom) placement
+const verticalSizeClassMap: Record<DrawerSize, string> = {
+  xs: styles.verticalXs,
+  sm: styles.verticalSm,
+  md: styles.verticalMd,
+  lg: styles.verticalLg,
+  xl: styles.verticalXl,
+  full: styles.verticalFull,
 };
 
-// Transform classes for slide animations (closed state)
-const transformClosedClasses: Record<DrawerPlacement, string> = {
-  left: '-translate-x-full',
-  right: 'translate-x-full',
-  top: '-translate-y-full',
-  bottom: 'translate-y-full',
+// Placement classes
+const placementClassMap: Record<DrawerPlacement, string> = {
+  left: styles.placementLeft,
+  right: styles.placementRight,
+  top: styles.placementTop,
+  bottom: styles.placementBottom,
+};
+
+// Transform classes for closed state
+const transformClosedClassMap: Record<DrawerPlacement, string> = {
+  left: styles.closedLeft,
+  right: styles.closedRight,
+  top: styles.closedTop,
+  bottom: styles.closedBottom,
 };
 
 // ============================================
@@ -85,23 +70,20 @@ export const DrawerHeader = forwardRef<HTMLDivElement, DrawerHeaderProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'flex items-center justify-between px-4 py-3 border-b border-border',
-          className
-        )}
+        className={clsx(styles.header, className)}
         {...props}
       >
-        <div className="flex-1 text-lg font-semibold text-text-primary">
+        <div className={styles.headerContent}>
           {children}
         </div>
         {showCloseButton && onClose && (
           <button
             type="button"
             onClick={onClose}
-            className="ml-3 w-8 h-8 flex items-center justify-center rounded-full bg-surface-secondary text-text-secondary hover:bg-surface-tertiary transition-colors"
+            className={styles.headerCloseButton}
             aria-label="Close drawer"
           >
-            <span className="text-lg font-semibold" aria-hidden="true">
+            <span className={styles.headerCloseLabel} aria-hidden="true">
               &times;
             </span>
           </button>
@@ -124,7 +106,7 @@ export const DrawerBody = forwardRef<HTMLDivElement, DrawerBodyProps>(
     return (
       <div
         ref={ref}
-        className={cn('flex-1 overflow-y-auto p-4', className)}
+        className={clsx(styles.body, className)}
         {...props}
       >
         {children}
@@ -146,10 +128,7 @@ export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'flex items-center justify-end gap-3 px-4 py-3 border-t border-border',
-          className
-        )}
+        className={clsx(styles.footer, className)}
         {...props}
       >
         {children}
@@ -316,20 +295,21 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
     const isHorizontal = placement === 'left' || placement === 'right';
 
-    const drawerClasses = cn(
-      'fixed z-50 flex flex-col bg-surface-primary shadow-xl',
-      placementClasses[placement],
-      sizeClasses[placement][size],
-      isFullHeight && isHorizontal && 'h-full',
-      isFullHeight && !isHorizontal && 'w-full',
-      'transform transition-transform duration-300 ease-in-out',
-      isOpen ? 'translate-x-0 translate-y-0' : transformClosedClasses[placement],
+    const drawerClasses = clsx(
+      styles.drawer,
+      placementClassMap[placement],
+      isHorizontal
+        ? horizontalSizeClassMap[size]
+        : verticalSizeClassMap[size],
+      isFullHeight && isHorizontal && styles.fullHeightHorizontal,
+      isFullHeight && !isHorizontal && styles.fullWidthVertical,
+      isOpen ? styles.open : transformClosedClassMap[placement],
       className
     );
 
-    const overlayClasses = cn(
-      'fixed inset-0 z-40 bg-black/50 transition-opacity duration-300',
-      isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+    const overlayClasses = clsx(
+      styles.backdrop,
+      isOpen ? styles.backdropVisible : styles.backdropHidden
     );
 
     const content = (

@@ -8,18 +8,19 @@
 'use client';
 
 import React, { forwardRef, useCallback, type ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { useTabsContext, getTabVariantClasses } from './Tabs';
 import type { TabPropsBase, TabsSize } from '@groxigo/contracts';
+import styles from './Tabs.module.css';
 
 // ============================================
-// SIZE CLASSES
+// SIZE CLASS MAP
 // ============================================
 
-const sizeClasses: Record<TabsSize, { padding: string; text: string }> = {
-  sm: { padding: 'px-3 py-1.5', text: 'text-sm' },
-  md: { padding: 'px-4 py-2', text: 'text-base' },
-  lg: { padding: 'px-5 py-2.5', text: 'text-lg' },
+const sizeClassMap: Record<TabsSize, string> = {
+  sm: styles.tabSm,
+  md: styles.tabMd,
+  lg: styles.tabLg,
 };
 
 // ============================================
@@ -109,23 +110,14 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
       [isManual, onChange]
     );
 
-    const sizeConfig = sizeClasses[size];
     const variantStyles = getTabVariantClasses(variant, colorScheme, isSelected);
 
-    const classes = cn(
-      // Base styles
-      'flex items-center gap-2 font-medium transition-all duration-200',
-      'focus:outline-none focus:ring-2 focus:ring-offset-2',
-      // Size
-      sizeConfig.padding,
-      sizeConfig.text,
-      // Variant
+    const classes = clsx(
+      styles.tab,
+      sizeClassMap[size],
       variantStyles,
-      // Fitted
-      isFitted && 'flex-1 justify-center',
-      // Disabled
-      disabled && 'opacity-50 cursor-not-allowed',
-      // Custom
+      isFitted && styles.tabFitted,
+      disabled && styles.tabDisabled,
       className
     );
 

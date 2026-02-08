@@ -14,8 +14,9 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { MenuPropsBase, MenuPlacement } from '@groxigo/contracts';
+import styles from './Menu.module.css';
 
 // ============================================
 // MENU CONTEXT
@@ -162,7 +163,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
       <MenuContext.Provider value={contextValue}>
         <div
           ref={ref}
-          className={cn('relative inline-block', className)}
+          className={clsx(styles.menu, className)}
           data-testid={testID}
           data-placement={placement}
         >

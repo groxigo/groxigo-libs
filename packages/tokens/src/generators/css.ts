@@ -3,9 +3,13 @@
  *
  * Generates CSS custom properties (variables) from token source files.
  * Follows the three-tier architecture: Primitives → Semantic → Components
+ *
+ * Uses CSS clamp() for fluid responsive scaling between 375px and 1440px
+ * viewports, replacing the old media-query breakpoint system.
  */
 
 import { tokens } from '../tokens';
+import { fluidConfig } from '../tokens/responsive';
 
 /**
  * Generate CSS variables for primitive colors
@@ -435,7 +439,7 @@ function generateLayoutTokens(): string {
 
   // Typography
   lines.push('  /* Font Family */');
-  lines.push(`  --font-family-sans: ${tokens.typography.fontFamily.sans};`);
+  lines.push(`  --font-family-sans: ${tokens.typography.fontFamily.sansWeb || tokens.typography.fontFamily.sans};`);
   lines.push(`  --font-family-mono: ${tokens.typography.fontFamily.mono};`);
   lines.push('');
 
@@ -605,14 +609,195 @@ function generateDarkMode(): string {
   return lines.join('\n');
 }
 
+// ============================================
+// FLUID RESPONSIVE SYSTEM
+//
+// Replaces the old media-query breakpoint system with CSS clamp()
+// for smooth interpolation between 375px and 1440px viewports.
+// ============================================
+
+/**
+ * Build a CSS clamp() expression that interpolates linearly
+ * between `min` at viewportMin and `max` at viewportMax.
+ *
+ * Formula:  clamp(min, min + (max - min) * ((100vw - vpMin) / (vpMax - vpMin)), max)
+ * Simplified CSS: clamp(minpx, calc(minpx + (delta) * ((100vw - vpMinpx) / range)), maxpx)
+ */
+function clampExpr(min: number, max: number): string {
+  if (min === max) return `${min}px`;
+  const { viewportMin, viewportMax } = fluidConfig;
+  const range = viewportMax - viewportMin; // 1065
+  const delta = max - min;
+  return `clamp(${min}px, calc(${min}px + ${delta} * ((100vw - ${viewportMin}px) / ${range})), ${max}px)`;
+}
+
+/**
+ * Fluid font-size tokens.
+ * Small sizes (2xs, xs) stay fixed; base and above scale smoothly.
+ */
+const FLUID_FONT_SIZES: Record<string, [number, number]> = {
+  // [min at 375px, max at 1440px]
+  '2xs': [10, 10], // fixed — already very small
+  xs:    [12, 14],
+  sm:    [14, 16],
+  base:  [16, 20],
+  lg:    [18, 22],
+  xl:    [20, 26],
+  xxl:   [22, 28],
+  '2xl': [24, 32],
+  xxxl:  [28, 36],
+  '3xl': [30, 40],
+  '4xl': [36, 48],
+};
+
+/**
+ * Fluid spacing tokens.
+ * Small spacings (0 through 3) stay fixed.
+ */
+const FLUID_SPACINGS: Record<string, [number, number]> = {
+  // [min, max]
+  4:  [16, 20],
+  5:  [20, 24],
+  6:  [24, 32],
+  7:  [28, 36],
+  8:  [32, 40],
+  9:  [36, 44],
+  10: [40, 52],
+  11: [44, 56],
+  12: [48, 60],
+  14: [56, 72],
+  16: [64, 80],
+  20: [80, 100],
+  24: [96, 120],
+};
+
+/**
+ * Fluid radius tokens.
+ * xs, sm, md stay fixed.
+ */
+const FLUID_RADII: Record<string, [number, number]> = {
+  lg:   [10, 14],
+  xl:   [14, 20],
+  '2xl': [20, 24],
+  '3xl': [24, 28],
+  '4xl': [28, 32],
+  '5xl': [32, 40],
+};
+
+/**
+ * Fluid button/input component heights and padding.
+ * Values are [min at 375px, max at 1440px].
+ */
+const FLUID_BUTTON_HEIGHTS: Record<string, [number, number]> = {
+  xs: [24, 32],
+  sm: [32, 40],
+  md: [40, 48],
+  lg: [48, 64],
+  xl: [56, 72],
+};
+
+const FLUID_BUTTON_PADDING_X: Record<string, [number, number]> = {
+  xs: [8, 12],
+  sm: [12, 16],
+  md: [16, 24],
+  lg: [24, 32],
+  xl: [32, 48],
+};
+
+const FLUID_BUTTON_PADDING_Y: Record<string, [number, number]> = {
+  xs: [4, 6],
+  sm: [6, 8],
+  md: [8, 12],
+  lg: [12, 16],
+  xl: [16, 24],
+};
+
+const FLUID_INPUT_HEIGHTS: Record<string, [number, number]> = {
+  sm: [32, 40],
+  md: [40, 48],
+  lg: [48, 64],
+};
+
+/**
+ * Generate fluid responsive tokens using CSS clamp().
+ *
+ * Replaces the old generateResponsiveTokens() + generateResponsiveMediaQueries()
+ * pair. All scaling now happens inside :root via clamp() — no media query
+ * overrides needed.
+ */
+function generateFluidTokens(): string {
+  const lines: string[] = [];
+
+  lines.push('  /* ============================================');
+  lines.push('     FLUID RESPONSIVE SCALING');
+  lines.push(`     Smooth interpolation: ${fluidConfig.viewportMin}px → ${fluidConfig.viewportMax}px`);
+  lines.push('     ============================================ */');
+  lines.push('');
+
+  // Fluid font sizes (override the fixed values from generateLayoutTokens)
+  lines.push('  /* Fluid font sizes */');
+  for (const [key, [min, max]] of Object.entries(FLUID_FONT_SIZES)) {
+    if (min === max) continue; // skip fixed sizes, already emitted by generateLayoutTokens
+    lines.push(`  --font-size-${key}: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Fluid spacing (override the fixed values from generateLayoutTokens)
+  lines.push('  /* Fluid spacing */');
+  for (const [key, [min, max]] of Object.entries(FLUID_SPACINGS)) {
+    lines.push(`  --spacing-${key}: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Fluid radius (override fixed values from generateLayoutTokens)
+  lines.push('  /* Fluid radius */');
+  for (const [key, [min, max]] of Object.entries(FLUID_RADII)) {
+    lines.push(`  --radius-${key}: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Fluid button heights
+  lines.push('  /* Fluid button heights */');
+  for (const [size, [min, max]] of Object.entries(FLUID_BUTTON_HEIGHTS)) {
+    lines.push(`  --button-${size}-height: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Fluid button padding
+  lines.push('  /* Fluid button padding */');
+  for (const [size, [min, max]] of Object.entries(FLUID_BUTTON_PADDING_X)) {
+    lines.push(`  --button-${size}-padding-x: ${clampExpr(min, max)};`);
+  }
+  for (const [size, [min, max]] of Object.entries(FLUID_BUTTON_PADDING_Y)) {
+    lines.push(`  --button-${size}-padding-y: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Fluid input heights
+  lines.push('  /* Fluid input heights */');
+  for (const [size, [min, max]] of Object.entries(FLUID_INPUT_HEIGHTS)) {
+    lines.push(`  --input-${size}-height: ${clampExpr(min, max)};`);
+  }
+  lines.push('');
+
+  // Breakpoint tokens (still useful as reference values)
+  lines.push('  /* Breakpoint tokens */');
+  lines.push(`  --breakpoint-mobile: ${tokens.breakpoints.mobile}px;`);
+  lines.push(`  --breakpoint-tablet: ${tokens.breakpoints.tablet}px;`);
+  lines.push(`  --breakpoint-desktop: ${tokens.breakpoints.desktop}px;`);
+  lines.push(`  --breakpoint-large: ${tokens.breakpoints.large}px;`);
+
+  return lines.join('\n');
+}
+
 /**
  * Generate complete CSS file
  */
 export function generateCSS(): string {
   const lines: string[] = [];
 
-  // Use Kanit font to match typography.ts
-  lines.push('@import url(\'https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap\');');
+  // Use Google Sans Flex font to match typography.ts
+  lines.push('@import url(\'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300;400;500;600;700&display=swap\');');
   lines.push('');
   lines.push(':root {');
 
@@ -629,6 +814,9 @@ export function generateCSS(): string {
   lines.push('');
 
   lines.push(generateLayoutTokens());
+  lines.push('');
+
+  lines.push(generateFluidTokens());
   lines.push('}');
   lines.push('');
 

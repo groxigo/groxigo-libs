@@ -26,8 +26,8 @@ export function generateSCSS(): string {
   lines.push('// ============================================');
   lines.push('');
 
-  // Font import - use Kanit to match typography.ts
-  lines.push("@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');");
+  // Font import - use Google Sans Flex to match typography.ts
+  lines.push("@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300;400;500;600;700&display=swap');");
   lines.push('');
 
   // ============================================

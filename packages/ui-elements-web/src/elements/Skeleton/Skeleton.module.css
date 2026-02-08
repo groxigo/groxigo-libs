@@ -1,0 +1,54 @@
+/**
+ * Skeleton Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Uses semantic color tokens from @groxigo/tokens.
+ */
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.skeleton {
+  background: var(--surface-secondary);
+}
+
+/* ============================================
+   VARIANTS (border-radius)
+   ============================================ */
+
+.text {
+  border-radius: var(--radius-sm, 4px);
+}
+
+.circular {
+  border-radius: var(--radius-full, 9999px);
+}
+
+.rectangular {
+  border-radius: 0;
+}
+
+.rounded {
+  border-radius: var(--radius-lg, 10px);
+}
+
+/* ============================================
+   ANIMATION
+   ============================================ */
+
+.animate {
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -6,8 +6,9 @@
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { MenuDividerPropsBase } from '@groxigo/contracts';
+import styles from './Menu.module.css';
 
 // ============================================
 // MENU DIVIDER COMPONENT
@@ -23,7 +24,7 @@ export const MenuDivider = forwardRef<HTMLHRElement, MenuDividerProps>(
     return (
       <hr
         ref={ref}
-        className={cn('my-1 border-t border-border', className)}
+        className={clsx(styles.menuDivider, className)}
         role="separator"
         data-testid={testID}
       />

@@ -2,50 +2,34 @@
  * TextArea Component (Web)
  *
  * Implements @groxigo/contracts TextAreaPropsBase for web platform.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  * A multi-line text input component with support for various variants and sizes.
  */
 
 import React, { forwardRef, useState, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type {
   TextAreaPropsBase,
   TextAreaSize,
   TextAreaVariant,
   TextAreaResize,
 } from '@groxigo/contracts';
+import styles from './TextArea.module.css';
 
-// Size classes for textarea
-const sizeClasses: Record<TextAreaSize, string> = {
-  sm: 'px-2.5 py-2 text-sm rounded',
-  md: 'px-4 py-3 text-base rounded-md',
-  lg: 'px-5 py-4 text-lg rounded-lg',
+/** Maps variant + error → CSS module error class */
+const errorStyleMap: Record<string, string | undefined> = {
+  outline: styles.outlineError,
+  filled: styles.filledError,
+  flushed: styles.flushedError,
+  unstyled: undefined,
 };
 
-// Base variant classes
-const variantClasses: Record<TextAreaVariant, string> = {
-  outline:
-    'bg-surface-primary border border-border focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20',
-  filled:
-    'bg-surface-secondary border-0 focus:bg-surface-primary focus:ring-2 focus:ring-primary-500/20',
-  flushed:
-    'bg-transparent border-0 border-b-2 border-border focus:border-primary-500 rounded-none px-0',
-  unstyled: 'bg-transparent border-0',
-};
-
-// Error state classes
-const errorClasses: Record<TextAreaVariant, string> = {
-  outline: 'border-error focus:border-error focus:ring-error/20',
-  filled: 'ring-2 ring-error/20 focus:ring-error/30',
-  flushed: 'border-error focus:border-error',
-  unstyled: '',
-};
-
-// Resize classes
-const resizeClasses: Record<TextAreaResize, string> = {
-  none: 'resize-none',
-  vertical: 'resize-y',
-  horizontal: 'resize-x',
-  both: 'resize',
+/** Maps resize → CSS module resize class */
+const resizeStyleMap: Record<TextAreaResize, string> = {
+  none: styles.resizeNone,
+  vertical: styles.resizeVertical,
+  horizontal: styles.resizeHorizontal,
+  both: styles.resizeBoth,
 };
 
 export interface TextAreaProps extends TextAreaPropsBase {
@@ -118,28 +102,28 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     const textareaId = id || name;
 
-    const textareaClasses = cn(
-      'w-full transition-all duration-200 outline-none font-sans text-text-primary placeholder:text-text-tertiary',
-      sizeClasses[size],
-      variantClasses[variant],
-      resizeClasses[resize],
-      hasError && errorClasses[variant],
-      disabled && 'opacity-50 cursor-not-allowed bg-surface-secondary',
+    const textareaClasses = clsx(
+      styles.textarea,
+      styles[size],
+      styles[variant],
+      resizeStyleMap[resize],
+      hasError && errorStyleMap[variant],
+      disabled && styles.disabled,
       className
     );
 
     return (
-      <div className={cn('flex flex-col', fullWidth && 'w-full')}>
+      <div className={clsx(styles.container, fullWidth && styles.fullWidth)}>
         {label && (
           <label
             htmlFor={textareaId}
-            className="text-sm font-medium text-text-primary mb-1.5"
+            className={styles.label}
           >
             {label}
-            {required && <span className="text-error ml-0.5">*</span>}
+            {required && <span className={styles.required}>*</span>}
           </label>
         )}
-        <div className={cn('relative', fullWidth ? 'w-full' : 'w-auto')}>
+        <div className={clsx(styles.wrapper, fullWidth ? styles.fullWidth : styles.wrapperAuto)}>
           <textarea
             ref={ref}
             id={textareaId}
@@ -169,12 +153,12 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             {...props}
           />
         </div>
-        <div className="flex justify-between items-start mt-1">
-          <div className="flex-1">
+        <div className={styles.footerRow}>
+          <div className={styles.footerContent}>
             {error && (
               <p
                 id={`${textareaId}-error`}
-                className="text-xs text-error"
+                className={styles.errorText}
                 role="alert"
               >
                 {error}
@@ -183,7 +167,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             {!error && helperText && (
               <p
                 id={`${textareaId}-helper`}
-                className="text-xs text-text-secondary"
+                className={styles.helperText}
               >
                 {helperText}
               </p>
@@ -191,9 +175,9 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           </div>
           {showCount && maxLength && (
             <span
-              className={cn(
-                'text-xs ml-2',
-                charCount >= maxLength ? 'text-error' : 'text-text-secondary'
+              className={clsx(
+                styles.charCount,
+                charCount >= maxLength && styles.charCountError
               )}
             >
               {charCount}/{maxLength}

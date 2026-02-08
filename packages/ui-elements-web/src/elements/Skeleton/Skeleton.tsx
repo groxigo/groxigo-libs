@@ -1,16 +1,20 @@
 /**
  * Skeleton Component (Web)
+ *
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { SkeletonPropsBase } from '@groxigo/contracts';
+import styles from './Skeleton.module.css';
 
-const variantClasses: Record<string, string> = {
-  text: 'rounded',
-  circular: 'rounded-full',
-  rectangular: 'rounded-none',
-  rounded: 'rounded-lg',
+// Variant to CSS module class mapping
+const variantStyleMap: Record<string, string> = {
+  text: styles.text,
+  circular: styles.circular,
+  rectangular: styles.rectangular,
+  rounded: styles.rounded,
 };
 
 export interface SkeletonProps extends SkeletonPropsBase {
@@ -43,10 +47,10 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'bg-gray-200',
-          variantClasses[variant],
-          animate && 'animate-skeleton',
+        className={clsx(
+          styles.skeleton,
+          variantStyleMap[variant],
+          animate && styles.animate,
           className
         )}
         style={style}

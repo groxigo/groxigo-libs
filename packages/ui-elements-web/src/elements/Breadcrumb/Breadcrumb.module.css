@@ -1,0 +1,107 @@
+/**
+ * Breadcrumb Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * Covers Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator.
+ * Layout: flex, items-center, gap=8px.
+ * Sizes: sm (font-size-xs), md (font-size-sm).
+ */
+
+/* ================================================================== */
+/*  BREADCRUMB NAV                                                     */
+/* ================================================================== */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+}
+
+/* ================================================================== */
+/*  BREADCRUMB LIST                                                    */
+/* ================================================================== */
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* — Sizes — */
+
+.sizeSm {
+  font-size: var(--font-size-xs);
+}
+
+.sizeMd {
+  font-size: var(--font-size-sm);
+}
+
+.sizeLg {
+  font-size: var(--font-size-base);
+}
+
+/* ================================================================== */
+/*  BREADCRUMB ITEM (li)                                               */
+/* ================================================================== */
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+/* — Current page — */
+
+.itemCurrent {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+/* — Collapsed ellipsis — */
+
+.itemCollapsed {
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+/* — Icon — */
+
+.itemIcon {
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+}
+
+/* ================================================================== */
+/*  BREADCRUMB LINK                                                    */
+/* ================================================================== */
+
+.link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+  border-radius: 2px;
+  outline: none;
+}
+
+.link:hover {
+  color: var(--brand-primary);
+}
+
+.link:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+/* ================================================================== */
+/*  BREADCRUMB SEPARATOR                                               */
+/* ================================================================== */
+
+.separator {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  user-select: none;
+  margin: 0 6px;
+}

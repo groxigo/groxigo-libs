@@ -1,0 +1,100 @@
+/**
+ * Card Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * DESIGN_RULES §13: Cards → --radius-lg (10px)
+ * §22 Card States: hover → --shadow-md + translateY(-2px), active → scale(0.98)
+ * §26: Card padding → 16px all sides
+ */
+
+/* ============================================
+   VARIANTS
+   §13: Cards → --radius-lg (10px)
+   ============================================ */
+
+.elevated {
+  background: var(--surface-primary, #fff);
+  box-shadow: var(--shadow-card, 0 1px 3px rgba(0, 0, 0, 0.1));
+  border-radius: var(--radius-lg, 10px);
+}
+
+.outline {
+  background: var(--surface-primary, #fff);
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: var(--radius-lg, 10px);
+}
+
+.filled {
+  background: var(--surface-secondary, #f9fafb);
+  border-radius: var(--radius-lg, 10px);
+}
+
+.unstyled {
+  /* No styles */
+}
+
+/* ============================================
+   SIZES
+   sm=12px, md=16px, lg=24px
+   ============================================ */
+
+.sm {
+  padding: 12px;
+}
+
+.md {
+  padding: 16px;
+}
+
+.lg {
+  padding: 24px;
+}
+
+/* ============================================
+   PRESSABLE — §22 Card States
+   hover → --shadow-md + translateY(-2px)
+   active → scale(0.98)
+   §18: Focus ring 3px
+   ============================================ */
+
+.pressable {
+  cursor: pointer;
+  transition: box-shadow var(--duration-normal, 200ms) ease,
+              transform var(--duration-fast, 150ms) ease;
+}
+
+.pressable:hover {
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+.pressable:active {
+  transform: scale(0.98);
+}
+
+.pressable:focus {
+  outline: none;
+}
+
+.pressable:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focus, #3b82f6);
+}
+
+/* ============================================
+   SUB-COMPONENTS: Header, Body, Footer
+   ============================================ */
+
+.header {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle, #e5e7eb);
+}
+
+.body {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.footer {
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle, #e5e7eb);
+}

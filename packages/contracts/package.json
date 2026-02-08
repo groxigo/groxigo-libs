@@ -22,6 +22,14 @@
     "./animation": {
       "import": "./src/animation/index.ts",
       "types": "./src/animation/index.ts"
+    },
+    "./components/*": {
+      "import": "./src/components/*.ts",
+      "types": "./src/components/*.ts"
+    },
+    "./elements/*": {
+      "import": "./src/elements/*.ts",
+      "types": "./src/elements/*.ts"
     }
   },
   "scripts": {

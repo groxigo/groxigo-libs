@@ -1,0 +1,263 @@
+/**
+ * Radio Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Follows DESIGN_RULES §22 for radio states and §18 for focus ring.
+ */
+
+/* ============================================
+   BASE WRAPPER
+   ============================================ */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.container.cursorPointer {
+  cursor: pointer;
+}
+
+.container.cursorDisabled {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   OUTER RING (base)
+   ============================================ */
+
+.outer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border-default, #d1d5db);
+  border-radius: 50%;
+  background-color: var(--surface-primary, #fff);
+  transition: all 150ms ease;
+}
+
+.outer:hover {
+  border-color: var(--border-strong, #9ca3af);
+}
+
+/* §18: Focus ring — 3px width, 2px offset */
+.container:focus-within .outer {
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
+}
+
+/* §22: Disabled — semantic tokens, NOT opacity */
+.outer.disabled {
+  background-color: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
+  pointer-events: none;
+}
+
+.outer.disabled:hover {
+  border-color: var(--border-disabled, #e2e8f0);
+}
+
+/* §22: Error/invalid state */
+.outer.invalid {
+  border-color: var(--status-error, #dc2626);
+}
+
+/* ============================================
+   OUTER SELECTED STATE (color schemes)
+   ============================================ */
+
+.outer.selected.primary {
+  border-color: var(--brand-primary, #2563eb);
+}
+.outer.selected.primary:hover {
+  border-color: var(--brand-primary-hover, #1d4ed8);
+}
+
+.outer.selected.secondary {
+  border-color: var(--brand-secondary, #f97316);
+}
+.outer.selected.secondary:hover {
+  border-color: var(--brand-secondary-hover, #ea580c);
+}
+
+.outer.selected.accent {
+  border-color: var(--brand-accent, #06b6d4);
+}
+.outer.selected.accent:hover {
+  border-color: var(--brand-accent-hover, #0891b2);
+}
+
+.outer.selected.success {
+  border-color: var(--status-success, #16a34a);
+}
+.outer.selected.success:hover {
+  border-color: var(--status-success-hover, #15803d);
+}
+
+.outer.selected.warning {
+  border-color: var(--status-warning, #eab308);
+}
+.outer.selected.warning:hover {
+  border-color: var(--status-warning-hover, #ca8a04);
+}
+
+.outer.selected.error {
+  border-color: var(--status-error, #dc2626);
+}
+.outer.selected.error:hover {
+  border-color: var(--status-error-hover, #b91c1c);
+}
+
+/* Disabled + selected */
+.outer.selected.disabled {
+  border-color: var(--border-disabled, #e2e8f0);
+}
+
+/* ============================================
+   OUTER SIZES
+   ============================================ */
+
+.outerSm {
+  width: 16px;
+  height: 16px;
+}
+
+.outerMd {
+  width: 20px;
+  height: 20px;
+}
+
+.outerLg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   INNER DOT
+   ============================================ */
+
+.inner {
+  border-radius: 50%;
+}
+
+/* Inner dot color schemes */
+.inner.primary {
+  background-color: var(--brand-primary, #2563eb);
+}
+
+.inner.secondary {
+  background-color: var(--brand-secondary, #f97316);
+}
+
+.inner.accent {
+  background-color: var(--brand-accent, #06b6d4);
+}
+
+.inner.success {
+  background-color: var(--status-success, #16a34a);
+}
+
+.inner.warning {
+  background-color: var(--status-warning, #eab308);
+}
+
+.inner.error {
+  background-color: var(--status-error, #dc2626);
+}
+
+/* Disabled inner dot */
+.inner.innerDisabled {
+  background-color: var(--text-disabled, #94a3b8);
+}
+
+/* Inner dot sizes */
+.innerSm {
+  width: 8px;
+  height: 8px;
+}
+
+.innerMd {
+  width: 10px;
+  height: 10px;
+}
+
+.innerLg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ============================================
+   CONTAINER GAPS (per size)
+   ============================================ */
+
+.gapSm {
+  gap: 8px;
+}
+
+.gapMd {
+  gap: 10px;
+}
+
+.gapLg {
+  gap: 12px;
+}
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.labelContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--text-primary, #111827);
+  user-select: none;
+}
+
+.label.labelDisabled {
+  color: var(--text-disabled, #94a3b8);
+}
+
+.labelSm {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.labelMd {
+  font-size: var(--font-size-base, 16px);
+}
+
+.labelLg {
+  font-size: var(--font-size-lg, 18px);
+}
+
+/* ============================================
+   HELPER TEXT
+   ============================================ */
+
+.helperText {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-secondary, #6b7280);
+}
+
+/* ============================================
+   HIDDEN INPUT
+   ============================================ */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

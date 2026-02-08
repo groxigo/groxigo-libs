@@ -6,17 +6,18 @@
  */
 
 import React, { forwardRef, Children, isValidElement, cloneElement } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { AvatarGroupPropsBase, AvatarSize } from '@groxigo/contracts';
+import styles from './AvatarGroup.module.css';
 
-// Size configuration for avatar group
-const sizeClasses: Record<AvatarSize, { container: string; text: string; countBadge: string }> = {
-  xs: { container: 'h-6 w-6', text: 'text-[10px]', countBadge: 'h-6 min-w-6' },
-  sm: { container: 'h-8 w-8', text: 'text-xs', countBadge: 'h-8 min-w-8' },
-  md: { container: 'h-10 w-10', text: 'text-sm', countBadge: 'h-10 min-w-10' },
-  lg: { container: 'h-12 w-12', text: 'text-base', countBadge: 'h-12 min-w-12' },
-  xl: { container: 'h-16 w-16', text: 'text-xl', countBadge: 'h-16 min-w-16' },
-  '2xl': { container: 'h-20 w-20', text: 'text-2xl', countBadge: 'h-20 min-w-20' },
+// Size → badge class mapping
+const badgeSizeMap: Record<AvatarSize, string> = {
+  xs: 'badgeXs',
+  sm: 'badgeSm',
+  md: 'badgeMd',
+  lg: 'badgeLg',
+  xl: 'badgeXl',
+  '2xl': 'badge2xl',
 };
 
 // Default spacing (negative for overlap) per size
@@ -53,24 +54,9 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
     // Calculate margin for overlap
     const marginLeft = spacing ?? defaultSpacing[size];
-    const sizeConfig = sizeClasses[size];
-
-    const containerClasses = cn(
-      'flex items-center',
-      className
-    );
-
-    const countBadgeClasses = cn(
-      'inline-flex items-center justify-center rounded-full',
-      'bg-surface-tertiary text-text-secondary font-semibold',
-      'border-2 border-white',
-      sizeConfig.countBadge,
-      sizeConfig.text,
-      onExcessClick && 'cursor-pointer hover:bg-surface-secondary transition-colors'
-    );
 
     return (
-      <div ref={ref} className={containerClasses}>
+      <div ref={ref} className={clsx(styles.container, className)}>
         {visibleAvatars.map((child, index) => {
           if (!isValidElement(child)) return null;
 
@@ -78,7 +64,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
           return (
             <div
               key={index}
-              className="relative"
+              className={styles.avatarWrapper}
               style={{
                 marginLeft: index === 0 ? 0 : marginLeft,
                 zIndex: visibleAvatars.length - index,
@@ -86,8 +72,8 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
             >
               {cloneElement(child as React.ReactElement<any>, {
                 size,
-                className: cn(
-                  'border-2 border-white',
+                className: clsx(
+                  styles.avatarBorder,
                   (child as React.ReactElement<any>).props.className
                 ),
               })}
@@ -97,14 +83,18 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
         {excessCount > 0 && (
           <div
-            className="relative"
+            className={styles.avatarWrapper}
             style={{
               marginLeft,
               zIndex: 0,
             }}
           >
             <span
-              className={countBadgeClasses}
+              className={clsx(
+                styles.countBadge,
+                styles[badgeSizeMap[size]],
+                onExcessClick && styles.countBadgeClickable
+              )}
               onClick={onExcessClick}
               role={onExcessClick ? 'button' : undefined}
               tabIndex={onExcessClick ? 0 : undefined}

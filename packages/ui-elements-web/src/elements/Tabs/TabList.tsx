@@ -8,30 +8,31 @@
 'use client';
 
 import React, { forwardRef, type ReactNode } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { useTabsContext } from './Tabs';
 import type { TabListPropsBase, TabsSize, TabsVariant } from '@groxigo/contracts';
+import styles from './Tabs.module.css';
 
 // ============================================
-// SIZE CLASSES
+// VARIANT CLASS MAP
 // ============================================
 
-const sizeClasses: Record<TabsSize, string> = {
-  sm: 'text-sm',
-  md: 'text-base',
-  lg: 'text-lg',
+const variantClassMap: Record<TabsVariant, string> = {
+  line: styles.tabListLine,
+  enclosed: styles.tabListEnclosed,
+  'soft-rounded': styles.tabListSoftRounded,
+  'solid-rounded': styles.tabListSolidRounded,
+  unstyled: styles.tabListUnstyled,
 };
 
 // ============================================
-// VARIANT CLASSES
+// SIZE CLASS MAP
 // ============================================
 
-const variantClasses: Record<TabsVariant, string> = {
-  line: 'border-b border-gray-200',
-  enclosed: 'border border-gray-200 rounded-lg p-1 bg-gray-50',
-  'soft-rounded': 'gap-1',
-  'solid-rounded': 'bg-gray-100 p-1 rounded-lg gap-1',
-  unstyled: '',
+const sizeClassMap: Record<TabsSize, string> = {
+  sm: styles.tabListSm,
+  md: styles.tabListMd,
+  lg: styles.tabListLg,
 };
 
 // ============================================
@@ -49,12 +50,14 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
   ({ children, className }, ref) => {
     const { variant, size, orientation, isFitted } = useTabsContext();
 
-    const classes = cn(
-      'flex',
-      orientation === 'vertical' ? 'flex-col' : 'flex-row',
-      variantClasses[variant],
-      sizeClasses[size],
-      isFitted && 'w-full',
+    const classes = clsx(
+      styles.tabList,
+      orientation === 'vertical'
+        ? styles.tabListVertical
+        : styles.tabListHorizontal,
+      variantClassMap[variant],
+      sizeClassMap[size],
+      isFitted && styles.tabListFitted,
       className
     );
 

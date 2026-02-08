@@ -7,6 +7,7 @@
 import type { ReactNode } from 'react';
 
 export type LinkColorScheme = 'default' | 'primary' | 'secondary' | 'accent' | 'muted';
+export type LinkSize = 'sm' | 'md' | 'lg';
 
 /**
  * Base Link props that all platforms must support
@@ -16,6 +17,8 @@ export interface LinkPropsBase {
   href?: string;
   /** Whether link opens in new tab @default false */
   isExternal?: boolean;
+  /** Link size @default 'md' */
+  size?: LinkSize;
   /** Color scheme @default 'primary' */
   colorScheme?: LinkColorScheme;
   /** Whether to show underline @default true */

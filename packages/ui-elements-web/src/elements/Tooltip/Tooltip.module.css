@@ -1,0 +1,264 @@
+/**
+ * Tooltip Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * z-index: 1600 (DESIGN_RULES section 9).
+ * padding: 8px vertical, 12px horizontal (section 26).
+ * Background: dark (gray-900), text: white.
+ * Radius: --radius-sm (6px).
+ * Animation: fade in --duration-fast.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Animations                                                         */
+/* ------------------------------------------------------------------ */
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Wrapper                                                            */
+/* ------------------------------------------------------------------ */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Trigger                                                            */
+/* ------------------------------------------------------------------ */
+
+/* No extra styles needed — trigger is purely a wrapper for event handlers */
+
+/* ------------------------------------------------------------------ */
+/*  Tooltip Bubble                                                     */
+/* ------------------------------------------------------------------ */
+
+.tooltip {
+  position: absolute;
+  z-index: 1600;
+  padding: 8px 12px;
+  font-size: var(--font-size-sm);
+  color: #ffffff;
+  background-color: #111827; /* gray-900 */
+  border-radius: var(--radius-sm, 6px);
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
+  white-space: nowrap;
+  animation: tooltipFadeIn var(--duration-fast, 150ms) ease-out;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Placements                                                         */
+/* ------------------------------------------------------------------ */
+
+.placementTop {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+}
+
+.placementTopStart {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 8px;
+}
+
+.placementTopEnd {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+}
+
+.placementBottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+}
+
+.placementBottomStart {
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+}
+
+.placementBottomEnd {
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+}
+
+.placementLeft {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 8px;
+}
+
+.placementLeftStart {
+  right: 100%;
+  top: 0;
+  margin-right: 8px;
+}
+
+.placementLeftEnd {
+  right: 100%;
+  bottom: 0;
+  margin-right: 8px;
+}
+
+.placementRight {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+}
+
+.placementRightStart {
+  left: 100%;
+  top: 0;
+  margin-left: 8px;
+}
+
+.placementRightEnd {
+  left: 100%;
+  bottom: 0;
+  margin-left: 8px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Arrow                                                              */
+/* ------------------------------------------------------------------ */
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* Top placements — arrow points downward */
+.arrowTop {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: #111827;
+}
+
+.arrowTopStart {
+  top: 100%;
+  left: 12px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: #111827;
+}
+
+.arrowTopEnd {
+  top: 100%;
+  right: 12px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: #111827;
+}
+
+/* Bottom placements — arrow points upward */
+.arrowBottom {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: #111827;
+}
+
+.arrowBottomStart {
+  bottom: 100%;
+  left: 12px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: #111827;
+}
+
+.arrowBottomEnd {
+  bottom: 100%;
+  right: 12px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: #111827;
+}
+
+/* Left placements — arrow points rightward */
+.arrowLeft {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: #111827;
+}
+
+.arrowLeftStart {
+  left: 100%;
+  top: 8px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: #111827;
+}
+
+.arrowLeftEnd {
+  left: 100%;
+  bottom: 8px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-left-color: #111827;
+}
+
+/* Right placements — arrow points leftward */
+.arrowRight {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: #111827;
+}
+
+.arrowRightStart {
+  right: 100%;
+  top: 8px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: #111827;
+}
+
+.arrowRightEnd {
+  right: 100%;
+  bottom: 8px;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: #111827;
+}

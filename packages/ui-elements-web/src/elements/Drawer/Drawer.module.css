@@ -1,0 +1,223 @@
+/**
+ * Drawer Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * z-index: 1400 (DESIGN_RULES section 9).
+ * Placements: left, right, top, bottom with slide transitions.
+ * Sizes: xs=256, sm=320, md=448, lg=576, xl=704, full=100%.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Backdrop                                                           */
+/* ------------------------------------------------------------------ */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity var(--duration-moderate, 300ms) ease;
+}
+
+.backdropVisible {
+  opacity: 1;
+}
+
+.backdropHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Drawer Panel                                                       */
+/* ------------------------------------------------------------------ */
+
+.drawer {
+  position: fixed;
+  z-index: 1400;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-primary);
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--duration-moderate, 300ms) ease-in-out;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Placements                                                         */
+/* ------------------------------------------------------------------ */
+
+.placementLeft {
+  inset: 0 auto 0 0;
+}
+
+.placementRight {
+  inset: 0 0 0 auto;
+}
+
+.placementTop {
+  inset: 0 0 auto 0;
+}
+
+.placementBottom {
+  inset: auto 0 0 0;
+}
+
+/* Full height/width for each direction */
+
+.fullHeightHorizontal {
+  height: 100%;
+}
+
+.fullWidthVertical {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes — Horizontal (left/right)                                    */
+/* ------------------------------------------------------------------ */
+
+.horizontalXs {
+  width: 256px;
+}
+
+.horizontalSm {
+  width: 320px;
+}
+
+.horizontalMd {
+  width: 448px;
+}
+
+.horizontalLg {
+  width: 576px;
+}
+
+.horizontalXl {
+  width: 704px;
+}
+
+.horizontalFull {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes — Vertical (top/bottom)                                      */
+/* ------------------------------------------------------------------ */
+
+.verticalXs {
+  height: 128px;
+}
+
+.verticalSm {
+  height: 192px;
+}
+
+.verticalMd {
+  height: 256px;
+}
+
+.verticalLg {
+  height: 384px;
+}
+
+.verticalXl {
+  height: 512px;
+}
+
+.verticalFull {
+  height: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Transform States — Open                                            */
+/* ------------------------------------------------------------------ */
+
+.open {
+  transform: translate(0, 0);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Transform States — Closed (by direction)                           */
+/* ------------------------------------------------------------------ */
+
+.closedLeft {
+  transform: translateX(-100%);
+}
+
+.closedRight {
+  transform: translateX(100%);
+}
+
+.closedTop {
+  transform: translateY(-100%);
+}
+
+.closedBottom {
+  transform: translateY(100%);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Drawer Header                                                      */
+/* ------------------------------------------------------------------ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerContent {
+  flex: 1;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.headerCloseButton {
+  margin-left: 12px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full, 9999px);
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast, 150ms) ease;
+}
+
+.headerCloseButton:hover {
+  background-color: var(--surface-tertiary);
+}
+
+.headerCloseLabel {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Drawer Body                                                        */
+/* ------------------------------------------------------------------ */
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Drawer Footer                                                      */
+/* ------------------------------------------------------------------ */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-subtle);
+}

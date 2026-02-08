@@ -3,12 +3,14 @@
  *
  * A container for Radio components that manages selection state.
  * Implements RadioGroupPropsBase from @groxigo/contracts.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { createContext, useMemo, useState, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { RadioGroupPropsBase } from '@groxigo/contracts';
 import type { RadioSize, RadioColorScheme } from './Radio';
+import styles from './RadioGroup.module.css';
 
 export interface RadioGroupContextValue {
   value?: string;
@@ -30,14 +32,14 @@ export interface RadioGroupProps extends RadioGroupPropsBase {
   testID?: string;
 }
 
-const spacingMap: Record<number, string> = {
-  1: 'gap-1',
-  2: 'gap-2',
-  3: 'gap-3',
-  4: 'gap-4',
-  6: 'gap-6',
-  8: 'gap-8',
-  12: 'gap-12',
+const spacingClassMap: Record<number, string> = {
+  1: styles.gap1,
+  2: styles.gap2,
+  3: styles.gap3,
+  4: styles.gap4,
+  6: styles.gap6,
+  8: styles.gap8,
+  12: styles.gap12,
 };
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -86,18 +88,18 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   );
 
   // Get gap class or default
-  const gapClass = spacingMap[spacing] || 'gap-3';
+  const gapClass = spacingClassMap[spacing] || styles.gap3;
 
-  const containerClasses = cn(
-    'flex',
-    direction === 'horizontal' ? 'flex-row flex-wrap' : 'flex-col',
+  const containerClasses = clsx(
+    styles.container,
+    direction === 'horizontal' ? styles.horizontal : styles.vertical,
     gapClass,
     className
   );
 
-  const labelClasses = cn(
-    'text-text-primary font-medium mb-2',
-    required && "after:content-['*'] after:text-error after:ml-0.5",
+  const labelClasses = clsx(
+    styles.label,
+    required && styles.required,
     labelClassName
   );
 
@@ -108,13 +110,13 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         aria-required={required}
         aria-invalid={!!error}
         data-testid={testID}
-        className="inline-flex flex-col"
+        className={styles.wrapper}
       >
         {label && <span className={labelClasses}>{label}</span>}
         <div className={containerClasses}>
           {children}
         </div>
-        {error && <span className="text-sm text-error mt-1">{error}</span>}
+        {error && <span className={styles.errorText}>{error}</span>}
       </div>
     </RadioGroupContext.Provider>
   );

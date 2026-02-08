@@ -1,47 +1,44 @@
-/**
- * PriceDisplay Component (Web)
- *
- * Displays formatted price with currency and optional discount.
- * Implements @groxigo/contracts PriceDisplayPropsBase.
- */
-
 'use client';
 
-import React, { forwardRef } from 'react';
-import { Text, cn } from '@groxigo/ui-elements-web';
-import type { PriceDisplayPropsBase } from '@groxigo/contracts';
+import { forwardRef } from 'react';
+import type { PriceDisplayPropsBase } from '@groxigo/contracts/components';
+import { Badge } from '@groxigo/ui-elements-web';
+import clsx from 'clsx';
+import styles from './PriceDisplay.module.css';
 
-const sizeClasses: Record<string, { variant: 'bodySmall' | 'body' | 'h4' | 'h3' }> = {
-  sm: { variant: 'bodySmall' },
-  md: { variant: 'body' },
-  lg: { variant: 'h4' },
-  xl: { variant: 'h3' },
-};
+export interface PriceDisplayProps extends PriceDisplayPropsBase {}
 
-const currencySymbols: Record<string, string> = {
+const CURRENCY_SYMBOLS: Record<string, string> = {
   USD: '$',
   EUR: '\u20AC',
   GBP: '\u00A3',
   INR: '\u20B9',
-  JPY: '\u00A5',
+  PKR: 'Rs',
+  BDT: '\u09F3',
+  NPR: 'Rs',
+  LKR: 'Rs',
+  AED: 'AED',
 };
 
-export interface PriceDisplayProps extends PriceDisplayPropsBase {}
-
-/**
- * Format a price value to 2 decimal places
- */
-const formatPrice = (value: number | string): string => {
+function formatPrice(value: number | string, currency: string, showCurrency: boolean): string {
   const numValue = typeof value === 'string' ? parseFloat(value) : value;
-  if (isNaN(numValue)) return '0.00';
-  return numValue.toFixed(2);
+  if (isNaN(numValue)) return String(value);
+  const symbol = showCurrency ? (CURRENCY_SYMBOLS[currency] ?? currency) : '';
+  return `${symbol}${numValue.toFixed(2)}`;
+}
+
+const PRICE_SIZE_CLASS: Record<string, string> = {
+  sm: styles.priceSm,
+  md: styles.priceMd,
+  lg: styles.priceLg,
+  xl: styles.priceXl,
 };
 
-/**
- * Get the currency symbol for a currency code
- */
-const getCurrencySymbol = (code: string): string => {
-  return currencySymbols[code] || code;
+const ORIGINAL_PRICE_SIZE_CLASS: Record<string, string> = {
+  sm: styles.originalPriceSm,
+  md: styles.originalPriceMd,
+  lg: styles.originalPriceLg,
+  xl: styles.originalPriceXl,
 };
 
 export const PriceDisplay = forwardRef<HTMLDivElement, PriceDisplayProps>(
@@ -54,46 +51,46 @@ export const PriceDisplay = forwardRef<HTMLDivElement, PriceDisplayProps>(
       showCurrency = true,
       className,
       testID,
-      ...props
     },
     ref
   ) => {
-    const sizeConfig = sizeClasses[size];
-    const currencySymbol = getCurrencySymbol(currency);
-    const formattedPrice = formatPrice(price);
-    const formattedOriginalPrice = originalPrice ? formatPrice(originalPrice) : null;
-    const hasDiscount = originalPrice && parseFloat(String(originalPrice)) > parseFloat(String(price));
+    const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+    const numOriginal = originalPrice != null
+      ? (typeof originalPrice === 'string' ? parseFloat(originalPrice) : originalPrice)
+      : undefined;
+
+    const hasDiscount =
+      numOriginal != null && !isNaN(numOriginal) && !isNaN(numPrice) && numOriginal > numPrice;
+
+    const discountPercent = hasDiscount
+      ? Math.round((1 - numPrice / numOriginal!) * 100)
+      : 0;
 
     return (
       <div
         ref={ref}
-        className={cn('flex items-center gap-2', className)}
+        className={clsx(styles.root, className)}
         data-testid={testID}
-        {...props}
       >
-        {hasDiscount && formattedOriginalPrice && (
-          <Text
-            variant={sizeConfig.variant}
-            colorScheme="muted"
-            className="line-through"
-          >
-            {showCurrency && currencySymbol}
-            {formattedOriginalPrice}
-          </Text>
+        <span className={clsx(styles.price, PRICE_SIZE_CLASS[size])}>
+          {formatPrice(price, currency, showCurrency)}
+        </span>
+
+        {hasDiscount && (
+          <span className={clsx(styles.originalPrice, ORIGINAL_PRICE_SIZE_CLASS[size])}>
+            {formatPrice(originalPrice!, currency, showCurrency)}
+          </span>
         )}
-        <Text
-          variant={sizeConfig.variant}
-          weight="semibold"
-          colorScheme={hasDiscount ? 'error' : 'default'}
-        >
-          {showCurrency && currencySymbol}
-          {formattedPrice}
-        </Text>
+
+        {hasDiscount && discountPercent > 0 && (
+          <Badge variant="subtle" colorScheme="success" size="xs">
+            {discountPercent}%
+          </Badge>
+        )}
       </div>
     );
   }
 );
 
 PriceDisplay.displayName = 'PriceDisplay';
-
 export default PriceDisplay;

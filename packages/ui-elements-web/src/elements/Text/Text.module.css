@@ -1,0 +1,49 @@
+/* Variants — base sizes */
+.h1 { font-size: var(--font-size-4xl, 36px); line-height: 1.25; }
+.h2 { font-size: var(--font-size-3xl, 30px); line-height: 1.25; }
+.h3 { font-size: var(--font-size-2xl, 24px); line-height: 1.375; }
+.h4 { font-size: var(--font-size-xl, 20px); line-height: 1.375; }
+.h5 { font-size: var(--font-size-lg, 18px); line-height: 1.5; }
+.h6 { font-size: var(--font-size-md, 17px); line-height: 1.5; }
+.body { font-size: var(--font-size-base, 16px); line-height: 1.625; }
+.bodyLarge { font-size: var(--font-size-md, 17px); line-height: 1.625; }
+.bodySmall { font-size: var(--font-size-sm, 14px); line-height: 1.625; }
+.caption { font-size: var(--font-size-xs, 12px); line-height: 1.5; }
+.label { font-size: var(--font-size-sm, 14px); line-height: 1.5; }
+.overline {
+  font-size: var(--font-size-xs, 12px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* Font weights */
+.light { font-weight: var(--font-weight-light, 300); }
+.normal { font-weight: var(--font-weight-normal, 400); }
+.medium { font-weight: var(--font-weight-medium, 500); }
+.semibold { font-weight: var(--font-weight-semibold, 600); }
+.bold { font-weight: var(--font-weight-bold, 700); }
+
+/* Color schemes — using semantic tokens only */
+.colorDefault { color: var(--text-primary, #0f172a); }
+.colorPrimary { color: var(--brand-primary, #2563eb); }
+.colorSecondary { color: var(--brand-secondary, #f97316); }
+.colorAccent { color: var(--brand-accent, #06b6d4); }
+.colorSuccess { color: var(--status-success, #16a34a); }
+.colorWarning { color: var(--status-warning-text, #a16207); }
+.colorError { color: var(--status-error, #dc2626); }
+.colorInfo { color: var(--status-info, #3b82f6); }
+.colorMuted { color: var(--text-secondary, #64748b); }
+
+/* Alignment */
+.alignLeft { text-align: left; }
+.alignCenter { text-align: center; }
+.alignRight { text-align: right; }
+.alignJustify { text-align: justify; }
+
+/* Truncation */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,2 +1,2 @@
-export { PriceDisplay, type PriceDisplayProps } from './PriceDisplay';
-export { default } from './PriceDisplay';
+export { PriceDisplay, default } from './PriceDisplay';
+export type { PriceDisplayProps } from './PriceDisplay';

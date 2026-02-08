@@ -19,42 +19,43 @@ import React, {
   useRef,
   useId,
 } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { TooltipPropsBase, TooltipPlacement } from '@groxigo/contracts';
+import styles from './Tooltip.module.css';
 
 // Arrow size constant
 const ARROW_SIZE = 6;
 
-// Placement position styles
-const placementClasses: Record<TooltipPlacement, string> = {
-  top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
-  'top-start': 'bottom-full left-0 mb-2',
-  'top-end': 'bottom-full right-0 mb-2',
-  bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
-  'bottom-start': 'top-full left-0 mt-2',
-  'bottom-end': 'top-full right-0 mt-2',
-  left: 'right-full top-1/2 -translate-y-1/2 mr-2',
-  'left-start': 'right-full top-0 mr-2',
-  'left-end': 'right-full bottom-0 mr-2',
-  right: 'left-full top-1/2 -translate-y-1/2 ml-2',
-  'right-start': 'left-full top-0 ml-2',
-  'right-end': 'left-full bottom-0 ml-2',
+// Placement class mapping
+const placementClassMap: Record<TooltipPlacement, string> = {
+  top: styles.placementTop,
+  'top-start': styles.placementTopStart,
+  'top-end': styles.placementTopEnd,
+  bottom: styles.placementBottom,
+  'bottom-start': styles.placementBottomStart,
+  'bottom-end': styles.placementBottomEnd,
+  left: styles.placementLeft,
+  'left-start': styles.placementLeftStart,
+  'left-end': styles.placementLeftEnd,
+  right: styles.placementRight,
+  'right-start': styles.placementRightStart,
+  'right-end': styles.placementRightEnd,
 };
 
-// Arrow position styles based on placement
-const arrowClasses: Record<TooltipPlacement, string> = {
-  top: 'top-full left-1/2 -translate-x-1/2 border-l-transparent border-r-transparent border-b-transparent border-t-gray-900',
-  'top-start': 'top-full left-3 border-l-transparent border-r-transparent border-b-transparent border-t-gray-900',
-  'top-end': 'top-full right-3 border-l-transparent border-r-transparent border-b-transparent border-t-gray-900',
-  bottom: 'bottom-full left-1/2 -translate-x-1/2 border-l-transparent border-r-transparent border-t-transparent border-b-gray-900',
-  'bottom-start': 'bottom-full left-3 border-l-transparent border-r-transparent border-t-transparent border-b-gray-900',
-  'bottom-end': 'bottom-full right-3 border-l-transparent border-r-transparent border-t-transparent border-b-gray-900',
-  left: 'left-full top-1/2 -translate-y-1/2 border-t-transparent border-b-transparent border-r-transparent border-l-gray-900',
-  'left-start': 'left-full top-2 border-t-transparent border-b-transparent border-r-transparent border-l-gray-900',
-  'left-end': 'left-full bottom-2 border-t-transparent border-b-transparent border-r-transparent border-l-gray-900',
-  right: 'right-full top-1/2 -translate-y-1/2 border-t-transparent border-b-transparent border-l-transparent border-r-gray-900',
-  'right-start': 'right-full top-2 border-t-transparent border-b-transparent border-l-transparent border-r-gray-900',
-  'right-end': 'right-full bottom-2 border-t-transparent border-b-transparent border-l-transparent border-r-gray-900',
+// Arrow class mapping
+const arrowClassMap: Record<TooltipPlacement, string> = {
+  top: styles.arrowTop,
+  'top-start': styles.arrowTopStart,
+  'top-end': styles.arrowTopEnd,
+  bottom: styles.arrowBottom,
+  'bottom-start': styles.arrowBottomStart,
+  'bottom-end': styles.arrowBottomEnd,
+  left: styles.arrowLeft,
+  'left-start': styles.arrowLeftStart,
+  'left-end': styles.arrowLeftEnd,
+  right: styles.arrowRight,
+  'right-start': styles.arrowRightStart,
+  'right-end': styles.arrowRightEnd,
 };
 
 export type TooltipTrigger = 'hover' | 'click' | 'focus';
@@ -233,7 +234,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     };
 
     return (
-      <div ref={ref} className={cn('relative inline-block', className)} data-testid={testID}>
+      <div ref={ref} className={clsx(styles.wrapper, className)} data-testid={testID}>
         <div
           ref={triggerRef}
           aria-describedby={isOpen ? tooltipId : undefined}
@@ -250,18 +251,17 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           <div
             id={tooltipId}
             role="tooltip"
-            className={cn(
-              'absolute z-50 px-2.5 py-1.5 text-sm text-white bg-gray-900 rounded shadow-lg',
-              'whitespace-nowrap animate-in fade-in-0 zoom-in-95 duration-150',
-              placementClasses[placement]
+            className={clsx(
+              styles.tooltip,
+              placementClassMap[placement]
             )}
           >
             {label}
             {hasArrow && (
               <span
-                className={cn(
-                  'absolute w-0 h-0 border-solid',
-                  arrowClasses[placement]
+                className={clsx(
+                  styles.arrow,
+                  arrowClassMap[placement]
                 )}
                 style={arrowStyle}
                 aria-hidden="true"

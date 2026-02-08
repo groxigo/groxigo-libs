@@ -1,0 +1,119 @@
+/**
+ * Link Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * Focus ring: 3px width, 2px offset per DESIGN_RULES section 18.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+.link {
+  display: inline;
+  transition: color 200ms ease;
+  border-radius: var(--radius-sm);
+}
+
+.link:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary),
+    0 0 0 5px var(--border-focus);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes                                                              */
+/* ------------------------------------------------------------------ */
+
+.sm {
+  font-size: var(--font-size-sm);
+}
+
+.md {
+  font-size: var(--font-size-base);
+}
+
+.lg {
+  font-size: var(--font-size-lg);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Color schemes                                                      */
+/* ------------------------------------------------------------------ */
+
+.colorDefault {
+  color: var(--text-primary);
+}
+
+.colorPrimary {
+  color: var(--brand-primary);
+}
+
+.colorPrimary:hover {
+  opacity: 0.85;
+}
+
+.colorSecondary {
+  color: var(--brand-secondary);
+}
+
+.colorSecondary:hover {
+  opacity: 0.85;
+}
+
+.colorAccent {
+  color: var(--brand-accent);
+}
+
+.colorAccent:hover {
+  opacity: 0.85;
+}
+
+.colorMuted {
+  color: var(--text-secondary);
+}
+
+.colorMuted:hover {
+  color: var(--text-primary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Underline                                                          */
+/* ------------------------------------------------------------------ */
+
+.underlineAlways {
+  text-decoration: underline;
+}
+
+.underlineHover {
+  text-decoration: none;
+}
+
+.underlineHover:hover {
+  text-decoration: underline;
+}
+
+.underlineNone {
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Disabled                                                           */
+/* ------------------------------------------------------------------ */
+
+.disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  External icon                                                      */
+/* ------------------------------------------------------------------ */
+
+.externalIcon {
+  display: inline-block;
+  margin-left: var(--spacing-1);
+  font-size: var(--font-size-xs);
+}

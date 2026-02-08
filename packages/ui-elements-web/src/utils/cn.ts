@@ -1,15 +1,13 @@
 /**
  * Class Name Utility
  *
- * Combines clsx for conditional classes with tailwind-merge
- * to properly handle Tailwind CSS class conflicts.
+ * Uses clsx for conditional class name composition.
  */
 
 import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
+  return clsx(inputs);
 }
 
 export default cn;

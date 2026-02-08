@@ -10,7 +10,7 @@ export interface SectionHeaderPropsBase {
 
   /**
    * Title variant for styling
-   * @default 'h4'
+   * @default 'h3'
    */
   titleVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 

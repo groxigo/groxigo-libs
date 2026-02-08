@@ -1,0 +1,98 @@
+/**
+ * Image Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Uses semantic color tokens from @groxigo/tokens.
+ */
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.circular {
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* ============================================
+   IMAGE
+   ============================================ */
+
+.image {
+  width: 100%;
+  height: 100%;
+  transition: opacity 200ms ease;
+}
+
+/* Resize modes */
+.cover {
+  object-fit: cover;
+}
+
+.contain {
+  object-fit: contain;
+}
+
+.stretch {
+  object-fit: fill;
+}
+
+.center {
+  object-fit: none;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+}
+
+/* ============================================
+   FALLBACK
+   ============================================ */
+
+.fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.skeleton {
+  background: var(--surface-secondary);
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+.placeholder {
+  background: var(--surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderIcon {
+  width: 32px;
+  height: 32px;
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   SKELETON ANIMATION
+   ============================================ */
+
+@keyframes skeleton-shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

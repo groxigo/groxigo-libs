@@ -6,8 +6,9 @@
  */
 
 import React, { forwardRef, useMemo } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { SpacerPropsBase } from '@groxigo/contracts';
+import styles from './Spacer.module.css';
 
 /** Base unit for spacing calculations (4px) */
 const BASE_UNIT = 4;
@@ -33,23 +34,18 @@ export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(
     ref
   ) => {
     const computedStyle = useMemo((): React.CSSProperties => {
-      // Calculate spacing value from size prop
       const spacingValue = size * BASE_UNIT;
 
-      // Determine dimensions
       let computedWidth: number | undefined;
       let computedHeight: number | undefined;
 
       if (x !== undefined) {
-        // Horizontal spacing only
         computedWidth = x * BASE_UNIT;
         computedHeight = 0;
       } else if (y !== undefined) {
-        // Vertical spacing only
         computedWidth = 0;
         computedHeight = y * BASE_UNIT;
       } else {
-        // Use width/height or fall back to size-based spacing
         computedWidth = width ?? spacingValue;
         computedHeight = height ?? spacingValue;
       }
@@ -65,7 +61,7 @@ export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(
     return (
       <div
         ref={ref}
-        className={cn('shrink-0', className)}
+        className={clsx(styles.spacer, className)}
         style={computedStyle}
         data-testid={testID}
         aria-hidden="true"

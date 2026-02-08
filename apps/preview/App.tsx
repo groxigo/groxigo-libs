@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, View, TouchableOpacity, Pressable, Platform, Text as RNText, ActivityIndicator } from 'react-native';
 import { useState, useCallback } from 'react';
-import { useFonts, Kanit_300Light, Kanit_400Regular, Kanit_500Medium, Kanit_600SemiBold, Kanit_700Bold } from '@expo-google-fonts/kanit';
+import { useFonts, GoogleSansFlex_300Light, GoogleSansFlex_400Regular, GoogleSansFlex_500Medium, GoogleSansFlex_600SemiBold, GoogleSansFlex_700Bold } from '@expo-google-fonts/google-sans-flex';
 import * as SplashScreen from 'expo-splash-screen';
 import { useDeviceType } from '@groxigo/ui-core';
 
@@ -1132,11 +1132,11 @@ function PreviewContent() {
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Kanit_300Light,
-    Kanit_400Regular,
-    Kanit_500Medium,
-    Kanit_600SemiBold,
-    Kanit_700Bold,
+    GoogleSansFlex_300Light,
+    GoogleSansFlex_400Regular,
+    GoogleSansFlex_500Medium,
+    GoogleSansFlex_600SemiBold,
+    GoogleSansFlex_700Bold,
   });
 
   const onLayoutRootView = useCallback(async () => {

@@ -1,0 +1,260 @@
+/**
+ * Tabs Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * Covers Tabs, TabList, Tab, TabPanels, TabPanel sub-components.
+ * Variants: line, enclosed, soft-rounded, solid-rounded, unstyled.
+ * Sizes: sm, md, lg.
+ */
+
+/* ================================================================== */
+/*  TABS CONTAINER                                                     */
+/* ================================================================== */
+
+.tabs {
+  display: flex;
+}
+
+.horizontal {
+  flex-direction: column;
+}
+
+.vertical {
+  flex-direction: row;
+}
+
+/* ================================================================== */
+/*  TAB LIST                                                           */
+/* ================================================================== */
+
+.tabList {
+  display: flex;
+}
+
+.tabListHorizontal {
+  flex-direction: row;
+}
+
+.tabListVertical {
+  flex-direction: column;
+}
+
+.tabListFitted {
+  width: 100%;
+}
+
+/* — TabList variant styles — */
+
+.tabListLine {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tabListEnclosed {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 4px;
+  background-color: var(--surface-secondary);
+}
+
+.tabListSoftRounded {
+  gap: 4px;
+}
+
+.tabListSolidRounded {
+  background-color: var(--surface-secondary);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  gap: 4px;
+}
+
+.tabListUnstyled {
+  /* no styles */
+}
+
+/* — TabList size — */
+
+.tabListSm {
+  font-size: var(--font-size-sm);
+}
+
+.tabListMd {
+  font-size: var(--font-size-base);
+}
+
+.tabListLg {
+  font-size: var(--font-size-lg);
+}
+
+/* ================================================================== */
+/*  TAB BUTTON                                                         */
+/* ================================================================== */
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-normal) ease;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--tab-text);
+}
+
+.tab:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+/* — Tab sizes — */
+
+.tabSm {
+  padding: 6px 12px;
+  font-size: var(--font-size-sm);
+}
+
+.tabMd {
+  padding: 8px 16px;
+  font-size: var(--font-size-base);
+}
+
+.tabLg {
+  padding: 10px 20px;
+  font-size: var(--font-size-lg);
+}
+
+/* — Fitted tabs — */
+
+.tabFitted {
+  flex: 1;
+  justify-content: center;
+}
+
+/* — Disabled — */
+
+.tabDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================================================================== */
+/*  TAB VARIANT: LINE                                                  */
+/* ================================================================== */
+
+.tabLine {
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tabLineSelected {
+  border-bottom-color: var(--brand-primary);
+  color: var(--tab-text-active);
+}
+
+.tabLine:not(.tabLineSelected):hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-default);
+}
+
+/* ================================================================== */
+/*  TAB VARIANT: ENCLOSED                                              */
+/* ================================================================== */
+
+.tabEnclosed {
+  border-radius: var(--radius-md);
+}
+
+.tabEnclosedSelected {
+  background-color: var(--surface-primary);
+  color: var(--tab-text-active);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tabEnclosed:not(.tabEnclosedSelected):hover {
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+}
+
+/* ================================================================== */
+/*  TAB VARIANT: SOFT-ROUNDED                                          */
+/* ================================================================== */
+
+.tabSoftRounded {
+  border-radius: var(--radius-full);
+}
+
+.tabSoftRoundedSelected {
+  background-color: var(--tab-bg-active);
+  color: var(--tab-text-active);
+}
+
+.tabSoftRounded:not(.tabSoftRoundedSelected):hover {
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+}
+
+/* ================================================================== */
+/*  TAB VARIANT: SOLID-ROUNDED                                         */
+/* ================================================================== */
+
+.tabSolidRounded {
+  border-radius: var(--radius-md);
+}
+
+.tabSolidRoundedSelected {
+  background-color: var(--brand-primary);
+  color: var(--text-inverse);
+}
+
+.tabSolidRounded:not(.tabSolidRoundedSelected):hover {
+  color: var(--text-primary);
+  background-color: var(--surface-secondary);
+}
+
+/* ================================================================== */
+/*  TAB VARIANT: UNSTYLED                                              */
+/* ================================================================== */
+
+.tabUnstyled {
+  /* no decorative styles */
+}
+
+.tabUnstyledSelected {
+  color: var(--tab-text-active);
+}
+
+.tabUnstyled:not(.tabUnstyledSelected):hover {
+  color: var(--text-primary);
+}
+
+/* ================================================================== */
+/*  TAB PANELS                                                         */
+/* ================================================================== */
+
+.tabPanels {
+  margin-top: 16px;
+}
+
+/* ================================================================== */
+/*  TAB PANEL                                                          */
+/* ================================================================== */
+
+.tabPanel {
+  outline: none;
+}
+
+.tabPanel:focus-visible {
+  box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+.tabPanelHidden {
+  display: none;
+}
+
+/* ================================================================== */
+/*  ITEMS-PROP TAB PANEL AREA                                          */
+/* ================================================================== */
+
+.itemPanels {
+  margin-top: 16px;
+}

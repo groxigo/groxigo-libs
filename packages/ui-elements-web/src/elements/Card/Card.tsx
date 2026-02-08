@@ -1,28 +1,18 @@
 /**
  * Card Component (Web)
  *
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
+ *
  * Accessibility features:
  * - Keyboard support (Enter/Space) when pressable
- * - Visible focus indicators
+ * - Visible focus indicators (3px ring per §18)
  * - Proper role and tabIndex for interactive cards
  */
 
 import React, { forwardRef, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { CardVariant, CardSize } from '@groxigo/contracts';
-
-const variantClasses: Record<string, string> = {
-  elevated: 'bg-surface-primary shadow-md rounded-lg',
-  outline: 'bg-surface-primary border border-border rounded-lg',
-  filled: 'bg-surface-secondary rounded-lg',
-  unstyled: '',
-};
-
-const sizeClasses: Record<string, string> = {
-  sm: 'p-3',
-  md: 'p-4',
-  lg: 'p-6',
-};
+import styles from './Card.module.css';
 
 export interface CardProps {
   variant?: CardVariant;
@@ -66,14 +56,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       [pressable, onPress]
     );
 
-    const classes = cn(
-      variantClasses[variant],
-      sizeClasses[size],
-      pressable && [
-        'cursor-pointer hover:shadow-lg transition-shadow',
-        // Focus visible styles for accessibility
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-      ],
+    const classes = clsx(
+      styles[variant],
+      styles[size],
+      pressable && styles.pressable,
       className
     );
 
@@ -108,7 +94,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('pb-3 border-b border-border', className)}
+      className={clsx(styles.header, className)}
       {...props}
     >
       {children}
@@ -126,7 +112,7 @@ export interface CardBodyProps {
 
 export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
   ({ children, className, ...props }, ref) => (
-    <div ref={ref} className={cn('py-3', className)} {...props}>
+    <div ref={ref} className={clsx(styles.body, className)} {...props}>
       {children}
     </div>
   )
@@ -144,7 +130,7 @@ export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('pt-3 border-t border-border', className)}
+      className={clsx(styles.footer, className)}
       {...props}
     >
       {children}

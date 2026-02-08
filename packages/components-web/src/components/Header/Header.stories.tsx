@@ -1,22 +1,19 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { Header } from "./Header";
-import { Button, Icon } from "@groxigo/ui-elements-web";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Header } from './Header';
 
 const meta: Meta<typeof Header> = {
-  title: "Components/Header",
+  title: 'Components/Layout/Header',
   component: Header,
   parameters: {
-    layout: "fullscreen",
+    layout: 'padded',
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
+    elevated: { control: 'boolean' },
     section: {
-      control: "select",
-      options: ["default", "groceries", "recipes"],
+      control: 'select',
+      options: ['default', 'groceries', 'recipes'],
     },
-    elevated: { control: "boolean" },
-    sticky: { control: "boolean" },
   },
 };
 
@@ -25,95 +22,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "Groxigo",
+    title: 'Groxigo',
+    elevated: true,
   },
 };
 
-export const WithLeftAction: Story = {
+export const WithActions: Story = {
   args: {
-    title: "Products",
+    title: 'Groxigo',
+    elevated: true,
     leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          padding: "8px",
-          display: "flex",
-        }}
-      >
-        <Icon name="arrow-left" size="md" />
-      </button>
-    ),
-  },
-};
-
-export const WithRightActions: Story = {
-  args: {
-    title: "Groxigo",
-    rightActions: [
-      <button
-        key="search"
-        onClick={action("onSearch")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="search" size="md" />
-      </button>,
-      <button
-        key="cart"
-        onClick={action("onCart")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", position: "relative" }}
-      >
-        <Icon name="shopping-cart" size="md" />
-        <span
-          style={{
-            position: "absolute",
-            top: "4px",
-            right: "4px",
-            background: "#ef4444",
-            color: "white",
-            borderRadius: "50%",
-            width: "16px",
-            height: "16px",
-            fontSize: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          3
-        </span>
-      </button>,
-    ],
-  },
-};
-
-export const FullHeader: Story = {
-  args: {
-    title: "Groceries",
-    leftAction: (
-      <button
-        onClick={action("onMenu")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="menu" size="md" />
+      <button type="button" style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}>
+        &#9776;
       </button>
     ),
     rightActions: [
-      <button
-        key="search"
-        onClick={action("onSearch")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="search" size="md" />
+      <button key="search" type="button" style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>
+        &#128269;
       </button>,
-      <button
-        key="cart"
-        onClick={action("onCart")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="shopping-cart" size="md" />
+      <button key="cart" type="button" style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>
+        &#128722;
       </button>,
     ],
   },
@@ -121,181 +49,39 @@ export const FullHeader: Story = {
 
 export const GroceriesSection: Story = {
   args: {
-    title: "Fruits & Vegetables",
-    section: "groceries",
+    title: 'Groceries',
+    section: 'groceries',
+    elevated: true,
     leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="arrow-left" size="md" />
+      <button type="button" style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}>
+        &#8592;
       </button>
     ),
     rightActions: [
-      <button
-        key="filter"
-        onClick={action("onFilter")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="filter" size="md" />
+      <button key="search" type="button" style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>
+        &#128269;
       </button>,
     ],
   },
 };
 
-export const RecipesSection: Story = {
+export const WithCenterContent: Story = {
   args: {
-    title: "Indian Recipes",
-    section: "recipes",
+    elevated: true,
     leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="arrow-left" size="md" />
+      <button type="button" style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}>
+        &#9776;
       </button>
     ),
-    rightActions: [
-      <button
-        key="favorite"
-        onClick={action("onFavorite")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="heart" size="md" />
-      </button>,
-      <button
-        key="share"
-        onClick={action("onShare")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="share" size="md" />
-      </button>,
-    ],
-  },
-};
-
-export const NoElevation: Story = {
-  args: {
-    title: "Settings",
-    elevated: false,
-    leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="arrow-left" size="md" />
-      </button>
-    ),
-  },
-};
-
-export const Sticky: Story = {
-  render: () => (
-    <div style={{ height: "500px", overflow: "auto" }}>
-      <Header
-        title="Sticky Header"
-        sticky
-        rightActions={[
-          <button
-            key="search"
-            onClick={action("onSearch")}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-          >
-            <Icon name="search" size="md" />
-          </button>,
-        ]}
-      />
-      <div style={{ padding: "16px" }}>
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              padding: "16px",
-              marginBottom: "12px",
-              background: "#f9fafb",
-              borderRadius: "8px",
-            }}
-          >
-            Content item {i + 1}
-          </div>
-        ))}
-      </div>
-    </div>
-  ),
-};
-
-export const WithCustomTitle: Story = {
-  args: {
-    titleElement: (
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <img
-          src="https://via.placeholder.com/32"
-          alt="Logo"
-          style={{ width: "32px", height: "32px", borderRadius: "8px" }}
-        />
-        <span style={{ fontWeight: 600 }}>Groxigo</span>
+    children: (
+      <div style={{ padding: '4px 12px', background: '#f5f5f5', borderRadius: '8px', fontSize: '14px', color: '#666' }}>
+        Search groceries...
       </div>
     ),
     rightActions: [
-      <button
-        key="cart"
-        onClick={action("onCart")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="shopping-cart" size="md" />
+      <button key="cart" type="button" style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>
+        &#128722;
       </button>,
-    ],
-  },
-};
-
-export const ProductDetailHeader: Story = {
-  args: {
-    leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="arrow-left" size="md" />
-      </button>
-    ),
-    rightActions: [
-      <button
-        key="favorite"
-        onClick={action("onFavorite")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="heart" size="md" />
-      </button>,
-      <button
-        key="share"
-        onClick={action("onShare")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="share" size="md" />
-      </button>,
-    ],
-    elevated: false,
-  },
-};
-
-export const CheckoutHeader: Story = {
-  args: {
-    title: "Checkout",
-    leftAction: (
-      <button
-        onClick={action("onBack")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: "8px" }}
-      >
-        <Icon name="arrow-left" size="md" />
-      </button>
-    ),
-    rightActions: [
-      <span
-        key="step"
-        style={{ fontSize: "14px", color: "#6b7280", padding: "8px" }}
-      >
-        Step 2 of 3
-      </span>,
     ],
   },
 };

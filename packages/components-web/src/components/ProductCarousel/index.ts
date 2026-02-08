@@ -1,6 +1,2 @@
-export {
-  ProductCarouselProvider,
-  useProductCarousel,
-  useProductCarouselOptional,
-  type CarouselProduct,
-} from './ProductCarouselContext';
+export { ProductCarousel, default } from './ProductCarousel';
+export type { ProductCarouselProps } from './ProductCarousel';

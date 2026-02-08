@@ -1,13 +1,16 @@
-/**
- * FilterBar Component (Web)
- *
- * Horizontal scrollable filter chips with multi-select and single-select modes.
- * Implements @groxigo/contracts FilterBarPropsBase.
- */
+'use client';
 
-import React, { forwardRef, useState } from 'react';
-import { Badge, cn } from '@groxigo/ui-elements-web';
-import type { FilterBarPropsBase, FilterOption } from '@groxigo/contracts';
+import { forwardRef, useCallback } from 'react';
+import type {
+  FilterBarPropsBase,
+  FilterOption,
+  FilterBarSection,
+} from '@groxigo/contracts/components/filter-bar';
+import { Button } from '@groxigo/ui-elements-web';
+import clsx from 'clsx';
+import styles from './FilterBar.module.css';
+
+export type { FilterOption, FilterBarSection };
 
 export interface FilterBarProps extends FilterBarPropsBase {}
 
@@ -15,90 +18,78 @@ export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
   (
     {
       filters,
-      selectedFilters: controlledSelectedFilters,
+      selectedFilters = [],
       onFiltersChange,
       multiSelect = true,
       showCounts = false,
       section = 'default',
       className,
       testID,
-      ...props
     },
     ref
   ) => {
-    const [internalSelected, setInternalSelected] = useState<string[]>([]);
+    const handleChipClick = useCallback(
+      (filterId: string) => {
+        if (!onFiltersChange) return;
 
-    const selectedFilters = controlledSelectedFilters !== undefined
-      ? controlledSelectedFilters
-      : internalSelected;
+        const isSelected = selectedFilters.includes(filterId);
 
-    const handleFilterPress = (filterId: string) => {
-      let newSelected: string[];
-
-      if (multiSelect) {
-        if (selectedFilters.includes(filterId)) {
-          newSelected = selectedFilters.filter(id => id !== filterId);
+        if (multiSelect) {
+          // Toggle on/off
+          const next = isSelected
+            ? selectedFilters.filter((id) => id !== filterId)
+            : [...selectedFilters, filterId];
+          onFiltersChange(next);
         } else {
-          newSelected = [...selectedFilters, filterId];
+          // Single select: deselect if already selected, else select only this one
+          onFiltersChange(isSelected ? [] : [filterId]);
         }
-      } else {
-        newSelected = selectedFilters.includes(filterId) ? [] : [filterId];
-      }
-
-      if (controlledSelectedFilters === undefined) {
-        setInternalSelected(newSelected);
-      }
-      onFiltersChange?.(newSelected);
-    };
+      },
+      [onFiltersChange, selectedFilters, multiSelect]
+    );
 
     return (
       <div
         ref={ref}
-        className={cn('my-2', className)}
+        className={clsx(styles.root, className)}
         data-testid={testID}
-        {...props}
+        data-section={section}
+        role="group"
+        aria-label="Filters"
       >
-        <div className="flex overflow-x-auto scrollbar-hide gap-2 px-3">
-          {filters.map((filter) => {
-            const isSelected = selectedFilters.includes(filter.id);
-
-            return (
-              <button
-                key={filter.id}
-                type="button"
-                onClick={() => handleFilterPress(filter.id)}
-                className={cn(
-                  'flex-shrink-0 px-4 py-2 rounded-full border transition-all duration-200',
-                  'focus:outline-none focus:ring-2 focus:ring-primary-500/20',
-                  isSelected
-                    ? 'border-primary-500 bg-primary-50 text-primary-600 font-semibold'
-                    : 'border-border bg-surface-primary text-text-primary hover:border-primary-300 hover:bg-surface-secondary'
+        {filters.map((filter) => {
+          const isSelected = selectedFilters.includes(filter.id);
+          return (
+            <Button
+              key={filter.id}
+              variant={isSelected ? 'solid' : 'outline'}
+              colorScheme="primary"
+              size="sm"
+              onPress={() => handleChipClick(filter.id)}
+              className={clsx(
+                styles.chip,
+                isSelected ? styles.chipSelected : styles.chipDefault
+              )}
+              aria-checked={isSelected}
+            >
+              <span
+                className={clsx(
+                  styles.chipLabel,
+                  isSelected ? styles.chipLabelSelected : styles.chipLabelDefault
                 )}
-                aria-pressed={isSelected}
-                aria-label={filter.label}
               >
-                <span className="flex items-center gap-1.5">
-                  <span className="text-sm whitespace-nowrap">{filter.label}</span>
-                  {showCounts && filter.count !== undefined && (
-                    <Badge
-                      variant="solid"
-                      colorScheme={isSelected ? 'primary' : 'neutral'}
-                      size="xs"
-                      rounded
-                    >
-                      {filter.count}
-                    </Badge>
-                  )}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+                {filter.label}
+              </span>
+              {showCounts && filter.count != null && isSelected && (
+                <span className={styles.chipCount}>{filter.count}</span>
+              )}
+            </Button>
+          );
+        })}
       </div>
     );
   }
 );
 
 FilterBar.displayName = 'FilterBar';
-
 export default FilterBar;

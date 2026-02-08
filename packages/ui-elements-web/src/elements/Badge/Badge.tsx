@@ -3,56 +3,57 @@
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import type { BadgeVariant, BadgeColorScheme, BadgeSize } from '@groxigo/contracts';
+import styles from './Badge.module.css';
 
-const sizeClasses: Record<string, string> = {
-  xs: 'text-xs px-1.5 py-0.5',
-  sm: 'text-xs px-2 py-0.5',
-  md: 'text-sm px-2.5 py-1',
-  lg: 'text-base px-3 py-1',
+const sizeClassMap: Record<string, string> = {
+  xs: styles.xs,
+  sm: styles.sm,
+  md: styles.md,
+  lg: styles.lg,
 };
 
-const variantColorClasses: Record<string, Record<string, string>> = {
+const variantColorClassMap: Record<string, Record<string, string>> = {
   solid: {
-    primary: 'bg-primary-500 text-white',
-    secondary: 'bg-secondary-500 text-white',
-    accent: 'bg-accent-500 text-white',
-    success: 'bg-success text-white',
-    warning: 'bg-warning text-gray-900',
-    error: 'bg-error text-white',
-    info: 'bg-info text-white',
-    neutral: 'bg-gray-500 text-white',
+    primary: styles.solidPrimary,
+    secondary: styles.solidSecondary,
+    accent: styles.solidAccent,
+    success: styles.solidSuccess,
+    warning: styles.solidWarning,
+    error: styles.solidError,
+    info: styles.solidInfo,
+    neutral: styles.solidNeutral,
   },
   outline: {
-    primary: 'border border-primary-500 text-primary-600',
-    secondary: 'border border-secondary-500 text-secondary-600',
-    accent: 'border border-accent-500 text-accent-600',
-    success: 'border border-success text-success',
-    warning: 'border border-warning-dark text-warning-dark',
-    error: 'border border-error text-error',
-    info: 'border border-info text-info',
-    neutral: 'border border-gray-400 text-gray-600',
+    primary: styles.outlinePrimary,
+    secondary: styles.outlineSecondary,
+    accent: styles.outlineAccent,
+    success: styles.outlineSuccess,
+    warning: styles.outlineWarning,
+    error: styles.outlineError,
+    info: styles.outlineInfo,
+    neutral: styles.outlineNeutral,
   },
   subtle: {
-    primary: 'bg-primary-50 text-primary-700',
-    secondary: 'bg-secondary-50 text-secondary-700',
-    accent: 'bg-accent-50 text-accent-700',
-    success: 'bg-green-50 text-green-700',
-    warning: 'bg-yellow-50 text-yellow-700',
-    error: 'bg-red-50 text-red-700',
-    info: 'bg-blue-50 text-blue-700',
-    neutral: 'bg-gray-100 text-gray-700',
+    primary: styles.subtlePrimary,
+    secondary: styles.subtleSecondary,
+    accent: styles.subtleAccent,
+    success: styles.subtleSuccess,
+    warning: styles.subtleWarning,
+    error: styles.subtleError,
+    info: styles.subtleInfo,
+    neutral: styles.subtleNeutral,
   },
   soft: {
-    primary: 'bg-primary-100 text-primary-800',
-    secondary: 'bg-secondary-100 text-secondary-800',
-    accent: 'bg-accent-100 text-accent-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    error: 'bg-red-100 text-red-800',
-    info: 'bg-blue-100 text-blue-800',
-    neutral: 'bg-gray-200 text-gray-800',
+    primary: styles.softPrimary,
+    secondary: styles.softSecondary,
+    accent: styles.softAccent,
+    success: styles.softSuccess,
+    warning: styles.softWarning,
+    error: styles.softError,
+    info: styles.softInfo,
+    neutral: styles.softNeutral,
   },
 };
 
@@ -84,11 +85,11 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
     },
     ref
   ) => {
-    const classes = cn(
-      'inline-flex items-center gap-1 font-medium',
-      sizeClasses[size],
-      variantColorClasses[variant]?.[colorScheme],
-      rounded ? 'rounded-full' : 'rounded',
+    const classes = clsx(
+      styles.badge,
+      sizeClassMap[size],
+      variantColorClassMap[variant]?.[colorScheme],
+      rounded ? styles.rounded : styles.square,
       className
     );
 

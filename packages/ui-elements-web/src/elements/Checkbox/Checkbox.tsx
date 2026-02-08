@@ -2,30 +2,57 @@
  * Checkbox Component (Web)
  *
  * A versatile checkbox component for web platform.
+ * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
 import React, { forwardRef, useCallback } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
+import styles from './Checkbox.module.css';
 
 export type CheckboxSize = 'sm' | 'md' | 'lg';
 export type CheckboxColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info';
 
-const sizeClasses: Record<CheckboxSize, { box: string; icon: string; label: string; gap: string }> = {
-  sm: { box: 'w-4 h-4', icon: 'w-2.5 h-2.5', label: 'text-sm', gap: 'gap-2' },
-  md: { box: 'w-5 h-5', icon: 'w-3 h-3', label: 'text-base', gap: 'gap-2.5' },
-  lg: { box: 'w-6 h-6', icon: 'w-3.5 h-3.5', label: 'text-md', gap: 'gap-3' },
+// ============================================
+// SIZE CLASS MAPS
+// ============================================
+
+const boxSizeClass: Record<CheckboxSize, string> = {
+  sm: styles.boxSm,
+  md: styles.boxMd,
+  lg: styles.boxLg,
 };
 
-// Using focus-visible for keyboard-only focus indicators
-const colorSchemeClasses: Record<CheckboxColorScheme, { checked: string; focus: string }> = {
-  primary: { checked: 'bg-primary-500 border-primary-500', focus: 'focus-within:ring-primary-500/20' },
-  secondary: { checked: 'bg-secondary-500 border-secondary-500', focus: 'focus-within:ring-secondary-500/20' },
-  accent: { checked: 'bg-accent-500 border-accent-500', focus: 'focus-within:ring-accent-500/20' },
-  success: { checked: 'bg-success border-success', focus: 'focus-within:ring-success/20' },
-  warning: { checked: 'bg-warning border-warning', focus: 'focus-within:ring-warning/20' },
-  error: { checked: 'bg-error border-error', focus: 'focus-within:ring-error/20' },
-  info: { checked: 'bg-info border-info', focus: 'focus-within:ring-info/20' },
+const iconSizeClass: Record<CheckboxSize, string> = {
+  sm: styles.iconSm,
+  md: styles.iconMd,
+  lg: styles.iconLg,
 };
+
+const gapClass: Record<CheckboxSize, string> = {
+  sm: styles.gapSm,
+  md: styles.gapMd,
+  lg: styles.gapLg,
+};
+
+const labelSizeClass: Record<CheckboxSize, string> = {
+  sm: styles.labelSm,
+  md: styles.labelMd,
+  lg: styles.labelLg,
+};
+
+const colorSchemeClass: Record<CheckboxColorScheme, string> = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  accent: styles.accent,
+  success: styles.success,
+  warning: styles.warning,
+  error: styles.error,
+  info: styles.info,
+};
+
+// ============================================
+// CHECKBOX PROPS
+// ============================================
 
 export interface CheckboxProps {
   /** Whether the checkbox is checked */
@@ -60,6 +87,10 @@ export interface CheckboxProps {
   testID?: string;
 }
 
+// ============================================
+// ICONS
+// ============================================
+
 const CheckIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="M2 6l3 3 5-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -71,6 +102,10 @@ const IndeterminateIcon: React.FC<{ className?: string }> = ({ className }) => (
     <path d="M2 6h8" strokeLinecap="round" />
   </svg>
 );
+
+// ============================================
+// CHECKBOX COMPONENT
+// ============================================
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -93,8 +128,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const sizeConfig = sizeClasses[size];
-    const colorConfig = colorSchemeClasses[colorScheme];
     const isActive = checked || indeterminate;
 
     const handleChange = useCallback(
@@ -106,36 +139,36 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     const inputId = id || name;
 
-    const containerClasses = cn(
-      'inline-flex items-center',
-      sizeConfig.gap,
-      disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+    const containerClasses = clsx(
+      styles.container,
+      gapClass[size],
+      disabled ? styles.cursorDisabled : styles.cursorPointer,
       className
     );
 
-    const boxClasses = cn(
-      'relative flex items-center justify-center border-2 rounded transition-all duration-150',
-      sizeConfig.box,
-      colorConfig.focus,
-      'focus-within:ring-2',
-      isActive ? colorConfig.checked : 'border-border bg-surface-primary hover:border-text-secondary',
-      disabled && 'pointer-events-none'
+    const boxClasses = clsx(
+      styles.box,
+      boxSizeClass[size],
+      isActive && styles.checked,
+      isActive && colorSchemeClass[colorScheme],
+      disabled && styles.disabled
     );
 
-    const iconClasses = cn(
-      sizeConfig.icon,
-      'text-white'
+    const iconClasses = clsx(
+      styles.icon,
+      iconSizeClass[size],
+      disabled && styles.iconDisabled
     );
 
-    const labelClasses = cn(
-      sizeConfig.label,
-      'text-text-primary select-none',
-      disabled && 'text-text-disabled',
+    const labelClasses = clsx(
+      styles.label,
+      labelSizeClass[size],
+      disabled && styles.labelDisabled,
       labelClassName
     );
 
     return (
-      <div className="inline-flex flex-col" data-testid={testID}>
+      <div className={styles.wrapper} data-testid={testID}>
         <label className={containerClasses}>
           <input
             ref={ref}
@@ -146,7 +179,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             checked={checked}
             disabled={disabled}
             onChange={handleChange}
-            className="sr-only"
+            className={styles.srOnly}
             aria-checked={indeterminate ? 'mixed' : checked}
           />
           <span className={boxClasses}>
@@ -157,15 +190,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             ) : null}
           </span>
           {label && (
-            <div className="flex flex-col">
+            <div className={styles.labelContent}>
               <span className={labelClasses}>{label}</span>
               {description && (
-                <span className="text-sm text-text-secondary">{description}</span>
+                <span className={styles.description}>{description}</span>
               )}
             </div>
           )}
         </label>
-        {error && <span className="text-sm text-error mt-1">{error}</span>}
+        {error && <span className={styles.errorText}>{error}</span>}
       </div>
     );
   }

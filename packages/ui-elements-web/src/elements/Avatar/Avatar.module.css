@@ -1,0 +1,206 @@
+/**
+ * Avatar Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * Sizes use px values for precise avatar dimensions.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Container                                                          */
+/* ------------------------------------------------------------------ */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.clickable:hover {
+  opacity: 0.9;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes — container                                                  */
+/* ------------------------------------------------------------------ */
+
+.sizeXs {
+  width: 24px;
+  height: 24px;
+}
+
+.sizeSm {
+  width: 32px;
+  height: 32px;
+}
+
+.sizeMd {
+  width: 40px;
+  height: 40px;
+}
+
+.sizeLg {
+  width: 48px;
+  height: 48px;
+}
+
+.sizeXl {
+  width: 64px;
+  height: 64px;
+}
+
+.size2xl {
+  width: 80px;
+  height: 80px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes — fallback text                                              */
+/* ------------------------------------------------------------------ */
+
+.textXs {
+  font-size: 10px;
+}
+
+.textSm {
+  font-size: var(--font-size-xs);
+}
+
+.textMd {
+  font-size: var(--font-size-sm);
+}
+
+.textLg {
+  font-size: var(--font-size-base);
+}
+
+.textXl {
+  font-size: var(--font-size-xl);
+}
+
+.text2xl {
+  font-size: var(--font-size-2xl);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes — status badge                                               */
+/* ------------------------------------------------------------------ */
+
+.badgeXs {
+  width: 6px;
+  height: 6px;
+  border-width: 1px;
+}
+
+.badgeSm {
+  width: 8px;
+  height: 8px;
+  border-width: 1px;
+}
+
+.badgeMd {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+}
+
+.badgeLg {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+}
+
+.badgeXl {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+.badge2xl {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Variants (shapes)                                                  */
+/* ------------------------------------------------------------------ */
+
+.circle {
+  border-radius: var(--radius-full);
+}
+
+.rounded {
+  border-radius: var(--radius-lg);
+}
+
+.square {
+  border-radius: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Image                                                              */
+/* ------------------------------------------------------------------ */
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 200ms ease;
+}
+
+.imageHidden {
+  opacity: 0;
+}
+
+.imageVisible {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Fallback text                                                      */
+/* ------------------------------------------------------------------ */
+
+.fallbackText {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Status badge                                                       */
+/* ------------------------------------------------------------------ */
+
+.statusBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--radius-full);
+  border-style: solid;
+  border-color: var(--surface-primary);
+}
+
+.badgeGreen {
+  background-color: var(--status-success);
+}
+
+.badgeRed {
+  background-color: var(--status-error);
+}
+
+.badgeYellow {
+  background-color: var(--status-warning);
+}
+
+.badgeGray {
+  background-color: var(--text-tertiary);
+}

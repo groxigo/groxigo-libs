@@ -1,0 +1,99 @@
+/**
+ * Icon Component Styles
+ *
+ * Token-driven CSS Module replacing Tailwind classes.
+ * Uses semantic color tokens from @groxigo/tokens.
+ */
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SIZES (pixel values)
+   ============================================ */
+
+.xs {
+  width: 12px;
+  height: 12px;
+}
+
+.sm {
+  width: 16px;
+  height: 16px;
+}
+
+.md {
+  width: 20px;
+  height: 20px;
+}
+
+.lg {
+  width: 24px;
+  height: 24px;
+}
+
+.xl {
+  width: 32px;
+  height: 32px;
+}
+
+.xxl {
+  width: 40px;
+  height: 40px;
+}
+
+.xxxl {
+  width: 48px;
+  height: 48px;
+}
+
+.xxxxl {
+  width: 64px;
+  height: 64px;
+}
+
+/* ============================================
+   COLOR SCHEMES (semantic tokens)
+   ============================================ */
+
+.default {
+  color: var(--text-primary);
+}
+
+.primary {
+  color: var(--brand-primary);
+}
+
+.secondary {
+  color: var(--brand-secondary);
+}
+
+.accent {
+  color: var(--brand-accent);
+}
+
+.success {
+  color: var(--status-success);
+}
+
+.warning {
+  color: var(--status-warning-text);
+}
+
+.error {
+  color: var(--status-error);
+}
+
+.info {
+  color: var(--status-info);
+}
+
+.muted {
+  color: var(--text-tertiary);
+}

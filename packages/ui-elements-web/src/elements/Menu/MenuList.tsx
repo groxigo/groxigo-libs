@@ -6,9 +6,10 @@
  */
 
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, Children } from 'react';
-import { cn } from '../../utils/cn';
+import { clsx } from 'clsx';
 import { useMenuContext } from './Menu';
 import type { MenuListPropsBase } from '@groxigo/contracts';
+import styles from './Menu.module.css';
 
 // ============================================
 // MENU LIST COMPONENT
@@ -19,20 +20,20 @@ export interface MenuListProps extends MenuListPropsBase {
   testID?: string;
 }
 
-// Placement position classes
-const placementClasses: Record<string, string> = {
-  'top': 'bottom-full left-1/2 -translate-x-1/2 mb-2',
-  'top-start': 'bottom-full left-0 mb-2',
-  'top-end': 'bottom-full right-0 mb-2',
-  'bottom': 'top-full left-1/2 -translate-x-1/2 mt-2',
-  'bottom-start': 'top-full left-0 mt-2',
-  'bottom-end': 'top-full right-0 mt-2',
-  'left': 'right-full top-1/2 -translate-y-1/2 mr-2',
-  'left-start': 'right-full top-0 mr-2',
-  'left-end': 'right-full bottom-0 mr-2',
-  'right': 'left-full top-1/2 -translate-y-1/2 ml-2',
-  'right-start': 'left-full top-0 ml-2',
-  'right-end': 'left-full bottom-0 ml-2',
+// Placement class map
+const placementClassMap: Record<string, string> = {
+  'top': styles.placementTop,
+  'top-start': styles.placementTopStart,
+  'top-end': styles.placementTopEnd,
+  'bottom': styles.placementBottom,
+  'bottom-start': styles.placementBottomStart,
+  'bottom-end': styles.placementBottomEnd,
+  'left': styles.placementLeft,
+  'left-start': styles.placementLeftStart,
+  'left-end': styles.placementLeftEnd,
+  'right': styles.placementRight,
+  'right-start': styles.placementRightStart,
+  'right-end': styles.placementRightEnd,
 };
 
 export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
@@ -126,13 +127,9 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
     return (
       <div
         ref={menuRef as React.RefObject<HTMLDivElement>}
-        className={cn(
-          'absolute z-50 min-w-[180px] max-w-[280px]',
-          'py-1 rounded-md shadow-lg',
-          'bg-surface-primary border border-border',
-          'focus:outline-none',
-          'animate-in fade-in-0 zoom-in-95 duration-150',
-          placementClasses[placement],
+        className={clsx(
+          styles.menuList,
+          placementClassMap[placement],
           className
         )}
         role="menu"

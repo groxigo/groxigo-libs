@@ -1,0 +1,231 @@
+/**
+ * Badge Component Styles
+ *
+ * Uses semantic design tokens from @groxigo/tokens.
+ * Variant-color combinations use status/brand tokens for solid/outline,
+ * and primitive -50/-100 tints for subtle/soft decorative backgrounds.
+ */
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sizes                                                              */
+/* ------------------------------------------------------------------ */
+
+.xs {
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+}
+
+.sm {
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+}
+
+.md {
+  font-size: var(--font-size-sm);
+  padding: 4px 10px;
+}
+
+.lg {
+  font-size: var(--font-size-base);
+  padding: 4px 12px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Shape                                                              */
+/* ------------------------------------------------------------------ */
+
+.rounded {
+  border-radius: var(--radius-full);
+}
+
+.square {
+  border-radius: var(--radius-xs);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Variant + Color  —  Solid                                          */
+/* ------------------------------------------------------------------ */
+
+.solidPrimary {
+  background-color: var(--brand-primary);
+  color: var(--text-inverse);
+}
+
+.solidSecondary {
+  background-color: var(--brand-secondary);
+  color: var(--text-inverse);
+}
+
+.solidAccent {
+  background-color: var(--brand-accent);
+  color: var(--text-inverse);
+}
+
+.solidSuccess {
+  background-color: var(--status-success);
+  color: var(--text-inverse);
+}
+
+.solidWarning {
+  background-color: var(--status-warning);
+  color: var(--text-primary);
+}
+
+.solidError {
+  background-color: var(--status-error);
+  color: var(--text-inverse);
+}
+
+.solidInfo {
+  background-color: var(--status-info);
+  color: var(--text-inverse);
+}
+
+.solidNeutral {
+  background-color: var(--text-secondary);
+  color: var(--text-inverse);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Variant + Color  —  Outline                                        */
+/* ------------------------------------------------------------------ */
+
+.outlinePrimary {
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.outlineSecondary {
+  border: 1px solid var(--brand-secondary);
+  color: var(--brand-secondary);
+}
+
+.outlineAccent {
+  border: 1px solid var(--brand-accent);
+  color: var(--brand-accent);
+}
+
+.outlineSuccess {
+  border: 1px solid var(--status-success);
+  color: var(--status-success-text);
+}
+
+.outlineWarning {
+  border: 1px solid var(--status-warning);
+  color: var(--status-warning-text);
+}
+
+.outlineError {
+  border: 1px solid var(--status-error);
+  color: var(--status-error-text);
+}
+
+.outlineInfo {
+  border: 1px solid var(--status-info);
+  color: var(--status-info-text);
+}
+
+.outlineNeutral {
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Variant + Color  —  Subtle  (decorative -50 tint backgrounds)      */
+/* ------------------------------------------------------------------ */
+
+.subtlePrimary {
+  background-color: var(--status-info-subtle);
+  color: var(--brand-primary);
+}
+
+.subtleSecondary {
+  background-color: var(--status-success-subtle);
+  color: var(--brand-secondary);
+}
+
+.subtleAccent {
+  background-color: var(--status-warning-subtle);
+  color: var(--brand-accent);
+}
+
+.subtleSuccess {
+  background-color: var(--color-green-50);
+  color: var(--status-success-text);
+}
+
+.subtleWarning {
+  background-color: var(--color-yellow-50);
+  color: var(--status-warning-text);
+}
+
+.subtleError {
+  background-color: var(--color-red-50);
+  color: var(--status-error-text);
+}
+
+.subtleInfo {
+  background-color: var(--color-blue-50);
+  color: var(--status-info-text);
+}
+
+.subtleNeutral {
+  background-color: var(--color-gray-100);
+  color: var(--text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Variant + Color  —  Soft  (decorative -100 tint backgrounds)       */
+/* ------------------------------------------------------------------ */
+
+.softPrimary {
+  background-color: var(--color-blue-100);
+  color: var(--brand-primary);
+}
+
+.softSecondary {
+  background-color: var(--color-green-100);
+  color: var(--brand-secondary);
+}
+
+.softAccent {
+  background-color: var(--color-orange-100);
+  color: var(--brand-accent);
+}
+
+.softSuccess {
+  background-color: var(--color-green-100);
+  color: var(--status-success-text);
+}
+
+.softWarning {
+  background-color: var(--color-yellow-100);
+  color: var(--status-warning-text);
+}
+
+.softError {
+  background-color: var(--color-red-100);
+  color: var(--status-error-text);
+}
+
+.softInfo {
+  background-color: var(--color-blue-100);
+  color: var(--status-info-text);
+}
+
+.softNeutral {
+  background-color: var(--color-gray-200);
+  color: var(--text-primary);
+}
