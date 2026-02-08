@@ -194,12 +194,13 @@ function getDeviceCategory(diagonal: number): DeviceType {
 }
 
 /**
- * Get system font scale with clamping
+ * Get system font scale with per-element-type clamping (DESIGN_RULES §34).
  *
  * Respects iOS Dynamic Type and Android font scaling settings.
- * Clamped to prevent extreme sizes.
+ * Different element types have different max caps to prevent
+ * container overflow while keeping body text highly readable.
  */
-function getSystemFontScale(): number {
+function getSystemFontScale(category: 'body' | 'heading' | 'label' = 'body'): number {
   const { accessibility } = responsive;
 
   if (!accessibility.respectSystemFontScale) {
@@ -209,11 +210,11 @@ function getSystemFontScale(): number {
   // Get system font scale (works on iOS and Android)
   const systemScale = PixelRatio.getFontScale();
 
-  // Clamp to configured bounds
+  // Clamp to configured bounds — max varies by element type
   return clamp(
     systemScale,
     accessibility.minSystemFontScale,
-    accessibility.maxSystemFontScale
+    accessibility.maxSystemFontScale[category]
   );
 }
 
@@ -298,7 +299,10 @@ export const TYPOGRAPHY_SCALES: Record<DeviceType, {
  */
 export function useDeviceType(): UseDeviceTypeReturn {
   const { width, height } = useBreakpoint();
-  const systemFontScale = getSystemFontScale();
+  // Per-element-type system font scale caps (DESIGN_RULES §34)
+  const bodySystemScale = getSystemFontScale('body');
+  const headingSystemScale = getSystemFontScale('heading');
+  const labelSystemScale = getSystemFontScale('label');
 
   return useMemo(() => {
     const diagonal = Math.sqrt(width * width + height * height);
@@ -323,27 +327,21 @@ export function useDeviceType(): UseDeviceTypeReturn {
       minTouchTarget,
     };
 
-    // Helper functions that apply system font scale for accessibility
-    const applySystemScale = (value: number, isText: boolean = false): number => {
-      const result = isText ? value * systemFontScale : value;
-      return Math.round(result);
-    };
-
     return {
       deviceType,
       diagonal,
       width,
       height,
       scale,
-      systemFontScale,
+      systemFontScale: bodySystemScale,
 
-      // Scaling helpers (text scales include system font scale)
-      fontSize: (base: number) => applySystemScale(base * fontScale, true),
-      headingSize: (base: number) => applySystemScale(base * headingScale, true),
-      captionSize: (base: number) => applySystemScale(base * captionScale, true),
-      spacing: (base: number) => applySystemScale(base * spacingScale),
-      iconSize: (base: number) => applySystemScale(base * iconScale),
-      uiSize: (base: number) => applySystemScale(base * uiScale),
+      // Scaling helpers — text helpers apply per-element system font scale caps
+      fontSize: (base: number) => Math.round(base * fontScale * bodySystemScale),
+      headingSize: (base: number) => Math.round(base * headingScale * headingSystemScale),
+      captionSize: (base: number) => Math.round(base * captionScale * labelSystemScale),
+      spacing: (base: number) => Math.round(base * spacingScale),
+      iconSize: (base: number) => Math.round(base * iconScale),
+      uiSize: (base: number) => Math.round(base * uiScale),
 
       // Convenience flags
       isTablet: deviceType !== 'phone',
@@ -352,7 +350,7 @@ export function useDeviceType(): UseDeviceTypeReturn {
       // Raw scale getter
       getScale: (type: ScaleType) => getScaleForDevice(diagonal, deviceType, type),
     };
-  }, [width, height, systemFontScale]);
+  }, [width, height, bodySystemScale, headingSystemScale, labelSystemScale]);
 }
 
 // ============================================

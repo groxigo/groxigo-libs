@@ -41,7 +41,7 @@ function getSizeConfig(
 
   return {
     height: uiSize(spacing[11]),           // 44px - iOS touch target
-    paddingH: uiSize(spacing[3.5]),        // 14px
+    paddingH: uiSize(spacing[3]),           // 12px
     fontSize: fontSizeFn(typography.fontSize.md),  // 16px
     borderRadius: uiSize(radius.lg),       // 8px
     iconSize: uiSize(icon.size.md - 2),    // 18px

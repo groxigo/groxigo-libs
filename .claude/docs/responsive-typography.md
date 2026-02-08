@@ -53,10 +53,14 @@ responsive.scales = {
   ui:      { min: 1.0, max: 1.4 },   // Buttons, inputs
 };
 
-// Accessibility
+// Accessibility — per-element-type caps (DESIGN_RULES §34)
 responsive.accessibility = {
   respectSystemFontScale: true,  // iOS Dynamic Type / Android font scale
-  maxSystemFontScale: 1.5,
+  maxSystemFontScale: {
+    body: 2.0,      // Body text — must remain readable
+    heading: 1.5,   // Headings — cap to prevent overflow
+    label: 1.3,     // Labels (button, badge) — tight containers
+  },
   minSystemFontScale: 0.8,
 };
 ```

@@ -33,9 +33,15 @@ export const opacity = {
   // 20% - Low opacity for subtle overlays
   "20": 0.2,
   
+  // 15% - Low opacity for very subtle elements
+  "15": 0.15,
+
   // 10% - Very low opacity for minimal visibility
   "10": 0.1,
-  
+
+  // 5% - Near-transparent for subtle tints
+  "5": 0.05,
+
   // 0% - Fully transparent
   "0": 0,
 } as const;

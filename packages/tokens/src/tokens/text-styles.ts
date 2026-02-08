@@ -198,9 +198,9 @@ export const captionStyles = {
 
   /** Overline - Category labels, uppercase (10px, semibold) */
   overline: {
-    fontSize: 10,
+    fontSize: typography.fontSize['2xs'],
     fontWeight: typography.fontWeight.semibold,
-    lineHeight: 10 * typography.lineHeight.normal, // 15
+    lineHeight: typography.fontSize['2xs'] * typography.lineHeight.normal, // 15
     letterSpacing: typography.letterSpacing.wide,
     fontFamily: typography.fontFamily.sansSemiBold,
   },
@@ -236,9 +236,9 @@ export const specialStyles = {
 
   /** Badge - Badge text (10px, semibold) */
   badge: {
-    fontSize: 10,
+    fontSize: typography.fontSize['2xs'],
     fontWeight: typography.fontWeight.semibold,
-    lineHeight: 10 * 1, // 10 (single line)
+    lineHeight: typography.fontSize['2xs'] * 1, // 10 (single line)
     fontFamily: typography.fontFamily.sansSemiBold,
   },
 
@@ -246,7 +246,7 @@ export const specialStyles = {
   code: {
     fontSize: typography.fontSize.sm, // 14
     fontWeight: typography.fontWeight.normal,
-    lineHeight: typography.fontSize.sm * typography.lineHeight.relaxed, // 22.75
+    lineHeight: typography.fontSize.sm * typography.lineHeight.normal, // 21
     fontFamily: typography.fontFamily.mono,
   },
 } as const;

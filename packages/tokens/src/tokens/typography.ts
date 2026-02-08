@@ -7,24 +7,27 @@
 export const typography = {
   fontFamily: {
     // For React Native, use the loaded font names
-    sans: "GoogleSans_400Regular",
-    sansLight: "GoogleSans_400Regular", // Google Sans doesn't have 300, use 400
-    sansMedium: "GoogleSans_500Medium",
-    sansSemiBold: "GoogleSans_600SemiBold",
-    sansBold: "GoogleSans_700Bold",
+    sans: "GoogleSansFlex_400Regular",
+    sansLight: "GoogleSansFlex_300Light",
+    sansMedium: "GoogleSansFlex_500Medium",
+    sansSemiBold: "GoogleSansFlex_600SemiBold",
+    sansBold: "GoogleSansFlex_700Bold",
     // For web fallback
-    sansWeb: "'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+    sansWeb: "'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif",
     mono: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
   
   fontSize: {
     // Font size scale (base = 16px / 1rem)
+    '2xs': 10,   // 0.625rem — overline, badge text
     xs: 12,      // 0.75rem
     sm: 14,      // 0.875rem
     base: 16,    // 1rem
     lg: 18,      // 1.125rem
     xl: 20,      // 1.25rem
+    xxl: 22,     // 1.375rem — between xl and 2xl
     '2xl': 24,   // 1.5rem
+    xxxl: 28,    // 1.75rem — between 2xl and 3xl
     '3xl': 30,   // 1.875rem
     '4xl': 36,   // 2.25rem
   },
@@ -40,7 +43,6 @@ export const typography = {
   lineHeight: {
     tight: 1.25,
     normal: 1.5,
-    relaxed: 1.625,
   },
   
   letterSpacing: {

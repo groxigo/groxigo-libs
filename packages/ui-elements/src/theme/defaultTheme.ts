@@ -318,7 +318,7 @@ const themeTypography = {
     tight: typography.lineHeight.tight,
     snug: 1.375,
     normal: typography.lineHeight.normal,
-    relaxed: typography.lineHeight.relaxed,
+    relaxed: 1.625,
     loose: 2,
   },
   letterSpacing: {

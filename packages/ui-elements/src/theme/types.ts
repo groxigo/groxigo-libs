@@ -154,7 +154,6 @@ export interface ThemeSpacing {
   2: number;
   2.5: number;
   3: number;
-  3.5: number;
   4: number;
   5: number;
   6: number;
@@ -166,6 +165,7 @@ export interface ThemeSpacing {
   12: number;
   14: number;
   16: number;
+  18: number;
   20: number;
   24: number;
   28: number;

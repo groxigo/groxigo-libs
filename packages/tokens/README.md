@@ -206,7 +206,6 @@ tokens.typography.fontWeight.bold      // 700
 // Line heights
 tokens.typography.lineHeight.tight     // 1.25
 tokens.typography.lineHeight.normal    // 1.5
-tokens.typography.lineHeight.relaxed   // 1.625
 ```
 
 ### Border Radius

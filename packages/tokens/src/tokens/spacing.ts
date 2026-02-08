@@ -38,8 +38,6 @@ export const spacing = {
   2.5: 10,
   /** 12px - Medium-compact spacing */
   3: 12,
-  /** 14px - Medium spacing */
-  3.5: 14,
   /** 16px - Base spacing (1rem) */
   4: 16,
   /** 20px - Medium-large spacing */
@@ -62,6 +60,8 @@ export const spacing = {
   14: 56,
   /** 64px - Large section spacing */
   16: 64,
+  /** 72px */
+  18: 72,
   /** 80px - Major section spacing */
   20: 80,
   /** 96px - Hero spacing */

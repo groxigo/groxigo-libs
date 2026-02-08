@@ -134,8 +134,16 @@ export const fixedScales = {
 export const accessibilityConfig = {
   /** Whether to respect system font scale */
   respectSystemFontScale: true,
-  /** Maximum system font scale to apply (prevents extreme sizes) */
-  maxSystemFontScale: 1.5,
+  /**
+   * Maximum system font scale per element type (DESIGN_RULES §34).
+   * Body text allows more growth for readability; labels/buttons are
+   * capped tighter to prevent container overflow.
+   */
+  maxSystemFontScale: {
+    body: 2.0,
+    heading: 1.5,
+    label: 1.3,
+  },
   /** Minimum system font scale (for users who prefer smaller text) */
   minSystemFontScale: 0.8,
 } as const;
@@ -155,6 +163,31 @@ export const responsive = {
 } as const;
 
 // ============================================
+// FLUID CSS CONFIGURATION
+// ============================================
+
+/**
+ * Configuration for CSS clamp()-based fluid scaling.
+ *
+ * Produces smooth interpolation between viewportMin and viewportMax
+ * so token values (font-size, spacing, radius, component heights)
+ * scale continuously instead of jumping at breakpoints.
+ *
+ * absoluteMin is the smallest CSS viewport width of any modern phone
+ * manufactured after 2018 (budget Androids like Samsung Galaxy A05,
+ * Redmi 13C — all 720×1600 = 360px CSS width).  Viewports between
+ * 360–375px receive the fixed minimum values from the clamp().
+ */
+export const fluidConfig = {
+  /** Absolute minimum — no phone below this since 2018 */
+  absoluteMin: 360,
+  /** Fluid interpolation start (most phones) */
+  viewportMin: 375,
+  /** Fluid interpolation end (large desktop) */
+  viewportMax: 1440,
+} as const;
+
+// ============================================
 // TYPES
 // ============================================
 
@@ -164,6 +197,7 @@ export type FixedScales = typeof fixedScales;
 export type AccessibilityConfig = typeof accessibilityConfig;
 export type ResponsiveConfig = typeof responsive;
 
+export type FluidConfig = typeof fluidConfig;
 export type ScaleType = keyof typeof scaleBounds;
 export type DeviceCategory = 'phone' | 'tablet' | 'desktop';
 

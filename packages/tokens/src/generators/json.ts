@@ -18,6 +18,16 @@ export function generateJSON(): string {
         modes: ['Light'],
         variables: {} as Record<string, Record<string, string>>,
       },
+      'Spacing': {
+        description: 'Spacing tokens based on 4px grid system.',
+        modes: ['Default'],
+        variables: {} as Record<string, number>,
+      },
+      'Radius': {
+        description: 'Border radius tokens for rounded corners.',
+        modes: ['Default'],
+        variables: {} as Record<string, number>,
+      },
       'Semantic': {
         description: 'Meaningful names mapped from Primitives. Use these for theming.',
         modes: ['Light', 'Dark'],
@@ -111,6 +121,51 @@ export function generateJSON(): string {
       primitives[colorKey][shade] = value;
     }
   }
+
+  // Populate Spacing tokens (matches Figma Foundations naming)
+  const spacingVars = figmaStructure.collections['Spacing'].variables;
+  // All spacing values from the 4pt grid system
+  spacingVars['0'] = tokens.spacing[0];       // 0px
+  spacingVars['px'] = tokens.spacing.px;      // 1px
+  spacingVars['0-5'] = tokens.spacing[0.5];   // 2px
+  spacingVars['1'] = tokens.spacing[1];       // 4px
+  spacingVars['1-5'] = tokens.spacing[1.5];   // 6px
+  spacingVars['2'] = tokens.spacing[2];       // 8px
+  spacingVars['2-5'] = tokens.spacing[2.5];   // 10px
+  spacingVars['3'] = tokens.spacing[3];       // 12px
+  spacingVars['4'] = tokens.spacing[4];       // 16px
+  spacingVars['5'] = tokens.spacing[5];       // 20px
+  spacingVars['6'] = tokens.spacing[6];       // 24px
+  spacingVars['7'] = tokens.spacing[7];       // 28px
+  spacingVars['8'] = tokens.spacing[8];       // 32px
+  spacingVars['9'] = tokens.spacing[9];       // 36px
+  spacingVars['10'] = tokens.spacing[10];     // 40px
+  spacingVars['11'] = tokens.spacing[11];     // 44px
+  spacingVars['12'] = tokens.spacing[12];     // 48px
+  spacingVars['14'] = tokens.spacing[14];     // 56px
+  spacingVars['16'] = tokens.spacing[16];     // 64px
+  spacingVars['18'] = tokens.spacing[18];     // 72px
+  spacingVars['20'] = tokens.spacing[20];     // 80px
+  spacingVars['24'] = tokens.spacing[24];     // 96px
+  spacingVars['28'] = tokens.spacing[28];     // 112px
+  spacingVars['32'] = tokens.spacing[32];     // 128px
+  spacingVars['40'] = tokens.spacing[40];     // 160px
+  spacingVars['48'] = tokens.spacing[48];     // 192px
+  spacingVars['64'] = tokens.spacing[64];     // 256px
+
+  // Populate Radius tokens
+  const radiusVars = figmaStructure.collections['Radius'].variables;
+  radiusVars['none'] = tokens.radius.none;
+  radiusVars['xs'] = tokens.radius.xs;
+  radiusVars['sm'] = tokens.radius.sm;
+  radiusVars['md'] = tokens.radius.md;
+  radiusVars['lg'] = tokens.radius.lg;
+  radiusVars['xl'] = tokens.radius.xl;
+  radiusVars['2xl'] = tokens.radius['2xl'];
+  radiusVars['3xl'] = tokens.radius['3xl'];
+  radiusVars['4xl'] = tokens.radius['4xl'];
+  radiusVars['5xl'] = tokens.radius['5xl'];
+  radiusVars['full'] = tokens.radius.full;
 
   // Populate Semantic tokens
   const semantic = figmaStructure.collections['Semantic'].variables;

@@ -69,7 +69,7 @@ function getSizeConfig(theme: Theme, size: ButtonSize): SizeConfig & { hitSlop: 
     },
     sm: {
       height: spacing[8] + 2,          // 34px visual
-      paddingH: spacing[3.5],          // 14px
+      paddingH: spacing[3],            // 12px
       paddingV: spacing[1.5],          // 6px
       fontSize: typography.fontSize.sm, // 14px
       iconSize: icon.size.sm,          // 16px
