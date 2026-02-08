@@ -1,5 +1,17 @@
 # @groxigo/components-web
 
+## 1.1.0
+
+### Minor Changes
+
+- Replace Tailwind with CSS Modules across all ui-elements-web and components-web components. Fix 7 DESIGN_RULES violations (focus ring, disabled states, semantic tokens, z-index layering). Add 65 composite component contracts and CSS module implementations.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @groxigo/ui-elements-web@1.1.0
+  - @groxigo/contracts@1.0.1
+
 ## 1.0.3
 
 ### Patch Changes
