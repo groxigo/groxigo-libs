@@ -12,13 +12,10 @@ export * from './Link';
 // Layout
 export * from './Card';
 export * from './Divider';
-export * from './Spacer';
 
 // Data Display
 export * from './Avatar';
 export * from './Badge';
-export * from './Icon';
-export * from './Image';
 
 // Form Inputs
 export * from './Input';

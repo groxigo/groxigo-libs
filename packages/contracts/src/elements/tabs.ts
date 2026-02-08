@@ -6,10 +6,8 @@
 
 import type { ReactNode } from 'react';
 
-export type TabsVariant = 'line' | 'enclosed' | 'soft-rounded' | 'solid-rounded' | 'unstyled';
-export type TabsSize = 'sm' | 'md' | 'lg';
-export type TabsColorScheme = 'primary' | 'secondary' | 'accent' | 'gray';
-export type TabsOrientation = 'horizontal' | 'vertical';
+export type TabsVariant = 'line' | 'enclosed' | 'soft-rounded' | 'solid-rounded';
+export type TabsSize = 'sm' | 'md';
 export type TabsAlign = 'start' | 'center' | 'end';
 
 /**
@@ -44,10 +42,6 @@ export interface TabsPropsBase {
   variant?: TabsVariant;
   /** Tabs size @default 'md' */
   size?: TabsSize;
-  /** Color scheme @default 'primary' */
-  colorScheme?: TabsColorScheme;
-  /** Tabs orientation @default 'horizontal' */
-  orientation?: TabsOrientation;
   /** Tab alignment @default 'start' */
   align?: TabsAlign;
   /** Whether tabs should fit container width */

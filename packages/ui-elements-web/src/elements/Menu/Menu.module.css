@@ -23,8 +23,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-2, 8px) var(--spacing-4, 16px);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   border-radius: var(--radius-md);
@@ -53,8 +53,8 @@
 /* — Chevron icon — */
 
 .menuButtonIcon {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
   transition: transform var(--duration-normal) ease;
 }
 
@@ -71,7 +71,7 @@
   z-index: 1000;
   min-width: 180px;
   max-width: 280px;
-  padding: 4px 0;
+  padding: var(--spacing-1, 4px) 0;
   border-radius: var(--radius-xs);
   background-color: var(--surface-primary);
   border: 1px solid var(--border-subtle);
@@ -97,76 +97,76 @@
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-2, 8px);
 }
 
 .placementTopStart {
   bottom: 100%;
   left: 0;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-2, 8px);
 }
 
 .placementTopEnd {
   bottom: 100%;
   right: 0;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-2, 8px);
 }
 
 .placementBottom {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 8px;
+  margin-top: var(--spacing-2, 8px);
 }
 
 .placementBottomStart {
   top: 100%;
   left: 0;
-  margin-top: 8px;
+  margin-top: var(--spacing-2, 8px);
 }
 
 .placementBottomEnd {
   top: 100%;
   right: 0;
-  margin-top: 8px;
+  margin-top: var(--spacing-2, 8px);
 }
 
 .placementLeft {
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  margin-right: 8px;
+  margin-right: var(--spacing-2, 8px);
 }
 
 .placementLeftStart {
   right: 100%;
   top: 0;
-  margin-right: 8px;
+  margin-right: var(--spacing-2, 8px);
 }
 
 .placementLeftEnd {
   right: 100%;
   bottom: 0;
-  margin-right: 8px;
+  margin-right: var(--spacing-2, 8px);
 }
 
 .placementRight {
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 8px;
+  margin-left: var(--spacing-2, 8px);
 }
 
 .placementRightStart {
   left: 100%;
   top: 0;
-  margin-left: 8px;
+  margin-left: var(--spacing-2, 8px);
 }
 
 .placementRightEnd {
   left: 100%;
   bottom: 0;
-  margin-left: 8px;
+  margin-left: var(--spacing-2, 8px);
 }
 
 /* ================================================================== */
@@ -176,9 +176,9 @@
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-3, 12px);
   width: 100%;
-  padding: 8px 12px;
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
   font-size: var(--font-size-sm);
   text-align: left;
   color: var(--text-primary);
@@ -226,8 +226,8 @@
 
 .menuItemIcon {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,7 +244,7 @@
 .menuItemRight {
   flex-shrink: 0;
   margin-left: auto;
-  padding-left: 16px;
+  padding-left: var(--spacing-4, 16px);
   color: var(--text-secondary);
 }
 
@@ -253,7 +253,7 @@
 /* ================================================================== */
 
 .menuDivider {
-  margin: 4px 0;
+  margin: var(--spacing-1, 4px) 0;
   border: none;
   border-top: 1px solid var(--border-subtle);
 }

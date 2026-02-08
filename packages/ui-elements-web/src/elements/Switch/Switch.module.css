@@ -65,7 +65,7 @@
 }
 
 /* ============================================
-   TRACK CHECKED STATE (color schemes)
+   TRACK CHECKED STATE
    ============================================ */
 
 .track.checked {
@@ -74,48 +74,6 @@
 
 .track.checked:hover:not(:disabled) {
   background-color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.track.checked.primary {
-  background-color: var(--brand-primary, #2563eb);
-}
-.track.checked.primary:hover:not(:disabled) {
-  background-color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.track.checked.secondary {
-  background-color: var(--brand-secondary, #f97316);
-}
-.track.checked.secondary:hover:not(:disabled) {
-  background-color: var(--brand-secondary-hover, #ea580c);
-}
-
-.track.checked.accent {
-  background-color: var(--brand-accent, #06b6d4);
-}
-.track.checked.accent:hover:not(:disabled) {
-  background-color: var(--brand-accent-hover, #0891b2);
-}
-
-.track.checked.success {
-  background-color: var(--status-success, #16a34a);
-}
-.track.checked.success:hover:not(:disabled) {
-  background-color: var(--status-success-hover, #15803d);
-}
-
-.track.checked.warning {
-  background-color: var(--status-warning, #eab308);
-}
-.track.checked.warning:hover:not(:disabled) {
-  background-color: var(--status-warning-hover, #ca8a04);
-}
-
-.track.checked.error {
-  background-color: var(--status-error, #dc2626);
-}
-.track.checked.error:hover:not(:disabled) {
-  background-color: var(--status-error-hover, #b91c1c);
 }
 
 /* Disabled + checked */
@@ -158,18 +116,18 @@
 
 /* Thumb sizes */
 .thumbSm {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
 }
 
 .thumbMd {
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
 }
 
 .thumbLg {
-  width: 24px;
-  height: 24px;
+  width: var(--spacing-6, 24px);
+  height: var(--spacing-6, 24px);
 }
 
 /* Thumb unchecked position — small offset from left */
@@ -195,15 +153,15 @@
    ============================================ */
 
 .gapSm {
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
 }
 
 .gapMd {
-  gap: 10px;
+  gap: var(--spacing-2-5, 10px);
 }
 
 .gapLg {
-  gap: 12px;
+  gap: var(--spacing-3, 12px);
 }
 
 /* ============================================
@@ -238,13 +196,13 @@
 .helperText {
   font-size: var(--font-size-sm, 14px);
   color: var(--text-secondary, #6b7280);
-  margin-top: 4px;
+  margin-top: var(--spacing-1, 4px);
 }
 
 .errorText {
   font-size: var(--font-size-sm, 14px);
   color: var(--status-error, #dc2626);
-  margin-top: 4px;
+  margin-top: var(--spacing-1, 4px);
 }
 
 /* ============================================

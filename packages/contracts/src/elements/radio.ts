@@ -7,8 +7,6 @@
 import type { ReactNode } from 'react';
 
 export type RadioSize = 'sm' | 'md' | 'lg';
-export type RadioColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error';
-
 /**
  * Base Radio props that all platforms must support
  */
@@ -17,8 +15,6 @@ export interface RadioPropsBase {
   value: string;
   /** Radio size @default 'md' */
   size?: RadioSize;
-  /** Color scheme @default 'primary' */
-  colorScheme?: RadioColorScheme;
   /** Whether the radio is disabled */
   disabled?: boolean;
   /** Whether the radio is invalid */
@@ -45,8 +41,6 @@ export interface RadioGroupPropsBase {
   name?: string;
   /** Radio size for all children */
   size?: RadioSize;
-  /** Color scheme for all children */
-  colorScheme?: RadioColorScheme;
   /** Layout direction @default 'vertical' */
   direction?: 'horizontal' | 'vertical';
   /** Spacing between radios */

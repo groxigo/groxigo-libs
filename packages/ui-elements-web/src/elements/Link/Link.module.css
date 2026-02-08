@@ -34,10 +34,6 @@
   font-size: var(--font-size-base);
 }
 
-.lg {
-  font-size: var(--font-size-lg);
-}
-
 /* ------------------------------------------------------------------ */
 /*  Color schemes                                                      */
 /* ------------------------------------------------------------------ */
@@ -51,22 +47,6 @@
 }
 
 .colorPrimary:hover {
-  opacity: 0.85;
-}
-
-.colorSecondary {
-  color: var(--brand-secondary);
-}
-
-.colorSecondary:hover {
-  opacity: 0.85;
-}
-
-.colorAccent {
-  color: var(--brand-accent);
-}
-
-.colorAccent:hover {
   opacity: 0.85;
 }
 

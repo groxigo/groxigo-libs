@@ -39,15 +39,15 @@
    ============================================ */
 
 .sm {
-  padding: 12px;
+  padding: var(--spacing-3, 12px);
 }
 
 .md {
-  padding: 16px;
+  padding: var(--spacing-4, 16px);
 }
 
 .lg {
-  padding: 24px;
+  padding: var(--spacing-6, 24px);
 }
 
 /* ============================================
@@ -85,16 +85,16 @@
    ============================================ */
 
 .header {
-  padding-bottom: 12px;
+  padding-bottom: var(--spacing-3, 12px);
   border-bottom: 1px solid var(--border-subtle, #e5e7eb);
 }
 
 .body {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: var(--spacing-3, 12px);
+  padding-bottom: var(--spacing-3, 12px);
 }
 
 .footer {
-  padding-top: 12px;
+  padding-top: var(--spacing-3, 12px);
   border-top: 1px solid var(--border-subtle, #e5e7eb);
 }

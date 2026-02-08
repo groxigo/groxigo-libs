@@ -7,7 +7,7 @@
 import type { ReactNode } from 'react';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
-export type SelectVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
+export type SelectVariant = 'outline' | 'filled' | 'flushed';
 
 /**
  * Select option

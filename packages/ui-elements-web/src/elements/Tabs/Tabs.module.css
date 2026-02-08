@@ -19,10 +19,6 @@
   flex-direction: column;
 }
 
-.vertical {
-  flex-direction: row;
-}
-
 /* ================================================================== */
 /*  TAB LIST                                                           */
 /* ================================================================== */
@@ -33,10 +29,6 @@
 
 .tabListHorizontal {
   flex-direction: row;
-}
-
-.tabListVertical {
-  flex-direction: column;
 }
 
 .tabListFitted {
@@ -52,23 +44,19 @@
 .tabListEnclosed {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 4px;
+  padding: var(--spacing-1, 4px);
   background-color: var(--surface-secondary);
 }
 
 .tabListSoftRounded {
-  gap: 4px;
+  gap: var(--spacing-1, 4px);
 }
 
 .tabListSolidRounded {
   background-color: var(--surface-secondary);
-  padding: 4px;
+  padding: var(--spacing-1, 4px);
   border-radius: var(--radius-lg);
-  gap: 4px;
-}
-
-.tabListUnstyled {
-  /* no styles */
+  gap: var(--spacing-1, 4px);
 }
 
 /* — TabList size — */
@@ -81,10 +69,6 @@
   font-size: var(--font-size-base);
 }
 
-.tabListLg {
-  font-size: var(--font-size-lg);
-}
-
 /* ================================================================== */
 /*  TAB BUTTON                                                         */
 /* ================================================================== */
@@ -92,7 +76,7 @@
 .tab {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
   font-weight: var(--font-weight-medium);
   transition: all var(--duration-normal) ease;
   outline: none;
@@ -109,18 +93,13 @@
 /* — Tab sizes — */
 
 .tabSm {
-  padding: 6px 12px;
+  padding: var(--spacing-1-5, 6px) var(--spacing-3, 12px);
   font-size: var(--font-size-sm);
 }
 
 .tabMd {
-  padding: 8px 16px;
+  padding: var(--spacing-2, 8px) var(--spacing-4, 16px);
   font-size: var(--font-size-base);
-}
-
-.tabLg {
-  padding: 10px 20px;
-  font-size: var(--font-size-lg);
 }
 
 /* — Fitted tabs — */
@@ -133,8 +112,9 @@
 /* — Disabled — */
 
 .tabDisabled {
-  opacity: 0.5;
+  color: var(--text-disabled, #94a3b8);
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ================================================================== */
@@ -212,27 +192,11 @@
 }
 
 /* ================================================================== */
-/*  TAB VARIANT: UNSTYLED                                              */
-/* ================================================================== */
-
-.tabUnstyled {
-  /* no decorative styles */
-}
-
-.tabUnstyledSelected {
-  color: var(--tab-text-active);
-}
-
-.tabUnstyled:not(.tabUnstyledSelected):hover {
-  color: var(--text-primary);
-}
-
-/* ================================================================== */
 /*  TAB PANELS                                                         */
 /* ================================================================== */
 
 .tabPanels {
-  margin-top: 16px;
+  margin-top: var(--spacing-4, 16px);
 }
 
 /* ================================================================== */
@@ -256,5 +220,5 @@
 /* ================================================================== */
 
 .itemPanels {
-  margin-top: 16px;
+  margin-top: var(--spacing-4, 16px);
 }

@@ -29,19 +29,15 @@
    ============================================ */
 
 .trackXs {
-  height: 4px;
+  height: var(--spacing-1, 4px);
 }
 
 .trackSm {
-  height: 8px;
+  height: var(--spacing-2, 8px);
 }
 
 .trackMd {
-  height: 12px;
-}
-
-.trackLg {
-  height: 16px;
+  height: var(--spacing-3, 12px);
 }
 
 /* ============================================
@@ -52,38 +48,6 @@
   height: 100%;
   transition: width 300ms ease-out;
   border-radius: var(--radius-full, 9999px);
-}
-
-/* ============================================
-   LINEAR PROGRESS — BAR COLORS
-   ============================================ */
-
-.barPrimary {
-  background: var(--brand-primary);
-}
-
-.barSecondary {
-  background: var(--brand-secondary);
-}
-
-.barAccent {
-  background: var(--brand-accent);
-}
-
-.barSuccess {
-  background: var(--status-success);
-}
-
-.barWarning {
-  background: var(--status-warning);
-}
-
-.barError {
-  background: var(--status-error);
-}
-
-.barInfo {
-  background: var(--status-info);
 }
 
 /* ============================================
@@ -143,7 +107,7 @@
    ============================================ */
 
 .valueContainer {
-  margin-top: 4px;
+  margin-top: var(--spacing-1, 4px);
   display: flex;
   justify-content: flex-end;
 }
@@ -164,10 +128,6 @@
   font-size: var(--font-size-sm, 14px);
 }
 
-.labelLg {
-  font-size: var(--font-size-base, 16px);
-}
-
 /* ============================================
    CIRCULAR PROGRESS — CONTAINER
    ============================================ */
@@ -185,38 +145,6 @@
 
 .circularTrack {
   color: var(--surface-secondary);
-}
-
-/* ============================================
-   CIRCULAR PROGRESS — INDICATOR COLORS
-   ============================================ */
-
-.circularPrimary {
-  color: var(--brand-primary);
-}
-
-.circularSecondary {
-  color: var(--brand-secondary);
-}
-
-.circularAccent {
-  color: var(--brand-accent);
-}
-
-.circularSuccess {
-  color: var(--status-success);
-}
-
-.circularWarning {
-  color: var(--status-warning);
-}
-
-.circularError {
-  color: var(--status-error);
-}
-
-.circularInfo {
-  color: var(--status-info);
 }
 
 /* ============================================

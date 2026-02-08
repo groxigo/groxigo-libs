@@ -18,8 +18,6 @@ import { RadioGroupContext } from './RadioGroup';
 import styles from './Radio.module.css';
 
 export type RadioSize = 'sm' | 'md' | 'lg';
-export type RadioColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error';
-
 // ============================================
 // SIZE CLASS MAPS
 // ============================================
@@ -48,15 +46,6 @@ const labelSizeClass: Record<RadioSize, string> = {
   lg: styles.labelLg,
 };
 
-const colorSchemeClass: Record<RadioColorScheme, string> = {
-  primary: styles.primary,
-  secondary: styles.secondary,
-  accent: styles.accent,
-  success: styles.success,
-  warning: styles.warning,
-  error: styles.error,
-};
-
 // ============================================
 // RADIO PROPS
 // ============================================
@@ -81,7 +70,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     {
       value,
       size = 'md',
-      colorScheme = 'primary',
       disabled = false,
       isInvalid = false,
       label,
@@ -99,7 +87,6 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
 
     // Use group context values if available
     const effectiveSize = groupContext.size || size;
-    const effectiveColorScheme = groupContext.colorScheme || colorScheme;
     const effectiveDisabled = groupContext.disabled || disabled;
     const effectiveName = groupContext.name || name;
     const isSelected = groupContext.value !== undefined
@@ -132,7 +119,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       styles.outer,
       outerSizeClass[effectiveSize],
       isSelected && styles.selected,
-      isSelected && colorSchemeClass[effectiveColorScheme],
+      isSelected && styles.primary,
       isInvalid && styles.invalid,
       effectiveDisabled && styles.disabled
     );
@@ -140,7 +127,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const innerClasses = clsx(
       styles.inner,
       innerSizeClass[effectiveSize],
-      colorSchemeClass[effectiveColorScheme],
+      styles.primary,
       effectiveDisabled && styles.innerDisabled
     );
 

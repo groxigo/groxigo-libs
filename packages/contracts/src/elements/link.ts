@@ -6,8 +6,8 @@
 
 import type { ReactNode } from 'react';
 
-export type LinkColorScheme = 'default' | 'primary' | 'secondary' | 'accent' | 'muted';
-export type LinkSize = 'sm' | 'md' | 'lg';
+export type LinkColorScheme = 'default' | 'primary' | 'muted';
+export type LinkSize = 'sm' | 'md';
 
 /**
  * Base Link props that all platforms must support

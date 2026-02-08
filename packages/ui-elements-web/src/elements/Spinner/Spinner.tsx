@@ -13,7 +13,6 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   (
     {
       size = 'md',
-      colorScheme = 'primary',
       color,
       label = 'Loading...',
       className,
@@ -35,7 +34,7 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
           className={clsx(
             styles.spinner,
             styles[size],
-            !color && styles[colorScheme]
+            !color && styles.primary
           )}
           style={color ? { color } : undefined}
           xmlns="http://www.w3.org/2000/svg"

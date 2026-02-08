@@ -7,7 +7,7 @@
 import type { ReactNode } from 'react';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-export type AvatarVariant = 'circle' | 'square' | 'rounded';
+export type AvatarVariant = 'circle' | 'square';
 
 /**
  * Base Avatar props that all platforms must support

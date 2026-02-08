@@ -9,7 +9,7 @@
 import React, { createContext, useMemo, useState, useCallback } from 'react';
 import { clsx } from 'clsx';
 import type { RadioGroupPropsBase } from '@groxigo/contracts';
-import type { RadioSize, RadioColorScheme } from './Radio';
+import type { RadioSize } from './Radio';
 import styles from './RadioGroup.module.css';
 
 export interface RadioGroupContextValue {
@@ -17,7 +17,6 @@ export interface RadioGroupContextValue {
   onChange?: (value: string) => void;
   name?: string;
   size?: RadioSize;
-  colorScheme?: RadioColorScheme;
   disabled?: boolean;
 }
 
@@ -47,7 +46,6 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   defaultValue,
   name,
   size = 'md',
-  colorScheme = 'primary',
   direction = 'vertical',
   spacing = 3,
   disabled = false,
@@ -81,10 +79,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
       onChange: handleChange,
       name,
       size,
-      colorScheme,
       disabled,
     }),
-    [currentValue, handleChange, name, size, colorScheme, disabled]
+    [currentValue, handleChange, name, size, disabled]
   );
 
   // Get gap class or default

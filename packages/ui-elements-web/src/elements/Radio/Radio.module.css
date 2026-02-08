@@ -68,49 +68,14 @@
 }
 
 /* ============================================
-   OUTER SELECTED STATE (color schemes)
+   OUTER SELECTED STATE
    ============================================ */
 
-.outer.selected.primary {
+.outer.selected {
   border-color: var(--brand-primary, #2563eb);
 }
-.outer.selected.primary:hover {
+.outer.selected:hover {
   border-color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.outer.selected.secondary {
-  border-color: var(--brand-secondary, #f97316);
-}
-.outer.selected.secondary:hover {
-  border-color: var(--brand-secondary-hover, #ea580c);
-}
-
-.outer.selected.accent {
-  border-color: var(--brand-accent, #06b6d4);
-}
-.outer.selected.accent:hover {
-  border-color: var(--brand-accent-hover, #0891b2);
-}
-
-.outer.selected.success {
-  border-color: var(--status-success, #16a34a);
-}
-.outer.selected.success:hover {
-  border-color: var(--status-success-hover, #15803d);
-}
-
-.outer.selected.warning {
-  border-color: var(--status-warning, #eab308);
-}
-.outer.selected.warning:hover {
-  border-color: var(--status-warning-hover, #ca8a04);
-}
-
-.outer.selected.error {
-  border-color: var(--status-error, #dc2626);
-}
-.outer.selected.error:hover {
-  border-color: var(--status-error-hover, #b91c1c);
 }
 
 /* Disabled + selected */
@@ -123,18 +88,18 @@
    ============================================ */
 
 .outerSm {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
 }
 
 .outerMd {
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
 }
 
 .outerLg {
-  width: 24px;
-  height: 24px;
+  width: var(--spacing-6, 24px);
+  height: var(--spacing-6, 24px);
 }
 
 /* ============================================
@@ -143,31 +108,7 @@
 
 .inner {
   border-radius: 50%;
-}
-
-/* Inner dot color schemes */
-.inner.primary {
   background-color: var(--brand-primary, #2563eb);
-}
-
-.inner.secondary {
-  background-color: var(--brand-secondary, #f97316);
-}
-
-.inner.accent {
-  background-color: var(--brand-accent, #06b6d4);
-}
-
-.inner.success {
-  background-color: var(--status-success, #16a34a);
-}
-
-.inner.warning {
-  background-color: var(--status-warning, #eab308);
-}
-
-.inner.error {
-  background-color: var(--status-error, #dc2626);
 }
 
 /* Disabled inner dot */
@@ -177,18 +118,18 @@
 
 /* Inner dot sizes */
 .innerSm {
-  width: 8px;
-  height: 8px;
+  width: var(--spacing-2, 8px);
+  height: var(--spacing-2, 8px);
 }
 
 .innerMd {
-  width: 10px;
-  height: 10px;
+  width: var(--spacing-2-5, 10px);
+  height: var(--spacing-2-5, 10px);
 }
 
 .innerLg {
-  width: 12px;
-  height: 12px;
+  width: var(--spacing-3, 12px);
+  height: var(--spacing-3, 12px);
 }
 
 /* ============================================
@@ -196,15 +137,15 @@
    ============================================ */
 
 .gapSm {
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
 }
 
 .gapMd {
-  gap: 10px;
+  gap: var(--spacing-2-5, 10px);
 }
 
 .gapLg {
-  gap: 12px;
+  gap: var(--spacing-3, 12px);
 }
 
 /* ============================================

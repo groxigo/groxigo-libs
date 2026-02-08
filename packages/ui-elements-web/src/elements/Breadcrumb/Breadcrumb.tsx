@@ -16,7 +16,6 @@ import styles from './Breadcrumb.module.css';
 const fontSizeClassMap: Record<string, string> = {
   sm: styles.sizeSm,
   md: styles.sizeMd,
-  lg: styles.sizeLg,
 };
 
 export interface BreadcrumbProps extends BreadcrumbPropsBase {

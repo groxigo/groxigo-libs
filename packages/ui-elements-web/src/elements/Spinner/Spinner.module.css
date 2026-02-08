@@ -6,16 +6,11 @@
   animation: spin 1s linear infinite;
 }
 
-.xs { height: 12px; width: 12px; }
-.sm { height: 16px; width: 16px; }
-.md { height: 24px; width: 24px; }
-.lg { height: 32px; width: 32px; }
-.xl { height: 48px; width: 48px; }
-
-.primary { color: var(--brand-primary, #2563eb); }
-.secondary { color: var(--brand-secondary, #f97316); }
-.accent { color: var(--brand-accent, #06b6d4); }
-.white { color: #fff; }
+.xs { height: var(--spacing-3, 12px); width: var(--spacing-3, 12px); }
+.sm { height: var(--spacing-4, 16px); width: var(--spacing-4, 16px); }
+.md { height: var(--spacing-6, 24px); width: var(--spacing-6, 24px); }
+.lg { height: var(--spacing-8, 32px); width: var(--spacing-8, 32px); }
+.xl { height: var(--spacing-12, 48px); width: var(--spacing-12, 48px); }
 
 .trackCircle { opacity: 0.25; }
 .arcPath { opacity: 0.75; }

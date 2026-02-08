@@ -63,7 +63,7 @@
 }
 
 /* ============================================
-   BOX CHECKED STATE (color schemes)
+   BOX CHECKED STATE
    ============================================ */
 
 .box.checked {
@@ -74,69 +74,6 @@
 .box.checked:hover {
   background-color: var(--brand-primary-hover, #1d4ed8);
   border-color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.box.checked.primary {
-  background-color: var(--brand-primary, #2563eb);
-  border-color: var(--brand-primary, #2563eb);
-}
-.box.checked.primary:hover {
-  background-color: var(--brand-primary-hover, #1d4ed8);
-  border-color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.box.checked.secondary {
-  background-color: var(--brand-secondary, #f97316);
-  border-color: var(--brand-secondary, #f97316);
-}
-.box.checked.secondary:hover {
-  background-color: var(--brand-secondary-hover, #ea580c);
-  border-color: var(--brand-secondary-hover, #ea580c);
-}
-
-.box.checked.accent {
-  background-color: var(--brand-accent, #06b6d4);
-  border-color: var(--brand-accent, #06b6d4);
-}
-.box.checked.accent:hover {
-  background-color: var(--brand-accent-hover, #0891b2);
-  border-color: var(--brand-accent-hover, #0891b2);
-}
-
-.box.checked.success {
-  background-color: var(--status-success, #16a34a);
-  border-color: var(--status-success, #16a34a);
-}
-.box.checked.success:hover {
-  background-color: var(--status-success-hover, #15803d);
-  border-color: var(--status-success-hover, #15803d);
-}
-
-.box.checked.warning {
-  background-color: var(--status-warning, #eab308);
-  border-color: var(--status-warning, #eab308);
-}
-.box.checked.warning:hover {
-  background-color: var(--status-warning-hover, #ca8a04);
-  border-color: var(--status-warning-hover, #ca8a04);
-}
-
-.box.checked.error {
-  background-color: var(--status-error, #dc2626);
-  border-color: var(--status-error, #dc2626);
-}
-.box.checked.error:hover {
-  background-color: var(--status-error-hover, #b91c1c);
-  border-color: var(--status-error-hover, #b91c1c);
-}
-
-.box.checked.info {
-  background-color: var(--status-info, #3b82f6);
-  border-color: var(--status-info, #3b82f6);
-}
-.box.checked.info:hover {
-  background-color: var(--status-info-hover, #2563eb);
-  border-color: var(--status-info-hover, #2563eb);
 }
 
 /* Disabled + checked */
@@ -150,18 +87,18 @@
    ============================================ */
 
 .boxSm {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
 }
 
 .boxMd {
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
 }
 
 .boxLg {
-  width: 24px;
-  height: 24px;
+  width: var(--spacing-6, 24px);
+  height: var(--spacing-6, 24px);
 }
 
 /* ============================================
@@ -174,13 +111,13 @@
 }
 
 .iconSm {
-  width: 10px;
-  height: 10px;
+  width: var(--spacing-2-5, 10px);
+  height: var(--spacing-2-5, 10px);
 }
 
 .iconMd {
-  width: 12px;
-  height: 12px;
+  width: var(--spacing-3, 12px);
+  height: var(--spacing-3, 12px);
 }
 
 .iconLg {
@@ -198,15 +135,15 @@
    ============================================ */
 
 .gapSm {
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
 }
 
 .gapMd {
-  gap: 10px;
+  gap: var(--spacing-2-5, 10px);
 }
 
 .gapLg {
-  gap: 12px;
+  gap: var(--spacing-3, 12px);
 }
 
 /* ============================================
@@ -251,7 +188,7 @@
 .errorText {
   font-size: var(--font-size-sm, 14px);
   color: var(--status-error, #dc2626);
-  margin-top: 4px;
+  margin-top: var(--spacing-1, 4px);
 }
 
 /* ============================================

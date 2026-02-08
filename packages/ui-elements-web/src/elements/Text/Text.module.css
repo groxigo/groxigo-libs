@@ -17,24 +17,6 @@
   line-height: 1.5;
 }
 
-/* Font weights */
-.light { font-weight: var(--font-weight-light, 300); }
-.normal { font-weight: var(--font-weight-normal, 400); }
-.medium { font-weight: var(--font-weight-medium, 500); }
-.semibold { font-weight: var(--font-weight-semibold, 600); }
-.bold { font-weight: var(--font-weight-bold, 700); }
-
-/* Color schemes — using semantic tokens only */
-.colorDefault { color: var(--text-primary, #0f172a); }
-.colorPrimary { color: var(--brand-primary, #2563eb); }
-.colorSecondary { color: var(--brand-secondary, #f97316); }
-.colorAccent { color: var(--brand-accent, #06b6d4); }
-.colorSuccess { color: var(--status-success, #16a34a); }
-.colorWarning { color: var(--status-warning-text, #a16207); }
-.colorError { color: var(--status-error, #dc2626); }
-.colorInfo { color: var(--status-info, #3b82f6); }
-.colorMuted { color: var(--text-secondary, #64748b); }
-
 /* Alignment */
 .alignLeft { text-align: left; }
 .alignCenter { text-align: center; }

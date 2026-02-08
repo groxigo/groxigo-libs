@@ -24,22 +24,17 @@
 
 .xs {
   font-size: var(--font-size-xs);
-  padding: 2px 6px;
+  padding: var(--spacing-0-5, 2px) var(--spacing-1-5, 6px);
 }
 
 .sm {
   font-size: var(--font-size-xs);
-  padding: 2px 8px;
+  padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
 }
 
 .md {
   font-size: var(--font-size-sm);
-  padding: 4px 10px;
-}
-
-.lg {
-  font-size: var(--font-size-base);
-  padding: 4px 12px;
+  padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
 }
 
 /* ------------------------------------------------------------------ */
@@ -65,11 +60,6 @@
 
 .solidSecondary {
   background-color: var(--brand-secondary);
-  color: var(--text-inverse);
-}
-
-.solidAccent {
-  background-color: var(--brand-accent);
   color: var(--text-inverse);
 }
 
@@ -112,11 +102,6 @@
   color: var(--brand-secondary);
 }
 
-.outlineAccent {
-  border: 1px solid var(--brand-accent);
-  color: var(--brand-accent);
-}
-
 .outlineSuccess {
   border: 1px solid var(--status-success);
   color: var(--status-success-text);
@@ -156,11 +141,6 @@
   color: var(--brand-secondary);
 }
 
-.subtleAccent {
-  background-color: var(--status-warning-subtle);
-  color: var(--brand-accent);
-}
-
 .subtleSuccess {
   background-color: var(--color-green-50);
   color: var(--status-success-text);
@@ -198,11 +178,6 @@
 .softSecondary {
   background-color: var(--color-green-100);
   color: var(--brand-secondary);
-}
-
-.softAccent {
-  background-color: var(--color-orange-100);
-  color: var(--brand-accent);
 }
 
 .softSuccess {

@@ -31,13 +31,13 @@
 .placementTop {
   align-items: flex-start;
   justify-content: center;
-  padding-top: 64px;
+  padding-top: var(--spacing-16, 64px);
 }
 
 .placementBottom {
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 64px;
+  padding-bottom: var(--spacing-16, 64px);
 }
 
 /* ------------------------------------------------------------------ */
@@ -47,7 +47,7 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--overlay-bg, rgba(0, 0, 0, 0.5));
   transition: opacity var(--duration-normal, 200ms) ease;
   z-index: 1300;
 }
@@ -76,7 +76,7 @@
   transition:
     opacity var(--duration-normal, 200ms) ease,
     transform var(--duration-normal, 200ms) ease;
-  margin: 16px;
+  margin: var(--spacing-4, 16px);
 }
 
 .modalEntering {
@@ -158,7 +158,7 @@
 /* ------------------------------------------------------------------ */
 
 .header {
-  padding: 16px 24px;
+  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -167,7 +167,7 @@
 
 .headerContent {
   flex: 1;
-  padding-right: 32px;
+  padding-right: var(--spacing-8, 32px);
 }
 
 .headerTitle {
@@ -181,7 +181,7 @@
 /* ------------------------------------------------------------------ */
 
 .body {
-  padding: 24px;
+  padding: var(--spacing-6, 24px);
   overflow-y: auto;
 }
 
@@ -190,10 +190,10 @@
 /* ------------------------------------------------------------------ */
 
 .footer {
-  padding: 16px 24px;
+  padding: var(--spacing-4, 16px) var(--spacing-6, 24px);
   border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: var(--spacing-3, 12px);
 }

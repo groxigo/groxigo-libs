@@ -8,7 +8,7 @@
 
 import React, { forwardRef, useState, useCallback, useRef, useEffect } from 'react';
 import { clsx } from 'clsx';
-import type { SliderPropsBase, SliderSize, SliderColorScheme } from '@groxigo/contracts';
+import type { SliderPropsBase, SliderSize } from '@groxigo/contracts';
 import styles from './Slider.module.css';
 
 // ============================================
@@ -31,15 +31,6 @@ const labelSizeClass: Record<SliderSize, string> = {
   sm: styles.labelSm,
   md: styles.labelMd,
   lg: styles.labelLg,
-};
-
-const colorSchemeClass: Record<SliderColorScheme, string> = {
-  primary: styles.primary,
-  secondary: styles.secondary,
-  accent: styles.accent,
-  success: styles.success,
-  warning: styles.warning,
-  error: styles.error,
 };
 
 // ============================================
@@ -70,7 +61,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       max = 100,
       step = 1,
       size = 'md',
-      colorScheme = 'primary',
       disabled = false,
       label,
       showValue = false,
@@ -243,14 +233,14 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
     const fillClasses = clsx(
       styles.fill,
-      colorSchemeClass[colorScheme],
+      styles.primary,
       disabled && styles.fillDisabled
     );
 
     const thumbClasses = clsx(
       styles.thumb,
       thumbSizeClass[size],
-      colorSchemeClass[colorScheme],
+      styles.primary,
       disabled && styles.thumbDisabled
     );
 

@@ -8,7 +8,7 @@
  * Shadow: --shadow-2xl.
  *
  * Status colors use semantic status tokens.
- * Variants: solid, subtle, left-accent, top-accent.
+ * Variants: subtle, left-accent.
  */
 
 /* ------------------------------------------------------------------ */
@@ -26,15 +26,6 @@
   }
 }
 
-@keyframes toastSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* ------------------------------------------------------------------ */
 /*  Toast Base                                                         */
 /* ------------------------------------------------------------------ */
@@ -42,8 +33,8 @@
 .toast {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-2xl);
   min-width: 300px;
@@ -60,27 +51,13 @@
 }
 
 .iconSvg {
-  width: 20px;
-  height: 20px;
-}
-
-.spinnerSvg {
-  width: 20px;
-  height: 20px;
-  animation: toastSpin 1s linear infinite;
-}
-
-.spinnerTrack {
-  opacity: 0.25;
-}
-
-.spinnerHead {
-  opacity: 0.75;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
 }
 
 .closeIconSvg {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
 }
 
 /* ------------------------------------------------------------------ */
@@ -103,11 +80,7 @@
 
 .description {
   font-size: var(--font-size-sm);
-  margin-top: 2px;
-}
-
-.descriptionSolid {
-  opacity: 0.9;
+  margin-top: var(--spacing-0-5, 2px);
 }
 
 .descriptionSubtle {
@@ -119,7 +92,7 @@
 /* ------------------------------------------------------------------ */
 
 .actionButton {
-  margin-top: 8px;
+  margin-top: var(--spacing-2, 8px);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   text-underline-offset: 2px;
@@ -139,18 +112,6 @@
   box-shadow: 0 0 0 2px var(--border-focus);
 }
 
-.actionButtonSolid {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.actionButtonSolid:hover {
-  color: #ffffff;
-}
-
-.actionButtonSolid:focus {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-}
-
 /* ------------------------------------------------------------------ */
 /*  Close Button                                                       */
 /* ------------------------------------------------------------------ */
@@ -158,8 +119,8 @@
 .closeButton {
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  padding: 4px;
-  margin: -4px;
+  padding: var(--spacing-1, 4px);
+  margin: calc(var(--spacing-1, 4px) * -1);
   border: none;
   background: none;
   cursor: pointer;
@@ -170,19 +131,6 @@
 .closeButton:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--border-focus);
-}
-
-.closeButtonSolid {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.closeButtonSolid:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.closeButtonSolid:focus {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .closeButtonSubtle {
@@ -196,35 +144,6 @@
 
 .closeButtonSubtle:focus {
   box-shadow: 0 0 0 2px var(--border-focus);
-}
-
-/* ------------------------------------------------------------------ */
-/*  Status + Variant — Solid                                           */
-/* ------------------------------------------------------------------ */
-
-.solidSuccess {
-  background-color: var(--status-success);
-  color: var(--text-inverse);
-}
-
-.solidError {
-  background-color: var(--status-error);
-  color: var(--text-inverse);
-}
-
-.solidWarning {
-  background-color: var(--status-warning);
-  color: var(--text-primary);
-}
-
-.solidInfo {
-  background-color: var(--status-info);
-  color: var(--text-inverse);
-}
-
-.solidLoading {
-  background-color: var(--surface-tertiary);
-  color: var(--text-inverse);
 }
 
 /* ------------------------------------------------------------------ */
@@ -255,12 +174,6 @@
   border: 1px solid var(--status-info);
 }
 
-.subtleLoading {
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-}
-
 /* ------------------------------------------------------------------ */
 /*  Status + Variant — Left Accent                                     */
 /* ------------------------------------------------------------------ */
@@ -289,48 +202,8 @@
   border-left: 4px solid var(--status-info);
 }
 
-.leftAccentLoading {
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
-  border-left: 4px solid var(--border-subtle);
-}
-
 /* ------------------------------------------------------------------ */
-/*  Status + Variant — Top Accent                                      */
-/* ------------------------------------------------------------------ */
-
-.topAccentSuccess {
-  background-color: var(--status-success-subtle);
-  color: var(--text-primary);
-  border-top: 4px solid var(--status-success);
-}
-
-.topAccentError {
-  background-color: var(--status-error-subtle);
-  color: var(--text-primary);
-  border-top: 4px solid var(--status-error);
-}
-
-.topAccentWarning {
-  background-color: var(--status-warning-subtle);
-  color: var(--text-primary);
-  border-top: 4px solid var(--status-warning);
-}
-
-.topAccentInfo {
-  background-color: var(--status-info-subtle);
-  color: var(--text-primary);
-  border-top: 4px solid var(--status-info);
-}
-
-.topAccentLoading {
-  background-color: var(--surface-secondary);
-  color: var(--text-primary);
-  border-top: 4px solid var(--border-subtle);
-}
-
-/* ------------------------------------------------------------------ */
-/*  Icon Colors (for non-solid variants)                               */
+/*  Icon Colors                                                        */
 /* ------------------------------------------------------------------ */
 
 .iconSuccess {
@@ -349,12 +222,8 @@
   color: var(--status-info);
 }
 
-.iconLoading {
-  color: var(--text-secondary);
-}
-
 /* ------------------------------------------------------------------ */
-/*  Action Button — Status Colors (for non-solid variants)             */
+/*  Action Button — Status Colors                                      */
 /* ------------------------------------------------------------------ */
 
 .actionSuccess {
@@ -373,10 +242,6 @@
   color: var(--status-info);
 }
 
-.actionLoading {
-  color: var(--text-secondary);
-}
-
 /* ------------------------------------------------------------------ */
 /*  Toast Provider — Container                                         */
 /* ------------------------------------------------------------------ */
@@ -386,40 +251,40 @@
   z-index: 1700;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
   pointer-events: none;
 }
 
 .containerTop {
-  top: 16px;
+  top: var(--spacing-4, 16px);
   left: 50%;
   transform: translateX(-50%);
 }
 
 .containerTopLeft {
-  top: 16px;
-  left: 16px;
+  top: var(--spacing-4, 16px);
+  left: var(--spacing-4, 16px);
 }
 
 .containerTopRight {
-  top: 16px;
-  right: 16px;
+  top: var(--spacing-4, 16px);
+  right: var(--spacing-4, 16px);
 }
 
 .containerBottom {
-  bottom: 16px;
+  bottom: var(--spacing-4, 16px);
   left: 50%;
   transform: translateX(-50%);
 }
 
 .containerBottomLeft {
-  bottom: 16px;
-  left: 16px;
+  bottom: var(--spacing-4, 16px);
+  left: var(--spacing-4, 16px);
 }
 
 .containerBottomRight {
-  bottom: 16px;
-  right: 16px;
+  bottom: var(--spacing-4, 16px);
+  right: var(--spacing-4, 16px);
 }
 
 .toastWrapper {

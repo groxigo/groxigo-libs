@@ -5,8 +5,8 @@
 import type { ReactNode } from 'react';
 
 export type BadgeVariant = 'solid' | 'outline' | 'subtle' | 'soft';
-export type BadgeColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
-export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
+export type BadgeColorScheme = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'neutral';
+export type BadgeSize = 'xs' | 'sm' | 'md';
 
 export interface BadgePropsBase {
   /** Badge variant @default 'subtle' */

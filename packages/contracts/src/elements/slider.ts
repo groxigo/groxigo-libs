@@ -5,8 +5,6 @@
  */
 
 export type SliderSize = 'sm' | 'md' | 'lg';
-export type SliderColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error';
-export type SliderOrientation = 'horizontal' | 'vertical';
 
 /**
  * Base Slider props that all platforms must support
@@ -24,10 +22,6 @@ export interface SliderPropsBase {
   step?: number;
   /** Slider size @default 'md' */
   size?: SliderSize;
-  /** Color scheme @default 'primary' */
-  colorScheme?: SliderColorScheme;
-  /** Slider orientation @default 'horizontal' */
-  orientation?: SliderOrientation;
   /** Whether the slider is disabled */
   disabled?: boolean;
   /** Whether to show value tooltip */

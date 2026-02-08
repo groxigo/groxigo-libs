@@ -13,8 +13,6 @@ import styles from './Link.module.css';
 const colorSchemeClassMap: Record<LinkColorScheme, string> = {
   default: styles.colorDefault,
   primary: styles.colorPrimary,
-  secondary: styles.colorSecondary,
-  accent: styles.colorAccent,
   muted: styles.colorMuted,
 };
 
@@ -22,7 +20,6 @@ const colorSchemeClassMap: Record<LinkColorScheme, string> = {
 const sizeClassMap: Record<LinkSize, string> = {
   sm: styles.sm,
   md: styles.md,
-  lg: styles.lg,
 };
 
 // Underline variant classes

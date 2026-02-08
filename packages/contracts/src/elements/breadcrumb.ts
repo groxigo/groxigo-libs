@@ -39,7 +39,7 @@ export interface BreadcrumbPropsBase {
   /** Spacing between items */
   spacing?: number;
   /** Font size */
-  fontSize?: 'sm' | 'md' | 'lg';
+  fontSize?: 'sm' | 'md';
   /** Additional CSS class (web only) */
   className?: string;
   /** Test ID for testing */

@@ -7,8 +7,6 @@
 import type { ReactNode } from 'react';
 
 export type SwitchSize = 'sm' | 'md' | 'lg';
-export type SwitchColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error';
-
 /**
  * Base Switch props that all platforms must support
  */
@@ -19,8 +17,6 @@ export interface SwitchPropsBase {
   defaultChecked?: boolean;
   /** Switch size @default 'md' */
   size?: SwitchSize;
-  /** Color scheme when on @default 'primary' */
-  colorScheme?: SwitchColorScheme;
   /** Whether the switch is disabled */
   disabled?: boolean;
   /** Whether the switch is required */

@@ -5,7 +5,7 @@
 import type { ReactNode } from 'react';
 
 export type InputVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
-export type InputSize = 'xs' | 'sm' | 'md' | 'lg';
+export type InputSize = 'sm' | 'md' | 'lg';
 
 /**
  * Base Input props that all platforms must support

@@ -6,9 +6,9 @@
 
 import type { ReactNode } from 'react';
 
-export type ToastStatus = 'info' | 'success' | 'warning' | 'error' | 'loading';
+export type ToastStatus = 'info' | 'success' | 'warning' | 'error';
 export type ToastPosition = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right';
-export type ToastVariant = 'solid' | 'subtle' | 'left-accent' | 'top-accent';
+export type ToastVariant = 'subtle' | 'left-accent';
 
 /**
  * Toast options for creating a toast
@@ -22,7 +22,7 @@ export interface ToastOptions {
   description?: string;
   /** Toast status @default 'info' */
   status?: ToastStatus;
-  /** Toast variant @default 'solid' */
+  /** Toast variant @default 'subtle' */
   variant?: ToastVariant;
   /** Toast position @default 'bottom' */
   position?: ToastPosition;
@@ -71,8 +71,6 @@ export interface UseToastReturn {
   warning: (options: Omit<ToastOptions, 'status'>) => string;
   /** Show error toast */
   error: (options: Omit<ToastOptions, 'status'>) => string;
-  /** Show loading toast */
-  loading: (options: Omit<ToastOptions, 'status'>) => string;
   /** Update an existing toast */
   update: (id: string, options: Partial<ToastOptions>) => void;
   /** Close a specific toast */

@@ -8,9 +8,7 @@
 // Text
 export type {
   TextVariant,
-  TextWeight,
   TextAlign,
-  TextColorScheme,
   TextPropsBase,
 } from './text';
 
@@ -56,7 +54,6 @@ export type {
 // Spinner
 export type {
   SpinnerSize,
-  SpinnerColorScheme,
   SpinnerPropsBase,
 } from './spinner';
 
@@ -85,7 +82,6 @@ export type {
 // Checkbox
 export type {
   CheckboxSize,
-  CheckboxColorScheme,
   CheckboxPropsBase,
   CheckboxGroupPropsBase,
 } from './checkbox';
@@ -93,7 +89,6 @@ export type {
 // Radio
 export type {
   RadioSize,
-  RadioColorScheme,
   RadioPropsBase,
   RadioGroupPropsBase,
 } from './radio';
@@ -101,7 +96,6 @@ export type {
 // Switch
 export type {
   SwitchSize,
-  SwitchColorScheme,
   SwitchPropsBase,
 } from './switch';
 
@@ -123,17 +117,13 @@ export type {
 // Progress
 export type {
   ProgressSize,
-  ProgressColorScheme,
   ProgressVariant,
   ProgressPropsBase,
-  CircularProgressPropsBase,
 } from './progress';
 
 // Slider
 export type {
   SliderSize,
-  SliderColorScheme,
-  SliderOrientation,
   SliderPropsBase,
   RangeSliderPropsBase,
 } from './slider';
@@ -163,8 +153,6 @@ export type {
 export type {
   TabsVariant,
   TabsSize,
-  TabsColorScheme,
-  TabsOrientation,
   TabsAlign,
   TabItem,
   TabsPropsBase,

@@ -22,7 +22,12 @@ export type SectionComponentType =
   | 'DealSection'
   | 'RecipeSection'
   | 'RecipeCategorySection'
-  | 'RecipeTagSection';
+  | 'RecipeTagSection'
+  // Landing page section types
+  | 'HeroSection'
+  | 'StepSection'
+  | 'PillarSection'
+  | 'TrustBarSection';
 
 /**
  * Display type options for sections
@@ -32,7 +37,9 @@ export type SectionDisplayType =
   | 'grid'
   | 'grid_grouped'
   | 'list'
-  | 'chips';
+  | 'chips'
+  | 'full_width'
+  | 'inline';
 
 /**
  * Item type that a section renders
@@ -46,7 +53,11 @@ export type SectionItemType =
   | 'deal'
   | 'recipe'
   | 'recipe_category'
-  | 'recipe_tag';
+  | 'recipe_tag'
+  | 'hero'
+  | 'step'
+  | 'pillar'
+  | 'trust_stat';
 
 /**
  * Component metadata for admin UI and documentation
@@ -177,6 +188,51 @@ export const SECTION_COMPONENTS: Record<SectionComponentType, SectionComponentMe
     supportsTitle: true,
     icon: 'pricetags-outline',
   },
+  // Landing page section types
+  HeroSection: {
+    type: 'HeroSection',
+    name: 'Hero Section',
+    description: 'Full-bleed hero banner with headline, email capture, and CTA',
+    itemType: 'hero',
+    supportedDisplayTypes: ['full_width'],
+    defaultDisplayType: 'full_width',
+    supportsSeeAll: false,
+    supportsTitle: false,
+    icon: 'star-outline',
+  },
+  StepSection: {
+    type: 'StepSection',
+    name: 'Step Section',
+    description: 'Displays "How It Works" steps with icons and descriptions',
+    itemType: 'step',
+    supportedDisplayTypes: ['grid', 'inline'],
+    defaultDisplayType: 'inline',
+    supportsSeeAll: false,
+    supportsTitle: true,
+    icon: 'list-outline',
+  },
+  PillarSection: {
+    type: 'PillarSection',
+    name: 'Pillar Section',
+    description: 'Displays value proposition pillar cards with images and CTAs',
+    itemType: 'pillar',
+    supportedDisplayTypes: ['grid', 'carousel'],
+    defaultDisplayType: 'grid',
+    supportsSeeAll: false,
+    supportsTitle: true,
+    icon: 'shield-outline',
+  },
+  TrustBarSection: {
+    type: 'TrustBarSection',
+    name: 'Trust Bar Section',
+    description: 'Horizontal bar of trust stats (delivery speed, satisfaction, etc.)',
+    itemType: 'trust_stat',
+    supportedDisplayTypes: ['inline'],
+    defaultDisplayType: 'inline',
+    supportsSeeAll: false,
+    supportsTitle: false,
+    icon: 'checkmark-circle-outline',
+  },
 };
 
 /**
@@ -224,6 +280,10 @@ export const LEGACY_SECTION_TYPE_MAP: Record<string, SectionComponentType> = {
   recipes: 'RecipeSection',
   recipe_categories: 'RecipeCategorySection',
   recipe_tags: 'RecipeTagSection',
+  hero: 'HeroSection',
+  steps: 'StepSection',
+  pillars: 'PillarSection',
+  trust_bar: 'TrustBarSection',
 };
 
 /**

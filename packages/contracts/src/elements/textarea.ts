@@ -5,7 +5,7 @@
  */
 
 export type TextAreaSize = 'sm' | 'md' | 'lg';
-export type TextAreaVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
+export type TextAreaVariant = 'outline' | 'filled' | 'flushed';
 export type TextAreaResize = 'none' | 'vertical' | 'horizontal' | 'both';
 
 /**

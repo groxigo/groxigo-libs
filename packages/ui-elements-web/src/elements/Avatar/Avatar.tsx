@@ -23,7 +23,6 @@ const sizeConfig: Record<AvatarSize, { container: string; text: string; badge: s
 // Variant (shape) configuration
 const variantClassMap: Record<AvatarVariant, string> = {
   circle: styles.circle,
-  rounded: styles.rounded,
   square: styles.square,
 };
 

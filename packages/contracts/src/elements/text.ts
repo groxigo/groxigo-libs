@@ -21,20 +21,7 @@ export type TextVariant =
   | 'label'
   | 'overline';
 
-export type TextWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
-
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
-
-export type TextColorScheme =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'info'
-  | 'muted';
 
 /**
  * Base Text props that all platforms must support
@@ -58,13 +45,9 @@ export type TextColorScheme =
 export interface TextPropsBase {
   /** Text variant (typography style) @default 'body' */
   variant?: TextVariant;
-  /** Font weight @default 'normal' */
-  weight?: TextWeight;
   /** Text alignment */
   align?: TextAlign;
-  /** Color scheme for the text @default 'default' */
-  colorScheme?: TextColorScheme;
-  /** Direct color override (takes precedence over colorScheme) */
+  /** Direct color override */
   color?: string;
   /** Whether text should be truncated with ellipsis */
   truncate?: boolean;
