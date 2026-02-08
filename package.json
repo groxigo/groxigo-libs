@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Groxigo Libraries Monorepo - Shared packages for iOS, Android, and Web",
-  "packageManager": "bun@1.1.45",
+  "packageManager": "bun@1.3.5",
   "workspaces": [
     "packages/*",
     "apps/*"
