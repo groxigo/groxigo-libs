@@ -1,0 +1,105 @@
+/* PointsCard — brand-primary background, white text, progress bar */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+  padding: var(--spacing-5, 20px);
+  background: var(--brand-primary, #2563eb);
+  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+  max-width: 343px;
+  overflow: hidden;
+  color: var(--text-inverse, #ffffff);
+}
+
+/* Top row: "My Points" label + tier */
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.tier {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  opacity: 0.8;
+}
+
+/* Points display */
+.pointsDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0\.5, 2px);
+  width: 100%;
+}
+
+.pointsValue {
+  font-size: var(--font-size-4xl, 36px);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.1;
+}
+
+.pointsUnit {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  opacity: 0.8;
+}
+
+/* Progress section */
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1\.5, 6px);
+  width: 100%;
+}
+
+.progressBar {
+  width: 100%;
+}
+
+.progressLabel {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  opacity: 0.8;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  width: 100%;
+  align-items: center;
+}
+
+.historyLink {
+  background: none;
+  border: none;
+  color: var(--text-inverse, #ffffff);
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  cursor: pointer;
+  padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
+  opacity: 0.9;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.historyLink:hover {
+  opacity: 1;
+}
+
+.historyLink:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--brand-primary, #2563eb),
+    0 0 0 4px var(--text-inverse, #ffffff);
+  border-radius: var(--radius-xs, 4px);
+}

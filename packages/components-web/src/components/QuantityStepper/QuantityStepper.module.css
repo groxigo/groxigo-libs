@@ -1,0 +1,92 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-primary, #2563eb);
+  color: var(--text-inverse, #ffffff);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* Add button — medium */
+.addMd {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xl, 14px);
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* Add button — small */
+.addSm {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* Add button — large */
+.addLg {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xl, 14px);
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* Stepper container */
+.stepper {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-1, 4px);
+  border-radius: var(--radius-md, 8px);
+  gap: 0;
+}
+
+/* Stepper buttons (- and +) */
+.stepperButton {
+  width: 24px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 0;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.stepperButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-xs, 4px);
+}
+
+/* Stepper count display */
+.stepperCount {
+  width: 24px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  user-select: none;
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

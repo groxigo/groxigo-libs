@@ -1,0 +1,130 @@
+/* DeliverySlotPicker — date chips + time slot selector */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ── Date chips row ── */
+
+.dates {
+  display: flex;
+  gap: var(--spacing-2, 8px);
+  align-items: flex-start;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: var(--spacing-0, 0px);
+}
+
+.dates::-webkit-scrollbar {
+  display: none;
+}
+
+.dateChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-0, 0px);
+  width: 56px;
+  flex-shrink: 0;
+  padding: var(--spacing-2-5, 10px) var(--spacing-2, 8px);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.dateChipDefault {
+  /* Handled by Button variant="outline" */
+}
+
+.dateChipSelected {
+  /* Handled by Button variant="solid" */
+}
+
+.dateDay {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: normal;
+}
+
+.dateNumber {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+.dateMonth {
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-normal, 400);
+  line-height: normal;
+}
+
+/* Text color utilities */
+.textPrimary {
+  color: var(--text-primary, #334155);
+}
+
+.textSecondary {
+  color: var(--text-secondary, #475569);
+}
+
+.textInverse {
+  color: var(--text-inverse, #ffffff);
+}
+
+/* ── Time slots ── */
+
+.timeSlots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2, 8px);
+  align-items: flex-start;
+  width: 100%;
+  overflow: hidden;
+}
+
+.timeSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2-5, 10px) var(--spacing-3-5, 14px);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.timeSlotDefault {
+  /* Handled by Button variant="outline" */
+}
+
+.timeSlotSelected {
+  /* Handled by Button variant="solid" */
+}
+
+.timeSlotDisabled {
+  opacity: 1;
+}
+
+.timeLabel {
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.timeLabelDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #334155);
+}
+
+.timeLabelSelected {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--brand-primary, #2563eb);
+}
+
+.timeLabelDisabled {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-disabled, #94a3b8);
+}

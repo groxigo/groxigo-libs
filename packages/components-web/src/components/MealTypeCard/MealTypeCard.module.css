@@ -1,0 +1,53 @@
+/* MealTypeCard -- vertical icon + label button for meal type selection */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+  align-items: center;
+  width: 80px;
+  box-sizing: border-box;
+}
+
+/* ── Icon circle ── */
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--brand-primary-subtle, #eff6ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: var(--transition-colors, background-color 150ms ease, color 150ms ease, border-color 150ms ease);
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.iconCircleSelected {
+  background: var(--brand-primary, #2563eb);
+  border-color: var(--brand-primary, #2563eb);
+}
+
+/* ── Emoji / icon text ── */
+
+.emoji {
+  font-size: var(--font-size-2xl, 24px);
+  line-height: normal;
+}
+
+/* ── Label ── */
+
+.label {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  text-align: center;
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}

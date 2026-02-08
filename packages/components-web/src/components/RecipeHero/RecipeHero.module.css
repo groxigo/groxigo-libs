@@ -1,0 +1,84 @@
+/* RecipeHero -- full-width hero image with gradient overlay and text */
+
+.root {
+  position: relative;
+  width: 100%;
+  height: 193px;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 10px);
+  box-sizing: border-box;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+.gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+  pointer-events: none;
+}
+
+.textOverlay {
+  position: absolute;
+  bottom: var(--spacing-4, 16px);
+  left: var(--spacing-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+}
+
+.title {
+  font-weight: var(--font-weight-bold, 700);
+  font-size: var(--font-size-xxl, 22px);
+  color: var(--text-inverse, #ffffff);
+  line-height: 26px;
+  margin: 0;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.meta {
+  display: flex;
+  gap: var(--spacing-4, 16px);
+  align-items: center;
+}
+
+.metaItem {
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-inverse, #ffffff);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.rating {
+  display: flex;
+  gap: var(--spacing-1, 4px);
+  align-items: center;
+}
+
+.starIcon {
+  width: 13px;
+  height: 13px;
+  color: var(--status-warning, #eab308);
+}
+
+.ratingValue {
+  font-weight: var(--font-weight-medium, 500);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--status-warning, #eab308);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}

@@ -1,0 +1,50 @@
+/* InstructionStep -- numbered step with instruction text and optional image */
+
+.root {
+  display: flex;
+  gap: var(--spacing-3, 12px);
+  align-items: flex-start;
+  padding: var(--spacing-3, 12px) 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stepNumber {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xl, 14px);
+  background: var(--brand-primary, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepNumberText {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-inverse, #ffffff);
+  line-height: normal;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.instruction {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #0f172a);
+  line-height: 20px;
+  margin: 0;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.image {
+  width: 100%;
+  border-radius: var(--radius-md, 8px);
+  margin-top: var(--spacing-2, 8px);
+  display: block;
+}

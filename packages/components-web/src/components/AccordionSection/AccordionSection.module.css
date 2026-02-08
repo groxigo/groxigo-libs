@@ -1,0 +1,51 @@
+/* AccordionSection — collapsible/expandable content section */
+
+.root {
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3, 12px) 0;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.title {
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+  margin: 0;
+}
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  color: var(--text-secondary, #475569);
+  transition: transform var(--duration-fast, 150ms);
+}
+
+.chevronExpanded {
+  transform: rotate(180deg);
+}
+
+.content {
+  overflow: hidden;
+  padding: var(--spacing-2, 8px) 0 var(--spacing-4, 16px) 0;
+}
+
+.contentCollapsed {
+  display: none;
+}
+
+.contentText {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-secondary, #475569);
+  line-height: 20px;
+}

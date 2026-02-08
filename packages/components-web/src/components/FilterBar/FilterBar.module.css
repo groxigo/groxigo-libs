@@ -1,0 +1,66 @@
+/* FilterBar -- horizontal scrollable row of filter chip buttons */
+
+.root {
+  display: flex;
+  gap: var(--spacing-2, 8px);
+  align-items: flex-start;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  -webkit-overflow-scrolling: touch;
+}
+
+.root::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Chip ---------- */
+
+.chip {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Selected chip */
+.chipSelected {
+}
+
+/* Default chip */
+.chipDefault {
+}
+
+/* ---------- Chip Label ---------- */
+
+.chipLabel {
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.chipLabelSelected {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-inverse, #ffffff);
+}
+
+.chipLabelDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #334155);
+}
+
+/* ---------- Chip Count Badge ---------- */
+
+.chipCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 var(--spacing-0-5, 2px);
+  border-radius: var(--radius-md, 8px);
+  background: var(--surface-primary, #ffffff);
+  color: var(--text-primary, #334155);
+  font-size: 10px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}

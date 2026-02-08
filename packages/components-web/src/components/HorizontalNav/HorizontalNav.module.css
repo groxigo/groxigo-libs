@@ -1,0 +1,58 @@
+/* ───── HorizontalNav ───── */
+
+.root {
+  display: flex;
+  align-items: center;
+  background: var(--surface-primary, #ffffff);
+  height: 44px;
+  padding-left: var(--spacing-4, 16px);
+  padding-right: var(--spacing-4, 16px);
+  width: 100%;
+}
+
+/* Scrollable row */
+.scrollContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual nav item (pill chip) */
+.navItem {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Active state */
+.navItemActive {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* Inactive state */
+.navItemInactive {
+  font-weight: var(--font-weight-normal, 400);
+}
+
+/* Icon wrapper */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm, 14px);
+  flex-shrink: 0;
+}
+
+/* Label text */
+.label {
+  line-height: normal;
+}
+
+/* Badge is now rendered via Badge primitive from @groxigo/ui-elements-web */

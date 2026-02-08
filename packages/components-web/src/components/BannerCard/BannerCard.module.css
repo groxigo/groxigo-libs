@@ -1,0 +1,119 @@
+/* BannerCard — promotional banner with gradient background, image, and CTA */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 10px);
+  cursor: pointer;
+  width: 100%;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.root:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+}
+
+.rootSm {
+  height: 120px;
+}
+
+.rootMd {
+  height: 180px;
+}
+
+.rootLg {
+  height: 400px;
+}
+
+/* Gradient background layer */
+.background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--gradient-from, #2663eb),
+    var(--gradient-to, #528cfc)
+  );
+}
+
+/* Optional background image overlay */
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Content positioned absolutely over the background */
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+}
+
+.contentSm {
+  left: var(--spacing-4, 16px);
+  top: var(--spacing-4, 16px);
+}
+
+.contentMd {
+  left: var(--spacing-4, 16px);
+  top: var(--spacing-4, 16px);
+}
+
+.contentLg {
+  left: var(--spacing-10, 40px);
+  top: 80px;
+}
+
+/* Title text */
+.title {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-inverse, #ffffff);
+  line-height: normal;
+  margin: var(--spacing-0, 0px);
+  padding: var(--spacing-0, 0px);
+}
+
+.titleSm {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.titleMd {
+  font-size: var(--font-size-lg, 18px);
+}
+
+.titleLg {
+  font-size: var(--font-size-3xl, 30px);
+}
+
+/* Subtitle text */
+.subtitle {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-inverse, #ffffff);
+  line-height: normal;
+  margin: var(--spacing-0, 0px);
+  padding: var(--spacing-0, 0px);
+}
+
+.subtitleSm {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.subtitleMd {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.subtitleLg {
+  font-size: var(--font-size-lg, 18px);
+}
+
+/* CTA button wrapper */
+.ctaWrapper {
+  padding-top: var(--spacing-2, 8px);
+}
+

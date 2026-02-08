@@ -1,0 +1,55 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+}
+
+/* Price text — shared base */
+.price {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+}
+
+/* Price sizes */
+.priceSm {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.priceMd {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.priceLg {
+  font-size: var(--font-size-base, 16px);
+}
+
+.priceXl {
+  font-size: var(--font-size-xl, 20px);
+}
+
+/* Original price — shared base */
+.originalPrice {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-tertiary, #64748b);
+  text-decoration: line-through;
+}
+
+/* Original price sizes */
+.originalPriceSm {
+  font-size: var(--font-size-2xs, 10px);
+}
+
+.originalPriceMd {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.originalPriceLg {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.originalPriceXl {
+  font-size: var(--font-size-base, 16px);
+}
+
+/* Discount badge is now rendered via Badge primitive from @groxigo/ui-elements-web */

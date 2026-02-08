@@ -1,0 +1,61 @@
+/* SectionHeader — section title with optional subtitle and "See all" action */
+
+.root {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.titleArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0.5, 2px);
+  min-width: 0;
+}
+
+.title {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+  margin: var(--spacing-0, 0px);
+  padding: var(--spacing-0, 0px);
+}
+
+/* Title size variants based on titleVariant */
+.titleH1 {
+  font-size: var(--font-size-4xl, 36px);
+}
+
+.titleH2 {
+  font-size: var(--font-size-2xl, 24px);
+}
+
+.titleH3 {
+  font-size: var(--font-size-lg, 18px);
+}
+
+.titleH4 {
+  font-size: var(--font-size-base, 16px);
+}
+
+.titleH5 {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.titleH6 {
+  font-size: var(--font-size-xs, 12px);
+}
+
+.subtitle {
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-secondary, #475569);
+  margin: var(--spacing-0, 0px);
+  padding: var(--spacing-0, 0px);
+  line-height: var(--line-height-normal, 1.5);
+}
+
+.seeAllChevron {
+  font-weight: var(--font-weight-medium, 500);
+}

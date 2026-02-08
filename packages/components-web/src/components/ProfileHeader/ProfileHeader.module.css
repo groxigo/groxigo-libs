@@ -1,0 +1,85 @@
+/* ProfileHeader — user profile card with avatar, info, and edit action */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+  padding: var(--spacing-4, 16px);
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+/* ── Avatar ── */
+
+.avatar {
+  flex-shrink: 0;
+}
+
+/* ── Content ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.name {
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.phone {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-tertiary, #64748b);
+  line-height: normal;
+}
+
+/* ── Edit button ── */
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  transition: color var(--duration-fast, 150ms) ease;
+}
+
+.editButton:hover {
+  color: var(--brand-primary, #2563eb);
+}
+
+.editButton:focus-visible {
+  outline: 2px solid var(--border-focus, #3b82f6);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs, 4px);
+}

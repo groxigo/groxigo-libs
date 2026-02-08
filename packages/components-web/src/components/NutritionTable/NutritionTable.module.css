@@ -1,0 +1,170 @@
+/* NutritionTable -- FDA-style nutrition facts panel */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--spacing-4, 16px);
+  background: var(--surface-primary, #ffffff);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+}
+
+/* Title row */
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--spacing-2, 8px);
+  border-bottom: 2px solid var(--text-primary, #334155);
+}
+
+.title {
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+}
+
+/* Serving info rows */
+.servingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  overflow: hidden;
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.servingLabel {
+  color: var(--text-secondary, #475569);
+  font-weight: var(--font-weight-normal, 400);
+}
+
+.servingValue {
+  color: var(--text-primary, #334155);
+  font-weight: var(--font-weight-normal, 400);
+}
+
+/* Thick divider between serving info and calories */
+.thickDivider {
+  width: 100%;
+  height: 8px;
+  background: var(--text-primary, #334155);
+  flex-shrink: 0;
+}
+
+/* Calories row */
+.caloriesRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+  overflow: hidden;
+}
+
+.caloriesLabel {
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.caloriesValue {
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* % Daily Value header */
+.dailyValueHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+}
+
+.dailyValueText {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+}
+
+/* Nutrient rows */
+.nutrientRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+  overflow: hidden;
+}
+
+/* Bold rows get a thicker top border */
+.boldRow {
+  border-top: 2px solid var(--text-primary, #334155);
+}
+
+/* Indented sub-nutrient rows */
+.indented {
+  padding-left: var(--spacing-4, 16px);
+}
+
+.nutrientLabel {
+  color: var(--text-primary, #334155);
+  font-weight: var(--font-weight-medium, 500);
+  flex: 1;
+}
+
+.boldText {
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.indentedText {
+  color: var(--text-secondary, #475569);
+  font-weight: var(--font-weight-normal, 400);
+}
+
+.nutrientValue {
+  color: var(--text-primary, #334155);
+  font-weight: var(--font-weight-normal, 400);
+  margin-left: var(--spacing-2, 8px);
+}
+
+.dailyValue {
+  color: var(--text-primary, #334155);
+  font-weight: var(--font-weight-bold, 700);
+  margin-left: var(--spacing-2, 8px);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Thin divider above vitamins */
+.thinDivider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle, #e2e8f0);
+  flex-shrink: 0;
+}
+
+/* Vitamins row */
+.vitaminsRow {
+  display: flex;
+  gap: var(--spacing-4, 16px);
+  align-items: flex-start;
+  padding: 6px 0;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.vitaminItem {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  flex-shrink: 0;
+}

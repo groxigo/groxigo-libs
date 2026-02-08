@@ -1,0 +1,68 @@
+/* DietaryPreferenceChip -- toggleable pill for dietary preferences */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-2-5, 10px) var(--spacing-4, 16px);
+  border-radius: var(--radius-lg, 10px);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  box-sizing: border-box;
+}
+
+/* ---------- States ---------- */
+
+/* Selected: brand subtle bg, brand border */
+.selected {
+  background: var(--brand-primary-subtle, #eff6ff);
+  border: 2px solid var(--brand-primary, #2563eb);
+}
+
+/* Default: white bg, gray border */
+.default {
+  background: var(--surface-primary, #ffffff);
+  border: 1px solid var(--border-default, #cbd5e1);
+}
+
+/* ---------- Icon / Emoji ---------- */
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base, 16px);
+  line-height: 1;
+}
+
+/* ---------- Label ---------- */
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.labelSelected {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--brand-primary, #2563eb);
+}
+
+.labelDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #334155);
+}
+
+/* ---------- Check Icon ---------- */
+
+.checkIcon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-primary, #2563eb);
+}

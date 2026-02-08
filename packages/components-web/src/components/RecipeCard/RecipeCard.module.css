@@ -1,0 +1,147 @@
+/* RecipeCard -- image + info card for recipes */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg, 10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--card-bg, #ffffff);
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  box-sizing: border-box;
+  transition: var(--transition-all, all 200ms ease);
+}
+
+.root:hover {
+  box-shadow: var(--card-shadow-hover, 0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+.root:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+  outline: none;
+}
+
+/* ── Size variants ── */
+
+.rootMd {
+  width: 280px;
+}
+
+.rootSm {
+  width: 200px;
+}
+
+/* ── Image section ── */
+
+.imageSection {
+  width: 100%;
+  background: var(--surface-secondary, #f8fafc);
+  position: relative;
+  overflow: hidden;
+}
+
+.imageMd {
+  height: 157px;
+}
+
+.imageSm {
+  height: 112px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+/* Timer tag overlapping bottom-left of image */
+.timerTag {
+  position: absolute;
+  bottom: 0;
+  left: var(--spacing-2, 8px);
+}
+
+/* Timer badge is now rendered via Badge primitive from @groxigo/ui-elements-web */
+
+/* ── Info section ── */
+
+.info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.infoMd {
+  padding: var(--spacing-3, 12px);
+  gap: var(--spacing-2, 8px);
+}
+
+.infoSm {
+  padding: var(--spacing-2, 8px);
+  gap: var(--spacing-1-5, 6px);
+}
+
+/* ── Title ── */
+
+.title {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #0f172a);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  line-height: var(--line-height-tight, 1.25);
+}
+
+.titleMd {
+  font-size: var(--font-size-base, 16px);
+}
+
+.titleSm {
+  font-size: var(--font-size-sm, 14px);
+}
+
+/* ── Meta row (time, difficulty, servings) ── */
+
+.meta {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+}
+
+.metaMd {
+  gap: var(--spacing-3, 12px);
+}
+
+.metaSm {
+  gap: var(--spacing-2, 8px);
+}
+
+.metaItem {
+  white-space: nowrap;
+}
+
+.metaSeparator {
+  color: var(--text-tertiary, #64748b);
+}
+
+/* ── Tags row ── */
+
+.tags {
+  display: flex;
+  gap: var(--spacing-1-5, 6px);
+  flex-wrap: wrap;
+}

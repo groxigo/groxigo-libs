@@ -1,0 +1,54 @@
+/* VariantSelector — horizontal pill-based variant picker */
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2, 8px);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  border-radius: var(--radius-full, 9999px);
+  box-sizing: border-box;
+}
+
+.optionDefault {
+  /* Handled by Button variant="outline" */
+}
+
+.optionSelected {
+  /* Handled by Button variant="solid" */
+}
+
+.optionLabel {
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.optionLabelDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #0f172a);
+}
+
+.optionLabelSelected {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--brand-primary, #2563eb);
+}
+
+.optionPrice {
+  font-size: var(--font-size-xs, 12px);
+  line-height: normal;
+}
+
+.optionPriceDefault {
+  color: var(--text-secondary, #475569);
+}
+
+.optionPriceSelected {
+  color: var(--brand-primary, #2563eb);
+}

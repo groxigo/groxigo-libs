@@ -1,0 +1,42 @@
+/* PaginationBar -- horizontal row of page number buttons */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+/* ---------- Page Buttons ---------- */
+
+.pageBtn {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* Active page highlight */
+.pageBtnActive {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* Navigation (prev/next) buttons */
+.navButton {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* ---------- Ellipsis ---------- */
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--text-tertiary, #64748b);
+  font-weight: var(--font-weight-normal, 400);
+  user-select: none;
+}

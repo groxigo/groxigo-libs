@@ -1,0 +1,71 @@
+/* AddressCard — selectable address with radio, info, and actions */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  border-radius: var(--radius-lg, 10px);
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  transition: background-color var(--duration-fast, 150ms) ease,
+    border-color var(--duration-fast, 150ms) ease;
+}
+
+.rootDefault {
+  background: transparent;
+  border: 1px solid var(--border-default, #cbd5e1);
+}
+
+.rootSelected {
+  background: var(--surface-secondary, #f8fafc);
+  border: 2px solid var(--brand-primary, #2563eb);
+}
+
+/* ── Radio ── */
+
+.radio {
+  flex-shrink: 0;
+}
+
+/* ── Content ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5, 2px);
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.label {
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #334155);
+}
+
+.addressLine {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+}
+
+/* ── Actions ── */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.actionButton {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  text-align: left;
+}

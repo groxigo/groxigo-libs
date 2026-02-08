@@ -1,0 +1,38 @@
+/* CategoryChip — pill-shaped category filter chip */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1-5, 6px);
+  padding: var(--spacing-2, 8px) var(--spacing-3-5, 14px);
+  border-radius: var(--radius-full, 9999px);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  box-sizing: border-box;
+}
+
+.default {
+}
+
+.selected {
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: normal;
+}
+
+.labelDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #0f172a);
+}
+
+.labelSelected {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-inverse, #ffffff);
+}

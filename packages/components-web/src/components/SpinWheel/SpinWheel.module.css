@@ -1,0 +1,109 @@
+/* ───── SpinWheel ───── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+  width: 280px;
+}
+
+/* ── Pointer ── */
+.pointer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Wheel container ── */
+.wheelContainer {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Outer ring (brand-primary border) */
+.outerRing {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full, 9999px);
+  border: 4px solid var(--brand-primary, #2563eb);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Inner wheel (conic-gradient applied via inline style) */
+.wheel {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 232px;
+  height: 232px;
+  border-radius: var(--radius-full, 9999px);
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.wheelSpinning {
+  /* Additional spinning indication if needed */
+}
+
+/* Divider lines */
+.divider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 1px;
+  background: var(--border-subtle, #e2e8f0);
+  transform-origin: left center;
+}
+
+/* Segment labels */
+.segmentLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-bold, 700);
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: normal;
+  transform-origin: center center;
+  margin-top: -6px;
+  margin-left: -20px;
+}
+
+/* Center hub */
+.centerHub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  border-radius: var(--radius-full, 9999px);
+  z-index: 2;
+}
+
+.spinLabel {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-inverse, #ffffff);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+/* Remaining spins text */
+.remainingText {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  text-align: center;
+  line-height: normal;
+  margin: 0;
+}

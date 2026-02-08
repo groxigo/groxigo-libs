@@ -1,0 +1,102 @@
+/* CuisineCard -- square card with image, dark overlay, centered text */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 10px);
+  cursor: pointer;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.root:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+  outline: none;
+}
+
+/* ── Size variants ── */
+
+.rootMd {
+  width: 120px;
+  height: 120px;
+}
+
+.rootSm {
+  width: 90px;
+  height: 90px;
+}
+
+/* ── Image ── */
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-secondary, #f8fafc);
+}
+
+/* ── Dark overlay ── */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* ── Centered text group ── */
+
+.textGroup {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-0-5, 2px);
+  padding: var(--spacing-1, 4px);
+}
+
+/* ── Name ── */
+
+.name {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-inverse, #ffffff);
+  text-align: center;
+  line-height: var(--line-height-tight, 1.25);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.nameMd {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.nameSm {
+  font-size: var(--font-size-xs, 12px);
+}
+
+/* ── Recipe count ── */
+
+.recipeCount {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--surface-primary, #ffffff);
+  text-align: center;
+  line-height: normal;
+  opacity: 0.9;
+}

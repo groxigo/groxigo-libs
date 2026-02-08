@@ -1,0 +1,104 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ── Step group: connector + step ── */
+.stepGroup {
+  display: flex;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+/* First step has no connector, just the circle */
+.stepGroup:first-child {
+  flex: 0 0 auto;
+}
+
+/* ── Connector ── */
+.connectorWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.connectorLine {
+  flex: 1 0 0;
+  height: 2px;
+  min-width: 0;
+}
+
+.connectorCompleted {
+  background: var(--status-success, #16a34a);
+}
+
+.connectorInactive {
+  background: var(--border-default, #cbd5e1);
+}
+
+/* ── Step (circle + label) ── */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  width: 60px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ── Circle — base ── */
+.circle {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xl, 14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ── Circle — completed (green with check) ── */
+.circleCompleted {
+  background: var(--status-success, #16a34a);
+  color: var(--text-inverse, #ffffff);
+}
+
+/* ── Circle — active (brand primary with number) ── */
+.circleActive {
+  background: var(--brand-primary, #2563eb);
+  color: var(--text-inverse, #ffffff);
+}
+
+/* ── Circle — inactive / future ── */
+.circleInactive {
+  background: var(--surface-secondary, #f8fafc);
+  color: var(--text-tertiary, #64748b);
+}
+
+/* ── Step number inside circle ── */
+.circleNumber {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+/* ── Label below circle ── */
+.label {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #334155);
+  text-align: center;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.labelInactive {
+  color: var(--text-tertiary, #64748b);
+}

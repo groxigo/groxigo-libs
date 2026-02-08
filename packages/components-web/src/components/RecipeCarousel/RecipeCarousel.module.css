@@ -1,0 +1,74 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3, 12px);
+  width: 100%;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: var(--spacing-1, 4px) 0;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: var(--surface-primary, #ffffff) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-radius: var(--radius-full, 9999px) !important;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrowLeft {
+  left: -8px;
+}
+
+.arrowRight {
+  right: -8px;
+}
+
+.gradientLeft,
+.gradientRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gradientLeft {
+  left: 0;
+  background: linear-gradient(to right, var(--surface-primary, #ffffff), transparent);
+}
+
+.gradientRight {
+  right: 0;
+  background: linear-gradient(to left, var(--surface-primary, #ffffff), transparent);
+}

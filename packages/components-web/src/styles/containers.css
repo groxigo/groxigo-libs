@@ -1,0 +1,16 @@
+/* Container Query Contexts
+ *
+ * Apply these utility classes to wrapper elements so child components
+ * can use @container queries to adapt to their parent's inline size
+ * instead of the viewport.
+ *
+ * Usage:
+ *   <div class="container-card">
+ *     <ProductTile />  <!-- can use @container card (...) -->
+ *   </div>
+ */
+
+.container-card    { container-type: inline-size; container-name: card; }
+.container-section { container-type: inline-size; container-name: section; }
+.container-sidebar { container-type: inline-size; container-name: sidebar; }
+.container-main    { container-type: inline-size; container-name: main; }

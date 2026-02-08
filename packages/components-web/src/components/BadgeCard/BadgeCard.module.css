@@ -1,0 +1,86 @@
+/* BadgeCard — centered card with icon, name, and earned/locked state */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-3, 12px);
+  border-radius: var(--radius-lg, 10px);
+  border: 1px solid;
+  width: 100px;
+  text-align: center;
+}
+
+/* Earned state */
+.earned {
+  background: var(--card-bg, #ffffff);
+  border-color: var(--status-success, #16a34a);
+}
+
+/* Locked state */
+.locked {
+  background: var(--surface-tertiary, #f1f5f9);
+  border-color: var(--border-default, #cbd5e1);
+  opacity: 0.6;
+}
+
+/* Icon circle */
+.iconCircle {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full, 9999px);
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: var(--font-size-2xl, 24px);
+  line-height: 1;
+}
+
+.iconPlaceholder {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--surface-secondary, #f8fafc);
+}
+
+/* Lock overlay for locked state */
+.lockOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary, #94a3b8);
+}
+
+/* Badge name */
+.name {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.nameLocked {
+  color: var(--text-disabled, #94a3b8);
+}
+
+/* Description */
+.description {
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

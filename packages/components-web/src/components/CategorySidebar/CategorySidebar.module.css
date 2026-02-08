@@ -1,0 +1,107 @@
+/* CategorySidebar — vertical sidebar with search, categories, and filters */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3, 12px);
+  width: 260px;
+  background: var(--surface-secondary, #f8fafc);
+  border-right: 1px solid var(--border-subtle, #e2e8f0);
+  padding: var(--spacing-4, 16px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background: var(--border-subtle, #e2e8f0);
+  flex-shrink: 0;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+  overflow: hidden;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5, 2px);
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2-5, 10px) var(--spacing-2, 8px);
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.categoryHeaderActive {
+  background: var(--brand-primary-subtle, #eff6ff);
+  border-radius: var(--radius-sm, 6px);
+}
+
+.categoryLabel {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+}
+
+.categoryLabelActive {
+  color: var(--brand-primary, #2563eb);
+}
+
+.chevron {
+  width: 10px;
+  height: 10px;
+  color: var(--text-secondary, #475569);
+  transition: transform var(--duration-fast, 150ms);
+  flex-shrink: 0;
+}
+
+.chevronDown {
+  transform: rotate(90deg);
+}
+
+.subcategories {
+  padding-left: var(--spacing-4, 16px);
+}
+
+.subcategoryItem {
+  padding: var(--spacing-1-5, 6px) var(--spacing-2, 8px);
+  width: 100%;
+  text-align: left;
+  font-size: var(--font-size-sm, 14px);
+  box-sizing: border-box;
+}
+
+.subcategoryDefault {
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+}
+
+.subcategoryActive {
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--brand-primary, #2563eb);
+  background: var(--brand-primary-subtle, #eff6ff);
+  border-radius: var(--radius-sm, 6px);
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2, 8px);
+}
+
+.filterTitle {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+}

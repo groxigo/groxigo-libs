@@ -1,0 +1,214 @@
+/* Root card */
+.root {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg, #ffffff);
+  border-radius: var(--radius-lg, 10px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Mode variants */
+.rootProduct {
+  height: 265px;
+}
+
+.rootCategory {
+  height: 185px;
+  align-items: center;
+}
+
+/* Size widths */
+.sizeSm {
+  width: 100px;
+}
+
+.sizeMd {
+  width: 130px;
+}
+
+.sizeLg {
+  width: 160px;
+}
+
+/* ───── Image section ───── */
+.imageSection {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  background: var(--surface-secondary, #f8fafc);
+  overflow: hidden;
+  border-radius: var(--radius-lg, 10px) var(--radius-lg, 10px) 0 0;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-tertiary, #e2e8f0);
+}
+
+/* Badge (top-left) */
+.badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 1;
+}
+
+/* Favorite button (top-right) */
+.favoriteButton {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.favoriteButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-xs, 4px);
+}
+
+/* Add button (bottom-right of image) */
+.addButton {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  background: var(--brand-primary, #2563eb);
+  border-radius: var(--radius-xl, 14px);
+  color: var(--text-inverse, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-lg, 18px);
+  font-weight: var(--font-weight-bold, 700);
+  padding: 0;
+  line-height: 1;
+  z-index: 1;
+}
+
+.addButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+}
+
+/* Out-of-stock overlay */
+.outOfStockOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.outOfStockText {
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-secondary, #475569);
+}
+
+/* ───── Info section ───── */
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0\.5, 2px);
+  padding-left: var(--spacing-2, 8px);
+  padding-right: var(--spacing-2, 8px);
+  padding-top: var(--spacing-1\.5, 6px);
+  padding-bottom: var(--spacing-2, 8px);
+  overflow: hidden;
+}
+
+.infoProduct {
+  height: 135px;
+  align-items: flex-start;
+}
+
+.infoCategory {
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Weight badge */
+.weightBadge {
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-secondary, #475569);
+  padding: 1px var(--spacing-1, 4px);
+  line-height: normal;
+}
+
+/* Product name */
+.name {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-primary, #0f172a);
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  margin: 0;
+}
+
+.nameCategory {
+  text-align: center;
+}
+
+/* Rating row */
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-0\.5, 2px);
+  width: 100%;
+}
+
+.starIcon {
+  width: 10px;
+  height: 10px;
+  color: var(--status-warning, #eab308);
+  flex-shrink: 0;
+}
+
+.ratingText {
+  font-size: var(--font-size-2xs, 10px);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+}
+
+.ratingCount {
+  font-size: var(--font-size-2xs, 10px);
+  color: var(--text-tertiary, #64748b);
+  margin-left: auto;
+  line-height: normal;
+}

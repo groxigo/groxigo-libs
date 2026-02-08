@@ -19,7 +19,7 @@
   },
   "keywords": [
     "react",
-    "tailwind",
+    "css-modules",
     "ui",
     "components",
     "web",
@@ -38,7 +38,9 @@
   "dependencies": {
     "@groxigo/tokens": "^1.0.1",
     "@groxigo/contracts": "^1.0.0",
+    "@groxigo/icons": "^1.0.0",
     "@groxigo/ui-elements-web": "^1.0.1",
+    "clsx": "^2.1.1",
     "lottie-react": "^2.4.0"
   },
   "peerDependencies": {

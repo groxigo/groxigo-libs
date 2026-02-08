@@ -1,0 +1,105 @@
+/* DeliveryInfoCard -- compact delivery info with icon, time, count, and change action */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-4, 16px);
+  background: var(--surface-primary, #ffffff);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+}
+
+/* Icon area */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--text-primary, #334155);
+}
+
+/* Content area */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Top row: "Delivery in" + time badge */
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  overflow: hidden;
+}
+
+.deliveryLabel {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  flex-shrink: 0;
+}
+
+/* Bottom row: item count + fee */
+.bottomRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  overflow: hidden;
+}
+
+.infoText {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+}
+
+.feeText {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+}
+
+/* Threshold info row */
+.thresholdRow {
+  overflow: hidden;
+}
+
+.thresholdText {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-tertiary, #94a3b8);
+  line-height: normal;
+}
+
+/* Change button */
+.changeButton {
+  all: unset;
+  cursor: pointer;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--brand-primary, #2563eb);
+  line-height: normal;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.changeButton:hover {
+  text-decoration: underline;
+}
+
+.changeButton:focus-visible {
+  outline: 2px solid var(--brand-primary, #2563eb);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs, 4px);
+}

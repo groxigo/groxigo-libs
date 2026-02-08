@@ -1,0 +1,59 @@
+/* PolicyCard -- notice/alert card with info or warning variant */
+
+.root {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: var(--spacing-3, 12px);
+  border-radius: var(--radius-md, 8px);
+  width: 100%;
+}
+
+/* Info variant: blue tones */
+.info {
+  background: var(--status-info-subtle, #eff6ff);
+  color: var(--status-info-text, #1d4ed8);
+}
+
+/* Warning variant: yellow tones */
+.warning {
+  background: var(--status-warning-subtle, #fefce8);
+  color: var(--status-warning-text, #a16207);
+}
+
+/* Icon area */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Text content */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 18px;
+}
+
+.message {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 18px;
+  white-space: pre-wrap;
+}

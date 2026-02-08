@@ -1,0 +1,61 @@
+/* IngredientRow -- ingredient info with optional product carousel slot */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5, 20px);
+  background: var(--surface-primary, #ffffff);
+  padding: var(--spacing-3\.5, 14px) 0 var(--spacing-2, 8px) var(--spacing-3, 12px);
+  box-sizing: border-box;
+}
+
+.ingredientInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2\.5, 10px);
+  width: 100%;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0\.5, 2px);
+}
+
+.name {
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.nameChecked {
+  text-decoration: line-through;
+  color: var(--text-tertiary, #64748b);
+}
+
+.quantity {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.quantityChecked {
+  text-decoration: line-through;
+  color: var(--text-tertiary, #64748b);
+}
+
+.productCarousel {
+  display: flex;
+  gap: var(--spacing-2\.5, 10px);
+  overflow-x: auto;
+  padding: var(--spacing-0\.5, 2px) 0 var(--spacing-2, 8px) 0;
+}

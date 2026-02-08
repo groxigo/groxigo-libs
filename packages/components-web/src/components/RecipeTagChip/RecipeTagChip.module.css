@@ -1,0 +1,10 @@
+/* RecipeTagChip -- wrapper around Badge primitive */
+
+.root {
+  display: inline-flex;
+  cursor: default;
+}
+
+.root[role='button'] {
+  cursor: pointer;
+}

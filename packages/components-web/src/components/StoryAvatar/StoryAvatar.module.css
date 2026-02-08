@@ -1,0 +1,54 @@
+/* StoryAvatar — circular avatar with ring indicator for story state */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  width: 68px;
+  cursor: pointer;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.root:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-lg, 10px);
+}
+
+/* Ring container around the avatar */
+.ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full, 9999px);
+  padding: var(--spacing-1, 4px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Unseen state — bold brand-primary ring */
+.ringUnseen {
+  border: 3px solid var(--brand-primary, #2563eb);
+}
+
+/* Seen state — subtle default border ring */
+.ringSeen {
+  border: 2px solid var(--border-default, #cbd5e1);
+}
+
+/* Name text below avatar */
+.name {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: normal;
+}

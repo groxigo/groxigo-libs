@@ -1,0 +1,81 @@
+/* AccountMenuItem — pressable row with icon, label, subtitle, chevron */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding: 14px var(--spacing-0, 0px);
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* ── Icon circle ── */
+
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--surface-secondary, #f8fafc);
+  overflow: hidden;
+}
+
+.iconText {
+  font-size: var(--font-size-lg, 18px);
+  line-height: 1;
+  color: var(--text-secondary, #475569);
+}
+
+/* ── Content ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.label {
+  font-size: var(--font-size-base, 16px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Badge slot ── */
+
+.badge {
+  flex-shrink: 0;
+}
+
+/* ── Chevron ── */
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-tertiary, #64748b);
+  font-size: var(--font-size-lg, 18px);
+  line-height: 1;
+}

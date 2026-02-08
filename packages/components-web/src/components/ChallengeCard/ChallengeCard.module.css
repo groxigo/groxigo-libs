@@ -1,0 +1,80 @@
+/* ChallengeCard — card with progress bar, reward pill, and deadline */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding: var(--spacing-4, 16px);
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+  max-width: 343px;
+}
+
+/* Content area (fills remaining space) */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1\.5, 6px);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Title row: title + reward badge */
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2, 8px);
+}
+
+.title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #334155);
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reward {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--status-success, #16a34a);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Description */
+.description {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  margin: 0;
+  line-height: normal;
+}
+
+/* Meta row: progress text + deadline */
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.progressText {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+}
+
+.deadline {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-tertiary, #64748b);
+  line-height: normal;
+}

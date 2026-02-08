@@ -1,0 +1,31 @@
+/* FloatingCartButton — 56x56 circular FAB with cart icon and badge */
+
+.root {
+  position: relative;
+  width: var(--spacing-14, 56px);
+  height: var(--spacing-14, 56px);
+}
+
+.button {
+  position: absolute;
+  inset: 0;
+  width: var(--spacing-14, 56px);
+  height: var(--spacing-14, 56px);
+  border-radius: var(--radius-full, 9999px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  width: var(--spacing-6, 24px);
+  height: var(--spacing-6, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  position: absolute;
+  top: var(--spacing-0.5, 2px);
+  right: var(--spacing-0.5, 2px);
+  pointer-events: none;
+}

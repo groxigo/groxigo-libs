@@ -1,0 +1,65 @@
+/* BrandCard — compact brand logo card with name */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  padding: var(--spacing-2, 8px);
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-lg, 10px);
+  width: 100px;
+  cursor: pointer;
+  transition: var(--transition-colors, background-color 150ms, color 150ms, border-color 150ms);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+.root:hover {
+  border-color: var(--border-default, #cbd5e1);
+  box-shadow: var(--shadow-sm);
+}
+
+.root:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+}
+
+/* Logo container frame */
+.logoFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  overflow: hidden;
+}
+
+/* Brand logo image */
+.logo {
+  max-width: 60px;
+  max-height: 40px;
+  object-fit: contain;
+  border-radius: var(--radius-xs, 4px);
+}
+
+/* Placeholder when no logo is provided */
+.logoPlaceholder {
+  width: 60px;
+  height: 40px;
+  background: var(--surface-tertiary, #f1f5f9);
+  border-radius: var(--radius-xs, 4px);
+}
+
+/* Brand name text */
+.name {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  line-height: normal;
+}
