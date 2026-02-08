@@ -87,18 +87,23 @@ git push origin main
 This triggers the **Release** workflow (`.github/workflows/release.yml`) which will:
 1. Detect the pending changeset
 2. Create a "Version Packages" PR that bumps versions in package.json files
-3. When that PR is merged, packages are published to GitHub Packages
+3. The **PR Review** workflow (`.github/workflows/pr-review.yml`) automatically runs Claude Code to review the PR
+4. After successful review, "Version Packages" PRs are auto-merged
+5. The merge triggers Release again, which publishes packages to GitHub Packages
 
-## Step 7: Monitor the workflow
+## Step 7: Monitor the workflows
 
 ```bash
-# Wait a few seconds for the workflow to start
+# Wait a few seconds for the workflows to start
 sleep 5
 
-# Check the latest workflow run
+# Check Release workflow
 gh run list --repo groxigo/groxigo-libs --workflow "Release" --limit 1
 
-# Watch it (get the run ID from above)
+# Check PR Review workflow (runs on the Version Packages PR)
+gh run list --repo groxigo/groxigo-libs --workflow "PR Review" --limit 1
+
+# Watch a specific run (get the run ID from above)
 gh run watch <RUN_ID> --repo groxigo/groxigo-libs
 ```
 
@@ -108,13 +113,15 @@ Report the workflow status to the user. If it fails, fetch logs:
 gh run view <RUN_ID> --repo groxigo/groxigo-libs --log 2>&1 | tail -50
 ```
 
-## Step 8: Merge the Version PR (if created)
+## Step 8: Verify the Version PR
 
-The changesets/action creates a PR titled "chore: version packages". Tell the user:
+The full flow is automated:
+1. **Release** workflow creates "chore: version packages" PR
+2. **PR Review** workflow runs Claude Code review on it
+3. After review passes, the PR is auto-approved and auto-merged
+4. The merge triggers **Release** again → publishes packages
 
-> A "Version Packages" PR has been created. Merge it to publish the packages.
-
-Or merge it directly if the user asks:
+If auto-merge fails (e.g., review found issues), report to the user and offer to merge manually:
 
 ```bash
 gh pr merge --squash --repo groxigo/groxigo-libs
