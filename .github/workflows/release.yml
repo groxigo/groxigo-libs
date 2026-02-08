@@ -4,7 +4,7 @@
 # ===============
 # 1. Create a changeset:     bunx changeset add
 # 2. Commit the changeset:   git add . && git commit -m "chore: add changeset"
-# 3. Push to master:         git push origin master
+# 3. Push to main:           git push origin main
 #
 # WHAT HAPPENS:
 # =============
@@ -24,7 +24,7 @@ name: Release
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
