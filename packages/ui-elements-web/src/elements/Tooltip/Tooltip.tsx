@@ -108,6 +108,11 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     // Get label text for aria-label
     const labelText = typeof label === 'string' ? label : triggerAriaLabel;
 
+    // Check if children is likely interactive
+    const isChildInteractive = React.isValidElement(children) &&
+      typeof children.type === 'string' &&
+      ['button', 'a', 'input', 'select', 'textarea'].includes(children.type);
+
     // Clear timeouts on unmount
     useEffect(() => {
       return () => {
@@ -241,7 +246,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           // Provide aria-label when tooltip is closed so screen readers still get the info
           aria-label={!isOpen && labelText ? labelText : undefined}
           // Make focusable for keyboard accessibility
-          tabIndex={0}
+          tabIndex={isChildInteractive ? undefined : 0}
           {...triggerProps}
         >
           {children}

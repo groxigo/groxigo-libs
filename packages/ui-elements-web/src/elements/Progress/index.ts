@@ -1,7 +1,6 @@
-export { Progress, CircularProgress, default } from './Progress';
-export type { ProgressProps, CircularProgressProps } from './Progress';
+export { Progress, default } from './Progress';
+export type { ProgressProps } from './Progress';
 export type {
   ProgressSize,
-  ProgressColorScheme,
   ProgressVariant,
 } from '@groxigo/contracts';

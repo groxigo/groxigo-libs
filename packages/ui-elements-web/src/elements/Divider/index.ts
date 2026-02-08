@@ -1,2 +1,3 @@
-export * from './Divider';
-export { default as Divider } from './Divider';
+export { Divider, default } from './Divider';
+export type { DividerProps } from './Divider';
+export type { DividerPropsBase, DividerOrientation, DividerVariant } from '@groxigo/contracts';

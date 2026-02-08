@@ -11,18 +11,11 @@
 
 import React, { forwardRef, useCallback } from 'react';
 import { clsx } from 'clsx';
-import type { CardVariant, CardSize } from '@groxigo/contracts';
+import type { CardPropsBase, CardHeaderPropsBase, CardBodyPropsBase, CardFooterPropsBase } from '@groxigo/contracts';
 import styles from './Card.module.css';
 
-export interface CardProps {
-  variant?: CardVariant;
-  size?: CardSize;
-  pressable?: boolean;
-  onPress?: () => void;
-  children?: React.ReactNode;
-  className?: string;
+export interface CardProps extends CardPropsBase {
   style?: React.CSSProperties;
-  testID?: string;
   /** Accessible label for the card when pressable */
   'aria-label'?: string;
 }
@@ -85,10 +78,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = 'Card';
 
 // Card Header
-export interface CardHeaderProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+export interface CardHeaderProps extends CardHeaderPropsBase {}
 
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, ...props }, ref) => (
@@ -105,10 +95,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 CardHeader.displayName = 'CardHeader';
 
 // Card Body
-export interface CardBodyProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+export interface CardBodyProps extends CardBodyPropsBase {}
 
 export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
   ({ children, className, ...props }, ref) => (
@@ -121,10 +108,7 @@ export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
 CardBody.displayName = 'CardBody';
 
 // Card Footer
-export interface CardFooterProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+export interface CardFooterProps extends CardFooterPropsBase {}
 
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, ...props }, ref) => (

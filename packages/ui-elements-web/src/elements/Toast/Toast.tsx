@@ -8,7 +8,7 @@
 
 import React, { forwardRef, useEffect, useCallback } from 'react';
 import { clsx } from 'clsx';
-import type { ToastPropsBase, ToastStatus, ToastVariant, ToastPosition } from '@groxigo/contracts';
+import type { ToastPropsBase, ToastStatus, ToastVariant } from '@groxigo/contracts';
 import styles from './Toast.module.css';
 
 // Status icon components
@@ -52,24 +52,6 @@ const InformationCircleIcon = () => (
   </svg>
 );
 
-const LoadingIcon = () => (
-  <svg className={styles.spinnerSvg} viewBox="0 0 24 24" fill="none">
-    <circle
-      className={styles.spinnerTrack}
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      className={styles.spinnerHead}
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-    />
-  </svg>
-);
-
 const CloseIcon = () => (
   <svg className={styles.closeIconSvg} viewBox="0 0 20 20" fill="currentColor">
     <path
@@ -86,40 +68,25 @@ const statusIcons: Record<ToastStatus, React.FC> = {
   error: ExclamationCircleIcon,
   warning: ExclamationTriangleIcon,
   info: InformationCircleIcon,
-  loading: LoadingIcon,
 };
 
 // Status + variant class mapping
 const statusVariantClassMap: Record<ToastStatus, Record<ToastVariant, string>> = {
   success: {
-    solid: styles.solidSuccess,
     subtle: styles.subtleSuccess,
     'left-accent': styles.leftAccentSuccess,
-    'top-accent': styles.topAccentSuccess,
   },
   error: {
-    solid: styles.solidError,
     subtle: styles.subtleError,
     'left-accent': styles.leftAccentError,
-    'top-accent': styles.topAccentError,
   },
   warning: {
-    solid: styles.solidWarning,
     subtle: styles.subtleWarning,
     'left-accent': styles.leftAccentWarning,
-    'top-accent': styles.topAccentWarning,
   },
   info: {
-    solid: styles.solidInfo,
     subtle: styles.subtleInfo,
     'left-accent': styles.leftAccentInfo,
-    'top-accent': styles.topAccentInfo,
-  },
-  loading: {
-    solid: styles.solidLoading,
-    subtle: styles.subtleLoading,
-    'left-accent': styles.leftAccentLoading,
-    'top-accent': styles.topAccentLoading,
   },
 };
 
@@ -129,7 +96,6 @@ const iconColorClassMap: Record<ToastStatus, string> = {
   error: styles.iconError,
   warning: styles.iconWarning,
   info: styles.iconInfo,
-  loading: styles.iconLoading,
 };
 
 // Action button color classes for non-solid variants
@@ -138,7 +104,6 @@ const actionColorClassMap: Record<ToastStatus, string> = {
   error: styles.actionError,
   warning: styles.actionWarning,
   info: styles.actionInfo,
-  loading: styles.actionLoading,
 };
 
 export interface ToastProps extends ToastPropsBase {}
@@ -150,7 +115,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
       title,
       description,
       status = 'info',
-      variant = 'solid',
+      variant = 'subtle',
       duration = 5000,
       isClosable = true,
       icon,
@@ -183,8 +148,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
     }
 
     const StatusIcon = statusIcons[status];
-    const isSolid = variant === 'solid';
-    const iconColorClass = isSolid ? '' : iconColorClassMap[status];
+    const iconColorClass = iconColorClassMap[status];
 
     return (
       <div
@@ -208,7 +172,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
         {/* Content */}
         <div className={styles.content}>
           {title && (
-            <p className={clsx(styles.title, !isSolid && styles.titleSubtle)}>
+            <p className={clsx(styles.title, styles.titleSubtle)}>
               {title}
             </p>
           )}
@@ -216,7 +180,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
             <p
               className={clsx(
                 styles.description,
-                isSolid ? styles.descriptionSolid : styles.descriptionSubtle
+                styles.descriptionSubtle
               )}
             >
               {description}
@@ -228,9 +192,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
               onClick={action.onClick}
               className={clsx(
                 styles.actionButton,
-                isSolid
-                  ? styles.actionButtonSolid
-                  : actionColorClassMap[status]
+                actionColorClassMap[status]
               )}
             >
               {action.label}
@@ -245,7 +207,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
             onClick={handleClose}
             className={clsx(
               styles.closeButton,
-              isSolid ? styles.closeButtonSolid : styles.closeButtonSubtle
+              styles.closeButtonSubtle
             )}
             aria-label="Close notification"
           >

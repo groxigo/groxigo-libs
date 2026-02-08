@@ -63,7 +63,7 @@ export const TabPanel = forwardRef<HTMLDivElement, TabPanelProps>(
         id={`tabpanel-${value}`}
         aria-labelledby={`tab-${value}`}
         hidden={!isSelected}
-        tabIndex={0}
+        tabIndex={isSelected ? 0 : -1}
         className={clsx(
           styles.tabPanel,
           !isSelected && styles.tabPanelHidden,

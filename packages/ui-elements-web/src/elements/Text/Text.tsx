@@ -7,7 +7,7 @@
 
 import React, { forwardRef } from 'react';
 import { clsx } from 'clsx';
-import type { TextVariant, TextWeight, TextAlign, TextColorScheme } from '@groxigo/contracts';
+import type { TextPropsBase } from '@groxigo/contracts';
 import styles from './Text.module.css';
 
 type TextElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div' | 'label';
@@ -28,19 +28,6 @@ const variantElementMap: Record<string, TextElement> = {
   overline: 'span',
 };
 
-// Color scheme class keys (mapped to CSS module classes)
-const colorSchemeMap: Record<string, string> = {
-  default: 'colorDefault',
-  primary: 'colorPrimary',
-  secondary: 'colorSecondary',
-  accent: 'colorAccent',
-  success: 'colorSuccess',
-  warning: 'colorWarning',
-  error: 'colorError',
-  info: 'colorInfo',
-  muted: 'colorMuted',
-};
-
 // Align class keys
 const alignMap: Record<string, string> = {
   left: 'alignLeft',
@@ -49,17 +36,7 @@ const alignMap: Record<string, string> = {
   justify: 'alignJustify',
 };
 
-export interface TextProps {
-  variant?: TextVariant;
-  weight?: TextWeight;
-  align?: TextAlign;
-  colorScheme?: TextColorScheme;
-  color?: string;
-  truncate?: boolean;
-  responsive?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  testID?: string;
+export interface TextProps extends TextPropsBase {
   as?: TextElement;
 }
 
@@ -67,12 +44,9 @@ export const Text = forwardRef<HTMLElement, TextProps>(
   (
     {
       variant = 'body',
-      weight = 'normal',
       align,
-      colorScheme = 'default',
       color,
       truncate,
-      responsive = true,
       children,
       className,
       testID,
@@ -85,8 +59,6 @@ export const Text = forwardRef<HTMLElement, TextProps>(
 
     const classes = clsx(
       styles[variant],
-      styles[weight],
-      !color && styles[colorSchemeMap[colorScheme]],
       align && styles[alignMap[align]],
       truncate && styles.truncate,
       className

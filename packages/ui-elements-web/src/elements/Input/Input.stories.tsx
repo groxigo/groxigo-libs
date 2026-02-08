@@ -11,7 +11,7 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     size: {
       control: "select",
-      options: ["xs", "sm", "md", "lg"],
+      options: ["sm", "md", "lg"],
     },
     variant: {
       control: "select",
@@ -51,7 +51,6 @@ export const WithLabel: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
-      <Input size="xs" placeholder="Extra small" />
       <Input size="sm" placeholder="Small" />
       <Input size="md" placeholder="Medium" />
       <Input size="lg" placeholder="Large" />

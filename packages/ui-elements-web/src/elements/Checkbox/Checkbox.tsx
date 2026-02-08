@@ -5,13 +5,10 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef, useCallback, useState } from 'react';
 import { clsx } from 'clsx';
+import type { CheckboxPropsBase, CheckboxSize } from '@groxigo/contracts';
 import styles from './Checkbox.module.css';
-
-export type CheckboxSize = 'sm' | 'md' | 'lg';
-export type CheckboxColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info';
-
 // ============================================
 // SIZE CLASS MAPS
 // ============================================
@@ -40,51 +37,17 @@ const labelSizeClass: Record<CheckboxSize, string> = {
   lg: styles.labelLg,
 };
 
-const colorSchemeClass: Record<CheckboxColorScheme, string> = {
-  primary: styles.primary,
-  secondary: styles.secondary,
-  accent: styles.accent,
-  success: styles.success,
-  warning: styles.warning,
-  error: styles.error,
-  info: styles.info,
-};
-
 // ============================================
 // CHECKBOX PROPS
 // ============================================
 
-export interface CheckboxProps {
-  /** Whether the checkbox is checked */
-  checked?: boolean;
-  /** Callback when checkbox state changes */
-  onChange?: (checked: boolean) => void;
-  /** Whether to show indeterminate state */
-  indeterminate?: boolean;
-  /** Whether the checkbox is disabled */
-  disabled?: boolean;
-  /** Label text */
-  label?: string;
+export interface CheckboxProps extends CheckboxPropsBase {
   /** Description/helper text below label */
   description?: string;
-  /** Error message */
-  error?: string;
-  /** Checkbox size @default 'md' */
-  size?: CheckboxSize;
-  /** Color scheme @default 'primary' */
-  colorScheme?: CheckboxColorScheme;
-  /** HTML input name */
-  name?: string;
   /** HTML input id */
   id?: string;
-  /** HTML input value */
-  value?: string;
-  /** Additional CSS class */
-  className?: string;
   /** Label class */
   labelClassName?: string;
-  /** Test ID */
-  testID?: string;
 }
 
 // ============================================
@@ -110,15 +73,18 @@ const IndeterminateIcon: React.FC<{ className?: string }> = ({ className }) => (
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
-      checked = false,
+      checked: controlledChecked,
+      defaultChecked = false,
       onChange,
       indeterminate = false,
       disabled = false,
+      isInvalid = false,
+      required = false,
       label,
+      helperText,
       description,
       error,
       size = 'md',
-      colorScheme = 'primary',
       name,
       id,
       value,
@@ -128,13 +94,22 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    const [uncontrolledChecked, setUncontrolledChecked] = useState(defaultChecked);
+    const isControlled = controlledChecked !== undefined;
+    const checked = isControlled ? controlledChecked : uncontrolledChecked;
+
+    const hasError = isInvalid || !!error;
     const isActive = checked || indeterminate;
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.checked);
+        const newChecked = e.target.checked;
+        if (!isControlled) {
+          setUncontrolledChecked(newChecked);
+        }
+        onChange?.(newChecked);
       },
-      [onChange]
+      [onChange, isControlled]
     );
 
     const inputId = id || name;
@@ -150,8 +125,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       styles.box,
       boxSizeClass[size],
       isActive && styles.checked,
-      isActive && colorSchemeClass[colorScheme],
-      disabled && styles.disabled
+      isActive && styles.primary,
+      disabled && styles.disabled,
+      hasError && styles.error
     );
 
     const iconClasses = clsx(
@@ -178,9 +154,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             value={value}
             checked={checked}
             disabled={disabled}
+            required={required}
             onChange={handleChange}
             className={styles.srOnly}
             aria-checked={indeterminate ? 'mixed' : checked}
+            aria-invalid={hasError}
           />
           <span className={boxClasses}>
             {indeterminate ? (
@@ -192,6 +170,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           {label && (
             <div className={styles.labelContent}>
               <span className={labelClasses}>{label}</span>
+              {helperText && (
+                <span className={styles.description}>{helperText}</span>
+              )}
               {description && (
                 <span className={styles.description}>{description}</span>
               )}

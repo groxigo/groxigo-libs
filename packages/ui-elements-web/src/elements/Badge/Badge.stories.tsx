@@ -15,7 +15,7 @@ const meta: Meta<typeof Badge> = {
     },
     colorScheme: {
       control: "select",
-      options: ["primary", "secondary", "accent", "success", "warning", "error", "info", "neutral"],
+      options: ["primary", "secondary", "success", "warning", "error", "info", "neutral"],
     },
     size: {
       control: "select",
@@ -50,7 +50,6 @@ export const ColorSchemes: Story = {
     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
       <Badge colorScheme="primary">Primary</Badge>
       <Badge colorScheme="secondary">Secondary</Badge>
-      <Badge colorScheme="accent">Accent</Badge>
       <Badge colorScheme="success">Success</Badge>
       <Badge colorScheme="warning">Warning</Badge>
       <Badge colorScheme="error">Error</Badge>
@@ -86,7 +85,6 @@ export const SolidColors: Story = {
     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
       <Badge variant="solid" colorScheme="primary">Primary</Badge>
       <Badge variant="solid" colorScheme="secondary">Secondary</Badge>
-      <Badge variant="solid" colorScheme="accent">Accent</Badge>
       <Badge variant="solid" colorScheme="success">Success</Badge>
       <Badge variant="solid" colorScheme="warning">Warning</Badge>
       <Badge variant="solid" colorScheme="error">Error</Badge>

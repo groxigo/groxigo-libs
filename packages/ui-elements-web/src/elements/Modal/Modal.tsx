@@ -11,6 +11,9 @@ import React, {
   useCallback,
   useRef,
   useState,
+  useId,
+  createContext,
+  useContext,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { clsx } from 'clsx';
@@ -41,6 +44,13 @@ const placementClassMap: Record<ModalPlacement, string> = {
   bottom: styles.placementBottom,
 };
 
+// Modal context for sharing ID with ModalHeader
+interface ModalContextValue {
+  modalId: string;
+}
+
+const ModalContext = createContext<ModalContextValue | null>(null);
+
 export interface ModalProps extends ModalPropsBase {
   /** ID for the modal element */
   id?: string;
@@ -70,6 +80,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
+    const autoId = useId();
+    const modalId = id || autoId;
     const modalRef = useRef<HTMLDivElement>(null);
     const previousActiveElement = useRef<HTMLElement | null>(null);
     const [isMounted, setIsMounted] = useState(false);
@@ -239,10 +251,10 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
               ref.current = node;
             }
           }}
-          id={id}
+          id={modalId}
           role="dialog"
           aria-modal="true"
-          aria-labelledby={id ? `${id}-title` : undefined}
+          aria-labelledby={`${modalId}-title`}
           tabIndex={-1}
           className={clsx(
             styles.modal,
@@ -279,7 +291,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
             </button>
           )}
 
-          {children}
+          <ModalContext.Provider value={{ modalId }}>
+            {children}
+          </ModalContext.Provider>
         </div>
       </div>
     );
@@ -305,21 +319,26 @@ export interface ModalHeaderProps extends ModalHeaderPropsBase {
 }
 
 export const ModalHeader = forwardRef<HTMLDivElement, ModalHeaderProps>(
-  ({ children, className, id, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={clsx(styles.header, className)}
-      {...props}
-    >
-      <div className={styles.headerContent}>
-        {typeof children === 'string' ? (
-          <h2 id={id} className={styles.headerTitle}>{children}</h2>
-        ) : (
-          <div id={id}>{children}</div>
-        )}
+  ({ children, className, id, ...props }, ref) => {
+    const context = useContext(ModalContext);
+    const headerId = id || (context ? `${context.modalId}-title` : undefined);
+
+    return (
+      <div
+        ref={ref}
+        className={clsx(styles.header, className)}
+        {...props}
+      >
+        <div className={styles.headerContent}>
+          {typeof children === 'string' ? (
+            <h2 id={headerId} className={styles.headerTitle}>{children}</h2>
+          ) : (
+            <div id={headerId}>{children}</div>
+          )}
+        </div>
       </div>
-    </div>
-  )
+    );
+  }
 );
 
 ModalHeader.displayName = 'ModalHeader';

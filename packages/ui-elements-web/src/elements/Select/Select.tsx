@@ -8,17 +8,13 @@
 
 import React, { forwardRef, useCallback } from 'react';
 import { clsx } from 'clsx';
+import type { SelectPropsBase, SelectOption as ContractSelectOption } from '@groxigo/contracts';
 import styles from './Select.module.css';
 
-export type SelectSize = 'sm' | 'md' | 'lg';
-export type SelectVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
 export type SelectColorScheme = 'primary' | 'secondary' | 'accent' | 'neutral';
 
-export interface SelectOption {
-  label: string;
+export interface SelectOption extends Omit<ContractSelectOption, 'value'> {
   value: string | number;
-  disabled?: boolean;
-  icon?: React.ReactNode;
 }
 
 /** Maps variant + error → CSS module error class */
@@ -26,46 +22,23 @@ const errorStyleMap: Record<string, string | undefined> = {
   outline: styles.outlineError,
   filled: styles.filledError,
   flushed: styles.flushedError,
-  unstyled: undefined,
 };
 
-export interface SelectProps {
-  /** Select size @default 'md' */
-  size?: SelectSize;
-  /** Select variant @default 'outline' */
-  variant?: SelectVariant;
+export interface SelectProps extends Omit<SelectPropsBase, 'value' | 'onChange' | 'options'> {
   /** Color scheme @default 'primary' */
   colorScheme?: SelectColorScheme;
-  /** Label text */
-  label?: string;
-  /** Current value */
+  /** Current value (broader than contract to support numbers) */
   value?: string | number;
-  /** Change handler */
+  /** Change handler (broader than contract to support numbers) */
   onChange?: (value: string | number) => void;
-  /** Available options */
+  /** Available options (broader than contract to support numbers) */
   options: SelectOption[];
-  /** Placeholder text */
-  placeholder?: string;
-  /** Error message */
-  error?: string;
-  /** Helper text */
-  helperText?: string;
-  /** Whether the select is disabled */
-  disabled?: boolean;
-  /** Whether the field is required */
-  required?: boolean;
-  /** Whether to take full width @default true */
-  fullWidth?: boolean;
-  /** HTML select name */
-  name?: string;
   /** HTML select id */
   id?: string;
-  /** Additional CSS class */
-  className?: string;
+  /** Whether to take full width @default true */
+  fullWidth?: boolean;
   /** Label class */
   labelClassName?: string;
-  /** Test ID */
-  testID?: string;
   /** Native change handler */
   onNativeChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }

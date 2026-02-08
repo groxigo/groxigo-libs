@@ -5,12 +5,10 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useState, useCallback, type ReactNode } from 'react';
+import React, { forwardRef, useState, useCallback } from 'react';
 import { clsx } from 'clsx';
+import type { InputPropsBase } from '@groxigo/contracts';
 import styles from './Input.module.css';
-
-export type InputSize = 'xs' | 'sm' | 'md' | 'lg';
-export type InputVariant = 'outline' | 'filled' | 'flushed' | 'unstyled';
 
 /** Maps variant + error → CSS module error class */
 const errorStyleMap: Record<string, string | undefined> = {
@@ -20,57 +18,23 @@ const errorStyleMap: Record<string, string | undefined> = {
   unstyled: undefined,
 };
 
-export interface InputProps {
-  /** Input size @default 'md' */
-  size?: InputSize;
-  /** Input variant @default 'outline' */
-  variant?: InputVariant;
-  /** Input type @default 'text' */
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
-  /** Label text */
-  label?: string;
-  /** Placeholder text */
-  placeholder?: string;
-  /** Current value */
-  value?: string;
-  /** Default value (uncontrolled) */
-  defaultValue?: string;
-  /** Error message (also marks input as invalid) */
-  error?: string;
-  /** Helper text */
-  helperText?: string;
-  /** Whether input is disabled */
-  disabled?: boolean;
-  /** Whether input is read-only */
-  readOnly?: boolean;
-  /** Whether input is required */
-  required?: boolean;
-  /** Whether input has error state */
-  isInvalid?: boolean;
-  /** Whether the input takes full width @default false */
-  fullWidth?: boolean;
-  /** Left element (icon or text) */
-  leftElement?: ReactNode;
-  /** Right element (icon or text) */
-  rightElement?: ReactNode;
-  /** HTML input name */
-  name?: string;
+export interface InputProps extends InputPropsBase {
   /** HTML input id */
   id?: string;
   /** Autocomplete hint */
   autoComplete?: string;
-  /** Additional CSS class */
-  className?: string;
-  /** Test ID */
-  testID?: string;
-  /** Change handler */
-  onChangeText?: (text: string) => void;
+  /** Whether the input takes full width @default false */
+  fullWidth?: boolean;
+  /** Label text (web-specific, not in contract) */
+  label?: string;
+  /** Helper text (web-specific, not in contract) */
+  helperText?: string;
+  /** Error message (web-specific, not in contract) */
+  error?: string;
+  /** HTML input name (web-specific, not in contract) */
+  name?: string;
   /** Native change handler */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Focus handler */
-  onFocus?: () => void;
-  /** Blur handler */
-  onBlur?: () => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

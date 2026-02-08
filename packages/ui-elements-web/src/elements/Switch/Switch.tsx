@@ -8,11 +8,11 @@
 
 import React, { forwardRef, useCallback, useState } from 'react';
 import { clsx } from 'clsx';
-import type { SwitchPropsBase, SwitchSize, SwitchColorScheme } from '@groxigo/contracts';
+import type { SwitchPropsBase, SwitchSize } from '@groxigo/contracts';
 import styles from './Switch.module.css';
 
 // Re-export types for convenience
-export type { SwitchSize, SwitchColorScheme };
+export type { SwitchSize };
 
 // ============================================
 // SIZE CLASS MAPS
@@ -42,15 +42,6 @@ const labelSizeClass: Record<SwitchSize, string> = {
   lg: styles.labelLg,
 };
 
-const colorSchemeClass: Record<SwitchColorScheme, string> = {
-  primary: styles.primary,
-  secondary: styles.secondary,
-  accent: styles.accent,
-  success: styles.success,
-  warning: styles.warning,
-  error: styles.error,
-};
-
 // ============================================
 // SWITCH PROPS
 // ============================================
@@ -74,7 +65,6 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       checked,
       defaultChecked = false,
       size = 'md',
-      colorScheme = 'primary',
       disabled = false,
       required = false,
       label,
@@ -134,7 +124,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       styles.track,
       trackSizeClass[size],
       isChecked && styles.checked,
-      isChecked && colorSchemeClass[colorScheme]
+      isChecked && styles.primary
     );
 
     // Thumb classes
@@ -164,7 +154,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             checked={isChecked}
             disabled={disabled}
             required={required}
-            onChange={() => {}} // Handled by button
+            readOnly
             className={styles.srOnly}
             tabIndex={-1}
           />
