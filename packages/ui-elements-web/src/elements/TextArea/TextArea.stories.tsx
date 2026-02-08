@@ -105,7 +105,7 @@ export const FormExample: Story = {
       <TextArea
         label="Feedback"
         placeholder="Share your feedback..."
-        maxLength: 500
+        maxLength={500}
         showCount
         rows={5}
       />
