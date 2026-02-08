@@ -79,7 +79,7 @@
     },
     "packages/components": {
       "name": "@groxigo/components",
-      "version": "1.0.0",
+      "version": "1.0.3",
       "dependencies": {
         "@groxigo/contracts": "^1.0.0",
         "@groxigo/tokens": "^1.0.0",
@@ -109,7 +109,7 @@
     },
     "packages/components-web": {
       "name": "@groxigo/components-web",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "dependencies": {
         "@groxigo/contracts": "^1.0.0",
         "@groxigo/icons": "^1.0.0",
@@ -166,7 +166,7 @@
     },
     "packages/tokens": {
       "name": "@groxigo/tokens",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "devDependencies": {
         "@types/node": "^22.15.0",
         "@vitest/coverage-v8": "^3.0.0",
@@ -182,7 +182,7 @@
     },
     "packages/ui-core": {
       "name": "@groxigo/ui-core",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@groxigo/contracts": "*",
         "@groxigo/tokens": "*",
@@ -202,7 +202,7 @@
     },
     "packages/ui-elements": {
       "name": "@groxigo/ui-elements",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@groxigo/contracts": "*",
         "@groxigo/tokens": "*",
@@ -225,13 +225,12 @@
     },
     "packages/ui-elements-web": {
       "name": "@groxigo/ui-elements-web",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "dependencies": {
         "@groxigo/contracts": "*",
         "@groxigo/tokens": "*",
         "@groxigo/ui-core": "*",
         "clsx": "^2.1.1",
-        "tailwind-merge": "^3.4.0",
       },
       "devDependencies": {
         "@storybook/react": "^10.2.0",
@@ -242,7 +241,6 @@
       "peerDependencies": {
         "react": ">=19.0.0",
         "react-dom": "^19.1.0",
-        "tailwindcss": ">=4.0.0",
       },
     },
   },
@@ -2190,8 +2188,6 @@
     "svgstore": ["svgstore@3.0.1", "", { "dependencies": { "cheerio": "v1.0.0-rc.10" } }, "sha512-nL6WTxYnsVl3e0G/mwGEFSnPAWUrzIwHAPOwInD4QUuLDKxaKMnXduf0Ipw3m/g9AldPhp1Y8E/nkReFBukJrA=="],
 
     "symbol-tree": ["symbol-tree@3.2.4", "", {}, "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="],
-
-    "tailwind-merge": ["tailwind-merge@3.4.0", "", {}, "sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g=="],
 
     "tailwindcss": ["tailwindcss@4.1.18", "", {}, "sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw=="],
 
