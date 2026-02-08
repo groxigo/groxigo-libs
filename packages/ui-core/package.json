@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/ui-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared UI utilities, hooks, and animation configs for cross-platform components",
   "main": "dist/index.js",
   "module": "src/index.ts",
