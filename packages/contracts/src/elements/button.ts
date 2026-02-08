@@ -7,7 +7,7 @@
 import type { ReactNode } from 'react';
 
 export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'link' | 'soft';
-export type ButtonColorScheme = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info';
+export type ButtonColorScheme = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**

@@ -46,8 +46,9 @@
   height: var(--button-xs-height, 24px);
   padding: var(--button-xs-padding-y, 4px) var(--button-xs-padding-x, 8px);
   font-size: var(--font-size-xs, 12px);
-  border-radius: var(--radius-sm, 4px);
-  gap: 4px;
+  font-weight: var(--font-weight-medium, 500);
+  border-radius: var(--radius-md, 8px);
+  gap: var(--spacing-1, 4px);
 }
 
 .sm {
@@ -55,7 +56,7 @@
   padding: var(--button-sm-padding-y, 8px) var(--button-sm-padding-x, 12px);
   font-size: var(--font-size-sm, 14px);
   border-radius: var(--radius-md, 8px);
-  gap: 4px;
+  gap: var(--spacing-1, 4px);
 }
 
 .md {
@@ -63,25 +64,25 @@
   padding: var(--button-md-padding-y, 12px) var(--button-md-padding-x, 16px);
   font-size: var(--font-size-base, 16px);
   border-radius: var(--radius-md, 8px);
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
 }
 
 .lg {
   height: var(--button-lg-height, 48px);
   padding: var(--button-lg-padding-y, 16px) var(--button-lg-padding-x, 24px);
-  font-size: var(--font-size-md, 17px);
+  font-size: var(--font-size-md, 16px);
   font-weight: var(--font-weight-semibold, 600);
   border-radius: var(--radius-lg, 10px);
-  gap: 8px;
+  gap: var(--spacing-2, 8px);
 }
 
 .xl {
   height: var(--button-xl-height, 56px);
   padding: var(--button-xl-padding-y, 16px) var(--button-xl-padding-x, 32px);
-  font-size: var(--font-size-lg, 18px);
+  font-size: var(--font-size-md, 16px);
   font-weight: var(--font-weight-semibold, 600);
-  border-radius: var(--radius-xl, 14px);
-  gap: 12px;
+  border-radius: var(--radius-lg, 10px);
+  gap: var(--spacing-2, 8px);
 }
 
 /* ============================================
@@ -121,7 +122,12 @@
 
 /* ============================================
    VARIANT + COLOR SCHEME: SOLID
+   §13: Primary CTA buttons → radius/full (pill)
    ============================================ */
+
+.solid {
+  border-radius: var(--radius-full, 9999px);
+}
 
 .solid.primary {
   background: var(--button-primary-bg, var(--brand-primary, #2563eb));
@@ -149,20 +155,6 @@
 }
 .solid.secondary:focus-visible {
   box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--color-orange-500, #f97316);
-}
-
-.solid.accent {
-  background: var(--brand-accent, var(--color-cyan-500, #06b6d4));
-  color: var(--text-inverse, #fff);
-}
-.solid.accent:hover:not(:disabled) {
-  background: var(--brand-accent-hover, var(--color-cyan-600, #0891b2));
-}
-.solid.accent:active:not(:disabled) {
-  background: var(--brand-accent-active, var(--color-cyan-700, #0e7490));
-}
-.solid.accent:focus-visible {
-  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--brand-accent, #06b6d4);
 }
 
 .solid.success {
@@ -249,18 +241,6 @@
   background: var(--color-orange-100, #ffedd5);
 }
 
-.outline.accent {
-  border: 2px solid var(--brand-accent, #06b6d4);
-  color: var(--brand-accent, #06b6d4);
-  background: transparent;
-}
-.outline.accent:hover:not(:disabled) {
-  background: var(--brand-accent-subtle, #ecfeff);
-}
-.outline.accent:active:not(:disabled) {
-  background: var(--brand-accent-muted, #cffafe);
-}
-
 .outline.success {
   border: 2px solid var(--status-success, #16a34a);
   color: var(--status-success, #16a34a);
@@ -335,17 +315,6 @@
   background: var(--color-orange-100, #ffedd5);
 }
 
-.ghost.accent {
-  color: var(--brand-accent, #06b6d4);
-  background: transparent;
-}
-.ghost.accent:hover:not(:disabled) {
-  background: var(--brand-accent-subtle, #ecfeff);
-}
-.ghost.accent:active:not(:disabled) {
-  background: var(--brand-accent-muted, #cffafe);
-}
-
 .ghost.success {
   color: var(--status-success, #16a34a);
   background: transparent;
@@ -403,7 +372,6 @@
 
 .link.primary { color: var(--brand-primary, #2563eb); }
 .link.secondary { color: var(--color-orange-600, #ea580c); }
-.link.accent { color: var(--brand-accent, #06b6d4); }
 .link.success { color: var(--status-success, #16a34a); }
 .link.warning { color: var(--status-warning-hover, #ca8a04); }
 .link.error { color: var(--status-error, #dc2626); }
@@ -437,17 +405,6 @@
 }
 .soft.secondary:active:not(:disabled) {
   background: var(--color-orange-300, #fdba74);
-}
-
-.soft.accent {
-  background: var(--brand-accent-muted, #cffafe);
-  color: var(--color-cyan-700, #0e7490);
-}
-.soft.accent:hover:not(:disabled) {
-  background: var(--color-cyan-200, #a5f3fc);
-}
-.soft.accent:active:not(:disabled) {
-  background: var(--color-cyan-300, #67e8f9);
 }
 
 .soft.success {
