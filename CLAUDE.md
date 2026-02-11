@@ -826,9 +826,9 @@ export const viewportBounds = {
 
 ---
 
-## Web Component TypeScript Standards (ui-elements-web & components-web)
+## Component TypeScript Standards (All Platforms)
 
-> **DESIGN_RULES reference:** Visual styling decisions (token values, spacing, radius, colors, component states) are governed by `groxigo-designer/rules/DESIGN_RULES.md`. Key sections for web component development:
+> **DESIGN_RULES reference:** Visual styling decisions (token values, spacing, radius, colors, component states) are governed by `groxigo-designer/rules/DESIGN_RULES.md`. Key sections:
 > - **§3 Fluid Scaling** — which tokens use `clamp()` vs fixed values
 > - **§4 4pt Grid** — all sizing values must land on 4pt increments
 > - **§5 Size Pairing** — icon ↔ component ↔ typography size relationships
@@ -837,13 +837,13 @@ export const viewportBounds = {
 > - **§24 Color Usage** — which semantic color tokens to use (never primitives in components)
 > - **§26 Spacing Hierarchy** — padding, gap, and margin values per context
 
-### Import Rules
+### Import Rules (All Platforms)
 - `import { forwardRef, useState, type ReactNode } from 'react'`
-- NEVER `import React from 'react'` (unnecessary with JSX transform)
+- NEVER `import React from 'react'` (unnecessary with JSX transform — both Metro and webpack/Vite)
 - NEVER `import type React from 'react'` then `React.ReactNode` (verbose)
 - NEVER `import React, { forwardRef }` (imports unused default)
 
-### ReactNode vs string
+### ReactNode vs string (All Platforms)
 | Use `string` for | Use `ReactNode` for |
 |---|---|
 | `label`, `title`, `subtitle`, `description` | `children` (container content) |
@@ -853,36 +853,73 @@ export const viewportBounds = {
 | | `filterContent`, `headerContent` (layout slots) |
 | | `renderItem`, `renderHeader` (render function return types) |
 
-### Banned Patterns
-- `React.FC<Props>` or `React.FunctionComponent` — use `const Foo = forwardRef<HTMLElement, Props>((...) => ...)`
+### Banned Patterns (All Platforms)
+- `React.FC<Props>` or `React.FunctionComponent` — use explicit props typing
 - `any` type — use `unknown` if type is truly unknowable
-- Inline `style` props with `CSSProperties` — use CSS Modules (`.module.css`)
-- `style?: CSSProperties` in component prop interfaces — remove; use `className` only
 - Default exports without named exports — always provide both
 
-### Required Patterns
-- `forwardRef` on every component (proper ref typing: `forwardRef<HTMLDivElement, Props>`)
+### Required Patterns (All Platforms)
 - `displayName` on every component (`Component.displayName = 'Component'`)
-- `'use client'` directive on all interactive components
 - Named export + default export: `export const Foo = ...; export default Foo;`
-- CSS Modules for all styling: `import styles from './Component.module.css'`
-- `className` merging via `clsx`: `className={clsx(styles.root, className)}`
+- Contract-first: all props extend `*PropsBase` from `@groxigo/contracts`
+- Component states must implement DESIGN_RULES §22 state matrix (default, hover, active, focus, disabled, loading)
 
-### Event Handler Typing
+### Event Handler Typing (All Platforms)
 - Contract callbacks: `onPress?: () => void` (from `@groxigo/contracts`)
-- Web-native with event: `onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void`
 - Value changes: `onChange?: (value: string) => void` (not raw event)
 - Text input: `onChangeText?: (text: string) => void`
 
-### Styling (CSS Modules Only)
+---
+
+## Web Platform Standards (ui-elements-web & components-web)
+
+### Web-Specific Required Patterns
+- `forwardRef` on every component (proper ref typing: `forwardRef<HTMLDivElement, Props>`)
+- `'use client'` directive on all interactive components
+- CSS Modules for all styling: `import styles from './Component.module.css'`
+- `className` merging via `clsx`: `className={clsx(styles.root, className)}`
+
+### Web Event Handlers
+- Web-native with event: `onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void`
+- Form elements: use `ChangeEvent<HTMLInputElement>` (imported from `'react'`)
+
+### Web Styling (CSS Modules Only)
 - All visual styling in `.module.css` files using design token CSS vars
 - Token values come from DESIGN_RULES — use semantic tokens (`var(--color-text-primary)`), never primitives (`var(--color-gray-700)`)
 - Spacing must follow §26 hierarchy and §4 4pt grid
 - Radius must follow §13 conventions (pill for CTA, `lg` for cards, `2xl` for modals, etc.)
-- Component states must implement §22 state matrix (default, hover, active, focus, disabled, loading)
 - Dynamic values: use CSS custom properties set via `style` attribute (e.g., `style={{ '--grid-cols': cols }}`)
 - No `CSSProperties` type in prop interfaces
 - No inline style objects for colors, spacing, sizing, typography
+- Tokens: import from `@groxigo/tokens/web` — never `/react-native`
+
+### Web Banned Patterns
+- Inline `style` props with `CSSProperties` — use CSS Modules (`.module.css`)
+- `style?: CSSProperties` in component prop interfaces — remove; use `className` only
+
+---
+
+## Mobile Platform Standards (ui-elements & components)
+
+### Mobile-Specific Required Patterns
+- `forwardRef` only when the component needs to expose a ref (not mandatory on every component)
+- Types in separate `.types.ts` file: `export type { FooProps } from './Foo.types'`
+- Responsive sizing via `useDeviceType()`: `fontSize()`, `uiSize()`, `spacing()` from `@groxigo/ui-core`
+
+### Mobile Styling (StyleSheet)
+- All styles via `StyleSheet.create()` — never inline style objects
+- Type style props as `ViewStyle`, `TextStyle`, or `ImageStyle` from `react-native`
+- Style merging via arrays: `style={[styles.root, style]}`
+- Theming via `useTheme()` hook — never hardcode colors
+- Token values come from DESIGN_RULES — use semantic theme tokens (`theme.colors.text.primary`), never primitives
+- Spacing must follow §26 hierarchy and §4 4pt grid
+- Radius must follow §13 conventions
+- Tokens: import from `@groxigo/tokens` (JS values) — never `/web`
+
+### Mobile Banned Patterns
+- Hardcoded colors, spacing, or font sizes — use theme tokens and `useDeviceType()` scaling
+- `Platform.select()` for styling differences — use responsive hooks instead
+- Direct `react-native` style objects in JSX — extract to `StyleSheet.create()`
 
 ---
 
