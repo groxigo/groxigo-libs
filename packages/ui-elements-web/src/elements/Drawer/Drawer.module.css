@@ -77,23 +77,23 @@
 /* ------------------------------------------------------------------ */
 
 .horizontalXs {
-  width: 256px;
+  width: min(256px, calc(100vw - var(--spacing-8, 32px)));
 }
 
 .horizontalSm {
-  width: 320px;
+  width: min(320px, calc(100vw - var(--spacing-8, 32px)));
 }
 
 .horizontalMd {
-  width: 448px;
+  width: min(448px, calc(100vw - var(--spacing-8, 32px)));
 }
 
 .horizontalLg {
-  width: 576px;
+  width: min(576px, calc(100vw - var(--spacing-8, 32px)));
 }
 
 .horizontalXl {
-  width: 704px;
+  width: min(704px, calc(100vw - var(--spacing-8, 32px)));
 }
 
 .horizontalFull {
@@ -105,23 +105,23 @@
 /* ------------------------------------------------------------------ */
 
 .verticalXs {
-  height: 128px;
+  height: min(128px, calc(100vh - var(--spacing-8, 32px)));
 }
 
 .verticalSm {
-  height: 192px;
+  height: min(192px, calc(100vh - var(--spacing-8, 32px)));
 }
 
 .verticalMd {
-  height: 256px;
+  height: min(256px, calc(100vh - var(--spacing-8, 32px)));
 }
 
 .verticalLg {
-  height: 384px;
+  height: min(384px, calc(100vh - var(--spacing-8, 32px)));
 }
 
 .verticalXl {
-  height: 512px;
+  height: min(512px, calc(100vh - var(--spacing-8, 32px)));
 }
 
 .verticalFull {

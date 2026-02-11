@@ -50,6 +50,10 @@
   border-radius: var(--radius-full, 9999px);
 }
 
+.barPrimary {
+  background: var(--brand-primary, #2563eb);
+}
+
 /* ============================================
    LINEAR PROGRESS — STRIPE PATTERN
    ============================================ */

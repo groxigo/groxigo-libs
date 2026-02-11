@@ -31,7 +31,7 @@ export const Default: Story = {
     children: (
       <div>
         <Text variant="h4">Card Title</Text>
-        <Text colorScheme="muted">This is some card content.</Text>
+        <Text color="var(--text-muted, #6b7280)">This is some card content.</Text>
       </div>
     ),
   },
@@ -42,15 +42,15 @@ export const Variants: Story = {
     <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
       <Card variant="elevated" style={{ width: "200px" }}>
         <Text variant="h5">Elevated</Text>
-        <Text variant="bodySmall" colorScheme="muted">With shadow</Text>
+        <Text variant="bodySmall" color="var(--text-muted, #6b7280)">With shadow</Text>
       </Card>
       <Card variant="outline" style={{ width: "200px" }}>
         <Text variant="h5">Outline</Text>
-        <Text variant="bodySmall" colorScheme="muted">With border</Text>
+        <Text variant="bodySmall" color="var(--text-muted, #6b7280)">With border</Text>
       </Card>
       <Card variant="filled" style={{ width: "200px" }}>
         <Text variant="h5">Filled</Text>
-        <Text variant="bodySmall" colorScheme="muted">With background</Text>
+        <Text variant="bodySmall" color="var(--text-muted, #6b7280)">With background</Text>
       </Card>
     </div>
   ),
@@ -82,7 +82,7 @@ export const WithSections: Story = {
         <Text variant="h5">Card Header</Text>
       </CardHeader>
       <CardBody>
-        <Text colorScheme="muted">
+        <Text color="var(--text-muted, #6b7280)">
           This is the card body content. It can contain any elements you need.
         </Text>
       </CardBody>
@@ -103,7 +103,7 @@ export const Pressable: Story = {
     children: (
       <div>
         <Text variant="h5">Clickable Card</Text>
-        <Text variant="bodySmall" colorScheme="muted">Click me to trigger an action</Text>
+        <Text variant="bodySmall" color="var(--text-muted, #6b7280)">Click me to trigger an action</Text>
       </div>
     ),
   },
@@ -118,10 +118,10 @@ export const ProductCard: Story = {
         margin: "-16px -16px 16px -16px",
         borderRadius: "8px 8px 0 0"
       }} />
-      <Text variant="caption" colorScheme="muted">Electronics</Text>
+      <Text variant="caption" color="var(--text-muted, #6b7280)">Electronics</Text>
       <Text variant="h5">Wireless Headphones</Text>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px" }}>
-        <Text variant="h4" colorScheme="primary">$129.99</Text>
+        <Text variant="h4" color="var(--brand-primary, #2563eb)">$129.99</Text>
         <Button size="sm">Add to Cart</Button>
       </div>
     </Card>

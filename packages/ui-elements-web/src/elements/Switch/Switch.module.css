@@ -87,18 +87,18 @@
    ============================================ */
 
 .trackSm {
-  width: 36px;
-  height: 20px;
+  width: var(--spacing-9, 36px);
+  height: var(--spacing-5, 20px);
 }
 
 .trackMd {
-  width: 44px;
-  height: 24px;
+  width: var(--spacing-11, 44px);
+  height: var(--spacing-6, 24px);
 }
 
 .trackLg {
-  width: 52px;
-  height: 28px;
+  width: calc(var(--spacing-6, 24px) * 2 + 4px);
+  height: var(--spacing-7, 28px);
 }
 
 /* ============================================
@@ -137,15 +137,15 @@
 
 /* Thumb checked positions */
 .thumbSm.thumbChecked {
-  transform: translateX(16px);
+  transform: translateX(var(--spacing-4, 16px));
 }
 
 .thumbMd.thumbChecked {
-  transform: translateX(20px);
+  transform: translateX(var(--spacing-5, 20px));
 }
 
 .thumbLg.thumbChecked {
-  transform: translateX(24px);
+  transform: translateX(var(--spacing-6, 24px));
 }
 
 /* ============================================

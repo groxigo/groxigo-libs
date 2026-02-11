@@ -73,21 +73,21 @@
   padding: var(--spacing-3, 12px);
   font-size: var(--font-size-sm, 14px);
   border-radius: var(--radius-md, 8px);
-  min-height: 80px;
+  min-height: var(--spacing-20, 80px);
 }
 
 .md {
   padding: var(--spacing-3, 12px);
   font-size: var(--font-size-base, 16px);
   border-radius: var(--radius-md, 8px);
-  min-height: 100px;
+  min-height: calc(var(--spacing-20, 80px) * 1.25);
 }
 
 .lg {
   padding: var(--spacing-3, 12px);
   font-size: var(--font-size-lg, 18px);
   border-radius: var(--radius-md, 8px);
-  min-height: 140px;
+  min-height: calc(var(--spacing-20, 80px) * 1.75);
 }
 
 /* ============================================

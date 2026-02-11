@@ -197,16 +197,16 @@
    ============================================ */
 
 .hasLeftElement {
-  padding-left: 40px;
+  padding-left: var(--spacing-10, 40px);
 }
 
 .hasRightElement {
-  padding-right: 40px;
+  padding-right: var(--spacing-10, 40px);
 }
 
 .leftElement {
   position: absolute;
-  left: 12px;
+  left: var(--spacing-3, 12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,7 +216,7 @@
 
 .rightElement {
   position: absolute;
-  right: 12px;
+  right: var(--spacing-3, 12px);
   display: flex;
   align-items: center;
   justify-content: center;

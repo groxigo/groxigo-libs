@@ -46,15 +46,15 @@ export const Variants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "300px" }}>
       <div>
-        <Text variant="caption" colorScheme="muted">Solid</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Solid</Text>
         <Divider variant="solid" spacing={8} />
       </div>
       <div>
-        <Text variant="caption" colorScheme="muted">Dashed</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Dashed</Text>
         <Divider variant="dashed" spacing={8} />
       </div>
       <div>
-        <Text variant="caption" colorScheme="muted">Dotted</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Dotted</Text>
         <Divider variant="dotted" spacing={8} />
       </div>
     </div>
@@ -65,15 +65,15 @@ export const Thickness: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "300px" }}>
       <div>
-        <Text variant="caption" colorScheme="muted">Thin</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Thin</Text>
         <Divider thickness="thin" spacing={8} />
       </div>
       <div>
-        <Text variant="caption" colorScheme="muted">Medium</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Medium</Text>
         <Divider thickness="medium" spacing={8} />
       </div>
       <div>
-        <Text variant="caption" colorScheme="muted">Thick</Text>
+        <Text variant="caption" color="var(--text-muted, #6b7280)">Thick</Text>
         <Divider thickness="thick" spacing={8} />
       </div>
     </div>
@@ -115,13 +115,13 @@ export const InContent: Story = {
   render: () => (
     <div style={{ width: "300px" }}>
       <Text variant="h5">Section One</Text>
-      <Text variant="bodySmall" colorScheme="muted">Some content for the first section.</Text>
+      <Text variant="bodySmall" color="var(--text-muted, #6b7280)">Some content for the first section.</Text>
       <Divider spacing={16} />
       <Text variant="h5">Section Two</Text>
-      <Text variant="bodySmall" colorScheme="muted">Some content for the second section.</Text>
+      <Text variant="bodySmall" color="var(--text-muted, #6b7280)">Some content for the second section.</Text>
       <Divider spacing={16} />
       <Text variant="h5">Section Three</Text>
-      <Text variant="bodySmall" colorScheme="muted">Some content for the third section.</Text>
+      <Text variant="bodySmall" color="var(--text-muted, #6b7280)">Some content for the third section.</Text>
     </div>
   ),
 };

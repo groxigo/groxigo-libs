@@ -15,7 +15,7 @@ const meta: Meta<typeof TextArea> = {
     },
     variant: {
       control: "select",
-      options: ["outline", "filled", "flushed", "unstyled"],
+      options: ["outline", "filled", "flushed"],
     },
     resize: {
       control: "select",
@@ -88,7 +88,6 @@ export const Variants: Story = {
       <TextArea variant="outline" placeholder="Outline variant" label="Outline" />
       <TextArea variant="filled" placeholder="Filled variant" label="Filled" />
       <TextArea variant="flushed" placeholder="Flushed variant" label="Flushed" />
-      <TextArea variant="unstyled" placeholder="Unstyled variant" label="Unstyled" />
     </div>
   ),
 };

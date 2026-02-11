@@ -13,18 +13,11 @@ const meta: Meta<typeof Text> = {
       control: "select",
       options: ["h1", "h2", "h3", "h4", "h5", "h6", "body", "bodyLarge", "bodySmall", "caption", "label", "overline"],
     },
-    weight: {
-      control: "select",
-      options: ["light", "normal", "medium", "semibold", "bold"],
-    },
     align: {
       control: "select",
       options: ["left", "center", "right", "justify"],
     },
-    colorScheme: {
-      control: "select",
-      options: ["default", "primary", "secondary", "accent", "success", "warning", "error", "info", "muted"],
-    },
+    color: { control: "color" },
     truncate: { control: "boolean" },
   },
 };
@@ -64,29 +57,16 @@ export const BodyVariants: Story = {
   ),
 };
 
-export const Weights: Story = {
-  render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-      <Text weight="light">Light weight</Text>
-      <Text weight="normal">Normal weight</Text>
-      <Text weight="medium">Medium weight</Text>
-      <Text weight="semibold">Semibold weight</Text>
-      <Text weight="bold">Bold weight</Text>
-    </div>
-  ),
-};
-
 export const Colors: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-      <Text colorScheme="default">Default color</Text>
-      <Text colorScheme="primary">Primary color</Text>
-      <Text colorScheme="secondary">Secondary color</Text>
-      <Text colorScheme="accent">Accent color</Text>
-      <Text colorScheme="success">Success color</Text>
-      <Text colorScheme="warning">Warning color</Text>
-      <Text colorScheme="error">Error color</Text>
-      <Text colorScheme="muted">Muted color</Text>
+      <Text>Default color</Text>
+      <Text color="var(--brand-primary, #2563eb)">Primary color</Text>
+      <Text color="var(--color-orange-500, #f97316)">Secondary color</Text>
+      <Text color="var(--status-success, #16a34a)">Success color</Text>
+      <Text color="var(--status-warning, #eab308)">Warning color</Text>
+      <Text color="var(--status-error, #dc2626)">Error color</Text>
+      <Text color="var(--text-muted, #6b7280)">Muted color</Text>
     </div>
   ),
 };

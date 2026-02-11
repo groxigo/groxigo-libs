@@ -70,7 +70,7 @@
   position: absolute;
   z-index: 1000;
   min-width: 180px;
-  max-width: 280px;
+  max-width: min(280px, calc(100vw - var(--spacing-8, 32px)));
   padding: var(--spacing-1, 4px) 0;
   border-radius: var(--radius-xs);
   background-color: var(--surface-primary);

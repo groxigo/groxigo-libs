@@ -121,8 +121,8 @@
 }
 
 .iconLg {
-  width: 14px;
-  height: 14px;
+  width: calc(var(--spacing-3, 12px) + 2px);
+  height: calc(var(--spacing-3, 12px) + 2px);
 }
 
 /* Disabled icon */

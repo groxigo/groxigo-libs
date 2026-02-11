@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     },
     colorScheme: {
       control: "select",
-      options: ["primary", "secondary", "accent", "success", "warning", "error", "info"],
+      options: ["primary", "secondary", "success", "warning", "error", "info"],
     },
     size: {
       control: "select",
@@ -57,7 +57,6 @@ export const ColorSchemes: Story = {
     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
       <Button colorScheme="primary">Primary</Button>
       <Button colorScheme="secondary">Secondary</Button>
-      <Button colorScheme="accent">Accent</Button>
       <Button colorScheme="success">Success</Button>
       <Button colorScheme="warning">Warning</Button>
       <Button colorScheme="error">Error</Button>
@@ -112,9 +111,10 @@ export const OutlineVariants: Story = {
     <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
       <Button variant="outline" colorScheme="primary">Primary</Button>
       <Button variant="outline" colorScheme="secondary">Secondary</Button>
-      <Button variant="outline" colorScheme="accent">Accent</Button>
       <Button variant="outline" colorScheme="success">Success</Button>
+      <Button variant="outline" colorScheme="warning">Warning</Button>
       <Button variant="outline" colorScheme="error">Error</Button>
+      <Button variant="outline" colorScheme="info">Info</Button>
     </div>
   ),
 };

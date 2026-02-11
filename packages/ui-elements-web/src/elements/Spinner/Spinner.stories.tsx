@@ -13,10 +13,7 @@ const meta: Meta<typeof Spinner> = {
       control: "select",
       options: ["xs", "sm", "md", "lg", "xl"],
     },
-    colorScheme: {
-      control: "select",
-      options: ["primary", "secondary", "accent", "white"],
-    },
+    color: { control: "color" },
   },
 };
 
@@ -26,7 +23,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     size: "md",
-    colorScheme: "primary",
   },
 };
 
@@ -42,14 +38,14 @@ export const Sizes: Story = {
   ),
 };
 
-export const ColorSchemes: Story = {
+export const Colors: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-      <Spinner colorScheme="primary" />
-      <Spinner colorScheme="secondary" />
-      <Spinner colorScheme="accent" />
+      <Spinner />
+      <Spinner color="#f97316" />
+      <Spinner color="#16a34a" />
       <div style={{ background: "#1a1a1a", padding: "16px", borderRadius: "8px" }}>
-        <Spinner colorScheme="white" />
+        <Spinner color="#ffffff" />
       </div>
     </div>
   ),
@@ -89,7 +85,7 @@ export const InButton: Story = {
       }}
       disabled
     >
-      <Spinner size="sm" colorScheme="white" />
+      <Spinner size="sm" color="#ffffff" />
       <span>Processing...</span>
     </button>
   ),
@@ -109,7 +105,7 @@ export const FullPageLoader: Story = {
         borderRadius: "12px",
       }}
     >
-      <Spinner size="xl" colorScheme="primary" />
+      <Spinner size="xl" />
       <p style={{ color: "#6b7280", fontSize: "14px" }}>Loading your content...</p>
     </div>
   ),

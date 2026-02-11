@@ -71,6 +71,7 @@
   background-color: var(--surface-primary);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xl);
+  overflow: hidden;
   transform: scale(1);
   opacity: 1;
   transition:
@@ -121,11 +122,11 @@
 
 .closeButton {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: var(--spacing-3, 12px);
+  right: var(--spacing-3, 12px);
   z-index: 10;
-  width: 32px;
-  height: 32px;
+  width: var(--spacing-8, 32px);
+  height: var(--spacing-8, 32px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,8 +150,8 @@
 }
 
 .closeIcon {
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5, 20px);
+  height: var(--spacing-5, 20px);
 }
 
 /* ------------------------------------------------------------------ */

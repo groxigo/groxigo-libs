@@ -13,10 +13,6 @@ const meta: Meta<typeof Checkbox> = {
       control: "select",
       options: ["sm", "md", "lg"],
     },
-    colorScheme: {
-      control: "select",
-      options: ["primary", "secondary", "accent", "success", "warning", "error"],
-    },
     checked: { control: "boolean" },
     indeterminate: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -49,15 +45,14 @@ export const Sizes: Story = {
   ),
 };
 
-export const ColorSchemes: Story = {
+export const CheckedStates: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <Checkbox colorScheme="primary" label="Primary" checked />
-      <Checkbox colorScheme="secondary" label="Secondary" checked />
-      <Checkbox colorScheme="accent" label="Accent" checked />
-      <Checkbox colorScheme="success" label="Success" checked />
-      <Checkbox colorScheme="warning" label="Warning" checked />
-      <Checkbox colorScheme="error" label="Error" checked />
+      <Checkbox label="Unchecked" />
+      <Checkbox label="Checked" checked />
+      <Checkbox label="Indeterminate" indeterminate />
+      <Checkbox label="Disabled unchecked" disabled />
+      <Checkbox label="Disabled checked" disabled checked />
     </div>
   ),
 };

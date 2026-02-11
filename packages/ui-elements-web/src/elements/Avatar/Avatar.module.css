@@ -97,26 +97,26 @@
 /* ------------------------------------------------------------------ */
 
 .badgeXs {
-  width: 6px;
-  height: 6px;
+  width: var(--spacing-1-5, 6px);
+  height: var(--spacing-1-5, 6px);
   border-width: 1px;
 }
 
 .badgeSm {
-  width: 8px;
-  height: 8px;
+  width: var(--spacing-2, 8px);
+  height: var(--spacing-2, 8px);
   border-width: 1px;
 }
 
 .badgeMd {
-  width: 10px;
-  height: 10px;
+  width: var(--spacing-2-5, 10px);
+  height: var(--spacing-2-5, 10px);
   border-width: 2px;
 }
 
 .badgeLg {
-  width: 12px;
-  height: 12px;
+  width: var(--spacing-3, 12px);
+  height: var(--spacing-3, 12px);
   border-width: 2px;
 }
 
@@ -127,8 +127,8 @@
 }
 
 .badge2xl {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4, 16px);
+  height: var(--spacing-4, 16px);
   border-width: 2px;
 }
 

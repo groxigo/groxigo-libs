@@ -85,24 +85,27 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     const modalRef = useRef<HTMLDivElement>(null);
     const previousActiveElement = useRef<HTMLElement | null>(null);
     const [isMounted, setIsMounted] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
     // Handle client-side only rendering for portal
     useEffect(() => {
       setIsMounted(true);
     }, []);
 
-    // Handle open callback
+    // Handle open/close animation
     useEffect(() => {
       if (isOpen) {
         onOpen?.();
-        setIsAnimating(true);
-        // Trigger animation complete after transition
+        // Force the browser to compute entering styles (opacity:0, scale:0.95)
+        // before transitioning. This establishes the CSS transition starting point.
+        modalRef.current?.getBoundingClientRect();
+        setIsVisible(true);
         const timer = setTimeout(() => {
-          setIsAnimating(false);
           onAnimationComplete?.();
         }, 200);
         return () => clearTimeout(timer);
+      } else {
+        setIsVisible(false);
       }
     }, [isOpen, onOpen, onAnimationComplete]);
 
@@ -258,9 +261,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           tabIndex={-1}
           className={clsx(
             styles.modal,
-            isOpen && !isAnimating
-              ? styles.modalVisible
-              : styles.modalEntering,
+            isVisible ? styles.modalVisible : styles.modalEntering,
             sizeClassMap[size],
             className
           )}

@@ -47,8 +47,8 @@
   cursor: pointer;
   appearance: none;
   background-repeat: no-repeat;
-  background-size: 16px;
-  background-position: right 12px center;
+  background-size: var(--spacing-4, 16px);
+  background-position: right var(--spacing-3, 12px) center;
   transition: all var(--duration-normal, 200ms) ease;
 }
 
@@ -124,7 +124,7 @@
   border-bottom: 2px solid var(--input-border, var(--border-default, #d1d5db));
   border-radius: 0;
   padding-left: 0;
-  padding-right: 40px;
+  padding-right: var(--spacing-10, 40px);
 }
 
 .flushed:hover:not(:disabled):not(:focus) {
