@@ -19,6 +19,10 @@
     "./solid": {
       "import": "./src/solid/index.ts",
       "types": "./src/solid/index.ts"
+    },
+    "./custom": {
+      "import": "./src/custom/index.ts",
+      "types": "./src/custom/index.ts"
     }
   },
   "scripts": {

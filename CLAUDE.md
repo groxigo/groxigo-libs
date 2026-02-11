@@ -264,6 +264,29 @@ transpilePackages: [
 
 **Icon naming:** PascalCase from Unicons kebab-case (`shopping-cart` → `ShoppingCart`).
 
+#### Custom Icons
+
+`src/line/` and `src/solid/` are **auto-generated** by `bun run generate` and must not be manually edited — changes will be overwritten.
+
+For non-Unicons icons (logos, brand marks, custom glyphs), add them to `src/custom/`:
+
+1. Extract the SVG `d` path(s) from your SVG file
+2. Create a file in `packages/icons/src/custom/` (e.g., `Logo.ts`):
+   ```typescript
+   import { createIcon } from '../create-icon';
+   export const Logo = createIcon('Logo', 'M12 2L2 7l10 5 10-5-10-5z...');
+   ```
+3. Export from the barrel in `src/custom/index.ts`:
+   ```typescript
+   export { Logo } from './Logo';
+   ```
+4. Import in consumers:
+   ```tsx
+   import { Logo } from '@groxigo/icons/custom';
+   ```
+
+Custom icons use the same `createIcon()` factory, so they get dual-platform support (React Native + Web) automatically.
+
 ---
 
 ## Key Patterns

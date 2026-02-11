@@ -1,3 +1,5 @@
+// NOTE: This script only generates src/line/ and src/solid/ from Unicons SVGs.
+// It does NOT touch src/custom/ — that directory is for manually created icons.
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, basename } from 'path';
 
