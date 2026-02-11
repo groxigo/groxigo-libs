@@ -148,6 +148,11 @@ export interface ProductTilePropsBase {
   width?: number;
 
   /**
+   * Callback when the rating row is pressed (e.g., to open a rating dialog)
+   */
+  onRatingPress?: () => void;
+
+  /**
    * Callback when tile is pressed
    */
   onPress?: () => void;

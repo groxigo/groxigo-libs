@@ -16,6 +16,8 @@ export interface ProductCarouselPropsBase {
   gap?: number;
   /** Callback when an item is pressed */
   onItemPress?: (id: string) => void;
+  /** Callback when an item's rating row is pressed */
+  onRatingPress?: (id: string) => void;
   /** Callback when "See All" is pressed */
   onSeeAll?: () => void;
   /** Section title */

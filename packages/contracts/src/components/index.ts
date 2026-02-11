@@ -274,6 +274,8 @@ export type {
 
 export type {
   AuthMode,
+  AuthStep,
+  SignUpData,
   AuthCardPropsBase,
 } from './auth-card';
 

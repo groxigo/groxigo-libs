@@ -32,7 +32,7 @@ export type TextAlign = 'left' | 'center' | 'right' | 'justify';
  *
  * @example
  * // Heading with custom color
- * <Text variant="h1" weight="bold" colorScheme="primary">
+ * <Text variant="h1" color="#2563eb">
  *   Welcome to Groxigo
  * </Text>
  *
