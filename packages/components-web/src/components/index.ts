@@ -61,6 +61,9 @@ export { StoryAvatar } from './StoryAvatar';
 export type { StoryAvatarProps } from './StoryAvatar';
 
 // Carousels
+export { Carousel } from './Carousel';
+export type { CarouselProps, CarouselItem } from './Carousel';
+
 export { ProductCarousel } from './ProductCarousel';
 export type { ProductCarouselProps } from './ProductCarousel';
 
@@ -71,6 +74,9 @@ export { CategoryCarousel } from './CategoryCarousel';
 export type { CategoryCarouselProps } from './CategoryCarousel';
 
 // Grids
+export { Grid } from './Grid';
+export type { GridProps, GridItem } from './Grid';
+
 export { ProductListGrid } from './ProductListGrid';
 export type { ProductListGridProps } from './ProductListGrid';
 
@@ -157,7 +163,7 @@ export { OrderCard } from './OrderCard';
 export type { OrderCardProps } from './OrderCard';
 
 export { AuthCard } from './AuthCard';
-export type { AuthCardProps } from './AuthCard';
+export type { AuthCardProps, AuthMode } from './AuthCard';
 
 // Rewards & Onboarding
 export { PointsCard } from './PointsCard';
