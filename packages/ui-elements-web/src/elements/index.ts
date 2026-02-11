@@ -33,6 +33,9 @@ export * from './Progress';
 export * from './Toast';
 export * from './Tooltip';
 
+// Rating
+export * from './StarRating';
+
 // Overlays
 export * from './Modal';
 export * from './Drawer';
