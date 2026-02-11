@@ -9,7 +9,7 @@
   background: var(--nav-bg, var(--surface-primary, #ffffff));
   border-bottom: 1px solid var(--nav-border, var(--border-subtle, #e2e8f0));
   position: relative;
-  z-index: var(--z-index-sticky, 10);
+  z-index: var(--z-index-sticky, 1100);
   width: 100%;
   box-sizing: border-box;
   padding: 0 var(--spacing-4, 16px);

@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState, useCallback } from 'react';
+import { forwardRef, useState, useCallback, useId } from 'react';
 import { AngleDown } from '@groxigo/icons/line';
 import type { AccordionSectionPropsBase } from '@groxigo/contracts/components/accordion-section';
 import { Button } from '@groxigo/ui-elements-web';
@@ -24,6 +24,7 @@ export const AccordionSection = forwardRef<HTMLDivElement, AccordionSectionProps
     ref
   ) => {
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+    const headerId = useId();
 
     const isControlled = controlledExpanded !== undefined;
     const isExpanded = isControlled ? controlledExpanded : internalExpanded;
@@ -51,7 +52,7 @@ export const AccordionSection = forwardRef<HTMLDivElement, AccordionSectionProps
           fullWidth
           className={styles.header}
         >
-          <span className={styles.title}>{title}</span>
+          <span id={headerId} className={styles.title}>{title}</span>
           <span className={clsx(styles.chevron, isExpanded && styles.chevronExpanded)}>
             <AngleDown size={16} />
           </span>
@@ -60,6 +61,7 @@ export const AccordionSection = forwardRef<HTMLDivElement, AccordionSectionProps
         <div
           className={clsx(styles.content, !isExpanded && styles.contentCollapsed)}
           role="region"
+          aria-labelledby={headerId}
         >
           {children}
         </div>

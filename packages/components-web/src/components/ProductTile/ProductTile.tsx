@@ -2,11 +2,11 @@
 
 import { forwardRef, useCallback } from 'react';
 import type { ProductTilePropsBase } from '@groxigo/contracts/components';
-import { Badge } from '@groxigo/ui-elements-web';
+import { Badge, StarRating } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './ProductTile.module.css';
 import { PriceDisplay } from '../PriceDisplay';
-import { Star, Heart } from '@groxigo/icons/line';
+import { Heart } from '@groxigo/icons/line';
 
 export interface ProductTileProps extends ProductTilePropsBase {
   /** Additional CSS class */
@@ -54,6 +54,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
       showFavorite = false,
       isFavorite = false,
       onFavoritePress,
+      onRatingPress,
       size = 'md',
       width,
       onPress,
@@ -83,6 +84,14 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
         onFavoritePress?.();
       },
       [onFavoritePress]
+    );
+
+    const handleRatingClick = useCallback(
+      (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onRatingPress?.();
+      },
+      [onRatingPress]
     );
 
     const rootStyle = width != null ? { width: `${width}px` } : undefined;
@@ -137,7 +146,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
               onClick={handleFavoriteClick}
               aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >
-              <Heart size={24} color={isFavorite ? 'var(--status-error, #dc2626)' : 'var(--text-tertiary, #64748b)'} />
+              <Heart size={16} color={isFavorite ? 'var(--status-error, #dc2626)' : 'var(--text-tertiary, #64748b)'} />
             </button>
           )}
 
@@ -174,14 +183,29 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
             {name}
           </p>
 
-          {mode === 'product' && rating != null && (
-            <div className={styles.ratingRow}>
-              <Star size={14} />
-              <span className={styles.ratingText}>{rating.toFixed(1)}</span>
-              {reviewCount != null && (
-                <span className={styles.ratingCount}>({reviewCount})</span>
-              )}
-            </div>
+          {mode === 'product' && (
+            onRatingPress ? (
+              <button
+                type="button"
+                className={styles.ratingButton}
+                onClick={handleRatingClick}
+                aria-label="Rate this product"
+              >
+                <StarRating
+                  value={rating ?? 0}
+                  size="xs"
+                  showValue
+                  reviewCount={reviewCount ?? 0}
+                />
+              </button>
+            ) : (
+              <StarRating
+                value={rating ?? 0}
+                size="xs"
+                showValue
+                reviewCount={reviewCount ?? 0}
+              />
+            )
           )}
 
           {mode === 'product' && price != null && (

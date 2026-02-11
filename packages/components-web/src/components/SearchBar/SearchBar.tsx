@@ -106,7 +106,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
         {hasValue && (
           <Button
             variant="ghost"
-            size="xs"
+            size="sm"
             onPress={handleClear}
             className={styles.clearButton}
             aria-label="Clear search"

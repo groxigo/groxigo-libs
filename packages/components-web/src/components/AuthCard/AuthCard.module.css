@@ -1,4 +1,4 @@
-/* AuthCard — centered authentication form with social login */
+/* AuthCard — email-first multi-step authentication form */
 
 .root {
   display: flex;
@@ -6,16 +6,12 @@
   align-items: center;
   gap: var(--spacing-6, 24px);
   padding: var(--spacing-8, 32px);
-  background: var(--card-bg, #ffffff);
-  border-radius: var(--radius-lg, 10px);
-  box-shadow: var(--shadow-card, 0px 4px 24px 0px rgba(0, 0, 0, 0.1));
   width: 100%;
-  max-width: 360px;
   box-sizing: border-box;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
 }
 
-/* ── Logo area ── */
+/* ── Logo area (identify step) ── */
 
 .logoArea {
   display: flex;
@@ -26,7 +22,7 @@
 }
 
 .brand {
-  font-size: 28px;
+  font-size: var(--font-size-3xl, 28px);
   font-weight: var(--font-weight-bold, 700);
   color: var(--brand-primary, #2563eb);
   line-height: normal;
@@ -39,12 +35,69 @@
   line-height: normal;
 }
 
+/* ── Step header (sign-in / sign-up steps) ── */
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  width: 100%;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  background: transparent;
+  color: var(--text-primary, #0f172a);
+  cursor: pointer;
+  transition: background var(--duration-fast, 150ms) ease;
+}
+
+.backButton:hover {
+  background: var(--surface-secondary, #f1f5f9);
+}
+
+.backButton:focus-visible {
+  outline: 3px solid var(--border-focus, #3b82f6);
+  outline-offset: 2px;
+}
+
+.stepHeading {
+  font-size: var(--font-size-xl, 20px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+  margin: 0;
+}
+
+.stepEmail {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #475569);
+  line-height: normal;
+  margin: var(--spacing-1, 4px) 0 0 0;
+}
+
 /* ── Form area ── */
 
 .formArea {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4, 16px);
+  width: 100%;
+}
+
+/* ── Name row (first/last side-by-side) ── */
+
+.nameRow {
+  display: flex;
+  gap: var(--spacing-3, 12px);
   width: 100%;
 }
 
@@ -83,13 +136,55 @@
   flex-shrink: 0;
 }
 
-/* ── Social buttons ── */
+/* ── SSO icon row (identify step) ── */
 
-.socialButtons {
+.ssoIconRow {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3, 12px);
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4, 16px);
   width: 100%;
+}
+
+.ssoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  background: var(--surface-primary, #ffffff);
+  cursor: pointer;
+  transition: background var(--duration-fast, 150ms) ease,
+    border-color var(--duration-fast, 150ms) ease;
+}
+
+.ssoIcon:hover {
+  background: var(--surface-secondary, #f1f5f9);
+  border-color: var(--border-default, #cbd5e1);
+}
+
+.ssoIcon:focus-visible {
+  outline: 3px solid var(--border-focus, #3b82f6);
+  outline-offset: 2px;
+}
+
+.ssoIcon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Terms label ── */
+
+.termsLink {
+  color: var(--brand-primary, #2563eb);
+  text-decoration: underline;
+  transition: color var(--duration-fast, 150ms) ease;
+}
+
+.termsLink:hover {
+  color: var(--brand-primary-hover, #1d4ed8);
 }
 
 /* ── Footer ── */
@@ -100,47 +195,6 @@
   align-items: center;
   gap: var(--spacing-2, 8px);
   width: 100%;
-}
-
-.toggleRow {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-size: var(--font-size-sm, 14px);
-  line-height: normal;
-}
-
-.toggleText {
-  font-weight: var(--font-weight-normal, 400);
-  color: var(--text-secondary, #475569);
-}
-
-.toggleLink {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
-  font-size: var(--font-size-sm, 14px);
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--brand-primary, #2563eb);
-  line-height: normal;
-  transition: color var(--duration-fast, 150ms) ease;
-}
-
-.toggleLink:hover {
-  color: var(--brand-primary-hover, #1d4ed8);
-}
-
-.toggleLink:focus-visible {
-  outline: 2px solid var(--border-focus, #3b82f6);
-  outline-offset: 2px;
-  border-radius: var(--radius-xs, 4px);
-}
-
-.toggleLink:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .forgotLink {
@@ -161,12 +215,12 @@
 }
 
 .forgotLink:focus-visible {
-  outline: 2px solid var(--border-focus, #3b82f6);
+  outline: 3px solid var(--border-focus, #3b82f6);
   outline-offset: 2px;
   border-radius: var(--radius-xs, 4px);
 }
 
 .forgotLink:disabled {
-  opacity: 0.5;
+  color: var(--text-disabled, #94a3b8);
   cursor: not-allowed;
 }

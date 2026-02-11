@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     items: sampleItems,
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 
@@ -30,7 +30,7 @@ export const ThreeColumns: Story = {
   args: {
     items: sampleItems.slice(0, 9),
     columns: 3,
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 

@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-3, 12px);
-  padding: 14px var(--spacing-0, 0px);
+  padding: var(--spacing-3-5, 14px) var(--spacing-0, 0px);
   border-bottom: 1px solid var(--border-subtle, #e2e8f0);
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
   text-align: left;
@@ -36,7 +36,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-0-5, 2px);
   flex: 1 0 0;
   min-width: 0;
   overflow: hidden;

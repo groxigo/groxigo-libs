@@ -3,6 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
+  width: 100%;
   border-radius: var(--radius-lg, 10px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   background: var(--card-bg, #ffffff);
@@ -20,18 +21,18 @@
 .root:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
   outline: none;
 }
 
 /* ── Size variants ── */
 
 .rootMd {
-  width: 280px;
+  max-width: 280px;
 }
 
 .rootSm {
-  width: 200px;
+  max-width: 200px;
 }
 
 /* ── Image section ── */

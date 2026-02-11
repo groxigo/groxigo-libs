@@ -47,7 +47,6 @@ export const NotificationsCard = forwardRef<HTMLDivElement, NotificationsCardPro
                 checked={setting.enabled}
                 onChange={(checked) => handleToggle(setting.key, checked)}
                 size="sm"
-                colorScheme="primary"
                 testID={testID ? `${testID}-${setting.key}` : undefined}
               />
             </div>

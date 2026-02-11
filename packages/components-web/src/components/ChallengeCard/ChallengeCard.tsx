@@ -54,7 +54,6 @@ export const ChallengeCard = forwardRef<HTMLDivElement, ChallengeCardProps>(
           <Progress
             value={percent}
             size="sm"
-            colorScheme={isComplete ? 'success' : 'primary'}
             aria-label={`${progress} of ${total} completed`}
           />
 

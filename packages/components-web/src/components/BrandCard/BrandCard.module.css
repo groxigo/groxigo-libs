@@ -9,7 +9,7 @@
   background: var(--card-bg, #ffffff);
   border: 1px solid var(--border-subtle, #e2e8f0);
   border-radius: var(--radius-lg, 10px);
-  width: 100px;
+  width: 100%;
   cursor: pointer;
   transition: var(--transition-colors, background-color 150ms, color 150ms, border-color 150ms);
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
@@ -23,7 +23,7 @@
 .root:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 /* Logo container frame */

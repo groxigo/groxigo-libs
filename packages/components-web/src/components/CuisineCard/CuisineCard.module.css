@@ -3,6 +3,8 @@
 .root {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: var(--radius-lg, 10px);
   cursor: pointer;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
@@ -13,20 +15,18 @@
 .root:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
   outline: none;
 }
 
 /* ── Size variants ── */
 
 .rootMd {
-  width: 120px;
-  height: 120px;
+  max-width: 120px;
 }
 
 .rootSm {
-  width: 90px;
-  height: 90px;
+  max-width: 90px;
 }
 
 /* ── Image ── */

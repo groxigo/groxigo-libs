@@ -45,7 +45,7 @@ export const CategoryCard = forwardRef<HTMLDivElement, CategoryCardProps>(
             : undefined
         }
       >
-        {imageUrl && (
+        {imageUrl ? (
           <div className={styles.imageWrapper}>
             <img
               src={imageUrl}
@@ -54,12 +54,12 @@ export const CategoryCard = forwardRef<HTMLDivElement, CategoryCardProps>(
               loading="lazy"
             />
           </div>
-        )}
-
-        {!imageUrl && icon && (
+        ) : icon ? (
           <span className={styles.icon} aria-hidden="true">
             {icon}
           </span>
+        ) : (
+          <div className={styles.imagePlaceholder} aria-hidden="true" />
         )}
 
         <span className={styles.name}>{name}</span>

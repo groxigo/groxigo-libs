@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 0;
+  padding: var(--spacing-1-5, 6px) 0;
   overflow: hidden;
   font-size: var(--font-size-sm, 14px);
   line-height: normal;
@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 0;
+  padding: var(--spacing-1-5, 6px) 0;
   border-bottom: 1px solid var(--border-subtle, #e2e8f0);
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-bold, 700);
@@ -81,7 +81,7 @@
 .dailyValueHeader {
   display: flex;
   justify-content: flex-end;
-  padding: 6px 0;
+  padding: var(--spacing-1-5, 6px) 0;
   border-bottom: 1px solid var(--border-subtle, #e2e8f0);
 }
 
@@ -97,7 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 0;
+  padding: var(--spacing-1-5, 6px) 0;
   border-bottom: 1px solid var(--border-subtle, #e2e8f0);
   font-size: var(--font-size-sm, 14px);
   line-height: normal;
@@ -156,7 +156,7 @@
   display: flex;
   gap: var(--spacing-4, 16px);
   align-items: flex-start;
-  padding: 6px 0;
+  padding: var(--spacing-1-5, 6px) 0;
   overflow: hidden;
   flex-wrap: wrap;
 }

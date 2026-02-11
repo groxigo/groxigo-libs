@@ -45,7 +45,6 @@ export const AddressCard = forwardRef<HTMLDivElement, AddressCardProps>(
         <Radio
           value={id}
           size="md"
-          colorScheme="primary"
           className={styles.radio}
           onSelect={onSelect}
           aria-label={`Select ${label} address`}

@@ -1,47 +1,37 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useCallback } from 'react';
 import type { ProductListGridPropsBase } from '@groxigo/contracts/components/product-list-grid';
+import { Grid } from '../Grid';
 import { ProductTile } from '../ProductTile';
-import clsx from 'clsx';
-import styles from './ProductListGrid.module.css';
 
 export interface ProductListGridProps extends ProductListGridPropsBase {}
 
 export const ProductListGrid = forwardRef<HTMLDivElement, ProductListGridProps>(
-  (
-    {
-      items,
-      columns,
-      gap = 16,
-      onItemPress,
-      className,
-      testID,
-    },
-    ref
-  ) => {
-    const gridStyle: React.CSSProperties = {
-      gap: `${gap}px`,
-      ...(columns
-        ? { gridTemplateColumns: `repeat(${columns}, 1fr)` }
-        : {}),
-    };
+  ({ items, columns, gap = 12, onItemPress, className, testID }, ref) => {
+    const renderItem = useCallback(
+      (item: ProductListGridProps['items'][number]) => (
+        <ProductTile
+          key={item.id}
+          {...item}
+          onPress={onItemPress ? () => onItemPress(item.id) : item.onPress}
+        />
+      ),
+      [onItemPress]
+    );
 
     return (
-      <div
+      <Grid
         ref={ref}
-        className={clsx(styles.root, className)}
-        style={gridStyle}
-        data-testid={testID}
-      >
-        {items.map((item) => (
-          <ProductTile
-            key={item.id}
-            {...item}
-            onPress={onItemPress ? () => onItemPress(item.id) : item.onPress}
-          />
-        ))}
-      </div>
+        items={items}
+        renderItem={renderItem}
+        minItemWidth={110}
+        minItemWidthLg={140}
+        columns={columns}
+        gap={gap}
+        className={className}
+        testID={testID}
+      />
     );
   }
 );

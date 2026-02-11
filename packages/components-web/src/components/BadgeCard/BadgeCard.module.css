@@ -8,7 +8,7 @@
   padding: var(--spacing-3, 12px);
   border-radius: var(--radius-lg, 10px);
   border: 1px solid;
-  width: 100px;
+  width: 100%;
   text-align: center;
 }
 
@@ -20,9 +20,8 @@
 
 /* Locked state */
 .locked {
-  background: var(--surface-tertiary, #f1f5f9);
-  border-color: var(--border-default, #cbd5e1);
-  opacity: 0.6;
+  background: var(--surface-disabled, #e2e8f0);
+  border-color: var(--border-disabled, #cbd5e1);
 }
 
 /* Icon circle */

@@ -60,7 +60,7 @@
   border-radius: var(--radius-md, 8px);
   background: var(--surface-primary, #ffffff);
   color: var(--text-primary, #334155);
-  font-size: 10px;
+  font-size: var(--font-size-2xs, 10px);
   font-weight: var(--font-weight-bold, 700);
   line-height: normal;
 }

@@ -18,7 +18,9 @@ export const Default: Story = {
       'Fresh ingredients and traditional recipes from India, Pakistan, Bangladesh, Nepal, Sri Lanka, and the Arab world.',
     backgroundImage: 'https://placehold.co/1440x600/8B4513/fff?text=Mise+en+Place',
     onGetStarted: (email) => console.log('Get started:', email),
-    onSignIn: () => console.log('Sign in clicked'),
+    onGoogleAuth: () => console.log('Google auth'),
+    onFacebookAuth: () => console.log('Facebook auth'),
+    onAppleAuth: () => console.log('Apple auth'),
   },
 };
 
@@ -29,7 +31,9 @@ export const WithCustomCTA: Story = {
     backgroundImage: 'https://placehold.co/1440x600/2d5016/fff?text=Spices+%26+Herbs',
     ctaLabel: 'Start Shopping',
     onGetStarted: (email) => console.log('Get started:', email),
-    onSignIn: () => console.log('Sign in clicked'),
+    onGoogleAuth: () => console.log('Google auth'),
+    onFacebookAuth: () => console.log('Facebook auth'),
+    onAppleAuth: () => console.log('Apple auth'),
   },
 };
 
@@ -38,6 +42,16 @@ export const WithoutBackground: Story = {
     headline: 'Your kitchen, our ingredients.',
     subheadline: 'Same-day delivery on thousands of authentic grocery items.',
     onGetStarted: (email) => console.log('Get started:', email),
-    onSignIn: () => console.log('Sign in clicked'),
+    onGoogleAuth: () => console.log('Google auth'),
+    onFacebookAuth: () => console.log('Facebook auth'),
+    onAppleAuth: () => console.log('Apple auth'),
+  },
+};
+
+export const NoSSO: Story = {
+  args: {
+    headline: 'Authentic groceries. Inspired recipes. Delivered.',
+    subheadline: 'Fresh ingredients and traditional recipes from 6 cuisines.',
+    onGetStarted: (email) => console.log('Get started:', email),
   },
 };

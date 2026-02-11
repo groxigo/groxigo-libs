@@ -24,7 +24,7 @@ export const Default: Story = {
     title: 'Trending Now',
     items: sampleItems,
     onSeeAll: () => {},
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 

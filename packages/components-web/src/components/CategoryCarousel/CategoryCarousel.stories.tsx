@@ -21,7 +21,7 @@ export const Default: Story = {
   args: {
     title: 'Shop by Category',
     items: sampleItems,
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 
@@ -33,6 +33,6 @@ export const WithImages: Story = {
       imageUrl: `https://placehold.co/80x80/e2e8f0/475569?text=${item.name.slice(0, 3)}`,
       icon: undefined,
     })),
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };

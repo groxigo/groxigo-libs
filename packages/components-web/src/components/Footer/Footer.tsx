@@ -26,6 +26,7 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
         data-testid={testID}
         role="contentinfo"
       >
+        <div className={styles.inner}>
         {/* Link sections */}
         {sections && sections.length > 0 && (
           <nav className={styles.sections} aria-label="Footer navigation">
@@ -95,6 +96,7 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
             <span>{copyrightText}</span>
           </div>
         )}
+        </div>
       </footer>
     );
   }

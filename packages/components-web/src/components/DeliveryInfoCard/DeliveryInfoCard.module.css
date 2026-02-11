@@ -99,7 +99,7 @@
 }
 
 .changeButton:focus-visible {
-  outline: 2px solid var(--brand-primary, #2563eb);
+  outline: 3px solid var(--border-focus, #3b82f6);
   outline-offset: 2px;
   border-radius: var(--radius-xs, 4px);
 }

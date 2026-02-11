@@ -7,8 +7,10 @@
   align-items: center;
   height: var(--spacing-14, 56px);
   background: transparent;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--z-index-sticky, 1100);
   width: 100%;
   box-sizing: border-box;
@@ -26,7 +28,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   min-width: 0;
 }
 

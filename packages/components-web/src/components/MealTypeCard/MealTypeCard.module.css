@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: var(--spacing-2, 8px);
   align-items: center;
-  width: 80px;
+  width: 100%;
   box-sizing: border-box;
 }
 

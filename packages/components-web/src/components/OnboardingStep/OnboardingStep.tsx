@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react';
 import type { OnboardingStepPropsBase } from '@groxigo/contracts/components/onboarding-step';
-import { Button, Image } from '@groxigo/ui-elements-web';
+import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './OnboardingStep.module.css';
 
@@ -36,7 +36,7 @@ export const OnboardingStep = forwardRef<HTMLDivElement, OnboardingStepProps>(
           {illustration ? (
             illustration
           ) : imageUrl ? (
-            <Image
+            <img
               src={imageUrl}
               alt={title}
               className={styles.illustrationImage}

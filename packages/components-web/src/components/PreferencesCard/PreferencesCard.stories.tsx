@@ -45,6 +45,6 @@ export const Default: Story = {
         ],
       },
     ],
-    onChange: (key, value) => console.log(key, value),
+    onChange: () => {},
   },
 };

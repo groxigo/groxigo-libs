@@ -49,7 +49,6 @@ export const PointsCard = forwardRef<HTMLDivElement, PointsCardProps>(
             <Progress
               value={progressPercent}
               size="sm"
-              colorScheme="primary"
               className={styles.progressBar}
             />
             <span className={styles.progressLabel}>

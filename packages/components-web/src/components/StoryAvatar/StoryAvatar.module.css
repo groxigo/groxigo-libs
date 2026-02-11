@@ -13,7 +13,7 @@
 .root:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
   border-radius: var(--radius-lg, 10px);
 }
 

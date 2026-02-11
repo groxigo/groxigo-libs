@@ -25,7 +25,7 @@ export const Default: Story = {
     title: 'Popular Recipes',
     items: sampleItems,
     onSeeAll: () => {},
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 

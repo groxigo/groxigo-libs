@@ -24,7 +24,7 @@
 }
 
 .clickable:focus-visible {
-  outline: 2px solid var(--border-focus, #3b82f6);
+  outline: 3px solid var(--border-focus, #3b82f6);
   outline-offset: 2px;
 }
 
@@ -98,7 +98,7 @@
 .leftDetails {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-0-5, 2px);
   font-size: var(--font-size-xs, 12px);
   font-weight: var(--font-weight-normal, 400);
   color: var(--text-secondary, #475569);

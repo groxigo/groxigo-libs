@@ -51,7 +51,6 @@ export const PaymentMethodCard = forwardRef<HTMLDivElement, PaymentMethodCardPro
         <Radio
           value={id}
           size="md"
-          colorScheme="primary"
           className={styles.radio}
           onSelect={onSelect}
           aria-label={`Select ${BRAND_LABELS[brand]} ending in ${lastFour}`}

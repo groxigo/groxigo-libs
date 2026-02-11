@@ -85,7 +85,7 @@
   outline: none;
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
   border-radius: var(--radius-xs, 4px);
 }
 
@@ -122,6 +122,24 @@
 
 /* ── Disabled state ── */
 .disabled {
-  opacity: 0.5;
   pointer-events: none;
+}
+
+.disabled .title,
+.disabled .description,
+.disabled .price {
+  color: var(--text-disabled, #94a3b8);
+}
+
+.disabled .imageWrapper {
+  background: var(--surface-disabled, #e2e8f0);
+}
+
+.disabled .removeButton {
+  color: var(--text-disabled, #94a3b8);
+}
+
+.disabled .root,
+.disabled {
+  border-color: var(--border-disabled, #cbd5e1);
 }

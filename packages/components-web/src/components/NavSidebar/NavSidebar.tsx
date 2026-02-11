@@ -1,8 +1,9 @@
 'use client';
 
 import { forwardRef, useCallback, useState } from 'react';
+import type { ReactNode } from 'react';
 import { AngleDown, AngleRight } from '@groxigo/icons/line';
-import { Button, Badge } from '@groxigo/ui-elements-web';
+import { Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './NavSidebar.module.css';
 
@@ -11,8 +12,8 @@ export interface SidebarNavItem {
   key: string;
   /** Display label */
   label: string;
-  /** Optional icon (emoji, character, or image URL) */
-  icon?: string;
+  /** Optional icon (emoji, character, or React element) */
+  icon?: ReactNode;
   /** Optional badge count */
   badge?: number;
   /** Optional nested children */
@@ -74,10 +75,9 @@ export const NavSidebar = forwardRef<HTMLElement, NavSidebarProps>(
 
       return (
         <div key={item.key} className={styles.itemGroup}>
-          <Button
-            variant="ghost"
-            fullWidth
-            onPress={() => handleItemClick(item.key, !!hasChildren)}
+          <button
+            type="button"
+            onClick={() => handleItemClick(item.key, !!hasChildren)}
             className={clsx(
               styles.navItem,
               isActive && styles.navItemActive,
@@ -88,7 +88,6 @@ export const NavSidebar = forwardRef<HTMLElement, NavSidebarProps>(
             aria-expanded={hasChildren ? isExpanded : undefined}
             aria-label={collapsed ? item.label : undefined}
           >
-            {/* Left border indicator for active items */}
             {isActive && <span className={styles.activeIndicator} aria-hidden="true" />}
 
             {item.icon && (
@@ -114,9 +113,8 @@ export const NavSidebar = forwardRef<HTMLElement, NavSidebarProps>(
                 )}
               </>
             )}
-          </Button>
+          </button>
 
-          {/* Nested children */}
           {hasChildren && isExpanded && !collapsed && (
             <div className={styles.children}>
               {item.children!.map((child) => renderItem(child, depth + 1))}

@@ -90,7 +90,7 @@
 .typeChip:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .typeChipActive {
@@ -145,11 +145,11 @@
 .cancelButton:focus-visible {
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 4px var(--border-focus, #3b82f6);
+    0 0 0 5px var(--border-focus, #3b82f6);
   border-radius: var(--radius-xs, 4px);
 }
 
 .cancelButton:disabled {
-  opacity: 0.5;
+  color: var(--text-disabled, #94a3b8);
   cursor: not-allowed;
 }

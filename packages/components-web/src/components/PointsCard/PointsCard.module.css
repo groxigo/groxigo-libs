@@ -100,6 +100,6 @@
   outline: none;
   box-shadow:
     0 0 0 2px var(--brand-primary, #2563eb),
-    0 0 0 4px var(--text-inverse, #ffffff);
+    0 0 0 5px var(--text-inverse, #ffffff);
   border-radius: var(--radius-xs, 4px);
 }

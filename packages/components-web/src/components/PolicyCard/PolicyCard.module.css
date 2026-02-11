@@ -3,7 +3,7 @@
 .root {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: var(--spacing-2-5, 10px);
   padding: var(--spacing-3, 12px);
   border-radius: var(--radius-md, 8px);
   width: 100%;

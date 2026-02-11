@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     items: sampleItems,
-    onItemPress: (id) => console.log('Pressed:', id),
+    onItemPress: () => {},
   },
 };
 

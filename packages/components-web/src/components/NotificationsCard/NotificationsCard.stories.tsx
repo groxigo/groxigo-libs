@@ -19,7 +19,7 @@ export const Default: Story = {
       { key: 'delivery', label: 'Delivery Notifications', enabled: true },
       { key: 'newsletter', label: 'Weekly Newsletter', enabled: false },
     ],
-    onToggle: (key, enabled) => console.log(key, enabled),
+    onToggle: () => {},
   },
 };
 
@@ -30,6 +30,6 @@ export const AllEnabled: Story = {
       { key: 'promotions', label: 'Promotions & Deals', enabled: true },
       { key: 'delivery', label: 'Delivery Notifications', enabled: true },
     ],
-    onToggle: (key, enabled) => console.log(key, enabled),
+    onToggle: () => {},
   },
 };

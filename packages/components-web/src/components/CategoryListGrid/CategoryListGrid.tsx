@@ -1,39 +1,35 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useCallback } from 'react';
 import type { CategoryListGridPropsBase } from '@groxigo/contracts/components/category-list-grid';
+import { Grid } from '../Grid';
 import { CategoryCard } from '../CategoryCard';
-import clsx from 'clsx';
-import styles from './CategoryListGrid.module.css';
 
 export interface CategoryListGridProps extends CategoryListGridPropsBase {}
 
 export const CategoryListGrid = forwardRef<HTMLDivElement, CategoryListGridProps>(
-  (
-    {
-      items,
-      gap = 12,
-      onItemPress,
-      className,
-      testID,
-    },
-    ref
-  ) => {
+  ({ items, gap = 12, onItemPress, className, testID }, ref) => {
+    const renderItem = useCallback(
+      (item: CategoryListGridProps['items'][number]) => (
+        <CategoryCard
+          key={item.id}
+          {...item}
+          onPress={onItemPress ? () => onItemPress(item.id) : item.onPress}
+        />
+      ),
+      [onItemPress]
+    );
+
     return (
-      <div
+      <Grid
         ref={ref}
-        className={clsx(styles.root, className)}
-        style={{ gap: `${gap}px` }}
-        data-testid={testID}
-      >
-        {items.map((item) => (
-          <CategoryCard
-            key={item.id}
-            {...item}
-            onPress={onItemPress ? () => onItemPress(item.id) : item.onPress}
-          />
-        ))}
-      </div>
+        items={items}
+        renderItem={renderItem}
+        minItemWidth={110}
+        gap={gap}
+        className={className}
+        testID={testID}
+      />
     );
   }
 );
