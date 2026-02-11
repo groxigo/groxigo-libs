@@ -50,16 +50,49 @@ export interface InfiniteQueryResult<T> {
 }
 
 /**
+ * Result returned from cursor-based query function
+ */
+export interface CursorQueryResult<T> {
+  /** Array of items for the current page */
+  items: T[];
+  /** Cursor for the next page, null if no more pages */
+  nextCursor: string | null;
+  /** Whether there are more pages to load */
+  hasMore: boolean;
+  /** Optional total count of items */
+  total?: number;
+}
+
+/**
  * Options for useInfiniteQuery
  */
 export interface UseInfiniteQueryOptions<T> {
   /**
-   * Function to fetch a page of data
+   * Function to fetch a page of data (used in page mode)
    * @param page - Current page number (1-indexed)
    * @param limit - Number of items per page
    * @returns Promise resolving to items, hasMore flag, and optional total
    */
   queryFn: (page: number, limit: number) => Promise<InfiniteQueryResult<T>>;
+
+  /**
+   * Pagination mode
+   * - 'page' (default): Uses queryFn with page numbers
+   * - 'cursor': Uses cursorQueryFn with cursor strings
+   * @default 'page'
+   */
+  mode?: 'page' | 'cursor';
+
+  /**
+   * Function to fetch a page of data using cursors (used when mode='cursor')
+   * @param cursor - Cursor string for the next page, null for first page
+   * @param limit - Number of items per page
+   * @returns Promise resolving to items, nextCursor, hasMore flag, and optional total
+   */
+  cursorQueryFn?: (
+    cursor: string | null,
+    limit: number
+  ) => Promise<CursorQueryResult<T>>;
 
   /**
    * Number of items per page
@@ -158,6 +191,8 @@ export function useInfiniteQuery<T>(
 ): UseInfiniteQueryReturn<T> {
   const {
     queryFn,
+    mode = 'page',
+    cursorQueryFn,
     limit = 10,
     enabled = true,
     initialData = [],
@@ -184,9 +219,15 @@ export function useInfiniteQuery<T>(
   const isFetchingRef = useRef(false);
   const lastFetchTypeRef = useRef<'initial' | 'more' | 'refresh'>('initial');
 
+  // Cursor tracking for cursor mode
+  const nextCursorRef = useRef<string | null>(null);
+
   // Store queryFn in ref to avoid dependency issues
   const queryFnRef = useRef(queryFn);
   queryFnRef.current = queryFn;
+
+  const cursorQueryFnRef = useRef(cursorQueryFn);
+  cursorQueryFnRef.current = cursorQueryFn;
 
   // Store callbacks in refs
   const onDataChangeRef = useRef(onDataChange);
@@ -250,7 +291,23 @@ export function useInfiniteQuery<T>(
       setError(null);
 
       try {
-        const result = await queryFnRef.current(targetPage, limit);
+        let result: InfiniteQueryResult<T>;
+
+        if (mode === 'cursor' && cursorQueryFnRef.current) {
+          const cursor =
+            fetchType === 'refresh' || targetPage === 1
+              ? null
+              : nextCursorRef.current;
+          const cursorResult = await cursorQueryFnRef.current(cursor, limit);
+          nextCursorRef.current = cursorResult.nextCursor;
+          result = {
+            items: cursorResult.items,
+            hasMore: cursorResult.hasMore,
+            total: cursorResult.total,
+          };
+        } else {
+          result = await queryFnRef.current(targetPage, limit);
+        }
 
         setData((prevData) => {
           let newData: T[];
@@ -314,6 +371,7 @@ export function useInfiniteQuery<T>(
     }
     setPage(1);
     setHasMore(true);
+    nextCursorRef.current = null;
     fetchData(1, 'refresh');
   }, [enabled, fetchData]);
 
@@ -351,6 +409,7 @@ export function useInfiniteQuery<T>(
     setIsLoadingMore(false);
     setIsRefreshing(false);
     isFetchingRef.current = false;
+    nextCursorRef.current = null;
   }, [initialData]);
 
   // Initial fetch on mount (when enabled)

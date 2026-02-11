@@ -12,8 +12,21 @@ export const PaginationQuerySchema = z.object({
 export const PaginationResponseSchema = z.object({
   page: z.number(),
   limit: z.number(),
-  total: z.number(),
-  totalPages: z.number(),
+  total: z.number().optional(),
+  totalPages: z.number().optional(),
+  hasMore: z.boolean(),
+});
+
+// Cursor-based pagination
+export const CursorPaginationQuerySchema = z.object({
+  cursor: z.string().optional(),
+  limit: z.coerce.number().min(1).max(100).default(20),
+});
+
+export const CursorPaginationResponseSchema = z.object({
+  nextCursor: z.string().nullable(),
+  hasMore: z.boolean(),
+  limit: z.number(),
 });
 
 // ============================================================================
@@ -69,6 +82,8 @@ export const ServiceInfoSchema = z.object({
 
 export type PaginationQuery = z.infer<typeof PaginationQuerySchema>;
 export type PaginationResponse = z.infer<typeof PaginationResponseSchema>;
+export type CursorPaginationQuery = z.infer<typeof CursorPaginationQuerySchema>;
+export type CursorPaginationResponse = z.infer<typeof CursorPaginationResponseSchema>;
 export type ApiError = z.infer<typeof ApiErrorSchema>;
 export type HealthResponse = z.infer<typeof HealthResponseSchema>;
 export type ServiceInfo = z.infer<typeof ServiceInfoSchema>;

@@ -86,6 +86,21 @@ export {
 export {
   useInfiniteQuery,
   type InfiniteQueryResult,
+  type CursorQueryResult,
   type UseInfiniteQueryOptions,
   type UseInfiniteQueryReturn,
 } from './useInfiniteQuery';
+
+// Pagination
+export {
+  usePagination,
+  type UsePaginationOptions,
+  type UsePaginationReturn,
+} from './usePagination';
+
+export {
+  usePaginatedQuery,
+  type PaginatedQueryResult,
+  type UsePaginatedQueryOptions,
+  type UsePaginatedQueryReturn,
+} from './usePaginatedQuery';
