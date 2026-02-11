@@ -166,6 +166,23 @@ https://github.com/groxigo/groxigo-libs/actions
 | **@groxigo/components** | React Native composites (27 components) | `ProductCard`, `CartItem`, `SearchBar`, `Form`, etc. |
 | **@groxigo/components-web** | Web composites (30 components) | Same API as components |
 
+### Naming Convention: Why Mobile Packages Are Unsuffixed
+
+The unsuffixed names (`ui-elements`, `components`) are the **React Native / mobile** packages. The `-web` suffix denotes the web platform adaptation. This follows the standard React Native ecosystem convention (e.g., `react-native` vs `react-native-web`) where the original platform keeps the base name and platform-specific variants get a suffix.
+
+| Package | Platform | Consumer |
+|---------|----------|----------|
+| `@groxigo/ui-elements` | React Native (Expo) | `groxigo-mobile` |
+| `@groxigo/ui-elements-web` | Web (Next.js) | `groxigo-web` |
+| `@groxigo/components` | React Native (Expo) | `groxigo-mobile` |
+| `@groxigo/components-web` | Web (Next.js) | `groxigo-web` |
+| `@groxigo/contracts` | Both (platform-agnostic) | All consumers |
+| `@groxigo/tokens` | Both (CSS for web, JS for RN) | All consumers |
+| `@groxigo/icons` | Both (`.web.tsx` / `.tsx` auto-resolved) | All consumers |
+| `@groxigo/ui-core` | React Native (Expo) | `groxigo-mobile` |
+
+**Do not rename** the mobile packages to `-mobile`. The unsuffixed name is intentional and matches ecosystem conventions.
+
 ---
 
 ## Architecture
@@ -811,6 +828,15 @@ export const viewportBounds = {
 
 ## Web Component TypeScript Standards (ui-elements-web & components-web)
 
+> **DESIGN_RULES reference:** Visual styling decisions (token values, spacing, radius, colors, component states) are governed by `groxigo-designer/rules/DESIGN_RULES.md`. Key sections for web component development:
+> - **§3 Fluid Scaling** — which tokens use `clamp()` vs fixed values
+> - **§4 4pt Grid** — all sizing values must land on 4pt increments
+> - **§5 Size Pairing** — icon ↔ component ↔ typography size relationships
+> - **§13 Border Radius** — which radius token to use per context (pill, card, modal, etc.)
+> - **§22 Component State Matrix** — required visual states (default, hover, active, focus, disabled, loading)
+> - **§24 Color Usage** — which semantic color tokens to use (never primitives in components)
+> - **§26 Spacing Hierarchy** — padding, gap, and margin values per context
+
 ### Import Rules
 - `import { forwardRef, useState, type ReactNode } from 'react'`
 - NEVER `import React from 'react'` (unnecessary with JSX transform)
@@ -850,6 +876,10 @@ export const viewportBounds = {
 
 ### Styling (CSS Modules Only)
 - All visual styling in `.module.css` files using design token CSS vars
+- Token values come from DESIGN_RULES — use semantic tokens (`var(--color-text-primary)`), never primitives (`var(--color-gray-700)`)
+- Spacing must follow §26 hierarchy and §4 4pt grid
+- Radius must follow §13 conventions (pill for CTA, `lg` for cards, `2xl` for modals, etc.)
+- Component states must implement §22 state matrix (default, hover, active, focus, disabled, loading)
 - Dynamic values: use CSS custom properties set via `style` attribute (e.g., `style={{ '--grid-cols': cols }}`)
 - No `CSSProperties` type in prop interfaces
 - No inline style objects for colors, spacing, sizing, typography
