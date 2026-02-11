@@ -18,6 +18,28 @@ export interface SignUpData {
   termsAccepted: boolean;
 }
 
+/** Overridable text labels for i18n support */
+export interface AuthCardLabels {
+  tagline?: string;
+  continueButton?: string;
+  orDivider?: string;
+  welcomeBack?: string;
+  createAccount?: string;
+  signInButton?: string;
+  createAccountButton?: string;
+  forgotPassword?: string;
+  emailPlaceholder?: string;
+  passwordPlaceholder?: string;
+  createPasswordPlaceholder?: string;
+  firstNamePlaceholder?: string;
+  lastNamePlaceholder?: string;
+  phonePlaceholder?: string;
+  termsLabel?: string;
+  googleAriaLabel?: string;
+  facebookAriaLabel?: string;
+  appleAriaLabel?: string;
+}
+
 export interface AuthCardPropsBase {
   /** If set, skip identify step and go directly to that form. */
   mode?: AuthMode;
@@ -47,6 +69,8 @@ export interface AuthCardPropsBase {
   termsUrl?: string;
   /** URL to privacy policy page */
   privacyUrl?: string;
+  /** Overridable text labels for i18n */
+  labels?: AuthCardLabels;
   /** Additional CSS class (web only) */
   className?: string;
   /** Test ID for testing */

@@ -10,6 +10,8 @@ export interface LandingHeaderPropsBase {
   logoSrc?: string;
   /** Sign In button handler */
   onSignIn: () => void;
+  /** Sign In button label @default "Sign In" */
+  signInLabel?: string;
   /** Controls transparent vs solid background @default false */
   isScrolled?: boolean;
   /** Additional CSS class (web only) */

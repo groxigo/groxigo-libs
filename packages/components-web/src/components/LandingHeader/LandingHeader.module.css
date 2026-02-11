@@ -59,6 +59,13 @@
   color: var(--brand-primary, #2563eb);
 }
 
+/* Actions container */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+}
+
 /* Sign In button — ghost style by default */
 .signInButton {
   display: inline-flex;

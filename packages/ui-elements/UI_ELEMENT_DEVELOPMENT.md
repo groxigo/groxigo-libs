@@ -1014,6 +1014,10 @@ export const AllVariants: Story = {
 ### Running Storybook
 
 ```bash
+# IMPORTANT: Build all packages first so CSS module files are copied to dist/
+# Without this, Storybook will fail with "Failed to resolve import ./X.module.css" errors
+bun run build
+
 cd apps/storybook-web && bun run storybook  # http://localhost:6006
 ```
 

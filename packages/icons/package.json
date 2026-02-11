@@ -24,7 +24,10 @@
   "scripts": {
     "generate": "bun run scripts/generate.ts",
     "build": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [
     "icons",
@@ -35,6 +38,9 @@
   ],
   "author": "Groxigo",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/groxigo/groxigo-libs.git",
@@ -44,7 +50,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "peerDependencies": {
-    "react": ">=18.3.1",
+    "react": "19.1.0",
     "react-native-svg": ">=15.0.0"
   },
   "peerDependenciesMeta": {
@@ -54,9 +60,15 @@
   },
   "devDependencies": {
     "@iconscout/unicons": "^4.0.8",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/react": "^19.2.9",
+    "@vitest/coverage-v8": "^3.0.0",
+    "jsdom": "^25.0.0",
+    "react-dom": "19.1.0",
     "react-native-svg": ">=15.0.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "vitest": "^3.0.0"
   },
   "files": [
     "src",

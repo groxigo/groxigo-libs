@@ -53,6 +53,27 @@ function getInitialStep(mode?: AuthMode, initialEmail?: string): AuthStep {
 
 /* ─── AuthCard Component ─── */
 
+const DEFAULT_AUTH_LABELS = {
+  tagline: 'Fresh groceries delivered fast',
+  continueButton: 'Continue',
+  orDivider: 'or',
+  welcomeBack: 'Welcome back',
+  createAccount: 'Create your account',
+  signInButton: 'Sign In',
+  createAccountButton: 'Create Account',
+  forgotPassword: 'Forgot Password?',
+  emailPlaceholder: 'Email',
+  passwordPlaceholder: 'Password',
+  createPasswordPlaceholder: 'Create Password',
+  firstNamePlaceholder: 'First Name',
+  lastNamePlaceholder: 'Last Name',
+  phonePlaceholder: 'Phone Number',
+  termsLabel: 'I agree to the Terms & Privacy Policy',
+  googleAriaLabel: 'Continue with Google',
+  facebookAriaLabel: 'Continue with Facebook',
+  appleAriaLabel: 'Continue with Apple',
+};
+
 export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
   (
     {
@@ -70,11 +91,13 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
       error,
       termsUrl,
       privacyUrl,
+      labels: labelsProp,
       className,
       testID,
     },
     ref
   ) => {
+    const l = { ...DEFAULT_AUTH_LABELS, ...labelsProp };
     const [step, setStep] = useState<AuthStep>(() => getInitialStep(mode, initialEmail));
     const [email, setEmail] = useState(initialEmail);
     const [password, setPassword] = useState('');
@@ -142,28 +165,13 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
     );
 
     const termsLabel = useMemo(() => {
-      if (!termsUrl && !privacyUrl) return 'I agree to the Terms & Privacy Policy';
+      if (!termsUrl && !privacyUrl) return l.termsLabel;
       return (
         <span>
-          I agree to the{' '}
-          {termsUrl ? (
-            <a href={termsUrl} target="_blank" rel="noopener noreferrer" className={styles.termsLink}>
-              Terms
-            </a>
-          ) : (
-            'Terms'
-          )}
-          {' & '}
-          {privacyUrl ? (
-            <a href={privacyUrl} target="_blank" rel="noopener noreferrer" className={styles.termsLink}>
-              Privacy Policy
-            </a>
-          ) : (
-            'Privacy Policy'
-          )}
+          {l.termsLabel}
         </span>
       );
-    }, [termsUrl, privacyUrl]);
+    }, [termsUrl, privacyUrl, l.termsLabel]);
 
     return (
       <div
@@ -176,13 +184,13 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
           <>
             <div className={styles.logoArea}>
               <span className={styles.brand}>groxigo</span>
-              <span className={styles.tagline}>Fresh groceries delivered fast</span>
+              <span className={styles.tagline}>{l.tagline}</span>
             </div>
 
             <form className={styles.formArea} onSubmit={handleContinue} noValidate>
               <Input
                 type="email"
-                placeholder="Email"
+                placeholder={l.emailPlaceholder}
                 value={email}
                 onChangeText={setEmail}
                 disabled={isChecking}
@@ -207,7 +215,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 loading={isChecking}
                 testID={testID ? `${testID}-continue` : undefined}
               >
-                Continue
+                {l.continueButton}
               </Button>
             </form>
 
@@ -215,7 +223,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
               <>
                 <div className={styles.dividerRow}>
                   <span className={styles.dividerLine} />
-                  <span className={styles.dividerText}>or</span>
+                  <span className={styles.dividerText}>{l.orDivider}</span>
                   <span className={styles.dividerLine} />
                 </div>
 
@@ -226,7 +234,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                       className={styles.ssoIcon}
                       onClick={onGoogleAuth}
                       disabled={isChecking}
-                      aria-label="Continue with Google"
+                      aria-label={l.googleAriaLabel}
                     >
                       <GoogleIcon />
                     </button>
@@ -237,7 +245,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                       className={styles.ssoIcon}
                       onClick={onFacebookAuth}
                       disabled={isChecking}
-                      aria-label="Continue with Facebook"
+                      aria-label={l.facebookAriaLabel}
                     >
                       <FacebookIcon />
                     </button>
@@ -248,7 +256,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                       className={styles.ssoIcon}
                       onClick={onAppleAuth}
                       disabled={isChecking}
-                      aria-label="Continue with Apple"
+                      aria-label={l.appleAriaLabel}
                     >
                       <AppleIcon />
                     </button>
@@ -272,7 +280,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 <BackArrow />
               </button>
               <div>
-                <h2 className={styles.stepHeading}>Welcome back</h2>
+                <h2 className={styles.stepHeading}>{l.welcomeBack}</h2>
                 <p className={styles.stepEmail}>{email}</p>
               </div>
             </div>
@@ -280,7 +288,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
             <form className={styles.formArea} onSubmit={handleSignIn} noValidate>
               <Input
                 type="password"
-                placeholder="Password"
+                placeholder={l.passwordPlaceholder}
                 value={password}
                 onChangeText={setPassword}
                 disabled={isLoading}
@@ -305,7 +313,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 loading={isLoading}
                 testID={testID ? `${testID}-submit` : undefined}
               >
-                Sign In
+                {l.signInButton}
               </Button>
             </form>
 
@@ -317,7 +325,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                   onClick={() => onForgotPassword(email)}
                   disabled={isLoading}
                 >
-                  Forgot Password?
+                  {l.forgotPassword}
                 </button>
               </div>
             )}
@@ -337,7 +345,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 <BackArrow />
               </button>
               <div>
-                <h2 className={styles.stepHeading}>Create your account</h2>
+                <h2 className={styles.stepHeading}>{l.createAccount}</h2>
                 <p className={styles.stepEmail}>{email}</p>
               </div>
             </div>
@@ -346,7 +354,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
               <div className={styles.nameRow}>
                 <Input
                   type="text"
-                  placeholder="First Name"
+                  placeholder={l.firstNamePlaceholder}
                   value={firstName}
                   onChangeText={setFirstName}
                   disabled={isLoading}
@@ -357,7 +365,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 />
                 <Input
                   type="text"
-                  placeholder="Last Name"
+                  placeholder={l.lastNamePlaceholder}
                   value={lastName}
                   onChangeText={setLastName}
                   disabled={isLoading}
@@ -370,7 +378,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
 
               <Input
                 type="tel"
-                placeholder="Phone Number"
+                placeholder={l.phonePlaceholder}
                 value={phone}
                 onChangeText={setPhone}
                 disabled={isLoading}
@@ -382,7 +390,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
 
               <Input
                 type="password"
-                placeholder="Create Password"
+                placeholder={l.createPasswordPlaceholder}
                 value={password}
                 onChangeText={setPassword}
                 disabled={isLoading}
@@ -417,7 +425,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 loading={isLoading}
                 testID={testID ? `${testID}-submit` : undefined}
               >
-                Create Account
+                {l.createAccountButton}
               </Button>
             </form>
           </>

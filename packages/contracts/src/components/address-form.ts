@@ -36,6 +36,24 @@ export interface AddressFormValues {
   isDefault: boolean;
 }
 
+/** Overridable text labels for i18n support */
+export interface AddressFormLabels {
+  fullName?: string;
+  street?: string;
+  apartment?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  phone?: string;
+  home?: string;
+  work?: string;
+  other?: string;
+  setAsDefault?: string;
+  saveButton?: string;
+  savingButton?: string;
+  cancelButton?: string;
+}
+
 /**
  * AddressForm component props contract
  */
@@ -54,6 +72,9 @@ export interface AddressFormPropsBase {
 
   /** Whether the form is in a loading/submitting state */
   isLoading?: boolean;
+
+  /** Overridable text labels for i18n */
+  labels?: AddressFormLabels;
 
   /** Additional CSS class (web only) */
   className?: string;

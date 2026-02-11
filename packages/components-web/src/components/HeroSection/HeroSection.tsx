@@ -44,6 +44,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
       onGetStarted,
       ctaLabel = 'Continue',
       emailPlaceholder = 'Sign in or sign up using email',
+      dividerText = 'or',
       onGoogleAuth,
       onFacebookAuth,
       onAppleAuth,
@@ -103,7 +104,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
             <>
               <div className={styles.dividerRow}>
                 <span className={styles.dividerLine} />
-                <span className={styles.dividerText}>or</span>
+                <span className={styles.dividerText}>{dividerText}</span>
                 <span className={styles.dividerLine} />
               </div>
 

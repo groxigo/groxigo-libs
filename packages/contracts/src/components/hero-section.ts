@@ -19,6 +19,8 @@ export interface HeroSectionPropsBase {
   ctaLabel?: string;
   /** Email input placeholder @default "Sign in or sign up using email" */
   emailPlaceholder?: string;
+  /** Text for the "or" divider between email form and SSO @default "or" */
+  dividerText?: string;
   /** SSO callbacks — shown as icon circles below "or" divider */
   onGoogleAuth?: () => void;
   onFacebookAuth?: () => void;

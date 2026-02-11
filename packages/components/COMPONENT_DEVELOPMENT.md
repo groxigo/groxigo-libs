@@ -202,6 +202,79 @@ export const SearchBar = ({ value, onChangeText, onSearch, ...props }: SearchBar
 };
 ```
 
+## Using Icons
+
+All icons come from `@groxigo/icons`. **Never create inline SVGs or custom icon components.**
+
+### Import Pattern
+
+```tsx
+// Direct sub-path imports (recommended — tree-shakable)
+import { ShoppingCart, Search, Heart } from '@groxigo/icons/line';
+import { Star, Check } from '@groxigo/icons/solid';
+```
+
+### Platform Resolution
+
+The icons package has dual implementations:
+- `create-icon.tsx` — React Native (uses `react-native-svg`)
+- `create-icon.web.tsx` — Web (uses native `<svg>` + `<path>`, no dependencies)
+
+Bundlers resolve the correct file automatically via the `.web.tsx` extension convention.
+
+### Usage in Components
+
+```tsx
+// In a component (works on both RN and web)
+import { AngleRight } from '@groxigo/icons/line';
+
+export const MenuItem = ({ label }: MenuItemProps) => (
+  <View style={styles.row}>
+    <Text>{label}</Text>
+    <AngleRight size={16} color="currentColor" />
+  </View>
+);
+```
+
+### Web-Specific Props
+
+On web, icons also accept `className` for CSS styling:
+
+```tsx
+import { Heart } from '@groxigo/icons/line';
+
+<Heart size={20} className={styles.favoriteIcon} />
+```
+
+### Next.js Setup
+
+Next.js requires two config additions in `next.config.js`:
+
+1. **`.web.tsx` resolution** — so webpack picks the web `createIcon` implementation:
+   ```javascript
+   webpack: (config) => {
+     const extensions = config.resolve.extensions;
+     const webExtensions = ['.web.tsx', '.web.ts', '.web.js'];
+     config.resolve.extensions = [
+       ...webExtensions,
+       ...extensions.filter((ext) => !webExtensions.includes(ext)),
+     ];
+     return config;
+   },
+   ```
+
+2. **Transpile the package** — since icons ship TypeScript source:
+   ```javascript
+   transpilePackages: ['@groxigo/icons', /* ... */],
+   ```
+
+### Available Icons
+
+- **1,215 line icons** (outline) — `@groxigo/icons/line`
+- **190 solid icons** (filled) — `@groxigo/icons/solid`
+- Naming: PascalCase from Unicons kebab-case (`shopping-cart` → `ShoppingCart`)
+- Browse all: check `packages/icons/src/line/index.ts` and `packages/icons/src/solid/index.ts`
+
 ## Styling Guidelines
 
 ### Using ui-elements Styles
@@ -390,6 +463,10 @@ Use these title categories to organize the Storybook sidebar:
 ### Running Storybook
 
 ```bash
+# IMPORTANT: Build all packages first so CSS module files are copied to dist/
+# Without this, Storybook will fail with "Failed to resolve import ./X.module.css" errors
+bun run build
+
 cd apps/storybook-web && bun run storybook  # http://localhost:6006
 ```
 

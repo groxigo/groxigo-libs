@@ -1,11 +1,15 @@
 'use client';
 
 import { forwardRef } from 'react';
+import type { ReactNode } from 'react';
 import type { LandingHeaderPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './LandingHeader.module.css';
 
-export interface LandingHeaderProps extends LandingHeaderPropsBase {}
+export interface LandingHeaderProps extends LandingHeaderPropsBase {
+  /** Extra content rendered before the sign-in button (e.g. language switcher) */
+  children?: ReactNode;
+}
 
 /**
  * LandingHeader — sticky transparent-to-solid header for the marketing landing page.
@@ -14,7 +18,7 @@ export interface LandingHeaderProps extends LandingHeaderPropsBase {}
  * When `isScrolled`: solid surface background with shadow.
  */
 export const LandingHeader = forwardRef<HTMLElement, LandingHeaderProps>(
-  ({ logoSrc, onSignIn, isScrolled = false, className, testID }, ref) => {
+  ({ logoSrc, onSignIn, signInLabel = 'Sign In', isScrolled = false, className, testID, children }, ref) => {
     return (
       <header
         ref={ref}
@@ -39,16 +43,19 @@ export const LandingHeader = forwardRef<HTMLElement, LandingHeaderProps>(
             )}
           </div>
 
-          <button
-            type="button"
-            className={clsx(
-              styles.signInButton,
-              isScrolled && styles.signInButtonScrolled
-            )}
-            onClick={onSignIn}
-          >
-            Sign In
-          </button>
+          <div className={styles.actions}>
+            {children}
+            <button
+              type="button"
+              className={clsx(
+                styles.signInButton,
+                isScrolled && styles.signInButtonScrolled
+              )}
+              onClick={onSignIn}
+            >
+              {signInLabel}
+            </button>
+          </div>
         </div>
       </header>
     );

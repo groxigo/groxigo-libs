@@ -16,11 +16,22 @@ export type { AddressFormValues, AddressFormType };
 
 export interface AddressFormProps extends AddressFormPropsBase {}
 
-const ADDRESS_TYPES: { value: AddressFormType; label: string }[] = [
-  { value: 'home', label: 'Home' },
-  { value: 'work', label: 'Work' },
-  { value: 'other', label: 'Other' },
-];
+const DEFAULT_ADDRESS_LABELS = {
+  fullName: 'Full Name',
+  street: 'Street Address',
+  apartment: 'Apt / Suite / Floor (Optional)',
+  city: 'City',
+  state: 'State',
+  zip: 'Zip Code',
+  phone: 'Phone Number',
+  home: 'Home',
+  work: 'Work',
+  other: 'Other',
+  setAsDefault: 'Set as default address',
+  saveButton: 'Save Address',
+  savingButton: 'Saving...',
+  cancelButton: 'Cancel',
+};
 
 const DEFAULT_VALUES: AddressFormValues = {
   fullName: '',
@@ -43,11 +54,18 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
       onSubmit,
       onCancel,
       isLoading = false,
+      labels: labelsProp,
       className,
       testID,
     },
     ref
   ) => {
+    const fl = { ...DEFAULT_ADDRESS_LABELS, ...labelsProp };
+    const addressTypes: { value: AddressFormType; label: string }[] = [
+      { value: 'home', label: fl.home },
+      { value: 'work', label: fl.work },
+      { value: 'other', label: fl.other },
+    ];
     const [values, setValues] = useState<AddressFormValues>({
       ...DEFAULT_VALUES,
       ...initialValues,
@@ -83,11 +101,11 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
         <div className={styles.fields}>
           {/* Full Name */}
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>Full Name</label>
+            <label className={styles.label}>{fl.fullName}</label>
             <Input
               value={values.fullName}
               onChangeText={(text) => updateField('fullName', text)}
-              placeholder="Full Name"
+              placeholder={fl.fullName}
               fullWidth
               testID={testID ? `${testID}-fullName` : undefined}
             />
@@ -95,11 +113,11 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
 
           {/* Street Address */}
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>Street Address</label>
+            <label className={styles.label}>{fl.street}</label>
             <Input
               value={values.street}
               onChangeText={(text) => updateField('street', text)}
-              placeholder="Street Address"
+              placeholder={fl.street}
               fullWidth
               testID={testID ? `${testID}-street` : undefined}
             />
@@ -107,11 +125,11 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
 
           {/* Apartment */}
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>Apt / Suite / Floor (Optional)</label>
+            <label className={styles.label}>{fl.apartment}</label>
             <Input
               value={values.apartment ?? ''}
               onChangeText={(text) => updateField('apartment', text)}
-              placeholder="Apt, Suite, Floor"
+              placeholder={fl.apartment}
               fullWidth
               testID={testID ? `${testID}-apartment` : undefined}
             />
@@ -120,21 +138,21 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
           {/* City + State row */}
           <div className={styles.row}>
             <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>City</label>
+              <label className={styles.label}>{fl.city}</label>
               <Input
                 value={values.city}
                 onChangeText={(text) => updateField('city', text)}
-                placeholder="City"
+                placeholder={fl.city}
                 fullWidth
                 testID={testID ? `${testID}-city` : undefined}
               />
             </div>
             <div className={styles.fieldGroupFixed}>
-              <label className={styles.label}>State</label>
+              <label className={styles.label}>{fl.state}</label>
               <Input
                 value={values.state}
                 onChangeText={(text) => updateField('state', text)}
-                placeholder="State"
+                placeholder={fl.state}
                 fullWidth
                 testID={testID ? `${testID}-state` : undefined}
               />
@@ -144,22 +162,22 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
           {/* ZIP + Phone row */}
           <div className={styles.row}>
             <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>Zip Code</label>
+              <label className={styles.label}>{fl.zip}</label>
               <Input
                 value={values.zip}
                 onChangeText={(text) => updateField('zip', text)}
-                placeholder="Zip Code"
+                placeholder={fl.zip}
                 fullWidth
                 testID={testID ? `${testID}-zip` : undefined}
               />
             </div>
             <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>Phone Number</label>
+              <label className={styles.label}>{fl.phone}</label>
               <Input
                 type="tel"
                 value={values.phone ?? ''}
                 onChangeText={(text) => updateField('phone', text)}
-                placeholder="Phone Number"
+                placeholder={fl.phone}
                 fullWidth
                 testID={testID ? `${testID}-phone` : undefined}
               />
@@ -169,7 +187,7 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
 
         {/* Address Type Chips */}
         <div className={styles.typeChips} role="radiogroup" aria-label="Address type">
-          {ADDRESS_TYPES.map(({ value, label }) => (
+          {addressTypes.map(({ value, label }) => (
             <button
               key={value}
               type="button"
@@ -191,7 +209,7 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
           <Switch
             checked={values.isDefault}
             onChange={(checked) => updateField('isDefault', checked)}
-            label="Set as default address"
+            label={fl.setAsDefault}
             size="sm"
             testID={testID ? `${testID}-default` : undefined}
           />
@@ -204,10 +222,10 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
           size="lg"
           fullWidth
           loading={isLoading}
-          loadingText="Saving..."
+          loadingText={fl.savingButton}
           testID={testID ? `${testID}-submit` : undefined}
         >
-          Save Address
+          {fl.saveButton}
         </Button>
 
         {onCancel && (
@@ -217,7 +235,7 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
             onClick={onCancel}
             disabled={isLoading}
           >
-            Cancel
+            {fl.cancelButton}
           </button>
         )}
       </form>
