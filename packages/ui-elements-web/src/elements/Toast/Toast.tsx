@@ -6,7 +6,7 @@
  * variants, positions, and auto-dismiss functionality.
  */
 
-import React, { forwardRef, useEffect, useCallback } from 'react';
+import { forwardRef, useEffect, useCallback, type JSX } from 'react';
 import { clsx } from 'clsx';
 import type { ToastPropsBase, ToastStatus, ToastVariant } from '@groxigo/contracts';
 import styles from './Toast.module.css';
@@ -63,7 +63,7 @@ const CloseIcon = () => (
 );
 
 // Status to icon mapping
-const statusIcons: Record<ToastStatus, React.FC> = {
+const statusIcons: Record<ToastStatus, () => JSX.Element> = {
   success: CheckCircleIcon,
   error: ExclamationCircleIcon,
   warning: ExclamationTriangleIcon,

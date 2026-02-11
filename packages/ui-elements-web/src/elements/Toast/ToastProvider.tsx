@@ -5,7 +5,7 @@
  * Renders toasts in a fixed container based on position.
  */
 
-import React, { createContext, useContext, useCallback, useState, useMemo, useRef } from 'react';
+import { createContext, useContext, useCallback, useEffect, useState, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { clsx } from 'clsx';
 import { Toast } from './Toast';
@@ -71,16 +71,16 @@ function groupByPosition(toasts: ToastState[]): Record<ToastPosition, ToastState
 
 export interface ToastProviderProps extends ToastProviderPropsBase {}
 
-export const ToastProvider: React.FC<ToastProviderProps> = ({
+export const ToastProvider = ({
   defaultOptions = {},
   limit = 5,
   children,
-}) => {
+}: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastState[]>([]);
   const portalRef = useRef<HTMLDivElement | null>(null);
 
   // Create portal container on mount
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof document !== 'undefined' && !portalRef.current) {
       const container = document.createElement('div');
       container.id = 'groxigo-toast-portal';

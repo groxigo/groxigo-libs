@@ -6,7 +6,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { createContext, useMemo, useState, useCallback } from 'react';
+import { createContext, forwardRef, useMemo, useState, useCallback } from 'react';
 import { clsx } from 'clsx';
 import type { RadioGroupPropsBase } from '@groxigo/contracts';
 import type { RadioSize } from './Radio';
@@ -41,7 +41,7 @@ const spacingClassMap: Record<number, string> = {
   12: styles.gap12,
 };
 
-export const RadioGroup: React.FC<RadioGroupProps> = ({
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   value: controlledValue,
   defaultValue,
   name,
@@ -57,7 +57,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   label,
   labelClassName,
   testID,
-}) => {
+}, ref) => {
   // Handle controlled vs uncontrolled mode
   const [internalValue, setInternalValue] = useState<string | undefined>(defaultValue);
   const isControlled = controlledValue !== undefined;
@@ -103,6 +103,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   return (
     <RadioGroupContext.Provider value={contextValue}>
       <div
+        ref={ref}
         role="radiogroup"
         aria-required={required}
         aria-invalid={!!error}
@@ -117,7 +118,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
       </div>
     </RadioGroupContext.Provider>
   );
-};
+});
 
 RadioGroup.displayName = 'RadioGroup';
 

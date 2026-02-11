@@ -5,7 +5,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState, type ChangeEvent } from 'react';
 import { clsx } from 'clsx';
 import type { CheckboxPropsBase, CheckboxSize } from '@groxigo/contracts';
 import styles from './Checkbox.module.css';
@@ -54,13 +54,13 @@ export interface CheckboxProps extends CheckboxPropsBase {
 // ICONS
 // ============================================
 
-const CheckIcon: React.FC<{ className?: string }> = ({ className }) => (
+const CheckIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="M2 6l3 3 5-6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
-const IndeterminateIcon: React.FC<{ className?: string }> = ({ className }) => (
+const IndeterminateIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="M2 6h8" strokeLinecap="round" />
   </svg>
@@ -102,7 +102,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const isActive = checked || indeterminate;
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         const newChecked = e.target.checked;
         if (!isControlled) {
           setUncontrolledChecked(newChecked);
