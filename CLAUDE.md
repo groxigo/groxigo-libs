@@ -160,6 +160,7 @@ https://github.com/groxigo/groxigo-libs/actions
 | **@groxigo/contracts** | TypeScript interfaces for cross-platform consistency | `*PropsBase` interfaces for all components |
 | **@groxigo/ui-core** | Shared hooks and utilities | `useDeviceType`, `useDeviceResponsiveValue`, `useMediaQuery`, `useBreakpoint` |
 | **@groxigo/api-types** | Zod schemas for API validation | Schemas for products, orders, customers, etc. |
+| **@groxigo/icons** | Tree-shakable Unicons icons (1,405 icons) | `LineIcons`, `SolidIcons`, individual icons via `@groxigo/icons/line` |
 | **@groxigo/ui-elements** | React Native primitives (22 components) | `Button`, `Card`, `Modal`, `Input`, `Tabs`, etc. |
 | **@groxigo/ui-elements-web** | Web primitives with Tailwind (22 components) | Same API as ui-elements |
 | **@groxigo/components** | React Native composites (27 components) | `ProductCard`, `CartItem`, `SearchBar`, `Form`, etc. |
@@ -172,13 +173,13 @@ https://github.com/groxigo/groxigo-libs/actions
 ### Dependency Graph
 
 ```
-tokens, contracts, api-types     ← No internal deps (foundation layer)
+tokens, contracts, api-types, icons  ← No internal deps (foundation layer)
          ↓
-      ui-core                    ← contracts, tokens
+      ui-core                        ← contracts, tokens
          ↓
-   ui-elements / ui-elements-web ← contracts, tokens, ui-core
+   ui-elements / ui-elements-web     ← contracts, tokens, ui-core
          ↓
-   components / components-web   ← tokens, ui-elements[-web], contracts
+   components / components-web       ← tokens, icons, ui-elements[-web], contracts
 ```
 
 ### Three-Tier Token Architecture
@@ -188,6 +189,63 @@ Primitives (raw values)     →  Semantic (purpose-based)  →  Component (usage
 colors.blue[500]            →  colors.primary            →  button.background
 spacing[4] = 16             →  spacing.md                →  card.padding
 ```
+
+### Using Icons (`@groxigo/icons`)
+
+The icons package provides **1,405 tree-shakable Unicons** (1,215 line + 190 solid) with **dual platform support**:
+
+- **React Native:** Uses `react-native-svg` (`Svg`, `Path`) via `create-icon.tsx`
+- **Web:** Uses native `<svg>` and `<path>` via `create-icon.web.tsx` — **no `react-native-svg` needed**
+
+Platform resolution is automatic via the `.web.tsx` / `.tsx` file extension convention. Bundlers (Webpack, Vite, Metro) pick the correct `createIcon` implementation.
+
+**Import pattern (recommended for tree-shaking):**
+
+```tsx
+// Import individual icons from sub-paths
+import { ShoppingCart, Search, Heart } from '@groxigo/icons/line';
+import { Star, Check } from '@groxigo/icons/solid';
+
+// Use in JSX — all props optional
+<ShoppingCart size={20} color="currentColor" className="icon" />
+```
+
+**Props:**
+
+| Prop | Type | Default (web / RN) | Description |
+|------|------|---------------------|-------------|
+| `size` | `number` | `24` | Width & height in px |
+| `color` | `string` | `'currentColor'` / `'#000'` | SVG fill color |
+| `className` | `string` | — | CSS class (web only) |
+| `accessibilityLabel` | `string` | — | `aria-label` (web) / `accessibilityLabel` (RN) |
+| `testID` | `string` | — | `data-testid` (web) / `testID` (RN) |
+
+**Web (Next.js) setup — `.web.tsx` resolution:**
+
+Next.js does not resolve `.web.tsx` extensions by default. Add this to `next.config.js`:
+
+```javascript
+webpack: (config) => {
+  const extensions = config.resolve.extensions;
+  const webExtensions = ['.web.tsx', '.web.ts', '.web.js'];
+  config.resolve.extensions = [
+    ...webExtensions,
+    ...extensions.filter((ext) => !webExtensions.includes(ext)),
+  ];
+  return config;
+},
+```
+
+Also add `@groxigo/icons` to `transpilePackages`:
+
+```javascript
+transpilePackages: [
+  '@groxigo/icons',
+  // ... other @groxigo/* packages
+],
+```
+
+**Icon naming:** PascalCase from Unicons kebab-case (`shopping-cart` → `ShoppingCart`).
 
 ---
 
@@ -398,6 +456,12 @@ groxigo-libs/
 │   │       ├── hooks/       # React hooks
 │   │       ├── animation/   # Animation utilities
 │   │       └── utils/       # Utility functions
+│   ├── icons/               # Tree-shakable Unicons icons
+│   │   └── src/
+│   │       ├── create-icon.tsx      # React Native renderer (react-native-svg)
+│   │       ├── create-icon.web.tsx  # Web renderer (native <svg>)
+│   │       ├── line/        # 1,215 line (outline) icons
+│   │       └── solid/       # 190 solid (filled) icons
 │   ├── ui-elements/         # React Native primitives
 │   │   └── src/
 │   │       ├── elements/    # 22 primitive components
@@ -509,6 +573,10 @@ export const Default: Story = {
 
 **Running Storybook:**
 ```bash
+# IMPORTANT: Build all packages first so CSS module files are copied to dist/
+# Without this, Storybook will fail with "Failed to resolve import ./X.module.css" errors
+bun run build
+
 cd apps/storybook-web && bun run storybook  # http://localhost:6006
 ```
 
@@ -738,6 +806,53 @@ export const viewportBounds = {
 - Phone: < 1100dp (includes iPhone 16 Pro Max ~1026dp)
 - Tablet: 1100-1700dp (fluid scaling)
 - Desktop: > 1800dp (fixed 1.4x scale)
+
+---
+
+## Web Component TypeScript Standards (ui-elements-web & components-web)
+
+### Import Rules
+- `import { forwardRef, useState, type ReactNode } from 'react'`
+- NEVER `import React from 'react'` (unnecessary with JSX transform)
+- NEVER `import type React from 'react'` then `React.ReactNode` (verbose)
+- NEVER `import React, { forwardRef }` (imports unused default)
+
+### ReactNode vs string
+| Use `string` for | Use `ReactNode` for |
+|---|---|
+| `label`, `title`, `subtitle`, `description` | `children` (container content) |
+| `placeholder`, `errorMessage`, `helperText` | `icon`, `iconNode` (rendered elements) |
+| `buttonText`, `linkText` | `badge` (custom badge element) |
+| Any prop rendered as plain text only | `leftAction`, `rightActions` (slot props) |
+| | `filterContent`, `headerContent` (layout slots) |
+| | `renderItem`, `renderHeader` (render function return types) |
+
+### Banned Patterns
+- `React.FC<Props>` or `React.FunctionComponent` — use `const Foo = forwardRef<HTMLElement, Props>((...) => ...)`
+- `any` type — use `unknown` if type is truly unknowable
+- Inline `style` props with `CSSProperties` — use CSS Modules (`.module.css`)
+- `style?: CSSProperties` in component prop interfaces — remove; use `className` only
+- Default exports without named exports — always provide both
+
+### Required Patterns
+- `forwardRef` on every component (proper ref typing: `forwardRef<HTMLDivElement, Props>`)
+- `displayName` on every component (`Component.displayName = 'Component'`)
+- `'use client'` directive on all interactive components
+- Named export + default export: `export const Foo = ...; export default Foo;`
+- CSS Modules for all styling: `import styles from './Component.module.css'`
+- `className` merging via `clsx`: `className={clsx(styles.root, className)}`
+
+### Event Handler Typing
+- Contract callbacks: `onPress?: () => void` (from `@groxigo/contracts`)
+- Web-native with event: `onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void`
+- Value changes: `onChange?: (value: string) => void` (not raw event)
+- Text input: `onChangeText?: (text: string) => void`
+
+### Styling (CSS Modules Only)
+- All visual styling in `.module.css` files using design token CSS vars
+- Dynamic values: use CSS custom properties set via `style` attribute (e.g., `style={{ '--grid-cols': cols }}`)
+- No `CSSProperties` type in prop interfaces
+- No inline style objects for colors, spacing, sizing, typography
 
 ---
 
