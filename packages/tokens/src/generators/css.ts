@@ -207,11 +207,14 @@ function generateComponents(): string {
   lines.push(`  --button-outline-bg-hover: var(--brand-primary-subtle);`);
   lines.push(`  --button-outline-text: var(--brand-primary);`);
   lines.push(`  --button-outline-border: var(--brand-primary);`);
+  lines.push(`  --button-outline-border-disabled: var(--border-disabled);`);
+  lines.push(`  --button-outline-text-disabled: var(--text-disabled);`);
   lines.push('');
   lines.push('  /* Button - Ghost */');
   lines.push(`  --button-ghost-bg: transparent;`);
   lines.push(`  --button-ghost-bg-hover: var(--surface-secondary);`);
   lines.push(`  --button-ghost-text: var(--text-primary);`);
+  lines.push(`  --button-ghost-text-disabled: var(--text-disabled);`);
   lines.push('');
   lines.push('  /* Button - Danger */');
   lines.push(`  --button-danger-bg: var(--status-error);`);
@@ -304,6 +307,26 @@ function generateComponents(): string {
   lines.push(`  --toggle-bg-on: var(--brand-primary);`);
   lines.push(`  --toggle-bg-disabled: var(--surface-disabled);`);
   lines.push(`  --toggle-thumb: var(--color-white);`);
+  lines.push(`  --toggle-thumb-disabled: var(--color-gray-300);`);
+  lines.push('');
+
+  // Avatar
+  lines.push('  /* Avatar */');
+  lines.push(`  --avatar-bg: var(--surface-tertiary);`);
+  lines.push(`  --avatar-text: var(--text-secondary);`);
+  lines.push(`  --avatar-border: var(--border-subtle);`);
+  lines.push('');
+
+  // Divider
+  lines.push('  /* Divider */');
+  lines.push(`  --divider-default: var(--border-subtle);`);
+  lines.push(`  --divider-strong: var(--border-default);`);
+  lines.push('');
+
+  // Skeleton
+  lines.push('  /* Skeleton */');
+  lines.push(`  --skeleton-bg: var(--surface-tertiary);`);
+  lines.push(`  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);`);
   lines.push('');
 
   // Progress
@@ -605,6 +628,16 @@ function generateDarkMode(): string {
   lines.push(`  --tooltip-bg: var(--color-gray-100);`);
   lines.push(`  --tooltip-text: var(--color-gray-900);`);
   lines.push(`  --tooltip-border: var(--color-gray-200);`);
+  lines.push('');
+
+  // Toggle thumb
+  lines.push('  /* Toggle */');
+  lines.push(`  --toggle-thumb-disabled: var(--color-gray-500);`);
+  lines.push('');
+
+  // Skeleton shimmer (reduced opacity in dark)
+  lines.push('  /* Skeleton */');
+  lines.push(`  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);`);
 
   return lines.join('\n');
 }
