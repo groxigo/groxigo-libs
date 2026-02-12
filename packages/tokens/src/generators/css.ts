@@ -118,6 +118,7 @@ function generateSemantic(): string {
   lines.push('  /* Status - Success */');
   lines.push(`  --status-success: var(--color-green-600);`);
   lines.push(`  --status-success-hover: var(--color-green-700);`);
+  lines.push(`  --status-success-active: var(--color-green-800);`);
   lines.push(`  --status-success-subtle: var(--color-green-50);`);
   lines.push(`  --status-success-muted: var(--color-green-100);`);
   lines.push(`  --status-success-text: var(--color-green-700);`);
@@ -125,6 +126,7 @@ function generateSemantic(): string {
   lines.push('  /* Status - Warning */');
   lines.push(`  --status-warning: var(--color-yellow-500);`);
   lines.push(`  --status-warning-hover: var(--color-yellow-600);`);
+  lines.push(`  --status-warning-active: var(--color-yellow-700);`);
   lines.push(`  --status-warning-subtle: var(--color-yellow-50);`);
   lines.push(`  --status-warning-muted: var(--color-yellow-100);`);
   lines.push(`  --status-warning-text: var(--color-yellow-700);`);
@@ -132,6 +134,7 @@ function generateSemantic(): string {
   lines.push('  /* Status - Error */');
   lines.push(`  --status-error: var(--color-red-600);`);
   lines.push(`  --status-error-hover: var(--color-red-700);`);
+  lines.push(`  --status-error-active: var(--color-red-800);`);
   lines.push(`  --status-error-subtle: var(--color-red-50);`);
   lines.push(`  --status-error-muted: var(--color-red-100);`);
   lines.push(`  --status-error-text: var(--color-red-700);`);
@@ -139,6 +142,7 @@ function generateSemantic(): string {
   lines.push('  /* Status - Info */');
   lines.push(`  --status-info: var(--color-blue-500);`);
   lines.push(`  --status-info-hover: var(--color-blue-600);`);
+  lines.push(`  --status-info-active: var(--color-blue-700);`);
   lines.push(`  --status-info-subtle: var(--color-blue-50);`);
   lines.push(`  --status-info-muted: var(--color-blue-100);`);
   lines.push(`  --status-info-text: var(--color-blue-700);`);
@@ -581,21 +585,25 @@ function generateDarkMode(): string {
   lines.push('  /* Status */');
   lines.push(`  --status-success: var(--color-green-500);`);
   lines.push(`  --status-success-hover: var(--color-green-400);`);
+  lines.push(`  --status-success-active: var(--color-green-300);`);
   lines.push(`  --status-success-subtle: var(--color-green-900);`);
   lines.push(`  --status-success-muted: var(--color-green-800);`);
   lines.push(`  --status-success-text: var(--color-green-400);`);
   lines.push(`  --status-warning: var(--color-yellow-500);`);
   lines.push(`  --status-warning-hover: var(--color-yellow-400);`);
+  lines.push(`  --status-warning-active: var(--color-yellow-300);`);
   lines.push(`  --status-warning-subtle: var(--color-yellow-900);`);
   lines.push(`  --status-warning-muted: var(--color-yellow-800);`);
   lines.push(`  --status-warning-text: var(--color-yellow-400);`);
   lines.push(`  --status-error: var(--color-red-500);`);
   lines.push(`  --status-error-hover: var(--color-red-400);`);
+  lines.push(`  --status-error-active: var(--color-red-300);`);
   lines.push(`  --status-error-subtle: var(--color-red-900);`);
   lines.push(`  --status-error-muted: var(--color-red-800);`);
   lines.push(`  --status-error-text: var(--color-red-400);`);
   lines.push(`  --status-info: var(--color-blue-500);`);
   lines.push(`  --status-info-hover: var(--color-blue-400);`);
+  lines.push(`  --status-info-active: var(--color-blue-300);`);
   lines.push(`  --status-info-subtle: var(--color-blue-900);`);
   lines.push(`  --status-info-muted: var(--color-blue-800);`);
   lines.push(`  --status-info-text: var(--color-blue-400);`);

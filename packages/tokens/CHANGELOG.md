@@ -1,5 +1,11 @@
 # @groxigo/tokens
 
+## 1.0.5
+
+### Patch Changes
+
+- Add --status-{success|warning|error|info}-active CSS variables for light and dark modes. Adds `active` property to StatusStateTokens type.
+
 ## 1.0.2
 
 ### Patch Changes

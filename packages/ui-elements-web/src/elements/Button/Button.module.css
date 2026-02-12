@@ -144,17 +144,17 @@
 }
 
 .solid.secondary {
-  background: var(--color-orange-500, #f97316);
-  color: var(--text-inverse, #fff);
+  background: var(--brand-secondary);
+  color: var(--text-inverse);
 }
 .solid.secondary:hover:not(:disabled) {
-  background: var(--color-orange-600, #ea580c);
+  background: var(--brand-secondary-hover);
 }
 .solid.secondary:active:not(:disabled) {
-  background: var(--color-orange-700, #c2410c);
+  background: var(--brand-secondary-active);
 }
 .solid.secondary:focus-visible {
-  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--color-orange-500, #f97316);
+  box-shadow: 0 0 0 2px var(--surface-primary) , 0 0 0 5px var(--brand-secondary);
 }
 
 .solid.success {
@@ -165,21 +165,21 @@
   background: var(--status-success-hover, #15803d);
 }
 .solid.success:active:not(:disabled) {
-  background: var(--color-green-800, #166534);
+  background: var(--status-success-active);
 }
 .solid.success:focus-visible {
   box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--status-success, #16a34a);
 }
 
 .solid.warning {
-  background: var(--status-warning, #eab308);
-  color: var(--color-gray-900, #111827);
+  background: var(--status-warning);
+  color: var(--text-primary);
 }
 .solid.warning:hover:not(:disabled) {
   background: var(--status-warning-hover, #ca8a04);
 }
 .solid.warning:active:not(:disabled) {
-  background: var(--color-yellow-600, #ca8a04);
+  background: var(--status-warning-active);
 }
 .solid.warning:focus-visible {
   box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--status-warning, #eab308);
@@ -193,7 +193,7 @@
   background: var(--status-error-hover, #b91c1c);
 }
 .solid.error:active:not(:disabled) {
-  background: var(--color-red-800, #991b1b);
+  background: var(--status-error-active);
 }
 .solid.error:focus-visible {
   box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--status-error, #dc2626);
@@ -207,7 +207,7 @@
   background: var(--status-info-hover, #2563eb);
 }
 .solid.info:active:not(:disabled) {
-  background: var(--color-blue-800, #1e40af);
+  background: var(--status-info-active);
 }
 .solid.info:focus-visible {
   box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--status-info, #3b82f6);
@@ -230,15 +230,15 @@
 }
 
 .outline.secondary {
-  border: 2px solid var(--color-orange-500, #f97316);
-  color: var(--color-orange-600, #ea580c);
+  border: 2px solid var(--brand-secondary);
+  color: var(--brand-secondary);
   background: transparent;
 }
 .outline.secondary:hover:not(:disabled) {
-  background: var(--color-orange-50, #fff7ed);
+  background: var(--brand-secondary-subtle);
 }
 .outline.secondary:active:not(:disabled) {
-  background: var(--color-orange-100, #ffedd5);
+  background: var(--brand-secondary-muted);
 }
 
 .outline.success {
@@ -250,7 +250,7 @@
   background: var(--status-success-subtle, #f0fdf4);
 }
 .outline.success:active:not(:disabled) {
-  background: var(--color-green-100, #dcfce7);
+  background: var(--status-success-muted);
 }
 
 .outline.warning {
@@ -262,7 +262,7 @@
   background: var(--status-warning-subtle, #fefce8);
 }
 .outline.warning:active:not(:disabled) {
-  background: var(--color-yellow-100, #fef9c3);
+  background: var(--status-warning-muted);
 }
 
 .outline.error {
@@ -274,7 +274,7 @@
   background: var(--status-error-subtle, #fef2f2);
 }
 .outline.error:active:not(:disabled) {
-  background: var(--color-red-100, #fee2e2);
+  background: var(--status-error-muted);
 }
 
 .outline.info {
@@ -286,7 +286,7 @@
   background: var(--status-info-subtle, #eff6ff);
 }
 .outline.info:active:not(:disabled) {
-  background: var(--color-blue-100, #dbeafe);
+  background: var(--status-info-muted);
 }
 
 /* ============================================
@@ -305,14 +305,14 @@
 }
 
 .ghost.secondary {
-  color: var(--color-orange-600, #ea580c);
+  color: var(--brand-secondary);
   background: transparent;
 }
 .ghost.secondary:hover:not(:disabled) {
-  background: var(--color-orange-50, #fff7ed);
+  background: var(--brand-secondary-subtle);
 }
 .ghost.secondary:active:not(:disabled) {
-  background: var(--color-orange-100, #ffedd5);
+  background: var(--brand-secondary-muted);
 }
 
 .ghost.success {
@@ -323,7 +323,7 @@
   background: var(--status-success-subtle, #f0fdf4);
 }
 .ghost.success:active:not(:disabled) {
-  background: var(--color-green-100, #dcfce7);
+  background: var(--status-success-muted);
 }
 
 .ghost.warning {
@@ -334,7 +334,7 @@
   background: var(--status-warning-subtle, #fefce8);
 }
 .ghost.warning:active:not(:disabled) {
-  background: var(--color-yellow-100, #fef9c3);
+  background: var(--status-warning-muted);
 }
 
 .ghost.error {
@@ -345,7 +345,7 @@
   background: var(--status-error-subtle, #fef2f2);
 }
 .ghost.error:active:not(:disabled) {
-  background: var(--color-red-100, #fee2e2);
+  background: var(--status-error-muted);
 }
 
 .ghost.info {
@@ -356,7 +356,7 @@
   background: var(--status-info-subtle, #eff6ff);
 }
 .ghost.info:active:not(:disabled) {
-  background: var(--color-blue-100, #dbeafe);
+  background: var(--status-info-muted);
 }
 
 /* ============================================
@@ -371,7 +371,7 @@
 }
 
 .link.primary { color: var(--brand-primary, #2563eb); }
-.link.secondary { color: var(--color-orange-600, #ea580c); }
+.link.secondary { color: var(--brand-secondary); }
 .link.success { color: var(--status-success, #16a34a); }
 .link.warning { color: var(--status-warning-hover, #ca8a04); }
 .link.error { color: var(--status-error, #dc2626); }
@@ -386,69 +386,69 @@
    ============================================ */
 
 .soft.primary {
-  background: var(--brand-primary-muted, #dbeafe);
-  color: var(--color-blue-700, #1d4ed8);
+  background: var(--brand-primary-muted);
+  color: var(--brand-primary);
 }
 .soft.primary:hover:not(:disabled) {
-  background: var(--color-blue-200, #bfdbfe);
+  background: var(--brand-primary-subtle);
 }
 .soft.primary:active:not(:disabled) {
-  background: var(--color-blue-300, #93c5fd);
+  background: var(--brand-primary-muted);
 }
 
 .soft.secondary {
-  background: var(--color-orange-100, #ffedd5);
-  color: var(--color-orange-700, #c2410c);
+  background: var(--brand-secondary-muted);
+  color: var(--brand-secondary);
 }
 .soft.secondary:hover:not(:disabled) {
-  background: var(--color-orange-200, #fed7aa);
+  background: var(--brand-secondary-subtle);
 }
 .soft.secondary:active:not(:disabled) {
-  background: var(--color-orange-300, #fdba74);
+  background: var(--brand-secondary-muted);
 }
 
 .soft.success {
-  background: var(--color-green-100, #dcfce7);
-  color: var(--color-green-700, #15803d);
+  background: var(--status-success-muted);
+  color: var(--status-success-text);
 }
 .soft.success:hover:not(:disabled) {
-  background: var(--color-green-200, #bbf7d0);
+  background: var(--status-success-subtle);
 }
 .soft.success:active:not(:disabled) {
-  background: var(--color-green-300, #86efac);
+  background: var(--status-success-muted);
 }
 
 .soft.warning {
-  background: var(--color-yellow-100, #fef9c3);
-  color: var(--color-yellow-700, #a16207);
+  background: var(--status-warning-muted);
+  color: var(--status-warning-text);
 }
 .soft.warning:hover:not(:disabled) {
-  background: var(--color-yellow-200, #fef08a);
+  background: var(--status-warning-subtle);
 }
 .soft.warning:active:not(:disabled) {
-  background: var(--color-yellow-300, #fde047);
+  background: var(--status-warning-muted);
 }
 
 .soft.error {
-  background: var(--color-red-100, #fee2e2);
-  color: var(--color-red-700, #b91c1c);
+  background: var(--status-error-muted);
+  color: var(--status-error-text);
 }
 .soft.error:hover:not(:disabled) {
-  background: var(--color-red-200, #fecaca);
+  background: var(--status-error-subtle);
 }
 .soft.error:active:not(:disabled) {
-  background: var(--color-red-300, #fca5a5);
+  background: var(--status-error-muted);
 }
 
 .soft.info {
-  background: var(--color-blue-100, #dbeafe);
-  color: var(--color-blue-700, #1d4ed8);
+  background: var(--status-info-muted);
+  color: var(--status-info-text);
 }
 .soft.info:hover:not(:disabled) {
-  background: var(--color-blue-200, #bfdbfe);
+  background: var(--status-info-subtle);
 }
 .soft.info:active:not(:disabled) {
-  background: var(--color-blue-300, #93c5fd);
+  background: var(--status-info-muted);
 }
 
 /* ============================================

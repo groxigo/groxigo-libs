@@ -260,6 +260,7 @@ export const semantic = {
     success: {
       default: primitives.green[600],
       hover: primitives.green[700],
+      active: primitives.green[800],
       subtle: primitives.green[50],
       muted: primitives.green[100],
       text: primitives.green[700],
@@ -267,6 +268,7 @@ export const semantic = {
     warning: {
       default: primitives.yellow[500],
       hover: primitives.yellow[600],
+      active: primitives.yellow[700],
       subtle: primitives.yellow[50],
       muted: primitives.yellow[100],
       text: primitives.yellow[700],
@@ -274,6 +276,7 @@ export const semantic = {
     error: {
       default: primitives.red[600],
       hover: primitives.red[700],
+      active: primitives.red[800],
       subtle: primitives.red[50],
       muted: primitives.red[100],
       text: primitives.red[700],
@@ -281,6 +284,7 @@ export const semantic = {
     info: {
       default: primitives.blue[500],
       hover: primitives.blue[600],
+      active: primitives.blue[700],
       subtle: primitives.blue[50],
       muted: primitives.blue[100],
       text: primitives.blue[700],
@@ -402,6 +406,7 @@ export const semanticDark = {
     success: {
       default: primitives.green[500],
       hover: primitives.green[400],
+      active: primitives.green[300],
       subtle: primitives.green[900],
       muted: primitives.green[800],
       text: primitives.green[400],
@@ -409,6 +414,7 @@ export const semanticDark = {
     warning: {
       default: primitives.yellow[500],
       hover: primitives.yellow[400],
+      active: primitives.yellow[300],
       subtle: primitives.yellow[900],
       muted: primitives.yellow[800],
       text: primitives.yellow[400],
@@ -416,6 +422,7 @@ export const semanticDark = {
     error: {
       default: primitives.red[500],
       hover: primitives.red[400],
+      active: primitives.red[300],
       subtle: primitives.red[900],
       muted: primitives.red[800],
       text: primitives.red[400],
@@ -423,6 +430,7 @@ export const semanticDark = {
     info: {
       default: primitives.blue[500],
       hover: primitives.blue[400],
+      active: primitives.blue[300],
       subtle: primitives.blue[900],
       muted: primitives.blue[800],
       text: primitives.blue[400],

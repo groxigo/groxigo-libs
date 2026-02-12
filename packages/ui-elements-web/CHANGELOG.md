@@ -1,5 +1,14 @@
 # @groxigo/ui-elements-web
 
+## 1.2.4
+
+### Patch Changes
+
+- Replace all primitive color tokens with semantic tokens in Button and Badge CSS. Remove `style` prop from Card component (use `className` instead). Full DESIGN_RULES §24 compliance.
+
+- Updated dependencies []:
+  - @groxigo/tokens@1.0.5
+
 ## 1.2.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/ui-elements-web",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Groxigo UI Elements for Web - Primitive building blocks using React + CSS Modules",
   "main": "dist/index.js",
   "module": "dist/index.js",

@@ -113,6 +113,7 @@ export interface BrandTokens {
 export interface StatusStateTokens {
   default: HexColor;
   hover: HexColor;
+  active: HexColor;
   subtle: HexColor;
   muted: HexColor;
   text: HexColor;

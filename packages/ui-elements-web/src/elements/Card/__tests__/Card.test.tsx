@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import { createRef } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Card, CardHeader, CardBody, CardFooter } from '../Card';
@@ -26,9 +26,11 @@ describe('Card', () => {
       expect(screen.getByTestId('card').classList.contains('extra')).toBe(true);
     });
 
-    it('applies inline style', () => {
-      render(<Card style={{ backgroundColor: 'red' }} testID="styled-card">Content</Card>);
-      expect(screen.getByTestId('styled-card').style.backgroundColor).toBe('red');
+    it('merges multiple classNames', () => {
+      render(<Card className="custom-card wide" testID="styled-card">Content</Card>);
+      const card = screen.getByTestId('styled-card');
+      expect(card.classList.contains('custom-card')).toBe(true);
+      expect(card.classList.contains('wide')).toBe(true);
     });
   });
 

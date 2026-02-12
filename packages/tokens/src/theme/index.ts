@@ -123,6 +123,7 @@ function buildSemanticColors(
         success: {
           default: green[500],
           hover: green[400],
+          active: green[300],
           subtle: green[900],
           muted: green[800],
           text: green[400],
@@ -130,6 +131,7 @@ function buildSemanticColors(
         warning: {
           default: yellow[500],
           hover: yellow[400],
+          active: yellow[300],
           subtle: yellow[900],
           muted: yellow[800],
           text: yellow[400],
@@ -137,6 +139,7 @@ function buildSemanticColors(
         error: {
           default: red[500],
           hover: red[400],
+          active: red[300],
           subtle: red[900],
           muted: red[800],
           text: red[400],
@@ -144,6 +147,7 @@ function buildSemanticColors(
         info: {
           default: blue[500],
           hover: blue[400],
+          active: blue[300],
           subtle: blue[900],
           muted: blue[800],
           text: blue[400],
@@ -213,6 +217,7 @@ function buildSemanticColors(
       success: {
         default: green[600],
         hover: green[700],
+        active: green[800],
         subtle: green[50],
         muted: green[100],
         text: green[700],
@@ -220,6 +225,7 @@ function buildSemanticColors(
       warning: {
         default: yellow[500],
         hover: yellow[600],
+        active: yellow[700],
         subtle: yellow[50],
         muted: yellow[100],
         text: yellow[700],
@@ -227,6 +233,7 @@ function buildSemanticColors(
       error: {
         default: red[600],
         hover: red[700],
+        active: red[800],
         subtle: red[50],
         muted: red[100],
         text: red[700],
@@ -234,6 +241,7 @@ function buildSemanticColors(
       info: {
         default: blue[500],
         hover: blue[600],
+        active: blue[700],
         subtle: blue[50],
         muted: blue[100],
         text: blue[700],

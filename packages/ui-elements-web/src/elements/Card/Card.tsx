@@ -16,7 +16,6 @@ import styles from './Card.module.css';
 
 export interface CardProps extends CardPropsBase {
   className?: string;
-  style?: React.CSSProperties;
   /** Accessible label for the card when pressable */
   'aria-label'?: string;
 }
@@ -30,7 +29,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       onPress,
       children,
       className,
-      style,
       testID,
       'aria-label': ariaLabel,
       ...props
@@ -61,7 +59,6 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={classes}
-        style={style}
         onClick={pressable ? onPress : undefined}
         onKeyDown={pressable ? handleKeyDown : undefined}
         role={pressable ? 'button' : undefined}

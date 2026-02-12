@@ -132,37 +132,37 @@
 /* ------------------------------------------------------------------ */
 
 .subtlePrimary {
-  background-color: var(--status-info-subtle);
+  background-color: var(--brand-primary-subtle);
   color: var(--brand-primary);
 }
 
 .subtleSecondary {
-  background-color: var(--status-success-subtle);
+  background-color: var(--brand-secondary-subtle);
   color: var(--brand-secondary);
 }
 
 .subtleSuccess {
-  background-color: var(--color-green-50);
+  background-color: var(--status-success-subtle);
   color: var(--status-success-text);
 }
 
 .subtleWarning {
-  background-color: var(--color-yellow-50);
+  background-color: var(--status-warning-subtle);
   color: var(--status-warning-text);
 }
 
 .subtleError {
-  background-color: var(--color-red-50);
+  background-color: var(--status-error-subtle);
   color: var(--status-error-text);
 }
 
 .subtleInfo {
-  background-color: var(--color-blue-50);
+  background-color: var(--status-info-subtle);
   color: var(--status-info-text);
 }
 
 .subtleNeutral {
-  background-color: var(--color-gray-100);
+  background-color: var(--surface-secondary);
   color: var(--text-secondary);
 }
 
@@ -171,36 +171,36 @@
 /* ------------------------------------------------------------------ */
 
 .softPrimary {
-  background-color: var(--color-blue-100);
+  background-color: var(--brand-primary-muted);
   color: var(--brand-primary);
 }
 
 .softSecondary {
-  background-color: var(--color-green-100);
+  background-color: var(--brand-secondary-muted);
   color: var(--brand-secondary);
 }
 
 .softSuccess {
-  background-color: var(--color-green-100);
+  background-color: var(--status-success-muted);
   color: var(--status-success-text);
 }
 
 .softWarning {
-  background-color: var(--color-yellow-100);
+  background-color: var(--status-warning-muted);
   color: var(--status-warning-text);
 }
 
 .softError {
-  background-color: var(--color-red-100);
+  background-color: var(--status-error-muted);
   color: var(--status-error-text);
 }
 
 .softInfo {
-  background-color: var(--color-blue-100);
+  background-color: var(--status-info-muted);
   color: var(--status-info-text);
 }
 
 .softNeutral {
-  background-color: var(--color-gray-200);
+  background-color: var(--surface-tertiary);
   color: var(--text-primary);
 }
