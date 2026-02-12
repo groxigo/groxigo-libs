@@ -24,25 +24,27 @@ export function paginationQuery(defaults?: { limit?: number; maxLimit?: number }
   });
 }
 
+/** Pagination metadata returned alongside paginated lists. */
 export const PaginationResponseSchema = z.object({
-  page: z.number(),
-  limit: z.number(),
-  total: z.number().optional(),
-  totalPages: z.number().optional(),
+  page: z.number().int().nonnegative(),
+  limit: z.number().int().positive(),
+  total: z.number().int().nonnegative().optional(),
+  totalPages: z.number().int().nonnegative().optional(),
   hasMore: z.boolean(),
-});
+}).readonly();
 
-// Cursor-based pagination
+/** Cursor-based pagination query parameters. */
 export const CursorPaginationQuerySchema = z.object({
-  cursor: z.string().optional(),
+  cursor: z.string().max(500).optional(),
   limit: z.coerce.number().min(1).max(100).default(20),
 });
 
+/** Cursor-based pagination metadata. */
 export const CursorPaginationResponseSchema = z.object({
-  nextCursor: z.string().nullable(),
+  nextCursor: z.string().max(500).nullable(),
   hasMore: z.boolean(),
-  limit: z.number(),
-});
+  limit: z.number().int().positive(),
+}).readonly();
 
 // ============================================================================
 // ERROR
@@ -56,14 +58,15 @@ export const ErrorSchema = z.object({
   error: z.string(),
 });
 
+/** Structured API error response with error code and request tracing. */
 export const ApiErrorSchema = z.object({
   success: z.literal(false),
   error: z.object({
-    code: z.string(),
-    message: z.string(),
-    requestId: z.string().optional(),
+    code: z.string().max(50),
+    message: z.string().max(1000),
+    requestId: z.string().max(255).optional(),
   }),
-});
+}).readonly();
 
 // Alias for OpenAPI documentation
 export const ErrorResponseSchema = ApiErrorSchema;
@@ -123,16 +126,18 @@ export const SlugParamSchema = z.object({
 // HEALTH CHECK
 // ============================================================================
 
+/** Health-check endpoint response. */
 export const HealthResponseSchema = z.object({
   status: z.literal("healthy"),
-});
+}).readonly();
 
+/** Service metadata response (name, version, uptime). */
 export const ServiceInfoSchema = z.object({
   status: z.literal("ok"),
-  service: z.string(),
-  version: z.string(),
+  service: z.string().max(100),
+  version: z.string().max(50),
   timestamp: z.string().datetime(),
-});
+}).readonly();
 
 // ============================================================================
 // INFERRED TYPES

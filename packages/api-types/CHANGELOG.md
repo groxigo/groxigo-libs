@@ -1,5 +1,11 @@
 # @groxigo/api-types
 
+## 1.3.0
+
+### Minor Changes
+
+- Enterprise hardening: JSDoc on all schemas, .readonly() on response/entity schemas, .max() length constraints on all string fields, custom Zod error messages on create/update schemas, README.md with usage docs.
+
 ## 1.2.0
 
 ### Minor Changes

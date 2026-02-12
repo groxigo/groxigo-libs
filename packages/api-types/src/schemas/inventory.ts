@@ -5,6 +5,7 @@ import { PaginationQuerySchema, PaginationResponseSchema } from "./common";
 // ENUMS
 // ============================================================================
 
+/** Inventory adjustment types for audit trail. */
 export const InventoryAdjustmentTypeEnum = z.enum([
   "received",
   "sold",
@@ -19,72 +20,83 @@ export const InventoryAdjustmentTypeEnum = z.enum([
 // INVENTORY SCHEMAS
 // ============================================================================
 
+/** Inventory item (product stock summary). */
 export const InventoryItemSchema = z.object({
   id: z.string().uuid(),
-  name: z.string(),
-  sku: z.string(),
-  stockQuantity: z.number(),
-  lowStockThreshold: z.number(),
+  name: z.string().max(255),
+  sku: z.string().max(100),
+  stockQuantity: z.number().int().nonnegative(),
+  lowStockThreshold: z.number().int().nonnegative(),
   trackInventory: z.boolean(),
-  isLowStock: z.boolean().optional(), // computed
-});
+  /** Computed: stockQuantity <= lowStockThreshold. */
+  isLowStock: z.boolean().optional(),
+}).readonly();
 
+/** Single inventory adjustment log entry. */
 export const InventoryLogSchema = z.object({
   id: z.string().uuid(),
   productId: z.string().uuid(),
-  previousQuantity: z.number(),
-  newQuantity: z.number(),
-  quantityChange: z.number(),
+  previousQuantity: z.number().int(),
+  newQuantity: z.number().int(),
+  quantityChange: z.number().int(),
   type: InventoryAdjustmentTypeEnum,
   orderId: z.string().uuid().nullable(),
-  notes: z.string().nullable(),
-  createdBy: z.string().nullable(),
+  notes: z.string().max(500).nullable(),
+  createdBy: z.string().max(255).nullable(),
   createdAt: z.string().datetime(),
-});
+}).readonly();
 
 // ============================================================================
 // REQUEST SCHEMAS
 // ============================================================================
 
+/** Query params for inventory list (admin). */
 export const InventoryQuerySchema = PaginationQuerySchema.extend({
   lowStockOnly: z.coerce.boolean().optional(),
-  search: z.string().optional(),
+  search: z.string().max(200).optional(),
 });
 
+/** Single inventory adjustment request. */
 export const InventoryAdjustmentSchema = z.object({
-  productId: z.string().uuid(),
-  quantity: z.number().int(), // positive = add, negative = subtract
+  productId: z.string({ required_error: "Product ID is required" }).uuid(),
+  /** Positive to add stock, negative to subtract. */
+  quantity: z.number().int("Quantity must be a whole number"),
   type: InventoryAdjustmentTypeEnum,
   notes: z.string().max(500).optional(),
-  createdBy: z.string().optional(),
+  createdBy: z.string().max(255).optional(),
 });
 
+/** Batch inventory adjustment (up to 100 items). */
 export const BulkInventoryAdjustmentSchema = z.object({
-  adjustments: z.array(InventoryAdjustmentSchema).min(1).max(100),
+  adjustments: z.array(InventoryAdjustmentSchema).min(1, "At least one adjustment is required").max(100),
 });
 
 // ============================================================================
 // RESPONSE SCHEMAS
 // ============================================================================
 
+/** Single inventory item response. */
 export const InventoryResponseSchema = z.object({
   item: InventoryItemSchema,
-});
+}).readonly();
 
+/** Paginated inventory list response. */
 export const InventoryListResponseSchema = z.object({
   items: z.array(InventoryItemSchema),
   pagination: PaginationResponseSchema,
-});
+}).readonly();
 
+/** Low-stock alert response. */
 export const LowStockResponseSchema = z.object({
   items: z.array(InventoryItemSchema),
-  count: z.number(),
-});
+  count: z.number().int().nonnegative(),
+}).readonly();
 
+/** Paginated inventory log response. */
 export const InventoryLogListResponseSchema = z.object({
   logs: z.array(InventoryLogSchema),
   pagination: PaginationResponseSchema,
-});
+}).readonly();
 
 // ============================================================================
 // INFERRED TYPES

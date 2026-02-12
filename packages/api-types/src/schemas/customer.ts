@@ -5,8 +5,13 @@ import { PaginationResponseSchema } from "./common";
 // ENUMS
 // ============================================================================
 
+/** Customer account status. */
 export const CustomerStatusEnum = z.enum(["active", "inactive", "deleted"]);
+
+/** Loyalty program tier. */
 export const LoyaltyTierEnum = z.enum(["standard", "silver", "gold", "platinum"]);
+
+/** How the customer wants out-of-stock items handled. */
 export const SubstitutionPreferenceEnum = z.enum([
   "allow_similar",
   "allow_any",
@@ -18,63 +23,67 @@ export const SubstitutionPreferenceEnum = z.enum([
 // ADDRESS SCHEMAS
 // ============================================================================
 
+/** Customer delivery address entity. */
 export const AddressSchema = z.object({
   id: z.string().uuid(),
   customerId: z.string().uuid(),
-  label: z.string(),
-  recipientName: z.string().nullable(),
-  recipientPhone: z.string().nullable(),
-  addressLine1: z.string(),
-  addressLine2: z.string().nullable(),
-  city: z.string(),
-  state: z.string(),
-  postalCode: z.string(),
-  country: z.string(),
+  label: z.string().max(100),
+  recipientName: z.string().max(255).nullable(),
+  recipientPhone: z.string().max(20).nullable(),
+  addressLine1: z.string().max(255),
+  addressLine2: z.string().max(255).nullable(),
+  city: z.string().max(100),
+  state: z.string().max(100),
+  postalCode: z.string().max(20),
+  country: z.string().max(100),
   latitude: z.number().nullable(),
   longitude: z.number().nullable(),
-  deliveryInstructions: z.string().nullable(),
+  deliveryInstructions: z.string().max(500).nullable(),
   isDefault: z.boolean(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
-});
+}).readonly();
 
+/** Payload for creating a delivery address. */
 export const CreateAddressSchema = z.object({
-  label: z.string().min(1).max(100),
+  label: z.string({ required_error: "Address label is required" }).min(1, "Label cannot be empty").max(100),
   recipientName: z.string().min(1).max(255).optional(),
-  recipientPhone: z.string().optional(),
-  addressLine1: z.string().min(1).max(255),
+  recipientPhone: z.string().max(20).optional(),
+  addressLine1: z.string({ required_error: "Address line 1 is required" }).min(1, "Address cannot be empty").max(255),
   addressLine2: z.string().max(255).optional(),
-  city: z.string().min(1).max(100),
-  state: z.string().min(1).max(100),
-  postalCode: z.string().min(1).max(20),
+  city: z.string({ required_error: "City is required" }).min(1, "City cannot be empty").max(100),
+  state: z.string({ required_error: "State is required" }).min(1, "State cannot be empty").max(100),
+  postalCode: z.string({ required_error: "Postal code is required" }).min(1, "Postal code cannot be empty").max(20),
   country: z.string().min(1).max(100).default("USA"),
   latitude: z.number().optional(),
   longitude: z.number().optional(),
-  deliveryInstructions: z.string().max(500).optional(),
+  deliveryInstructions: z.string().max(500, "Delivery instructions too long (max 500 chars)").optional(),
   isDefault: z.boolean().default(false),
 });
 
+/** Partial address update. */
 export const UpdateAddressSchema = CreateAddressSchema.partial();
 
 // ============================================================================
 // CUSTOMER SCHEMAS
 // ============================================================================
 
+/** Full customer entity. */
 export const CustomerSchema = z.object({
   id: z.string().uuid(),
   authProviderId: z.string(),
-  authProvider: z.string(),
+  authProvider: z.string().max(50),
   email: z.string().email(),
   emailVerified: z.boolean(),
-  phone: z.string().nullable(),
+  phone: z.string().max(20).nullable(),
   phoneVerified: z.boolean(),
-  firstName: z.string().nullable(),
-  lastName: z.string().nullable(),
-  displayName: z.string().nullable(),
-  avatarUrl: z.string().nullable(),
+  firstName: z.string().max(100).nullable(),
+  lastName: z.string().max(100).nullable(),
+  displayName: z.string().max(255).nullable(),
+  avatarUrl: z.string().max(2000).nullable(),
   dateOfBirth: z.string().nullable(),
   stripeCustomerId: z.string().nullable(),
-  dietaryPreferences: z.array(z.string()),
+  dietaryPreferences: z.array(z.string().max(50)),
   defaultSubstitutionPreference: SubstitutionPreferenceEnum,
   notificationEmail: z.boolean(),
   notificationSms: z.boolean(),
@@ -83,24 +92,25 @@ export const CustomerSchema = z.object({
   marketingOptInAt: z.string().datetime().nullable(),
   smsOptIn: z.boolean(),
   smsOptInAt: z.string().datetime().nullable(),
-  smsOptInSource: z.string().nullable(),
+  smsOptInSource: z.string().max(50).nullable(),
   doNotSell: z.boolean(),
   doNotSellAt: z.string().datetime().nullable(),
   status: CustomerStatusEnum,
   deletionRequestedAt: z.string().datetime().nullable(),
   scheduledDeletionAt: z.string().datetime().nullable(),
   deletedAt: z.string().datetime().nullable(),
-  storeCreditBalance: z.union([z.number(), z.string()]), // Decimal comes as string
-  loyaltyPoints: z.number(),
+  /** Decimal from DB — may come as string or number. */
+  storeCreditBalance: z.union([z.number(), z.string()]),
+  loyaltyPoints: z.number().int().nonnegative(),
   loyaltyTier: LoyaltyTierEnum,
-  referralCode: z.string(),
+  referralCode: z.string().max(20),
   referredByCustomerId: z.string().uuid().nullable(),
   lastLoginAt: z.string().datetime().nullable(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
 
-// Lightweight customer for lists
+/** Lightweight customer for admin list views. */
 export const CustomerSummarySchema = z.object({
   id: z.string().uuid(),
   email: z.string().email(),
@@ -114,32 +124,34 @@ export const CustomerSummarySchema = z.object({
   storeCreditBalance: z.union([z.number(), z.string()]),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
-});
+}).readonly();
 
-// Customer with relations (for /me endpoint)
+/** Customer with nested addresses and payment methods (for /me). */
 export const CustomerWithRelationsSchema = CustomerSchema.extend({
   addresses: z.array(AddressSchema).optional(),
   paymentMethods: z.array(z.object({
     id: z.string().uuid(),
-    type: z.string(),
-    lastFour: z.string().nullable(),
-    expiryMonth: z.number().nullable(),
-    expiryYear: z.number().nullable(),
+    type: z.string().max(20),
+    lastFour: z.string().max(4).nullable(),
+    expiryMonth: z.number().int().nullable(),
+    expiryYear: z.number().int().nullable(),
     isDefault: z.boolean(),
   })).optional(),
-});
+}).readonly();
 
 // ============================================================================
 // REQUEST SCHEMAS
 // ============================================================================
 
+/** Payload for updating customer profile. */
 export const UpdateCustomerSchema = z.object({
-  displayName: z.string().min(1).max(255).optional(),
+  displayName: z.string().min(1, "Display name cannot be empty").max(255).optional(),
   firstName: z.string().max(100).optional(),
   lastName: z.string().max(100).optional(),
-  phone: z.string().optional(),
-  dateOfBirth: z.string().date().optional(),
-  dietaryPreferences: z.array(z.string()).optional(),
+  phone: z.string().max(20).optional(),
+  /** YYYY-MM-DD date of birth. */
+  dateOfBirth: z.string().date("Invalid date format (expected YYYY-MM-DD)").optional(),
+  dietaryPreferences: z.array(z.string().max(50)).optional(),
   defaultSubstitutionPreference: SubstitutionPreferenceEnum.optional(),
   notificationEmail: z.boolean().optional(),
   notificationSms: z.boolean().optional(),
@@ -148,6 +160,7 @@ export const UpdateCustomerSchema = z.object({
   smsOptIn: z.boolean().optional(),
 });
 
+/** Payload for updating privacy/marketing consent. */
 export const UpdateConsentSchema = z.object({
   marketingOptIn: z.boolean().optional(),
   smsOptIn: z.boolean().optional(),
@@ -158,23 +171,27 @@ export const UpdateConsentSchema = z.object({
 // RESPONSE SCHEMAS
 // ============================================================================
 
+/** Single customer response (with relations). */
 export const CustomerResponseSchema = z.object({
   customer: CustomerWithRelationsSchema,
-});
+}).readonly();
 
+/** Paginated customer list (admin). */
 export const CustomerListResponseSchema = z.object({
   customers: z.array(CustomerSummarySchema),
   pagination: PaginationResponseSchema.optional(),
-});
+}).readonly();
 
+/** Single address response wrapper. */
 export const AddressResponseSchema = z.object({
   address: AddressSchema,
-});
+}).readonly();
 
+/** Address list with optional pagination. */
 export const AddressListResponseSchema = z.object({
   addresses: z.array(AddressSchema),
   pagination: PaginationResponseSchema.optional(),
-});
+}).readonly();
 
 // ============================================================================
 // INFERRED TYPES
