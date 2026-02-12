@@ -1,5 +1,11 @@
 # @groxigo/api-types
 
+## 1.4.0
+
+### Minor Changes
+
+- Add missing SDUI landing page schemas: HeroSectionItem, StepSectionItem, PillarSectionItem, TrustStatSectionItem; add hero/steps/pillars/trust_bar section types, HeroSection/StepSection/PillarSection/TrustBarSection components, full_width/inline display types.
+
 ## 1.3.0
 
 ### Minor Changes

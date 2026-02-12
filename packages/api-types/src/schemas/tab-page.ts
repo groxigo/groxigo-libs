@@ -21,6 +21,11 @@ export const SectionTypeSchema = z.enum([
   "recipes",
   "recipe_categories",
   "recipe_tags",
+  // Landing page section types
+  "hero",
+  "steps",
+  "pillars",
+  "trust_bar",
 ]);
 
 export type SectionType = z.infer<typeof SectionTypeSchema>;
@@ -36,6 +41,11 @@ export const SectionComponentSchema = z.enum([
   "RecipeSection",
   "RecipeCategorySection",
   "RecipeTagSection",
+  // Landing page section types
+  "HeroSection",
+  "StepSection",
+  "PillarSection",
+  "TrustBarSection",
 ]);
 
 export type SectionComponent = z.infer<typeof SectionComponentSchema>;
@@ -48,6 +58,9 @@ export const DisplayTypeSchema = z.enum([
   "carousel",
   "banner_full",
   "list",
+  // Landing page display types
+  "full_width",
+  "inline",
 ]);
 
 export type DisplayType = z.infer<typeof DisplayTypeSchema>;
@@ -253,6 +266,74 @@ export const RecipeTagSectionItemSchema = BaseSectionItemSchema.extend({
 
 export type RecipeTagSectionItem = z.infer<typeof RecipeTagSectionItemSchema>;
 
+// ============================================================================
+// LANDING PAGE SECTION ITEM SCHEMAS
+// ============================================================================
+
+/** Hero banner section item (full-bleed with headline, email capture, SSO). */
+export const HeroSectionItemSchema = BaseSectionItemSchema.extend({
+  /** Main headline text. */
+  headline: z.string().max(500),
+  /** Supporting subheadline text. */
+  subheadline: z.string().max(1000),
+  /** Hero background image URL. */
+  backgroundImage: z.string().max(2000).nullable().optional(),
+  /** CTA button label (e.g., "Continue"). */
+  ctaLabel: z.string().max(100).optional(),
+  /** Email input placeholder text. */
+  emailPlaceholder: z.string().max(255).optional(),
+  /** Text for the "or" divider between form and SSO. */
+  dividerText: z.string().max(50).optional(),
+}).readonly();
+
+export type HeroSectionItem = z.infer<typeof HeroSectionItemSchema>;
+
+/** "How It Works" step section item. */
+export const StepSectionItemSchema = BaseSectionItemSchema.extend({
+  /** Step title (e.g., "Browse & Add to Cart"). */
+  title: z.string().max(255),
+  /** Step description. */
+  description: z.string().max(1000),
+  /** Icon identifier (e.g., Unicons name). */
+  icon: z.string().max(100).nullable().optional(),
+  /** Step number (1-based). */
+  stepNumber: z.number().int().positive().optional(),
+}).readonly();
+
+export type StepSectionItem = z.infer<typeof StepSectionItemSchema>;
+
+/** Value-proposition pillar card section item. */
+export const PillarSectionItemSchema = BaseSectionItemSchema.extend({
+  /** Pillar title (e.g., "2,000+ Authentic Products"). */
+  title: z.string().max(255),
+  /** Pillar body text. */
+  description: z.string().max(1000),
+  /** CTA link label (e.g., "Browse Products →"). */
+  ctaLabel: z.string().max(100),
+  /** CTA link destination. */
+  ctaHref: z.string().max(500),
+  /** 16:9 image URL. */
+  imageUrl: z.string().max(2000).nullable().optional(),
+}).readonly();
+
+export type PillarSectionItem = z.infer<typeof PillarSectionItemSchema>;
+
+/** Trust-bar stat item (e.g., "Same-day delivery", "4.8★ rating"). */
+export const TrustStatSectionItemSchema = BaseSectionItemSchema.extend({
+  /** Stat display text (e.g., "Same-day delivery"). */
+  label: z.string().max(255),
+  /** Icon identifier. */
+  icon: z.string().max(100).nullable().optional(),
+  /** Optional numeric value (e.g., 4.8 for a rating). */
+  value: z.number().nullable().optional(),
+}).readonly();
+
+export type TrustStatSectionItem = z.infer<typeof TrustStatSectionItemSchema>;
+
+// ============================================================================
+// SECTION ITEM UNION
+// ============================================================================
+
 /** Union of all section item schemas (one per section type). */
 export const SectionItemSchema = z.union([
   CategorySectionItemSchema,
@@ -263,6 +344,11 @@ export const SectionItemSchema = z.union([
   RecipeSectionItemSchema,
   RecipeCategorySectionItemSchema,
   RecipeTagSectionItemSchema,
+  // Landing page section items
+  HeroSectionItemSchema,
+  StepSectionItemSchema,
+  PillarSectionItemSchema,
+  TrustStatSectionItemSchema,
 ]);
 
 export type SectionItem = z.infer<typeof SectionItemSchema>;
