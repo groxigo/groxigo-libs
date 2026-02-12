@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { PaginationResponseSchema } from "./common";
 
 // ============================================================================
 // CATEGORY SCHEMAS
@@ -49,6 +50,7 @@ export const CategoryResponseSchema = z.object({
 
 export const CategoryListResponseSchema = z.object({
   categories: z.array(CategorySchema),
+  pagination: PaginationResponseSchema.optional(),
 });
 
 export const CategoryTreeResponseSchema = z.object({

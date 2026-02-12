@@ -48,6 +48,10 @@ export const CursorPaginationResponseSchema = z.object({
 // ERROR
 // ============================================================================
 
+/**
+ * @deprecated Use `ApiErrorSchema` instead — this schema is too loose for
+ * production error handling. Will be removed in v2.0.0.
+ */
 export const ErrorSchema = z.object({
   error: z.string(),
 });
@@ -63,6 +67,45 @@ export const ApiErrorSchema = z.object({
 
 // Alias for OpenAPI documentation
 export const ErrorResponseSchema = ApiErrorSchema;
+
+// ============================================================================
+// GENERIC RESPONSE FACTORIES
+// ============================================================================
+
+/**
+ * Creates a paginated list response schema wrapping any item schema.
+ *
+ * @example
+ * ```ts
+ * const BrandListResponseSchema = paginatedListResponse("brands", BrandSchema);
+ * // { brands: Brand[], pagination: PaginationResponse }
+ * ```
+ */
+export function paginatedListResponse<T extends z.ZodTypeAny>(
+  key: string,
+  itemSchema: T,
+) {
+  return z.object({
+    [key]: z.array(itemSchema),
+    pagination: PaginationResponseSchema,
+  });
+}
+
+// ============================================================================
+// TIMESTAMP HELPERS
+// ============================================================================
+
+/** ISO 8601 datetime string (e.g., "2026-01-15T10:30:00Z") */
+export const datetimeString = () => z.string().datetime();
+
+/** Date-only string in YYYY-MM-DD format (e.g., "2026-01-15") */
+export const dateString = () => z.string().date();
+
+/** Common timestamp fields present on most entities */
+export const TimestampFieldsSchema = z.object({
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+});
 
 // ============================================================================
 // COMMON PARAMS
@@ -102,3 +145,4 @@ export type CursorPaginationResponse = z.infer<typeof CursorPaginationResponseSc
 export type ApiError = z.infer<typeof ApiErrorSchema>;
 export type HealthResponse = z.infer<typeof HealthResponseSchema>;
 export type ServiceInfo = z.infer<typeof ServiceInfoSchema>;
+export type TimestampFields = z.infer<typeof TimestampFieldsSchema>;

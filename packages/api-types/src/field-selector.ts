@@ -21,7 +21,6 @@
  * ```
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface FieldSelection {
   [key: string]: true | FieldSelection;
 }

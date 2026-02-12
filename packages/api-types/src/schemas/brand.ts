@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { PaginationResponseSchema } from "./common";
 
 // ============================================================================
 // BRAND SCHEMAS
@@ -41,6 +42,7 @@ export const BrandResponseSchema = z.object({
 
 export const BrandListResponseSchema = z.object({
   brands: z.array(BrandSchema),
+  pagination: PaginationResponseSchema.optional(),
 });
 
 // ============================================================================

@@ -43,9 +43,9 @@ export const OrderItemSchema = z.object({
   productName: z.string(),
   productSku: z.string(),
   productImageUrl: z.string().nullable(),
-  quantity: z.number(),
-  unitPrice: z.number(),
-  totalPrice: z.number(),
+  quantity: z.number().int().positive(),
+  unitPrice: z.number().nonnegative(),
+  totalPrice: z.number().nonnegative(),
   status: OrderItemStatusEnum,
   substitutedProductId: z.string().uuid().nullable(),
   notes: z.string().nullable(),
@@ -86,6 +86,11 @@ export const OrderSchema = z.object({
   deliveredAt: z.string().datetime().nullable(),
   cancelledAt: z.string().datetime().nullable(),
   cancellationReason: z.string().nullable(),
+  // ETA tracking (migration 008)
+  etaMinutes: z.number().int().min(0).nullable(),
+  etaUpdatedAt: z.string().datetime().nullable(),
+  etaSource: z.enum(["calculated", "manual", "driver"]).nullable(),
+  trackingToken: z.string().nullable(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -106,6 +111,8 @@ export const OrderSummarySchema = z.object({
   itemCount: z.number(),
   deliverySlotStart: z.string().datetime().nullable(),
   deliverySlotEnd: z.string().datetime().nullable(),
+  etaMinutes: z.number().int().min(0).nullable(),
+  trackingToken: z.string().nullable(),
   createdAt: z.string().datetime(),
 });
 

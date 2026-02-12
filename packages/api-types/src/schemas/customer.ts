@@ -173,6 +173,7 @@ export const AddressResponseSchema = z.object({
 
 export const AddressListResponseSchema = z.object({
   addresses: z.array(AddressSchema),
+  pagination: PaginationResponseSchema.optional(),
 });
 
 // ============================================================================

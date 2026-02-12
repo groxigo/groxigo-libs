@@ -46,7 +46,7 @@ export const StoreSchema = z.object({
   addressLine1: z.string().min(1),
   addressLine2: z.string().nullable(),
   city: z.string().min(1),
-  state: z.string().min(1).max(2),
+  state: z.string().min(1).max(100),
   postalCode: z.string().min(5).max(10),
   country: z.string().default("US"),
 
