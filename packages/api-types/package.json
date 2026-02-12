@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/api-types",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shared API types and Zod schemas for Groxigo frontend and backend",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -21,6 +21,16 @@
       "types": "./dist/schemas/*.d.ts",
       "import": "./dist/schemas/*.mjs",
       "require": "./dist/schemas/*.js"
+    },
+    "./constants": {
+      "types": "./dist/constants/index.d.ts",
+      "import": "./dist/constants/index.mjs",
+      "require": "./dist/constants/index.js"
+    },
+    "./constants/*": {
+      "types": "./dist/constants/*.d.ts",
+      "import": "./dist/constants/*.mjs",
+      "require": "./dist/constants/*.js"
     }
   },
   "files": [

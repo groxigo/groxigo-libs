@@ -5,9 +5,24 @@ import { z } from "zod";
 // ============================================================================
 
 export const PaginationQuerySchema = z.object({
-  page: z.coerce.number().min(1).default(1),
-  limit: z.coerce.number().min(1).max(100).default(20),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20),
 });
+
+/**
+ * Factory for pagination query schemas with configurable defaults.
+ */
+export function paginationQuery(defaults?: { limit?: number; maxLimit?: number }) {
+  return z.object({
+    page: z.coerce.number().int().min(1).default(1),
+    limit: z.coerce
+      .number()
+      .int()
+      .min(1)
+      .max(defaults?.maxLimit ?? 50)
+      .default(defaults?.limit ?? 10),
+  });
+}
 
 export const PaginationResponseSchema = z.object({
   page: z.number(),
@@ -58,7 +73,7 @@ export const IdParamSchema = z.object({
 });
 
 export const SlugParamSchema = z.object({
-  slug: z.string(),
+  slug: z.string().min(1).max(200),
 });
 
 // ============================================================================
