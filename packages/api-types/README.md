@@ -73,8 +73,8 @@ const url = `${baseUrl}${ENDPOINTS.products.list}`;
 ```typescript
 import { buildFieldsQuery } from "@groxigo/api-types";
 
-const query = buildFieldsQuery(["id", "name", "price"]);
-// → "fields=id,name,price" (append to URL query string)
+const query = buildFieldsQuery({ id: true, name: true, price: true });
+// → "id,name,price" (append to ?fields= query string)
 ```
 
 ### Pagination Helpers

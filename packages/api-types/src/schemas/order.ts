@@ -68,7 +68,11 @@ export const OrderSchema = z.object({
   orderNumber: z.string().max(50),
   customerId: z.string().uuid(),
   addressId: z.string().uuid().nullable(),
-  shippingAddress: z.record(z.unknown()),
+  /** Snapshot of delivery address at time of order. */
+  shippingAddress: z.record(z.string().max(100), z.string().max(1000)).refine(
+    (obj) => Object.keys(obj).length <= 20,
+    { message: "Shipping address cannot exceed 20 fields" },
+  ),
   subtotal: z.number().nonnegative(),
   tax: z.number().nonnegative(),
   deliveryFee: z.number().nonnegative(),
@@ -156,7 +160,7 @@ export const CreateOrderSchema = z.object({
   items: z.array(z.object({
     productId: z.string().uuid(),
     quantity: z.number().int().positive("Quantity must be at least 1"),
-  })).min(1, "Order must contain at least one item"),
+  })).min(1, "Order must contain at least one item").max(200, "Order cannot exceed 200 items"),
   couponCode: z.string().max(50).optional(),
   tip: z.number().min(0, "Tip cannot be negative").default(0),
   deliveryInstructions: z.string().max(500).optional(),

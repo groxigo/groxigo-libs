@@ -112,11 +112,10 @@ export const PRODUCT_FIELDS = {
     name: true,
     slug: true,
     price: true,
-    salePrice: true,
-    imageUrl: true,
-    inStock: true,
+    compareAtPrice: true,
+    isAvailable: true,
     unit: true,
-    size: true,
+    unitSize: true,
   }),
 
   /** Fields for product list with brand */
@@ -125,16 +124,11 @@ export const PRODUCT_FIELDS = {
     name: true,
     slug: true,
     price: true,
-    salePrice: true,
-    imageUrl: true,
-    inStock: true,
+    compareAtPrice: true,
+    isAvailable: true,
     unit: true,
-    size: true,
-    brand: {
-      id: true,
-      name: true,
-      slug: true,
-    },
+    unitSize: true,
+    brandId: true,
   }),
 
   /** Fields for cart items */
@@ -142,11 +136,10 @@ export const PRODUCT_FIELDS = {
     id: true,
     name: true,
     price: true,
-    salePrice: true,
-    imageUrl: true,
-    inStock: true,
+    compareAtPrice: true,
+    isAvailable: true,
     unit: true,
-    size: true,
+    unitSize: true,
   }),
 } as const;
 
@@ -159,7 +152,8 @@ export const STORE_FIELDS = {
     id: true,
     name: true,
     slug: true,
-    address: true,
+    city: true,
+    state: true,
   }),
 } as const;
 
@@ -170,9 +164,9 @@ export const PAGE_FIELDS = {
   /** Fields for tab navigation */
   tabs: buildFieldsQuery({
     id: true,
-    name: true,
+    title: true,
     slug: true,
-    iconName: true,
+    icon: true,
   }),
 
   /** Fields for page sections */

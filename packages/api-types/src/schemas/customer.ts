@@ -85,7 +85,7 @@ export const CustomerSchema = z.object({
   dateOfBirth: z.string().max(20).nullable(),
   /** Stripe customer ID (cus_...). */
   stripeCustomerId: z.string().max(255).nullable(),
-  dietaryPreferences: z.array(z.string().max(50)),
+  dietaryPreferences: z.array(z.string().max(50)).max(50),
   defaultSubstitutionPreference: SubstitutionPreferenceEnum,
   notificationEmail: z.boolean(),
   notificationSms: z.boolean(),
@@ -154,7 +154,7 @@ export const UpdateCustomerSchema = z.object({
   phone: z.string().max(20).optional(),
   /** YYYY-MM-DD date of birth. */
   dateOfBirth: z.string().date("Invalid date format (expected YYYY-MM-DD)").optional(),
-  dietaryPreferences: z.array(z.string().max(50)).optional(),
+  dietaryPreferences: z.array(z.string().max(50)).max(50).optional(),
   defaultSubstitutionPreference: SubstitutionPreferenceEnum.optional(),
   notificationEmail: z.boolean().optional(),
   notificationSms: z.boolean().optional(),

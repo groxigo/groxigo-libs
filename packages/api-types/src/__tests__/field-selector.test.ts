@@ -53,13 +53,14 @@ describe("CATEGORY_FIELDS", () => {
 });
 
 describe("PRODUCT_FIELDS", () => {
-  it("card includes price and stock fields", () => {
+  it("card includes price and availability fields", () => {
     expect(PRODUCT_FIELDS.card).toContain("price");
-    expect(PRODUCT_FIELDS.card).toContain("inStock");
+    expect(PRODUCT_FIELDS.card).toContain("isAvailable");
+    expect(PRODUCT_FIELDS.card).toContain("compareAtPrice");
   });
 
-  it("list includes nested brand", () => {
-    expect(PRODUCT_FIELDS.list).toContain("brand(");
+  it("list includes brandId", () => {
+    expect(PRODUCT_FIELDS.list).toContain("brandId");
   });
 
   it("cart is minimal", () => {
@@ -77,7 +78,7 @@ describe("STORE_FIELDS", () => {
 
 describe("PAGE_FIELDS", () => {
   it("tabs includes icon", () => {
-    expect(PAGE_FIELDS.tabs).toContain("iconName");
+    expect(PAGE_FIELDS.tabs).toContain("icon");
   });
 
   it("sections includes sectionType", () => {

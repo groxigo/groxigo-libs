@@ -1,5 +1,11 @@
 # @groxigo/api-types
 
+## 1.6.1
+
+### Patch Changes
+
+- Add .max() bounds to all unbounded arrays (CreateOrder.items, dietaryTags, dietaryPreferences, SDUI section items, story slides, recipe tags). Replace z.record(z.unknown()) on shippingAddress with bounded Record<string,string>. Fix field-selector field names to match actual schemas. Fix README buildFieldsQuery example.
+
 ## 1.6.0
 
 ### Minor Changes

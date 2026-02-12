@@ -106,7 +106,7 @@ export const ProductSectionItemSchema = BaseSectionItemSchema.extend({
     })
     .nullable()
     .optional(),
-  dietaryTags: z.array(z.string().max(50)).optional(),
+  dietaryTags: z.array(z.string().max(50)).max(50).optional(),
   inStock: z.boolean().optional(),
   /** Number of recipes that use this product as an ingredient. */
   recipeCount: z.number().int().nonnegative().optional(),
@@ -160,7 +160,7 @@ export const StorySectionItemSchema = BaseSectionItemSchema.extend({
   /** Whether the current user has unseen slides. */
   hasUnviewed: z.boolean().optional(),
   /** Ordered slides within this story group. */
-  items: z.array(StorySlideItemSchema),
+  items: z.array(StorySlideItemSchema).max(30),
 }).readonly();
 
 export type StorySectionItem = z.infer<typeof StorySectionItemSchema>;
@@ -231,7 +231,7 @@ export const RecipeSectionItemSchema = BaseSectionItemSchema.extend({
   /** Total number of user ratings. */
   ratingCount: z.number().int().nonnegative().optional(),
   category: RecipeCategoryItemSchema.nullable().optional(),
-  tags: z.array(RecipeTagItemSchema).optional(),
+  tags: z.array(RecipeTagItemSchema).max(50).optional(),
 }).readonly();
 
 export type RecipeSectionItem = z.infer<typeof RecipeSectionItemSchema>;
@@ -385,7 +385,7 @@ export const SectionSchema = z.object({
   /** Whether to show a live countdown timer (deal sections only). */
   showCountdown: z.boolean().optional(),
   /** Ordered items within this section. */
-  items: z.array(SectionItemSchema),
+  items: z.array(SectionItemSchema).max(500),
 }).readonly();
 
 export type Section = z.infer<typeof SectionSchema>;
@@ -414,7 +414,7 @@ export type TabPage = z.infer<typeof TabPageSchema>;
 /** Response containing a tab and its SDUI sections. */
 export const TabSectionsResponseSchema = z.object({
   tab: TabPageSchema,
-  sections: z.array(SectionSchema),
+  sections: z.array(SectionSchema).max(100),
 }).readonly();
 
 export type TabSectionsResponse = z.infer<typeof TabSectionsResponseSchema>;
