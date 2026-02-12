@@ -1,5 +1,22 @@
 # @groxigo/api-types
 
+## 1.5.0
+
+### Minor Changes
+
+- Add search, promotion, and payment schemas; fix tab-page deep import; add inventory and admin test suites (302 total tests).
+
+  New schema modules:
+
+  - `search`: SearchQuerySchema, SuggestionsQuerySchema, SORT_OPTIONS, SearchSuggestionSchema
+  - `promotion`: PromotionSchema, ValidateCouponSchema, ApplyPromotionSchema, CreatePromotionSchema, CouponErrorCodes
+  - `payment`: PaymentMethodSchema, SavePaymentMethodSchema, RefundRequestSchema, SetupIntentSchema, PaymentIntentResultSchema
+
+  Fixes:
+
+  - Add `schemas/tab-page` entry to tsup.config.ts (enables deep imports)
+  - Add test files for inventory.ts (25 tests) and admin.ts (18 tests)
+
 ## 1.4.0
 
 ### Minor Changes

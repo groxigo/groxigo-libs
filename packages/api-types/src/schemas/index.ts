@@ -19,3 +19,6 @@ export * from "./inventory";
 export * from "./admin";
 export * from "./store";
 export * from "./tab-page";
+export * from "./search";
+export * from "./promotion";
+export * from "./payment";

@@ -100,9 +100,53 @@ import {
   TabSectionsResponseSchema,
   SectionSchema,
   SectionComponentSchema,
+  HeroSectionItemSchema,
+  StepSectionItemSchema,
+  PillarSectionItemSchema,
+  TrustStatSectionItemSchema,
   type Section,
   type TabSectionsResponse,
 } from "@groxigo/api-types";
+```
+
+### Search
+
+```typescript
+import {
+  SearchQuerySchema,
+  SuggestionsQuerySchema,
+  SORT_OPTIONS,
+  type SearchQuery,
+  type SortOption,
+} from "@groxigo/api-types/schemas/search";
+```
+
+### Promotions & Coupons
+
+```typescript
+import {
+  ValidateCouponSchema,
+  ApplyPromotionSchema,
+  CouponErrorCodes,
+  CouponErrorMessages,
+  PromotionSchema,
+  type Promotion,
+  type ValidateCouponInput,
+} from "@groxigo/api-types/schemas/promotion";
+```
+
+### Payments
+
+```typescript
+import {
+  PaymentMethodSchema,
+  SavePaymentMethodSchema,
+  RefundRequestSchema,
+  SetupIntentSchema,
+  PaymentIntentResultSchema,
+  type PaymentMethod,
+  type RefundReason,
+} from "@groxigo/api-types/schemas/payment";
 ```
 
 ### Re-exported Zod
@@ -129,13 +173,16 @@ const MySchema = z.object({ foo: z.string() });
 | `delivery` | Delivery time slots | `DeliverySlotSchema`, `CreateDeliverySlotSchema` |
 | `admin` | Dashboard KPIs, reports | `DashboardStatsSchema`, `RevenueReportSchema` |
 | `tab-page` | SDUI sections & tabs | `SectionSchema`, `TabPageSchema`, `TabSectionsResponseSchema` |
+| `search` | Product search, suggestions | `SearchQuerySchema`, `SuggestionsQuerySchema`, `SORT_OPTIONS` |
+| `promotion` | Coupons, promotions | `PromotionSchema`, `ValidateCouponSchema`, `CouponErrorCodes` |
+| `payment` | Stripe payments, refunds | `PaymentMethodSchema`, `RefundRequestSchema`, `SetupIntentSchema` |
 | `common` | Pagination, errors, health | `PaginationQuerySchema`, `ApiErrorSchema` |
 
 ## Development
 
 ```bash
 bun run build          # Build with tsup
-bun run test           # Run 171 tests
+bun run test           # Run 302 tests
 bun run typecheck      # TypeScript check
 ```
 
