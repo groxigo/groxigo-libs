@@ -55,6 +55,8 @@ export interface RadioProps extends RadioPropsBase {
   name?: string;
   /** HTML input id */
   id?: string;
+  /** Standalone checked state (used outside RadioGroup) */
+  checked?: boolean;
   /** Label class */
   labelClassName?: string;
   /** Callback when radio is selected */
@@ -78,6 +80,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       testID,
       name,
       id,
+      checked,
       labelClassName,
       onSelect,
     },
@@ -91,7 +94,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     const effectiveName = groupContext.name || name;
     const isSelected = groupContext.value !== undefined
       ? groupContext.value === value
-      : false;
+      : checked ?? false;
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,5 +1,11 @@
 # @groxigo/ui-elements-web
 
+## 1.2.1
+
+### Patch Changes
+
+- Add standalone checked prop to Radio for use outside RadioGroup
+
 ## 1.2.0
 
 ### Minor Changes
