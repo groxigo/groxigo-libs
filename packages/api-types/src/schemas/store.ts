@@ -308,7 +308,8 @@ export const ServiceabilityResultSchema = z.object({
   /** Nearest store when not serviceable (for "expand soon" messaging). */
   nearestStore: z.object({
     name: z.string().max(100),
-    distance: z.number(),
+    /** Distance in miles. */
+    distance: z.number().nonnegative(),
   }).optional(),
 }).readonly();
 

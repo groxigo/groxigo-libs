@@ -68,16 +68,21 @@ export type ErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];
 // Standard error response format from the API
 // ============================================================================
 
+/** Standard error response format from the API. */
 export const ApiErrorResponseSchema = z.object({
   success: z.literal(false),
   error: z.object({
-    code: z.string(),
-    message: z.string(),
+    /** Error code (e.g., "AUTH_001", "VAL_002"). */
+    code: z.string().max(50),
+    /** Human-readable error message. */
+    message: z.string().max(2000),
+    /** Additional error details (validation errors, etc.). */
     details: z.unknown().optional(),
-    requestId: z.string(),
+    /** Request trace ID for debugging. */
+    requestId: z.string().max(255),
     timestamp: z.string().datetime(),
   }),
-});
+}).readonly();
 
 export type ApiErrorResponse = z.infer<typeof ApiErrorResponseSchema>;
 

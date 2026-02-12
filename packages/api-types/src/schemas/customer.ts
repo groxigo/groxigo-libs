@@ -36,8 +36,8 @@ export const AddressSchema = z.object({
   state: z.string().max(100),
   postalCode: z.string().max(20),
   country: z.string().max(100),
-  latitude: z.number().nullable(),
-  longitude: z.number().nullable(),
+  latitude: z.number().min(-90).max(90).nullable(),
+  longitude: z.number().min(-180).max(180).nullable(),
   deliveryInstructions: z.string().max(500).nullable(),
   isDefault: z.boolean(),
   createdAt: z.string().datetime(),
@@ -55,8 +55,8 @@ export const CreateAddressSchema = z.object({
   state: z.string({ required_error: "State is required" }).min(1, "State cannot be empty").max(100),
   postalCode: z.string({ required_error: "Postal code is required" }).min(1, "Postal code cannot be empty").max(20),
   country: z.string().min(1).max(100).default("USA"),
-  latitude: z.number().optional(),
-  longitude: z.number().optional(),
+  latitude: z.number().min(-90).max(90).optional(),
+  longitude: z.number().min(-180).max(180).optional(),
   deliveryInstructions: z.string().max(500, "Delivery instructions too long (max 500 chars)").optional(),
   isDefault: z.boolean().default(false),
 });
@@ -71,7 +71,8 @@ export const UpdateAddressSchema = CreateAddressSchema.partial();
 /** Full customer entity. */
 export const CustomerSchema = z.object({
   id: z.string().uuid(),
-  authProviderId: z.string(),
+  /** Firebase/auth provider user ID. */
+  authProviderId: z.string().max(255),
   authProvider: z.string().max(50),
   email: z.string().email(),
   emailVerified: z.boolean(),
@@ -81,8 +82,9 @@ export const CustomerSchema = z.object({
   lastName: z.string().max(100).nullable(),
   displayName: z.string().max(255).nullable(),
   avatarUrl: z.string().max(2000).nullable(),
-  dateOfBirth: z.string().nullable(),
-  stripeCustomerId: z.string().nullable(),
+  dateOfBirth: z.string().max(20).nullable(),
+  /** Stripe customer ID (cus_...). */
+  stripeCustomerId: z.string().max(255).nullable(),
   dietaryPreferences: z.array(z.string().max(50)),
   defaultSubstitutionPreference: SubstitutionPreferenceEnum,
   notificationEmail: z.boolean(),
@@ -100,7 +102,7 @@ export const CustomerSchema = z.object({
   scheduledDeletionAt: z.string().datetime().nullable(),
   deletedAt: z.string().datetime().nullable(),
   /** Decimal from DB — may come as string or number. */
-  storeCreditBalance: z.union([z.number(), z.string()]),
+  storeCreditBalance: z.union([z.number().nonnegative(), z.string().max(20)]),
   loyaltyPoints: z.number().int().nonnegative(),
   loyaltyTier: LoyaltyTierEnum,
   referralCode: z.string().max(20),
@@ -114,14 +116,15 @@ export const CustomerSchema = z.object({
 export const CustomerSummarySchema = z.object({
   id: z.string().uuid(),
   email: z.string().email(),
-  firstName: z.string().nullable(),
-  lastName: z.string().nullable(),
-  displayName: z.string().nullable(),
-  phone: z.string().nullable(),
+  firstName: z.string().max(100).nullable(),
+  lastName: z.string().max(100).nullable(),
+  displayName: z.string().max(255).nullable(),
+  phone: z.string().max(20).nullable(),
   status: CustomerStatusEnum,
   loyaltyTier: LoyaltyTierEnum,
-  loyaltyPoints: z.number(),
-  storeCreditBalance: z.union([z.number(), z.string()]),
+  loyaltyPoints: z.number().int().nonnegative(),
+  /** Decimal from DB — may come as string or number. */
+  storeCreditBalance: z.union([z.number().nonnegative(), z.string().max(20)]),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 }).readonly();

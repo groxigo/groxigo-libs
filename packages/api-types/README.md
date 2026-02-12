@@ -64,17 +64,17 @@ import {
 ```typescript
 import { ENDPOINTS } from "@groxigo/api-types";
 
-const url = `${baseUrl}${ENDPOINTS.PRODUCTS.LIST}`;
+const url = `${baseUrl}${ENDPOINTS.products.list}`;
 // → /api/v1/products
 ```
 
 ### Field Selector
 
 ```typescript
-import { selectFields } from "@groxigo/api-types";
+import { buildFieldsQuery } from "@groxigo/api-types";
 
-const fields = selectFields(ProductSchema, ["id", "name", "price"]);
-// → Zod schema with only { id, name, price }
+const query = buildFieldsQuery(["id", "name", "price"]);
+// → "fields=id,name,price" (append to URL query string)
 ```
 
 ### Pagination Helpers
@@ -149,6 +149,52 @@ import {
 } from "@groxigo/api-types/schemas/payment";
 ```
 
+### Cart
+
+```typescript
+import {
+  CartSchema,
+  CartItemSchema,
+  AddCartItemSchema,
+  UpdateCartItemSchema,
+  SyncCartSchema,
+  MAX_QUANTITY_PER_ITEM,
+  type Cart,
+  type CartItem,
+} from "@groxigo/api-types/schemas/cart";
+```
+
+### Checkout
+
+```typescript
+import {
+  CheckoutSessionSchema,
+  CreateCheckoutSessionSchema,
+  UpdateCheckoutSessionSchema,
+  PlaceOrderSchema,
+  ApplyCheckoutPromoSchema,
+  PlaceOrderResultSchema,
+  SESSION_TTL_SECONDS,
+  type CheckoutSession,
+  type PlaceOrderResult,
+} from "@groxigo/api-types/schemas/checkout";
+```
+
+### Reviews
+
+```typescript
+import {
+  ReviewSchema,
+  CreateReviewSchema,
+  ListReviewsQuerySchema,
+  RatingSummarySchema,
+  VoteReviewSchema,
+  ModerateReviewSchema,
+  type Review,
+  type RatingSummary,
+} from "@groxigo/api-types/schemas/review";
+```
+
 ### Re-exported Zod
 
 No need to install `zod` separately:
@@ -176,13 +222,16 @@ const MySchema = z.object({ foo: z.string() });
 | `search` | Product search, suggestions | `SearchQuerySchema`, `SuggestionsQuerySchema`, `SORT_OPTIONS` |
 | `promotion` | Coupons, promotions | `PromotionSchema`, `ValidateCouponSchema`, `CouponErrorCodes` |
 | `payment` | Stripe payments, refunds | `PaymentMethodSchema`, `RefundRequestSchema`, `SetupIntentSchema` |
+| `cart` | Shopping cart CRUD | `CartSchema`, `AddCartItemSchema`, `SyncCartSchema` |
+| `checkout` | Checkout sessions, place order | `CheckoutSessionSchema`, `PlaceOrderSchema`, `PlaceOrderResultSchema` |
+| `review` | Product reviews, moderation | `ReviewSchema`, `CreateReviewSchema`, `RatingSummarySchema` |
 | `common` | Pagination, errors, health | `PaginationQuerySchema`, `ApiErrorSchema` |
 
 ## Development
 
 ```bash
 bun run build          # Build with tsup
-bun run test           # Run 302 tests
+bun run test           # Run 375 tests
 bun run typecheck      # TypeScript check
 ```
 

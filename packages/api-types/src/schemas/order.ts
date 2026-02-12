@@ -64,7 +64,8 @@ export const OrderItemSchema = z.object({
 /** Full order entity as returned by the API. */
 export const OrderSchema = z.object({
   id: z.string().uuid(),
-  orderNumber: z.string(),
+  /** Human-readable order number (e.g., "GRX-20260115-001"). */
+  orderNumber: z.string().max(50),
   customerId: z.string().uuid(),
   addressId: z.string().uuid().nullable(),
   shippingAddress: z.record(z.unknown()),
@@ -77,7 +78,8 @@ export const OrderSchema = z.object({
   total: z.number().nonnegative(),
   status: OrderStatusEnum,
   paymentStatus: PaymentStatusEnum,
-  paymentIntentId: z.string().nullable(),
+  /** Stripe PaymentIntent ID (pi_...). */
+  paymentIntentId: z.string().max(255).nullable(),
   couponId: z.string().uuid().nullable(),
   couponCode: z.string().max(50).nullable(),
   deliverySlotId: z.string().uuid().nullable(),
@@ -87,7 +89,13 @@ export const OrderSchema = z.object({
   deliverySlotEnd: z.string().datetime().nullable(),
   deliveryInstructions: z.string().max(500).nullable(),
   specialInstructions: z.string().max(500).nullable(),
-  substitutionPreference: z.string(),
+  /** How out-of-stock items should be handled. */
+  substitutionPreference: z.enum([
+    "allow_similar",
+    "allow_any",
+    "contact_me",
+    "no_substitution",
+  ]),
   pickedAt: z.string().datetime().nullable(),
   packedAt: z.string().datetime().nullable(),
   deliveredAt: z.string().datetime().nullable(),
@@ -100,7 +108,7 @@ export const OrderSchema = z.object({
   /** Source of the ETA estimate. */
   etaSource: z.enum(["calculated", "manual", "driver"]).nullable(),
   /** Opaque token for delivery tracking page. */
-  trackingToken: z.string().nullable(),
+  trackingToken: z.string().max(500).nullable(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -113,16 +121,16 @@ export const OrderWithItemsSchema = OrderSchema.extend({
 /** Lightweight order for list views. */
 export const OrderSummarySchema = z.object({
   id: z.string().uuid(),
-  orderNumber: z.string(),
+  orderNumber: z.string().max(50),
   customerId: z.string().uuid(),
-  total: z.number(),
+  total: z.number().nonnegative(),
   status: OrderStatusEnum,
   paymentStatus: PaymentStatusEnum,
   itemCount: z.number().int().nonnegative(),
   deliverySlotStart: z.string().datetime().nullable(),
   deliverySlotEnd: z.string().datetime().nullable(),
   etaMinutes: z.number().int().min(0).nullable(),
-  trackingToken: z.string().nullable(),
+  trackingToken: z.string().max(500).nullable(),
   createdAt: z.string().datetime(),
 }).readonly();
 

@@ -1,5 +1,11 @@
 # @groxigo/api-types
 
+## 1.6.0
+
+### Minor Changes
+
+- Production hardening: add cart, checkout, review schemas; fix bare z.string()/z.number() constraints with .max()/.nonnegative() bounds; add lat/lng range validation; fix README inaccuracies (endpoint casing, field selector API); 375 tests across 20 files
+
 ## 1.5.0
 
 ### Minor Changes
