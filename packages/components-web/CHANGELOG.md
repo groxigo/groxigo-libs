@@ -1,5 +1,16 @@
 # @groxigo/components-web
 
+## 1.2.1
+
+### Patch Changes
+
+- ProductTile: inline quantity stepper overlay on image when item is in cart
+  PaymentMethodCard: add delete button with onDelete callback
+  AuthCard: auto-check email on mount when initialEmail is provided
+  AddressCard: wire standalone checked prop to Radio
+  DeliverySlotPicker: fix padding, overflow, and selected slot text color
+  StoryAvatar: allow 2-line names, larger avatar on desktop (1200px+)
+
 ## 1.2.0
 
 ### Minor Changes

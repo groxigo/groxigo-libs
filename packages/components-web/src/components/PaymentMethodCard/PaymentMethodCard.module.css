@@ -90,3 +90,27 @@
   line-height: normal;
   flex-shrink: 0;
 }
+
+/* ── Delete button ── */
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  background: transparent;
+  color: var(--text-tertiary, #94a3b8);
+  font-size: var(--font-size-lg, 18px);
+  cursor: pointer;
+  transition: background-color var(--duration-fast, 150ms) ease,
+    color var(--duration-fast, 150ms) ease;
+}
+
+.deleteButton:hover {
+  background: var(--surface-error-subtle, #fef2f2);
+  color: var(--color-error, #dc2626);
+}

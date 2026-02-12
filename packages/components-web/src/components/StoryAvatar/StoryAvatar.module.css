@@ -40,7 +40,7 @@
   border: 2px solid var(--border-default, #cbd5e1);
 }
 
-/* Name text below avatar */
+/* Name text below avatar — 2 lines max */
 .name {
   font-size: var(--font-size-xs, 12px);
   font-weight: var(--font-weight-normal, 400);
@@ -48,7 +48,20 @@
   text-align: center;
   width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.3;
+}
+
+/* ------- Larger screens: bigger avatar ------- */
+@media (min-width: 1200px) {
+  .root {
+    width: 84px;
+  }
+
+  .ring {
+    width: 80px;
+    height: 80px;
+  }
 }

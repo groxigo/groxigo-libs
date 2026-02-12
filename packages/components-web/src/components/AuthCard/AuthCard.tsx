@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState, useCallback, useMemo } from 'react';
+import { forwardRef, useState, useCallback, useMemo, useEffect } from 'react';
 import type {
   AuthCardPropsBase,
   AuthMode,
@@ -108,6 +108,20 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
     const [isChecking, setIsChecking] = useState(false);
 
     const hasSso = !!(onGoogleAuth || onFacebookAuth || onAppleAuth);
+
+    // Auto-check email when opened with a pre-filled email and no explicit mode
+    useEffect(() => {
+      if (initialEmail && !mode && onCheckEmail && step === 'identify') {
+        setIsChecking(true);
+        onCheckEmail(initialEmail.trim())
+          .then(({ exists }) => {
+            setStep(exists ? 'signin' : 'signup');
+          })
+          .finally(() => {
+            setIsChecking(false);
+          });
+      }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleBack = useCallback(() => {
       setPassword('');

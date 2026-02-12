@@ -157,14 +157,36 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
           )}
 
           {!outOfStock && showAddButton && mode === 'product' && (
-            <button
-              type="button"
-              className={styles.addButton}
-              onClick={handleAddClick}
-              aria-label={addButtonText ?? 'Add'}
-            >
-              +
-            </button>
+            quantity && quantity > 0 ? (
+              <div className={styles.quantityStepper}>
+                <button
+                  type="button"
+                  className={styles.stepperButton}
+                  onClick={(e) => { e.stopPropagation(); onDecrement?.(); }}
+                  aria-label="Decrease quantity"
+                >
+                  {quantity === 1 ? '\u2212' : '\u2212'}
+                </button>
+                <span className={styles.stepperCount}>{quantity}</span>
+                <button
+                  type="button"
+                  className={styles.stepperButton}
+                  onClick={(e) => { e.stopPropagation(); onIncrement?.(); }}
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className={styles.addButton}
+                onClick={handleAddClick}
+                aria-label={addButtonText ?? 'Add'}
+              >
+                +
+              </button>
+            )
           )}
         </div>
 

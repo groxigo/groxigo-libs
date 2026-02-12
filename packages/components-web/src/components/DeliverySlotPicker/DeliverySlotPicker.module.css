@@ -17,7 +17,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: var(--spacing-0, 0px);
+  padding: var(--spacing-1, 4px) var(--spacing-1, 4px);
 }
 
 .dates::-webkit-scrollbar {
@@ -30,10 +30,11 @@
   align-items: center;
   gap: var(--spacing-0, 0px);
   width: 56px;
+  height: auto;
+  min-height: 64px;
   flex-shrink: 0;
-  padding: var(--spacing-2-5, 10px) var(--spacing-2, 8px);
+  padding: var(--spacing-2, 8px) var(--spacing-2, 8px);
   border-radius: var(--radius-md, 8px);
-  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -84,7 +85,7 @@
   gap: var(--spacing-2, 8px);
   align-items: flex-start;
   width: 100%;
-  overflow: hidden;
+  padding: var(--spacing-1, 4px) var(--spacing-1, 4px);
 }
 
 .timeSlot {
@@ -93,7 +94,6 @@
   justify-content: center;
   padding: var(--spacing-2-5, 10px) var(--spacing-3-5, 14px);
   border-radius: var(--radius-md, 8px);
-  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -121,7 +121,7 @@
 
 .timeLabelSelected {
   font-weight: var(--font-weight-medium, 500);
-  color: var(--brand-primary, #2563eb);
+  color: var(--text-inverse, #ffffff);
 }
 
 .timeLabelDisabled {

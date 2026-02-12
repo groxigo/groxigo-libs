@@ -31,6 +31,7 @@ export const PaymentMethodCard = forwardRef<HTMLDivElement, PaymentMethodCardPro
       selected = false,
       isDefault = false,
       onSelect,
+      onDelete,
       className,
       testID,
     },
@@ -48,13 +49,16 @@ export const PaymentMethodCard = forwardRef<HTMLDivElement, PaymentMethodCardPro
         data-payment-id={id}
       >
         {/* Radio button */}
-        <Radio
-          value={id}
-          size="md"
-          className={styles.radio}
-          onSelect={onSelect}
-          aria-label={`Select ${BRAND_LABELS[brand]} ending in ${lastFour}`}
-        />
+        {onSelect && (
+          <Radio
+            value={id}
+            size="md"
+            checked={selected}
+            className={styles.radio}
+            onSelect={onSelect}
+            aria-label={`Select ${BRAND_LABELS[brand]} ending in ${lastFour}`}
+          />
+        )}
 
         {/* Brand icon placeholder */}
         <div className={styles.cardIcon} aria-hidden="true">
@@ -73,6 +77,17 @@ export const PaymentMethodCard = forwardRef<HTMLDivElement, PaymentMethodCardPro
         {/* Default badge */}
         {isDefault && (
           <span className={styles.badge}>Default</span>
+        )}
+
+        {/* Delete button */}
+        {onDelete && (
+          <button
+            className={styles.deleteButton}
+            onClick={(e) => { e.stopPropagation(); onDelete(); }}
+            aria-label={`Delete card ending in ${lastFour}`}
+          >
+            &times;
+          </button>
         )}
       </div>
     );
