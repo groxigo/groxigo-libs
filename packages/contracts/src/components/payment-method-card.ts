@@ -23,6 +23,8 @@ export interface PaymentMethodCardPropsBase {
   isDefault?: boolean;
   /** Callback when the payment method is selected via radio */
   onSelect?: () => void;
+  /** Callback when the delete button is pressed */
+  onDelete?: () => void;
   /** Additional CSS class (web only) */
   className?: string;
   /** Test ID for testing */

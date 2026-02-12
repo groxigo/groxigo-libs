@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.2.1
+
+### Patch Changes
+
+- Add onDelete callback to PaymentMethodCardPropsBase contract
+
 ## 1.2.0
 
 ### Minor Changes
