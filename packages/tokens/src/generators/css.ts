@@ -853,18 +853,7 @@ export function generateCSS(): string {
   lines.push('}');
   lines.push('');
 
-  // Dark mode - system preference
-  lines.push('/* ============================================');
-  lines.push('   DARK MODE - System Preference');
-  lines.push('   ============================================ */');
-  lines.push('@media (prefers-color-scheme: dark) {');
-  lines.push('  :root {');
-  lines.push(generateDarkMode());
-  lines.push('  }');
-  lines.push('}');
-  lines.push('');
-
-  // Dark mode - manual class
+  // Dark mode - manual class (opt-in via .dark on <html>)
   lines.push('/* ============================================');
   lines.push('   DARK MODE - Manual Toggle (.dark class)');
   lines.push('   ============================================ */');

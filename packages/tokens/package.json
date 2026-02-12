@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/tokens",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Groxigo Design Tokens - Production-grade design tokens with three-tier architecture for iOS, Android, and Web",
   "main": "dist/index.js",
   "module": "dist/index.js",
