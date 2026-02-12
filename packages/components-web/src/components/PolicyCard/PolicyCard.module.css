@@ -48,12 +48,12 @@
 .title {
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-bold, 700);
-  line-height: 18px;
+  line-height: 1.29;
 }
 
 .message {
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-normal, 400);
-  line-height: 18px;
+  line-height: 1.29;
   white-space: pre-wrap;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, type MouseEvent } from 'react';
 import type {
   OrderCardPropsBase,
   OrderStatus,
@@ -129,7 +129,7 @@ export const OrderCard = forwardRef<HTMLDivElement, OrderCardProps>(
               size="sm"
               onPress={(e?: unknown) => {
                 if (e && typeof e === 'object' && 'stopPropagation' in e) {
-                  (e as React.MouseEvent).stopPropagation();
+                  (e as MouseEvent).stopPropagation();
                 }
                 onReorder();
               }}

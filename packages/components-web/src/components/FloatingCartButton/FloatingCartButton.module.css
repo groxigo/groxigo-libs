@@ -13,6 +13,25 @@
   height: var(--spacing-14, 56px);
   border-radius: var(--radius-full, 9999px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform var(--duration-fast, 150ms) ease,
+    box-shadow var(--duration-fast, 150ms) ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .icon {

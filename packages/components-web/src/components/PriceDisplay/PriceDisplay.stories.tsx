@@ -47,15 +47,6 @@ export const LargeSize: Story = {
   },
 };
 
-export const IndianRupees: Story = {
-  args: {
-    price: 299,
-    originalPrice: 450,
-    currency: 'INR',
-    size: 'md',
-  },
-};
-
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>

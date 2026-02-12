@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState, useCallback, useMemo, useEffect } from 'react';
+import { forwardRef, useState, useCallback, useMemo, useEffect, type FormEvent, type MouseEvent } from 'react';
 import type {
   AuthCardPropsBase,
   AuthMode,
@@ -135,7 +135,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
     }, []);
 
     const handleContinue = useCallback(
-      async (e: React.FormEvent) => {
+      async (e: FormEvent) => {
         e.preventDefault();
         if (!email.trim()) return;
 
@@ -155,7 +155,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
     );
 
     const handleSignIn = useCallback(
-      (e: React.FormEvent) => {
+      (e: FormEvent) => {
         e.preventDefault();
         if (isLoading) return;
         const handler = onSignIn ?? onSubmit;
@@ -165,7 +165,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
     );
 
     const handleSignUp = useCallback(
-      (e: React.FormEvent) => {
+      (e: FormEvent) => {
         e.preventDefault();
         if (isLoading) return;
         onSignUp?.({
@@ -199,7 +199,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
         {step === 'identify' && (
           <>
             <div className={styles.logoArea}>
-              <span className={styles.brand}>groxigo</span>
+              <span className={styles.brand}>Groxigo</span>
               <span className={styles.tagline}>{l.tagline}</span>
             </div>
 
@@ -210,6 +210,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 value={email}
                 onChangeText={setEmail}
                 disabled={isChecking}
+                size="sm"
                 fullWidth
                 autoComplete="email"
                 name="email"
@@ -226,7 +227,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 type="submit"
                 variant="solid"
                 colorScheme="primary"
-                size="lg"
+                size="sm"
                 fullWidth
                 loading={isChecking}
                 testID={testID ? `${testID}-continue` : undefined}
@@ -308,6 +309,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 value={password}
                 onChangeText={setPassword}
                 disabled={isLoading}
+                size="sm"
                 fullWidth
                 autoComplete="current-password"
                 name="password"
@@ -324,7 +326,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 type="submit"
                 variant="solid"
                 colorScheme="primary"
-                size="lg"
+                size="sm"
                 fullWidth
                 loading={isLoading}
                 testID={testID ? `${testID}-submit` : undefined}
@@ -374,6 +376,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                   value={firstName}
                   onChangeText={setFirstName}
                   disabled={isLoading}
+                  size="sm"
                   fullWidth
                   autoComplete="given-name"
                   name="firstName"
@@ -385,6 +388,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                   value={lastName}
                   onChangeText={setLastName}
                   disabled={isLoading}
+                  size="sm"
                   fullWidth
                   autoComplete="family-name"
                   name="lastName"
@@ -398,6 +402,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 value={phone}
                 onChangeText={setPhone}
                 disabled={isLoading}
+                size="sm"
                 fullWidth
                 autoComplete="tel"
                 name="phone"
@@ -410,6 +415,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 value={password}
                 onChangeText={setPassword}
                 disabled={isLoading}
+                size="sm"
                 fullWidth
                 autoComplete="new-password"
                 name="password"
@@ -436,7 +442,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
                 type="submit"
                 variant="solid"
                 colorScheme="primary"
-                size="lg"
+                size="sm"
                 fullWidth
                 loading={isLoading}
                 testID={testID ? `${testID}-submit` : undefined}

@@ -101,89 +101,90 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
 
         {/* Form Fields */}
         <div className={styles.fields}>
-          {/* Full Name */}
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>{fl.fullName}</label>
-            <Input
-              value={values.fullName}
-              onChangeText={(text) => updateField('fullName', text)}
-              placeholder={fl.fullName}
-              fullWidth
-              testID={testID ? `${testID}-fullName` : undefined}
-            />
-          </div>
+          <Input
+            label={fl.fullName}
+            value={values.fullName}
+            onChangeText={(text) => updateField('fullName', text)}
+            placeholder={fl.fullName}
+            size="sm"
+            fullWidth
+            name="fullName"
+            testID={testID ? `${testID}-fullName` : undefined}
+          />
 
-          {/* Street Address */}
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>{fl.street}</label>
-            <Input
-              value={values.street}
-              onChangeText={(text) => updateField('street', text)}
-              placeholder={fl.street}
-              fullWidth
-              testID={testID ? `${testID}-street` : undefined}
-            />
-          </div>
+          <Input
+            label={fl.street}
+            value={values.street}
+            onChangeText={(text) => updateField('street', text)}
+            placeholder={fl.street}
+            size="sm"
+            fullWidth
+            name="street"
+            testID={testID ? `${testID}-street` : undefined}
+          />
 
-          {/* Apartment */}
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>{fl.apartment}</label>
-            <Input
-              value={values.apartment ?? ''}
-              onChangeText={(text) => updateField('apartment', text)}
-              placeholder={fl.apartment}
-              fullWidth
-              testID={testID ? `${testID}-apartment` : undefined}
-            />
-          </div>
+          <Input
+            label={fl.apartment}
+            value={values.apartment ?? ''}
+            onChangeText={(text) => updateField('apartment', text)}
+            placeholder={fl.apartment}
+            size="sm"
+            fullWidth
+            name="apartment"
+            testID={testID ? `${testID}-apartment` : undefined}
+          />
 
           {/* City + State row */}
           <div className={styles.row}>
-            <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>{fl.city}</label>
-              <Input
-                value={values.city}
-                onChangeText={(text) => updateField('city', text)}
-                placeholder={fl.city}
-                fullWidth
-                testID={testID ? `${testID}-city` : undefined}
-              />
-            </div>
-            <div className={styles.fieldGroupFixed}>
-              <label className={styles.label}>{fl.state}</label>
-              <Input
-                value={values.state}
-                onChangeText={(text) => updateField('state', text)}
-                placeholder={fl.state}
-                fullWidth
-                testID={testID ? `${testID}-state` : undefined}
-              />
-            </div>
+            <Input
+              label={fl.city}
+              value={values.city}
+              onChangeText={(text) => updateField('city', text)}
+              placeholder={fl.city}
+              size="sm"
+              fullWidth
+              name="city"
+              className={styles.flexField}
+              testID={testID ? `${testID}-city` : undefined}
+            />
+            <Input
+              label={fl.state}
+              value={values.state}
+              onChangeText={(text) => updateField('state', text)}
+              placeholder={fl.state}
+              size="sm"
+              fullWidth
+              name="state"
+              className={styles.fixedField}
+              testID={testID ? `${testID}-state` : undefined}
+            />
           </div>
 
           {/* ZIP + Phone row */}
           <div className={styles.row}>
-            <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>{fl.zip}</label>
-              <Input
-                value={values.zip}
-                onChangeText={(text) => updateField('zip', text)}
-                placeholder={fl.zip}
-                fullWidth
-                testID={testID ? `${testID}-zip` : undefined}
-              />
-            </div>
-            <div className={styles.fieldGroupFlex}>
-              <label className={styles.label}>{fl.phone}</label>
-              <Input
-                type="tel"
-                value={values.phone ?? ''}
-                onChangeText={(text) => updateField('phone', text)}
-                placeholder={fl.phone}
-                fullWidth
-                testID={testID ? `${testID}-phone` : undefined}
-              />
-            </div>
+            <Input
+              label={fl.zip}
+              value={values.zip}
+              onChangeText={(text) => updateField('zip', text)}
+              placeholder={fl.zip}
+              size="sm"
+              fullWidth
+              name="zip"
+              className={styles.flexField}
+              testID={testID ? `${testID}-zip` : undefined}
+            />
+            <Input
+              label={fl.phone}
+              type="tel"
+              value={values.phone ?? ''}
+              onChangeText={(text) => updateField('phone', text)}
+              placeholder={fl.phone}
+              size="sm"
+              fullWidth
+              name="phone"
+              className={styles.flexField}
+              testID={testID ? `${testID}-phone` : undefined}
+            />
           </div>
         </div>
 
@@ -221,7 +222,7 @@ export const AddressForm = forwardRef<HTMLFormElement, AddressFormProps>(
         <Button
           type="submit"
           variant="solid"
-          size="lg"
+          size="sm"
           fullWidth
           loading={isLoading}
           loadingText={fl.savingButton}

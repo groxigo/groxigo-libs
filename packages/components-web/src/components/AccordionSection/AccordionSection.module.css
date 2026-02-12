@@ -9,10 +9,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-3, 12px) 0;
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
   width: 100%;
   text-align: left;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: background-color var(--duration-fast, 150ms) ease;
+}
+
+.header:hover {
+  background-color: var(--surface-secondary, #f1f5f9);
+}
+
+.header:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .title {
@@ -37,7 +52,7 @@
 
 .content {
   overflow: hidden;
-  padding: var(--spacing-2, 8px) 0 var(--spacing-4, 16px) 0;
+  padding: var(--spacing-2, 8px) var(--spacing-4, 16px) var(--spacing-4, 16px);
 }
 
 .contentCollapsed {
@@ -47,5 +62,5 @@
 .contentText {
   font-size: var(--font-size-sm, 14px);
   color: var(--text-secondary, #475569);
-  line-height: 20px;
+  line-height: 1.43;
 }

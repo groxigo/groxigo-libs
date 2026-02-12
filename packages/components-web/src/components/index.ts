@@ -178,9 +178,6 @@ export type { BadgeCardProps } from './BadgeCard';
 export { ChallengeCard } from './ChallengeCard';
 export type { ChallengeCardProps } from './ChallengeCard';
 
-export { OnboardingStep } from './OnboardingStep';
-export type { OnboardingStepProps } from './OnboardingStep';
-
 // Info & Policy
 export { NutritionTable } from './NutritionTable';
 export type { NutritionTableProps } from './NutritionTable';

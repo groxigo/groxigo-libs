@@ -1,7 +1,6 @@
 'use client';
 
-import { forwardRef, useRef, useCallback, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import { forwardRef, useRef, useCallback, useState, useEffect, type ReactNode, type ForwardedRef, type Ref } from 'react';
 import type { CarouselItemBase, CarouselPropsBase } from '@groxigo/contracts/components';
 import { AngleLeft, AngleRight } from '@groxigo/icons/line';
 import { SectionHeader } from '../SectionHeader';
@@ -27,7 +26,7 @@ function CarouselInner<T extends CarouselItem>(
     className,
     testID,
   }: CarouselProps<T>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -126,7 +125,7 @@ function CarouselInner<T extends CarouselItem>(
 }
 
 export const Carousel = forwardRef(CarouselInner) as <T extends CarouselItem>(
-  props: CarouselProps<T> & { ref?: React.Ref<HTMLDivElement> }
+  props: CarouselProps<T> & { ref?: Ref<HTMLDivElement> }
 ) => ReactNode;
 
 (Carousel as { displayName?: string }).displayName = 'Carousel';

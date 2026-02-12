@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState, useRef, useCallback, type KeyboardEvent } from 'react';
+import { forwardRef, useState, useRef, useCallback, type KeyboardEvent, type ChangeEvent } from 'react';
 import { Search, Times } from '@groxigo/icons/line';
 import type { SearchBarPropsBase } from '@groxigo/contracts/components';
 import { Button } from '@groxigo/ui-elements-web';
@@ -45,7 +45,7 @@ export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(
     }, [onBlur]);
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         onChangeText?.(e.target.value);
       },
       [onChangeText]

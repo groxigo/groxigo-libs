@@ -7,7 +7,7 @@ describe('AuthCard', () => {
 
   it('renders the brand name', () => {
     render(<AuthCard />);
-    expect(screen.getByText('groxigo')).toBeInTheDocument();
+    expect(screen.getByText('Groxigo')).toBeInTheDocument();
   });
 
   it('renders the tagline', () => {

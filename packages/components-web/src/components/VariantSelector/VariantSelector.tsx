@@ -13,7 +13,7 @@ export interface VariantSelectorProps extends VariantSelectorPropsBase {
 }
 
 export const VariantSelector = forwardRef<HTMLDivElement, VariantSelectorProps>(
-  ({ options, selectedValue, onSelect, className, testID }, ref) => {
+  ({ options, selectedValue, label, onSelect, className, testID }, ref) => {
     const handleSelect = useCallback(
       (value: string) => {
         onSelect?.(value);
@@ -25,46 +25,61 @@ export const VariantSelector = forwardRef<HTMLDivElement, VariantSelectorProps>(
       <div
         ref={ref}
         className={clsx(styles.root, className)}
-        role="radiogroup"
         data-testid={testID}
       >
-        {options.map((option) => {
-          const isSelected = option.value === selectedValue;
+        {label && (
+          <p className={styles.label}>{label}</p>
+        )}
 
-          return (
-            <Button
-              key={option.value}
-              variant={isSelected ? 'solid' : 'outline'}
-              colorScheme="primary"
-              size="sm"
-              onPress={() => handleSelect(option.value)}
-              aria-checked={isSelected}
-              className={clsx(
-                styles.option,
-                isSelected ? styles.optionSelected : styles.optionDefault
-              )}
-            >
-              <span
+        <div role="radiogroup" className={styles.options}>
+          {options.map((option) => {
+            const isSelected = option.value === selectedValue;
+            const isDisabled = option.disabled === true;
+
+            return (
+              <Button
+                key={option.value}
+                variant={isSelected ? 'solid' : 'outline'}
+                colorScheme="primary"
+                disabled={isDisabled}
+                onPress={() => handleSelect(option.value)}
+                aria-checked={isSelected}
                 className={clsx(
-                  styles.optionLabel,
-                  isSelected ? styles.optionLabelSelected : styles.optionLabelDefault
+                  styles.option,
+                  isSelected ? styles.optionSelected : styles.optionDefault,
+                  isDisabled && styles.optionDisabled
                 )}
               >
-                {option.label}
-              </span>
-              {option.price && (
                 <span
                   className={clsx(
-                    styles.optionPrice,
-                    isSelected ? styles.optionPriceSelected : styles.optionPriceDefault
+                    styles.optionLabel,
+                    isDisabled
+                      ? styles.optionLabelDisabled
+                      : isSelected
+                        ? styles.optionLabelSelected
+                        : styles.optionLabelDefault
                   )}
                 >
-                  {option.price}
+                  {option.label}
                 </span>
-              )}
-            </Button>
-          );
-        })}
+                {option.price && (
+                  <span
+                    className={clsx(
+                      styles.optionPrice,
+                      isDisabled
+                        ? styles.optionPriceDisabled
+                        : isSelected
+                          ? styles.optionPriceSelected
+                          : styles.optionPriceDefault
+                    )}
+                  >
+                    {option.price}
+                  </span>
+                )}
+              </Button>
+            );
+          })}
+        </div>
       </div>
     );
   }

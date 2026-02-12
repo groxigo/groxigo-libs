@@ -28,9 +28,7 @@ describe('VariantSelector', () => {
       <VariantSelector options={sampleOptions} selectedValue="500g" />
     );
     const buttons = screen.getAllByRole('button');
-    // The second button (500g) should be checked
     expect(buttons[1]).toHaveAttribute('aria-checked', 'true');
-    // Others should not
     expect(buttons[0]).toHaveAttribute('aria-checked', 'false');
     expect(buttons[2]).toHaveAttribute('aria-checked', 'false');
   });
@@ -44,7 +42,6 @@ describe('VariantSelector', () => {
         onSelect={onSelect}
       />
     );
-    // Click the 1kg option (third button)
     fireEvent.click(screen.getAllByRole('button')[2]);
     expect(onSelect).toHaveBeenCalledWith('1kg');
   });
@@ -72,5 +69,41 @@ describe('VariantSelector', () => {
       />
     );
     expect(screen.getByTestId('variant-selector')).toBeInTheDocument();
+  });
+
+  it('renders the label when provided', () => {
+    render(
+      <VariantSelector options={sampleOptions} label="Size" />
+    );
+    expect(screen.getByText('Size')).toBeInTheDocument();
+  });
+
+  it('does not render a label when not provided', () => {
+    render(<VariantSelector options={sampleOptions} />);
+    expect(screen.queryByText('Size')).not.toBeInTheDocument();
+  });
+
+  it('renders disabled options as disabled buttons', () => {
+    const optionsWithDisabled = [
+      { label: '250g', value: '250g', price: '$2.99' },
+      { label: '500g', value: '500g', price: '$4.99', disabled: true },
+    ];
+    render(<VariantSelector options={optionsWithDisabled} />);
+    const buttons = screen.getAllByRole('button');
+    expect(buttons[0]).not.toBeDisabled();
+    expect(buttons[1]).toBeDisabled();
+  });
+
+  it('does not call onSelect when a disabled option is clicked', () => {
+    const onSelect = vi.fn();
+    const optionsWithDisabled = [
+      { label: '250g', value: '250g', price: '$2.99' },
+      { label: '500g', value: '500g', price: '$4.99', disabled: true },
+    ];
+    render(
+      <VariantSelector options={optionsWithDisabled} onSelect={onSelect} />
+    );
+    fireEvent.click(screen.getAllByRole('button')[1]);
+    expect(onSelect).not.toHaveBeenCalled();
   });
 });

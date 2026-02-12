@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, type KeyboardEvent, type Ref } from 'react';
 import type { LandingCuisineCardPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './LandingCuisineCard.module.css';
@@ -20,7 +20,7 @@ export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardP
       onPress?.();
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         onPress?.();
@@ -48,7 +48,7 @@ export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardP
     if (href && !onPress) {
       return (
         <a
-          ref={ref as React.Ref<HTMLAnchorElement>}
+          ref={ref as Ref<HTMLAnchorElement>}
           href={href}
           className={clsx(styles.root, className)}
           data-testid={testID}

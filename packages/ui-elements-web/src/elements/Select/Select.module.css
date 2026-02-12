@@ -50,6 +50,7 @@
   background-size: var(--spacing-4, 16px);
   background-position: right var(--spacing-3, 12px) center;
   transition: all var(--duration-normal, 200ms) ease;
+  box-sizing: border-box;
 }
 
 /* ============================================
@@ -60,7 +61,7 @@
 
 .sm {
   height: var(--input-sm-height, 36px);
-  padding: var(--spacing-3, 12px);
+  padding: 0 var(--spacing-3, 12px);
   padding-right: var(--spacing-10, 40px);
   font-size: var(--font-size-sm, 14px);
   border-radius: var(--radius-md, 8px);
@@ -68,7 +69,7 @@
 
 .md {
   height: var(--input-md-height, 44px);
-  padding: var(--spacing-3, 12px);
+  padding: 0 var(--spacing-3, 12px);
   padding-right: var(--spacing-10, 40px);
   font-size: var(--font-size-base, 16px);
   border-radius: var(--radius-md, 8px);
@@ -76,7 +77,7 @@
 
 .lg {
   height: var(--input-lg-height, 52px);
-  padding: var(--spacing-3, 12px);
+  padding: 0 var(--spacing-3, 12px);
   padding-right: var(--spacing-10, 40px);
   font-size: var(--font-size-md, 17px);
   border-radius: var(--radius-md, 8px);

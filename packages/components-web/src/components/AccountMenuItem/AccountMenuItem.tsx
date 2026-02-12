@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import { AngleRight } from '@groxigo/icons/line';
 import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
@@ -18,7 +18,7 @@ export interface AccountMenuItemProps {
   /** Whether to show the right chevron arrow @default true */
   showChevron?: boolean;
   /** Optional badge node (e.g. notification count) to render before chevron */
-  badge?: React.ReactNode;
+  badge?: ReactNode;
   /** Additional CSS class */
   className?: string;
   /** Test ID for testing */

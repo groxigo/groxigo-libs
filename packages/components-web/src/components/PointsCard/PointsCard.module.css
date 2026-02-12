@@ -62,6 +62,9 @@
 
 .progressBar {
   width: 100%;
+  /* Override Progress tokens so bar is visible on brand-primary background */
+  --surface-secondary: rgba(255, 255, 255, 0.25);
+  --brand-primary: var(--text-inverse, #ffffff);
 }
 
 .progressLabel {

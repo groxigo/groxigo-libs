@@ -1,7 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
-import type { ReactNode } from 'react';
+import { forwardRef, type ReactNode, type ForwardedRef, type CSSProperties, type Ref } from 'react';
 import type { GridItemBase, GridPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './Grid.module.css';
@@ -24,9 +23,9 @@ function GridInner<T extends GridItem>(
     className,
     testID,
   }: GridProps<T>,
-  ref: React.ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>
 ) {
-  const gridStyle: React.CSSProperties & { [key: `--${string}`]: string } = {
+  const gridStyle: CSSProperties & { [key: `--${string}`]: string } = {
     gap: `${gap}px`,
   };
 
@@ -59,7 +58,7 @@ function GridInner<T extends GridItem>(
 }
 
 export const Grid = forwardRef(GridInner) as <T extends GridItem>(
-  props: GridProps<T> & { ref?: React.Ref<HTMLDivElement> }
+  props: GridProps<T> & { ref?: Ref<HTMLDivElement> }
 ) => ReactNode;
 
 (Grid as { displayName?: string }).displayName = 'Grid';

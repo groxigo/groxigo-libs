@@ -3,9 +3,9 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4, 16px);
+  gap: var(--spacing-5, 20px);
   width: 100%;
-  max-width: 343px;
+  max-width: 480px;
   box-sizing: border-box;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
 }
@@ -25,44 +25,24 @@
 .fields {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3, 12px);
+  gap: var(--spacing-4, 16px);
   width: 100%;
-}
-
-.fieldGroup {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1, 4px);
-  width: 100%;
-}
-
-.fieldGroupFlex {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1, 4px);
-  flex: 1 0 0;
-  min-width: 0;
-}
-
-.fieldGroupFixed {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1, 4px);
-  width: 100px;
-  flex-shrink: 0;
-}
-
-.label {
-  font-size: var(--font-size-sm, 14px);
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--text-primary, #334155);
-  line-height: normal;
 }
 
 .row {
   display: flex;
   gap: var(--spacing-3, 12px);
   width: 100%;
+}
+
+.flexField {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fixedField {
+  width: 120px;
+  flex-shrink: 0;
 }
 
 /* ---------- Address Type Chips ---------- */

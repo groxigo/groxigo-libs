@@ -7,4 +7,17 @@
 
 .root[role='button'] {
   cursor: pointer;
+  transition: opacity var(--duration-fast, 150ms) ease;
+}
+
+.root[role='button']:hover {
+  opacity: 0.8;
+}
+
+.root[role='button']:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-full, 9999px);
 }

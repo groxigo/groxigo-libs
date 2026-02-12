@@ -37,7 +37,7 @@
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-normal, 400);
   color: var(--text-primary, #0f172a);
-  line-height: 20px;
+  line-height: 1.43;
   margin: 0;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
 }

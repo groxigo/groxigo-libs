@@ -16,6 +16,18 @@
 .rootDefault {
   background: transparent;
   border: 1px solid var(--border-default, #cbd5e1);
+  cursor: pointer;
+}
+
+.rootDefault:hover {
+  background: var(--surface-secondary, #f1f5f9);
+}
+
+.root:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .rootSelected {
@@ -111,6 +123,13 @@
 }
 
 .deleteButton:hover {
-  background: var(--surface-error-subtle, #fef2f2);
-  color: var(--color-error, #dc2626);
+  background: var(--status-error-subtle, #fef2f2);
+  color: var(--status-error, #dc2626);
+}
+
+.deleteButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }

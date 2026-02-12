@@ -7,6 +7,19 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.root:hover .iconCircle {
+  background: var(--brand-primary-muted, #dbeafe);
+}
+
+.root:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
+  border-radius: var(--radius-lg, 10px);
 }
 
 /* ── Icon circle ── */

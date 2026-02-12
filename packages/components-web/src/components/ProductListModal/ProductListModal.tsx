@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, type ReactNode } from 'react';
 import { Modal } from '@groxigo/ui-elements-web';
 import { Times } from '@groxigo/icons/line';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ export interface ProductListModalProps {
   /** Modal title (e.g. category name) */
   title?: string;
   /** Product content (tiles, cards, etc.) */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Additional CSS class */
   className?: string;
   /** Test ID */

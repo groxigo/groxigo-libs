@@ -2,19 +2,41 @@
 
 .root {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--spacing-2, 8px);
-  align-items: flex-start;
   width: 100%;
 }
 
+/* ── Section label ── */
+
+.label {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+  margin: 0;
+}
+
+/* ── Options row ── */
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2, 8px);
+  align-items: flex-start;
+}
+
+/* ── Individual option pill ── */
+
 .option {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   gap: var(--spacing-1, 4px);
-  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
-  border-radius: var(--radius-full, 9999px);
+  padding: var(--spacing-4, 16px);
+  border-radius: var(--radius-lg, 10px);
   box-sizing: border-box;
+  min-width: var(--spacing-16, 64px);
 }
 
 .optionDefault {
@@ -25,20 +47,36 @@
   /* Handled by Button variant="solid" */
 }
 
+/* ── Disabled option ── */
+
+.optionDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Label text ── */
+
 .optionLabel {
   font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
   line-height: normal;
 }
 
 .optionLabelDefault {
-  font-weight: var(--font-weight-normal, 400);
   color: var(--text-primary, #0f172a);
 }
 
 .optionLabelSelected {
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--brand-primary, #2563eb);
+  color: var(--text-inverse, #ffffff);
 }
+
+.optionLabelDisabled {
+  color: var(--text-tertiary, #94a3b8);
+  text-decoration: line-through;
+}
+
+/* ── Price text ── */
 
 .optionPrice {
   font-size: var(--font-size-xs, 12px);
@@ -50,5 +88,10 @@
 }
 
 .optionPriceSelected {
-  color: var(--brand-primary, #2563eb);
+  color: var(--text-inverse, #ffffff);
+}
+
+.optionPriceDisabled {
+  color: var(--text-tertiary, #94a3b8);
+  text-decoration: line-through;
 }

@@ -12,7 +12,7 @@
   height: 480px;
   overflow: hidden;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
-  background-color: var(--color-gray-900, #0f172a);
+  background-color: var(--text-primary, #0f172a);
 }
 
 /* Background image */
@@ -51,7 +51,7 @@
 /* Headline */
 .headline {
   margin: 0;
-  font-size: clamp(24px, 4.5cqi, 40px);
+  font-size: var(--font-size-3xl, 30px);
   font-weight: var(--font-weight-bold, 700);
   color: var(--text-inverse, #ffffff);
   line-height: var(--line-height-tight, 1.25);
@@ -60,7 +60,7 @@
 /* Subheadline */
 .subheadline {
   margin: 0;
-  font-size: clamp(14px, 2cqi, 18px);
+  font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-regular, 400);
   color: var(--text-inverse, #ffffff);
   opacity: 0.85;

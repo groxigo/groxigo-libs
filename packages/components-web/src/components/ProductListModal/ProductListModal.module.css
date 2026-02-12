@@ -6,7 +6,7 @@
   flex-direction: column;
   background: var(--surface-primary, #ffffff);
   border: 1px solid var(--border-subtle, #e2e8f0);
-  border-radius: var(--radius-lg, 10px);
+  border-radius: var(--radius-2xl, 20px);
   box-shadow: var(--shadow-xl, 0 8px 24px -4px rgba(0, 0, 0, 0.15));
   overflow: hidden;
   width: 100%;
@@ -18,7 +18,7 @@
 @container (max-width: 480px) {
   .root {
     max-width: 100%;
-    border-radius: var(--radius-lg, 10px) var(--radius-lg, 10px) 0 0;
+    border-radius: var(--radius-2xl, 20px) var(--radius-2xl, 20px) 0 0;
   }
 }
 

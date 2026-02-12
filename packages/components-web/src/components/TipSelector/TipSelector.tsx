@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState, type ChangeEvent } from 'react';
 import type { TipSelectorPropsBase } from '@groxigo/contracts/components/tip-selector';
 import { Input } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
@@ -43,7 +43,7 @@ export const TipSelector = forwardRef<HTMLDivElement, TipSelectorProps>(
     }, [onSelect]);
 
     const handleCustomInput = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         const val = parseFloat(e.target.value);
         if (!isNaN(val)) {
           onCustomChange?.(val);

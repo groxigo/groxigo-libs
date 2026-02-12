@@ -8,6 +8,7 @@
   border: 1px solid var(--border-default, #e2e8f0);
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
   box-sizing: border-box;
+  min-width: 320px;
 }
 
 .title {
@@ -28,9 +29,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-3, 12px);
+  gap: var(--spacing-4, 16px);
   padding: var(--spacing-3, 12px) 0;
   border-bottom: 1px solid var(--border-default, #e2e8f0);
+  min-height: var(--spacing-12, 48px);
+  overflow: visible;
 }
 
 .item:last-child {

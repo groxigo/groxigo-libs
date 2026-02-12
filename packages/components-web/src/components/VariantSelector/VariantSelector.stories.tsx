@@ -36,8 +36,36 @@ export const WithSelection: Story = {
   },
 };
 
+export const WithLabel: Story = {
+  args: {
+    label: 'Size',
+    options: [
+      { label: '200g', value: '200g', price: '$2.49' },
+      { label: '500g', value: '500g', price: '$4.99' },
+      { label: '1kg', value: '1kg', price: '$8.99' },
+    ],
+    selectedValue: '500g',
+    onSelect: () => {},
+  },
+};
+
+export const WithDisabledOptions: Story = {
+  args: {
+    label: 'Pack Size',
+    options: [
+      { label: 'Single', value: 'single', price: '$1.29' },
+      { label: 'Pack of 3', value: 'pack-3', price: '$3.49' },
+      { label: 'Pack of 6', value: 'pack-6', price: '$5.99', disabled: true },
+      { label: 'Pack of 12', value: 'pack-12', price: '$10.99', disabled: true },
+    ],
+    selectedValue: 'pack-3',
+    onSelect: () => {},
+  },
+};
+
 export const PackSizes: Story = {
   args: {
+    label: 'Pack',
     options: [
       { label: 'Single', value: 'single', price: '$1.29' },
       { label: 'Pack of 3', value: 'pack-3', price: '$3.49' },

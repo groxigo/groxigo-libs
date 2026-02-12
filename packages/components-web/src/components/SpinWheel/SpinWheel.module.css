@@ -39,8 +39,8 @@
 /* Inner wheel (conic-gradient applied via inline style) */
 .wheel {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: var(--spacing-1, 4px);
+  left: var(--spacing-1, 4px);
   width: 232px;
   height: 232px;
   border-radius: var(--radius-full, 9999px);
@@ -88,6 +88,28 @@
   margin-left: -20px;
   border-radius: var(--radius-full, 9999px);
   z-index: 2;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--duration-fast, 150ms) ease,
+    box-shadow var(--duration-fast, 150ms) ease;
+}
+
+.centerHub:hover {
+  transform: scale(1.1);
+}
+
+.centerHub:active {
+  transform: scale(0.95);
+}
+
+.centerHub:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .spinLabel {

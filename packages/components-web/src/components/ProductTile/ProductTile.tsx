@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, type MouseEvent } from 'react';
 import type { ProductTilePropsBase } from '@groxigo/contracts/components';
 import { Badge, StarRating } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
@@ -71,7 +71,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
     }, [onPress]);
 
     const handleAddClick = useCallback(
-      (e: React.MouseEvent) => {
+      (e: MouseEvent) => {
         e.stopPropagation();
         onAddPress?.();
       },
@@ -79,7 +79,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
     );
 
     const handleFavoriteClick = useCallback(
-      (e: React.MouseEvent) => {
+      (e: MouseEvent) => {
         e.stopPropagation();
         onFavoritePress?.();
       },
@@ -87,7 +87,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
     );
 
     const handleRatingClick = useCallback(
-      (e: React.MouseEvent) => {
+      (e: MouseEvent) => {
         e.stopPropagation();
         onRatingPress?.();
       },

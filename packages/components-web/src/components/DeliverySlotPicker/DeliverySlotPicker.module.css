@@ -13,15 +13,9 @@
 .dates {
   display: flex;
   gap: var(--spacing-2, 8px);
-  align-items: flex-start;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: var(--spacing-1, 4px) var(--spacing-1, 4px);
-}
-
-.dates::-webkit-scrollbar {
-  display: none;
+  align-items: stretch;
+  width: 100%;
+  padding: var(--spacing-1, 4px) 0;
 }
 
 .dateChip {
@@ -29,10 +23,11 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-0, 0px);
-  width: 56px;
+  flex: 0 1 auto;
+  min-width: var(--spacing-14, 56px);
+  max-width: var(--spacing-18, 72px);
   height: auto;
   min-height: 64px;
-  flex-shrink: 0;
   padding: var(--spacing-2, 8px) var(--spacing-2, 8px);
   border-radius: var(--radius-md, 8px);
   box-sizing: border-box;

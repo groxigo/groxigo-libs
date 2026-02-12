@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import type { IngredientRowPropsBase } from '@groxigo/contracts/components/ingredient-row';
 import { Checkbox } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ import styles from './IngredientRow.module.css';
 export interface IngredientRowProps extends IngredientRowPropsBase {
   className?: string;
   /** Slot for product carousel rendered below the ingredient info */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export const IngredientRow = forwardRef<HTMLDivElement, IngredientRowProps>(

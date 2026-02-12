@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-6, 24px);
-  padding: var(--spacing-8, 32px);
+  gap: var(--spacing-5, 20px);
+  padding: var(--spacing-6, 24px);
   width: 100%;
   box-sizing: border-box;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
@@ -152,7 +152,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: var(--radius-full, 9999px);
   border: 1px solid var(--border-subtle, #e2e8f0);
   background: var(--surface-primary, #ffffff);
   cursor: pointer;

@@ -15,8 +15,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: var(--spacing-4, 16px);
   width: 100%;
-  overflow: hidden;
   font-size: var(--font-size-sm, 14px);
   line-height: normal;
 }
@@ -25,7 +25,8 @@
 .label {
   color: var(--text-secondary, #475569);
   font-weight: var(--font-weight-normal, 400);
-  flex-shrink: 0;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* ── Value (right side) — default ── */
@@ -33,6 +34,8 @@
   color: var(--text-primary, #334155);
   font-weight: var(--font-weight-normal, 400);
   flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* ── Savings type (green) ── */
@@ -51,8 +54,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: var(--spacing-4, 16px);
   width: 100%;
-  overflow: hidden;
   color: var(--text-primary, #334155);
   line-height: normal;
 }

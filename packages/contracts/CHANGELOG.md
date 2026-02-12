@@ -1,5 +1,27 @@
 # @groxigo/contracts
 
+## 1.3.1
+
+### Patch Changes
+
+- Visual QA fixes: compact forms (sm inputs/buttons), spacing fixes, and component polish
+
+  - **Select**: Fix text clipping by removing vertical padding, added box-sizing: border-box
+  - **AuthCard**: Capital G brand name, compact sm inputs/buttons, tighter padding
+  - **AddressForm**: Use Input built-in label prop, sm sizing, wider max-width
+  - **DeliverySlotPicker**: Responsive date chips (flex instead of fixed 56px)
+  - **VariantSelector**: Stacked label+price layout, disabled support, built-in label
+  - **PointsCard**: Fix progress bar color collision on brand-primary background
+  - **BillDetails**: Gap between label and amount, label wraps for long text
+  - **CartItem**: Added horizontal padding
+  - **AccordionSection**: Added horizontal padding to header and content
+  - **AccountMenuItem**: Added horizontal padding
+  - **PreferencesCard**: Min-height and overflow fixes for clipped text
+  - **OnboardingStep**: Removed (mobile-only component)
+  - **PriceDisplay**: Removed IndianRupees story
+  - **CSS audit**: 68/68 files DESIGN_RULES compliant (token vars, no hardcoded values)
+  - **TypeScript audit**: 73/73 files compliant (no React. namespace usage)
+
 ## 1.3.0
 
 ### Minor Changes
