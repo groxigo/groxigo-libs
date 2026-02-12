@@ -107,9 +107,9 @@ function generateSemantic(): string {
   lines.push(`  --brand-secondary-muted: var(--color-purple-100);`);
   lines.push('');
   lines.push('  /* Brand - Accent */');
-  lines.push(`  --brand-accent: var(--color-cyan-500);`);
-  lines.push(`  --brand-accent-hover: var(--color-cyan-600);`);
-  lines.push(`  --brand-accent-active: var(--color-cyan-700);`);
+  lines.push(`  --brand-accent: var(--color-cyan-600);`);
+  lines.push(`  --brand-accent-hover: var(--color-cyan-700);`);
+  lines.push(`  --brand-accent-active: var(--color-cyan-800);`);
   lines.push(`  --brand-accent-subtle: var(--color-cyan-50);`);
   lines.push(`  --brand-accent-muted: var(--color-cyan-100);`);
   lines.push('');
@@ -550,69 +550,83 @@ function generateDarkMode(): string {
   lines.push(`  --border-subtle: var(--color-gray-700);`);
   lines.push(`  --border-default: var(--color-gray-600);`);
   lines.push(`  --border-strong: var(--color-gray-500);`);
-  lines.push(`  --border-focus: var(--color-blue-400);`);
+  lines.push(`  --border-focus: var(--color-blue-500);`);
   lines.push(`  --border-disabled: var(--color-gray-700);`);
   lines.push('');
 
-  // Brand
+  // Brand — matches theme/index.ts createBrandStates(family, isDark=true)
   lines.push('  /* Brand - Primary */');
   lines.push(`  --brand-primary: var(--color-blue-500);`);
   lines.push(`  --brand-primary-hover: var(--color-blue-400);`);
   lines.push(`  --brand-primary-active: var(--color-blue-300);`);
-  lines.push(`  --brand-primary-subtle: var(--color-blue-950);`);
-  lines.push(`  --brand-primary-muted: var(--color-blue-900);`);
+  lines.push(`  --brand-primary-subtle: var(--color-blue-900);`);
+  lines.push(`  --brand-primary-muted: var(--color-blue-800);`);
   lines.push('');
   lines.push('  /* Brand - Secondary */');
   lines.push(`  --brand-secondary: var(--color-purple-500);`);
   lines.push(`  --brand-secondary-hover: var(--color-purple-400);`);
   lines.push(`  --brand-secondary-active: var(--color-purple-300);`);
-  lines.push(`  --brand-secondary-subtle: var(--color-purple-950);`);
-  lines.push(`  --brand-secondary-muted: var(--color-purple-900);`);
+  lines.push(`  --brand-secondary-subtle: var(--color-purple-900);`);
+  lines.push(`  --brand-secondary-muted: var(--color-purple-800);`);
   lines.push('');
   lines.push('  /* Brand - Accent */');
-  lines.push(`  --brand-accent: var(--color-cyan-400);`);
-  lines.push(`  --brand-accent-hover: var(--color-cyan-300);`);
-  lines.push(`  --brand-accent-active: var(--color-cyan-200);`);
-  lines.push(`  --brand-accent-subtle: var(--color-cyan-950);`);
-  lines.push(`  --brand-accent-muted: var(--color-cyan-900);`);
+  lines.push(`  --brand-accent: var(--color-cyan-500);`);
+  lines.push(`  --brand-accent-hover: var(--color-cyan-400);`);
+  lines.push(`  --brand-accent-active: var(--color-cyan-300);`);
+  lines.push(`  --brand-accent-subtle: var(--color-cyan-900);`);
+  lines.push(`  --brand-accent-muted: var(--color-cyan-800);`);
   lines.push('');
 
-  // Status
+  // Status — matches theme/index.ts dark mode status
   lines.push('  /* Status */');
   lines.push(`  --status-success: var(--color-green-500);`);
   lines.push(`  --status-success-hover: var(--color-green-400);`);
-  lines.push(`  --status-success-subtle: var(--color-green-950);`);
+  lines.push(`  --status-success-subtle: var(--color-green-900);`);
+  lines.push(`  --status-success-muted: var(--color-green-800);`);
   lines.push(`  --status-success-text: var(--color-green-400);`);
-  lines.push(`  --status-warning: var(--color-yellow-400);`);
-  lines.push(`  --status-warning-hover: var(--color-yellow-300);`);
-  lines.push(`  --status-warning-subtle: var(--color-yellow-950);`);
+  lines.push(`  --status-warning: var(--color-yellow-500);`);
+  lines.push(`  --status-warning-hover: var(--color-yellow-400);`);
+  lines.push(`  --status-warning-subtle: var(--color-yellow-900);`);
+  lines.push(`  --status-warning-muted: var(--color-yellow-800);`);
   lines.push(`  --status-warning-text: var(--color-yellow-400);`);
   lines.push(`  --status-error: var(--color-red-500);`);
   lines.push(`  --status-error-hover: var(--color-red-400);`);
-  lines.push(`  --status-error-subtle: var(--color-red-950);`);
+  lines.push(`  --status-error-subtle: var(--color-red-900);`);
+  lines.push(`  --status-error-muted: var(--color-red-800);`);
   lines.push(`  --status-error-text: var(--color-red-400);`);
-  lines.push(`  --status-info: var(--color-blue-400);`);
-  lines.push(`  --status-info-hover: var(--color-blue-300);`);
-  lines.push(`  --status-info-subtle: var(--color-blue-950);`);
+  lines.push(`  --status-info: var(--color-blue-500);`);
+  lines.push(`  --status-info-hover: var(--color-blue-400);`);
+  lines.push(`  --status-info-subtle: var(--color-blue-900);`);
+  lines.push(`  --status-info-muted: var(--color-blue-800);`);
   lines.push(`  --status-info-text: var(--color-blue-400);`);
   lines.push('');
 
-  // Overlays
-  lines.push('  /* Overlays */');
-  lines.push(`  --overlay-light: rgba(255, 255, 255, 0.1);`);
-  lines.push(`  --overlay-medium: rgba(0, 0, 0, 0.5);`);
-  lines.push(`  --overlay-dark: rgba(0, 0, 0, 0.7);`);
-  lines.push(`  --overlay-heavy: rgba(0, 0, 0, 0.85);`);
+  // Interactive — matches theme/index.ts dark mode interactive
+  lines.push('  /* Interactive States */');
+  lines.push(`  --interactive-default: var(--color-gray-400);`);
+  lines.push(`  --interactive-hover: var(--color-gray-300);`);
+  lines.push(`  --interactive-active: var(--color-gray-200);`);
+  lines.push(`  --interactive-disabled: var(--color-gray-600);`);
+  lines.push(`  --interactive-focus: var(--color-blue-500);`);
   lines.push('');
 
-  // Glass
+  // Overlays — matches theme/index.ts dark mode overlay
+  lines.push('  /* Overlays */');
+  lines.push(`  --overlay-light: rgba(0, 0, 0, 0.2);`);
+  lines.push(`  --overlay-medium: rgba(0, 0, 0, 0.4);`);
+  lines.push(`  --overlay-dark: rgba(0, 0, 0, 0.6);`);
+  lines.push(`  --overlay-heavy: rgba(0, 0, 0, 0.8);`);
+  lines.push('');
+
+  // Glass — matches theme/index.ts dark mode glass
   lines.push('  /* Glass */');
-  lines.push(`  --glass-surface-light: rgba(0, 0, 0, 0.6);`);
-  lines.push(`  --glass-surface-medium: rgba(0, 0, 0, 0.7);`);
-  lines.push(`  --glass-surface-heavy: rgba(0, 0, 0, 0.8);`);
-  lines.push(`  --glass-border-light: rgba(255, 255, 255, 0.2);`);
+  lines.push(`  --glass-surface-light: rgba(0, 0, 0, 0.1);`);
+  lines.push(`  --glass-surface-medium: rgba(0, 0, 0, 0.2);`);
+  lines.push(`  --glass-surface-heavy: rgba(0, 0, 0, 0.4);`);
+  lines.push(`  --glass-surface-dark: rgba(0, 0, 0, 0.6);`);
+  lines.push(`  --glass-border-light: rgba(255, 255, 255, 0.1);`);
   lines.push(`  --glass-border-default: rgba(255, 255, 255, 0.15);`);
-  lines.push(`  --glass-border-subtle: rgba(255, 255, 255, 0.1);`);
+  lines.push(`  --glass-border-subtle: rgba(255, 255, 255, 0.05);`);
   lines.push('');
 
   // Component overrides
@@ -655,8 +669,12 @@ function generateDarkMode(): string {
  *
  * Formula:  clamp(min, min + (max - min) * ((100vw - vpMin) / (vpMax - vpMin)), max)
  * Simplified CSS: clamp(minpx, calc(minpx + (delta) * ((100vw - vpMinpx) / range)), maxpx)
+ *
+ * Note: Viewports below absoluteMin (360px) are not supported by any modern
+ * phone manufactured after 2018. The clamp() function naturally floors at the
+ * min value for any viewport <= viewportMin (375px), so no extra guard is needed.
  */
-function clampExpr(min: number, max: number): string {
+export function clampExpr(min: number, max: number): string {
   if (min === max) return `${min}px`;
   const { viewportMin, viewportMax } = fluidConfig;
   const range = viewportMax - viewportMin; // 1065
@@ -668,7 +686,7 @@ function clampExpr(min: number, max: number): string {
  * Fluid font-size tokens.
  * Small sizes (2xs, xs) stay fixed; base and above scale smoothly.
  */
-const FLUID_FONT_SIZES: Record<string, [number, number]> = {
+export const FLUID_FONT_SIZES: Record<string, [number, number]> = {
   // [min at 375px, max at 1440px]
   '2xs': [10, 10], // fixed — already very small
   xs:    [12, 14],
@@ -687,7 +705,7 @@ const FLUID_FONT_SIZES: Record<string, [number, number]> = {
  * Fluid spacing tokens.
  * Small spacings (0 through 3) stay fixed.
  */
-const FLUID_SPACINGS: Record<string, [number, number]> = {
+export const FLUID_SPACINGS: Record<string, [number, number]> = {
   // [min, max]
   4:  [16, 20],
   5:  [20, 24],
@@ -708,7 +726,7 @@ const FLUID_SPACINGS: Record<string, [number, number]> = {
  * Fluid radius tokens.
  * xs, sm, md stay fixed.
  */
-const FLUID_RADII: Record<string, [number, number]> = {
+export const FLUID_RADII: Record<string, [number, number]> = {
   lg:   [10, 14],
   xl:   [14, 20],
   '2xl': [20, 24],
@@ -721,7 +739,7 @@ const FLUID_RADII: Record<string, [number, number]> = {
  * Fluid button/input component heights and padding.
  * Values are [min at 375px, max at 1440px].
  */
-const FLUID_BUTTON_HEIGHTS: Record<string, [number, number]> = {
+export const FLUID_BUTTON_HEIGHTS: Record<string, [number, number]> = {
   xs: [24, 32],
   sm: [32, 40],
   md: [40, 48],
@@ -729,7 +747,7 @@ const FLUID_BUTTON_HEIGHTS: Record<string, [number, number]> = {
   xl: [56, 72],
 };
 
-const FLUID_BUTTON_PADDING_X: Record<string, [number, number]> = {
+export const FLUID_BUTTON_PADDING_X: Record<string, [number, number]> = {
   xs: [8, 12],
   sm: [12, 16],
   md: [16, 24],
@@ -737,7 +755,7 @@ const FLUID_BUTTON_PADDING_X: Record<string, [number, number]> = {
   xl: [32, 48],
 };
 
-const FLUID_BUTTON_PADDING_Y: Record<string, [number, number]> = {
+export const FLUID_BUTTON_PADDING_Y: Record<string, [number, number]> = {
   xs: [4, 6],
   sm: [6, 8],
   md: [8, 12],
@@ -745,7 +763,7 @@ const FLUID_BUTTON_PADDING_Y: Record<string, [number, number]> = {
   xl: [16, 24],
 };
 
-const FLUID_INPUT_HEIGHTS: Record<string, [number, number]> = {
+export const FLUID_INPUT_HEIGHTS: Record<string, [number, number]> = {
   sm: [32, 40],
   md: [40, 48],
   lg: [48, 64],

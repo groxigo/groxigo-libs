@@ -11,6 +11,8 @@ import { generateCSS } from './generators/css';
 import { generateReactNative } from './generators/react-native';
 import { generateJSON } from './generators/json';
 import { generateSCSS, generateCSSModules } from './generators/scss';
+import { generateCSSTypes } from './generators/css-types';
+import { generateDocs } from './generators/docs';
 import { validateTokens } from './utils/validation';
 import { tokens } from './tokens';
 
@@ -24,6 +26,7 @@ function ensureDirs() {
     path.join(DIST_DIR, 'js'),
     path.join(DIST_DIR, 'json'),
     path.join(DIST_DIR, 'types'),
+    path.join(DIST_DIR, 'docs'),
   ];
 
   for (const dir of dirs) {
@@ -146,16 +149,32 @@ function build() {
     fs.writeFileSync(dtsPath, dts, 'utf-8');
     console.log(`   ✅ ${dtsPath}`);
 
+    // Generate CSS variable TypeScript types
+    console.log('📘 Generating CSS variable types...');
+    const cssTypes = generateCSSTypes();
+    const cssTypesPath = path.join(DIST_DIR, 'types', 'css-vars.d.ts');
+    fs.writeFileSync(cssTypesPath, cssTypes, 'utf-8');
+    console.log(`   ✅ ${cssTypesPath}`);
+
+    // Generate token documentation
+    console.log('📖 Generating token documentation...');
+    const docs = generateDocs();
+    const docsPath = path.join(DIST_DIR, 'docs', 'token-catalog.md');
+    fs.writeFileSync(docsPath, docs, 'utf-8');
+    console.log(`   ✅ ${docsPath}`);
+
     console.log('\n✨ Build complete!');
     console.log('\n📦 Generated files:');
-    console.log('   - dist/css/tokens.css       (CSS variables)');
-    console.log('   - dist/css/tokens.min.css   (Minified CSS)');
+    console.log('   - dist/css/tokens.css        (CSS variables)');
+    console.log('   - dist/css/tokens.min.css    (Minified CSS)');
     console.log('   - dist/css/tokens.module.css (CSS Modules)');
-    console.log('   - dist/scss/_tokens.scss    (SCSS variables + mixins)');
-    console.log('   - dist/js/tokens.js         (React Native/JS)');
-    console.log('   - dist/json/tokens.json     (Figma Tokens Studio)');
+    console.log('   - dist/scss/_tokens.scss     (SCSS variables + mixins)');
+    console.log('   - dist/js/tokens.js          (React Native/JS)');
+    console.log('   - dist/json/tokens.json      (Figma Tokens Studio)');
     console.log('   - dist/json/tokens.flat.json (Flat JSON)');
-    console.log('   - dist/types/index.d.ts     (TypeScript declarations)');
+    console.log('   - dist/types/index.d.ts      (TypeScript declarations)');
+    console.log('   - dist/types/css-vars.d.ts   (CSS variable types)');
+    console.log('   - dist/docs/token-catalog.md (Token documentation)');
   } catch (error) {
     console.error('❌ Build failed:', error);
     process.exit(1);

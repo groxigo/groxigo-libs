@@ -8,6 +8,8 @@
  * - Tier 3: Components (UI element tokens)
  */
 
+import * as fs from 'fs';
+import * as path from 'path';
 import { tokens } from '../tokens';
 import {
   primitives,
@@ -16,12 +18,20 @@ import {
   semanticDark,
   componentsDark,
 } from '../tokens/colors';
+import { createTheme } from '../theme';
 import { spacing } from '../tokens/spacing';
 import { typography } from '../tokens/typography';
 import { radius } from '../tokens/radius';
 import { opacity } from '../tokens/opacity';
 import { blur } from '../tokens/blur';
 import { animation } from '../tokens/animation';
+import {
+  clampExpr,
+  FLUID_FONT_SIZES,
+  FLUID_SPACINGS,
+  FLUID_RADII,
+} from '../generators/css';
+import { fluidConfig } from '../tokens/responsive';
 
 // ============================================
 // COLOR TOKEN TESTS
@@ -281,6 +291,133 @@ describe('Color Tokens', () => {
 });
 
 // ============================================
+// SEMANTIC ↔ THEME SYNC GUARD
+// Prevents drift between colors.ts static semantic
+// and theme/index.ts dynamic output (DESIGN_RULES §24)
+// ============================================
+
+describe('Semantic ↔ Theme Sync Guard', () => {
+  const theme = createTheme(); // default config (blue/purple/cyan, light)
+  const themeSemantic = theme.light.semantic;
+
+  /**
+   * Deep-compare two objects, collecting paths where values differ.
+   */
+  function findDiffs(
+    a: Record<string, unknown>,
+    b: Record<string, unknown>,
+    path = ''
+  ): string[] {
+    const diffs: string[] = [];
+    const allKeys = new Set([...Object.keys(a), ...Object.keys(b)]);
+    for (const key of allKeys) {
+      const fullPath = path ? `${path}.${key}` : key;
+      const va = a[key];
+      const vb = b[key];
+      if (typeof va === 'object' && va !== null && typeof vb === 'object' && vb !== null) {
+        diffs.push(...findDiffs(va as Record<string, unknown>, vb as Record<string, unknown>, fullPath));
+      } else if (va !== vb) {
+        diffs.push(`${fullPath}: static="${va}" theme="${vb}"`);
+      }
+    }
+    return diffs;
+  }
+
+  // Keys that exist only in colors.ts (not part of the theme system)
+  const staticOnlyKeys = ['layout'];
+
+  function withoutKeys(obj: Record<string, unknown>, keys: string[]): Record<string, unknown> {
+    const copy = { ...obj };
+    for (const key of keys) delete copy[key];
+    return copy;
+  }
+
+  test('static semantic (colors.ts) matches createTheme() light semantic exactly', () => {
+    const diffs = findDiffs(
+      withoutKeys(semantic as unknown as Record<string, unknown>, staticOnlyKeys),
+      themeSemantic as unknown as Record<string, unknown>
+    );
+    if (diffs.length > 0) {
+      throw new Error(
+        `colors.ts semantic has drifted from theme/index.ts.\n` +
+        `Per DESIGN_RULES §24, theme/index.ts is the authority.\n` +
+        `Mismatches:\n  ${diffs.join('\n  ')}`
+      );
+    }
+  });
+
+  test('static semantic has same keys as theme semantic (no missing/extra)', () => {
+    function collectKeys(obj: Record<string, unknown>, prefix = ''): string[] {
+      const keys: string[] = [];
+      for (const [key, value] of Object.entries(obj)) {
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        if (typeof value === 'object' && value !== null) {
+          keys.push(...collectKeys(value as Record<string, unknown>, fullKey));
+        } else {
+          keys.push(fullKey);
+        }
+      }
+      return keys.sort();
+    }
+
+    const staticKeys = collectKeys(
+      withoutKeys(semantic as unknown as Record<string, unknown>, staticOnlyKeys)
+    );
+    const themeKeys = collectKeys(themeSemantic as unknown as Record<string, unknown>);
+
+    const missingInStatic = themeKeys.filter((k) => !staticKeys.includes(k));
+    const extraInStatic = staticKeys.filter((k) => !themeKeys.includes(k));
+
+    expect(missingInStatic).toEqual([]);
+    expect(extraInStatic).toEqual([]);
+  });
+
+  // Dark mode guard: semanticDark ↔ createTheme().dark.semantic
+  const themeDarkSemantic = theme.dark.semantic;
+  const darkOnlyKeys = ['layout'];
+
+  test('static semanticDark (colors.ts) matches createTheme() dark semantic exactly', () => {
+    const diffs = findDiffs(
+      withoutKeys(semanticDark as unknown as Record<string, unknown>, darkOnlyKeys),
+      themeDarkSemantic as unknown as Record<string, unknown>
+    );
+    if (diffs.length > 0) {
+      throw new Error(
+        `colors.ts semanticDark has drifted from theme/index.ts dark mode.\n` +
+        `Per DESIGN_RULES §24, theme/index.ts is the authority.\n` +
+        `Mismatches:\n  ${diffs.join('\n  ')}`
+      );
+    }
+  });
+
+  test('static semanticDark has same keys as theme dark semantic (no missing/extra)', () => {
+    function collectKeys(obj: Record<string, unknown>, prefix = ''): string[] {
+      const keys: string[] = [];
+      for (const [key, value] of Object.entries(obj)) {
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        if (typeof value === 'object' && value !== null) {
+          keys.push(...collectKeys(value as Record<string, unknown>, fullKey));
+        } else {
+          keys.push(fullKey);
+        }
+      }
+      return keys.sort();
+    }
+
+    const staticKeys = collectKeys(
+      withoutKeys(semanticDark as unknown as Record<string, unknown>, darkOnlyKeys)
+    );
+    const themeKeys = collectKeys(themeDarkSemantic as unknown as Record<string, unknown>);
+
+    const missingInStatic = themeKeys.filter((k) => !staticKeys.includes(k));
+    const extraInStatic = staticKeys.filter((k) => !themeKeys.includes(k));
+
+    expect(missingInStatic).toEqual([]);
+    expect(extraInStatic).toEqual([]);
+  });
+});
+
+// ============================================
 // SPACING TOKEN TESTS
 // ============================================
 
@@ -520,6 +657,463 @@ describe('Complete Tokens Object', () => {
     // TypeScript ensures this at compile time, but we can verify structure
     expect(Object.isFrozen(tokens)).toBe(false); // as const doesn't freeze
     expect(typeof tokens).toBe('object');
+  });
+});
+
+// ============================================
+// CSS OUTPUT ↔ THEME SYNC GUARD
+// Ensures dist/css/tokens.css matches createTheme() output
+// ============================================
+
+describe('CSS Output ↔ Theme Sync', () => {
+  const cssPath = path.join(__dirname, '../../dist/css/tokens.css');
+  let cssContent: string;
+
+  beforeAll(() => {
+    if (!fs.existsSync(cssPath)) {
+      throw new Error(
+        `dist/css/tokens.css not found. Run "bun run build" before testing.`
+      );
+    }
+    cssContent = fs.readFileSync(cssPath, 'utf-8');
+  });
+
+  /**
+   * Build a reverse lookup from hex value → CSS var name for primitives.
+   */
+  function buildPrimitiveLookup(): Map<string, string> {
+    const lookup = new Map<string, string>();
+    lookup.set(primitives.white, 'var(--color-white)');
+    lookup.set(primitives.black, 'var(--color-black)');
+    lookup.set(primitives.transparent, 'var(--color-transparent)');
+
+    const families = ['gray', 'blue', 'green', 'red', 'yellow', 'orange', 'purple', 'cyan', 'pink', 'indigo', 'teal'] as const;
+    for (const family of families) {
+      const colorFamily = primitives[family];
+      for (const [shade, value] of Object.entries(colorFamily)) {
+        lookup.set(value, `var(--color-${family}-${shade})`);
+      }
+    }
+    return lookup;
+  }
+
+  /**
+   * Parse CSS variables from a CSS block string.
+   */
+  function parseVars(block: string): Map<string, string> {
+    const vars = new Map<string, string>();
+    // Use [^\s:]+ instead of [\w-]+ to match dots in keys like --spacing-0.5
+    const regex = /\s*(--[^\s:]+)\s*:\s*([^;]+);/g;
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(block)) !== null) {
+      vars.set(match[1], match[2].trim());
+    }
+    return vars;
+  }
+
+  /**
+   * Extract the :root block and .dark block from CSS.
+   * Strips CSS comments before brace counting to avoid false matches.
+   */
+  function extractBlocks(): { rootBlock: string; darkBlock: string } {
+    // Strip /* ... */ comments so braces inside comments don't affect counting
+    const stripped = cssContent.replace(/\/\*[\s\S]*?\*\//g, '');
+
+    function findBlock(selector: string): string {
+      const start = stripped.indexOf(selector);
+      if (start === -1) throw new Error(`${selector} block not found in CSS`);
+      const openBrace = stripped.indexOf('{', start);
+      if (openBrace === -1) throw new Error(`No opening brace for ${selector}`);
+      let braceCount = 1;
+      let end = openBrace + 1;
+      for (let i = end; i < stripped.length; i++) {
+        if (stripped[i] === '{') braceCount++;
+        if (stripped[i] === '}') braceCount--;
+        if (braceCount === 0) { end = i; break; }
+      }
+      return stripped.slice(start, end + 1);
+    }
+
+    return {
+      rootBlock: findBlock(':root {'),
+      darkBlock: findBlock('.dark {'),
+    };
+  }
+
+  /**
+   * Resolve a CSS value like var(--color-gray-900) to its hex primitive.
+   * Tracks visited vars to prevent infinite recursion on circular references.
+   */
+  function resolveValue(
+    val: string,
+    rootVars: Map<string, string>,
+    visited = new Set<string>()
+  ): string {
+    const varRef = /^var\((--[^\s)]+)\)$/.exec(val);
+    if (varRef) {
+      if (visited.has(varRef[1])) return val; // Break circular reference
+      visited.add(varRef[1]);
+      const resolved = rootVars.get(varRef[1]);
+      if (resolved) return resolveValue(resolved, rootVars, visited);
+      return val;
+    }
+    return val;
+  }
+
+  // Semantic CSS var name → theme path mapping
+  const semanticVarMap: Record<string, (theme: ReturnType<typeof createTheme>['light']['semantic']) => string> = {
+    '--surface-primary': (s) => s.surface.primary,
+    '--surface-secondary': (s) => s.surface.secondary,
+    '--surface-tertiary': (s) => s.surface.tertiary,
+    '--surface-elevated': (s) => s.surface.elevated,
+    '--surface-sunken': (s) => s.surface.sunken,
+    '--surface-disabled': (s) => s.surface.disabled,
+    '--text-primary': (s) => s.text.primary,
+    '--text-secondary': (s) => s.text.secondary,
+    '--text-tertiary': (s) => s.text.tertiary,
+    '--text-disabled': (s) => s.text.disabled,
+    '--text-inverse': (s) => s.text.inverse,
+    '--text-link': (s) => s.text.link,
+    '--text-link-hover': (s) => s.text.linkHover,
+    '--border-subtle': (s) => s.border.subtle,
+    '--border-default': (s) => s.border.default,
+    '--border-strong': (s) => s.border.strong,
+    '--border-focus': (s) => s.border.focus,
+    '--border-disabled': (s) => s.border.disabled,
+    '--brand-primary': (s) => s.brand.primary.default,
+    '--brand-primary-hover': (s) => s.brand.primary.hover,
+    '--brand-primary-active': (s) => s.brand.primary.active,
+    '--brand-primary-subtle': (s) => s.brand.primary.subtle,
+    '--brand-primary-muted': (s) => s.brand.primary.muted,
+    '--brand-secondary': (s) => s.brand.secondary.default,
+    '--brand-secondary-hover': (s) => s.brand.secondary.hover,
+    '--brand-secondary-active': (s) => s.brand.secondary.active,
+    '--brand-secondary-subtle': (s) => s.brand.secondary.subtle,
+    '--brand-secondary-muted': (s) => s.brand.secondary.muted,
+    '--brand-accent': (s) => s.brand.accent.default,
+    '--brand-accent-hover': (s) => s.brand.accent.hover,
+    '--brand-accent-active': (s) => s.brand.accent.active,
+    '--brand-accent-subtle': (s) => s.brand.accent.subtle,
+    '--brand-accent-muted': (s) => s.brand.accent.muted,
+    '--status-success': (s) => s.status.success.default,
+    '--status-success-hover': (s) => s.status.success.hover,
+    '--status-success-subtle': (s) => s.status.success.subtle,
+    '--status-success-muted': (s) => s.status.success.muted,
+    '--status-success-text': (s) => s.status.success.text,
+    '--status-warning': (s) => s.status.warning.default,
+    '--status-warning-hover': (s) => s.status.warning.hover,
+    '--status-warning-subtle': (s) => s.status.warning.subtle,
+    '--status-warning-muted': (s) => s.status.warning.muted,
+    '--status-warning-text': (s) => s.status.warning.text,
+    '--status-error': (s) => s.status.error.default,
+    '--status-error-hover': (s) => s.status.error.hover,
+    '--status-error-subtle': (s) => s.status.error.subtle,
+    '--status-error-muted': (s) => s.status.error.muted,
+    '--status-error-text': (s) => s.status.error.text,
+    '--status-info': (s) => s.status.info.default,
+    '--status-info-hover': (s) => s.status.info.hover,
+    '--status-info-subtle': (s) => s.status.info.subtle,
+    '--status-info-muted': (s) => s.status.info.muted,
+    '--status-info-text': (s) => s.status.info.text,
+    '--interactive-default': (s) => s.interactive.default,
+    '--interactive-hover': (s) => s.interactive.hover,
+    '--interactive-active': (s) => s.interactive.active,
+    '--interactive-disabled': (s) => s.interactive.disabled,
+    '--interactive-focus': (s) => s.interactive.focus,
+    '--overlay-light': (s) => s.overlay.light,
+    '--overlay-medium': (s) => s.overlay.medium,
+    '--overlay-dark': (s) => s.overlay.dark,
+    '--overlay-heavy': (s) => s.overlay.heavy,
+    '--glass-surface-light': (s) => s.glass.surface.light,
+    '--glass-surface-medium': (s) => s.glass.surface.medium,
+    '--glass-surface-heavy': (s) => s.glass.surface.heavy,
+    '--glass-surface-dark': (s) => s.glass.surface.dark,
+    '--glass-border-light': (s) => s.glass.border.light,
+    '--glass-border-default': (s) => s.glass.border.default,
+    '--glass-border-subtle': (s) => s.glass.border.subtle,
+  };
+
+  test('light semantic CSS variables match createTheme() light output', () => {
+    const theme = createTheme();
+    const { rootBlock } = extractBlocks();
+    const rootVars = parseVars(rootBlock);
+    const mismatches: string[] = [];
+
+    for (const [cssVar, accessor] of Object.entries(semanticVarMap)) {
+      const cssValue = rootVars.get(cssVar);
+      if (!cssValue) {
+        mismatches.push(`${cssVar}: not found in :root`);
+        continue;
+      }
+      const resolved = resolveValue(cssValue, rootVars);
+      const themeValue = accessor(theme.light.semantic);
+
+      if (resolved !== themeValue) {
+        mismatches.push(`${cssVar}: css="${resolved}" theme="${themeValue}"`);
+      }
+    }
+
+    if (mismatches.length > 0) {
+      throw new Error(
+        `CSS ↔ Theme sync failure (light mode):\n  ${mismatches.join('\n  ')}`
+      );
+    }
+  });
+
+  test('dark semantic CSS variables match createTheme() dark output', () => {
+    const theme = createTheme();
+    const { rootBlock, darkBlock } = extractBlocks();
+    const rootVars = parseVars(rootBlock);
+    const darkVars = parseVars(darkBlock);
+    const mismatches: string[] = [];
+
+    for (const [cssVar, accessor] of Object.entries(semanticVarMap)) {
+      const cssValue = darkVars.get(cssVar);
+      if (!cssValue) continue; // Not all semantic vars are overridden in dark
+      const resolved = resolveValue(cssValue, rootVars);
+      const themeValue = accessor(theme.dark.semantic);
+
+      if (resolved !== themeValue) {
+        mismatches.push(`${cssVar}: css="${resolved}" theme="${themeValue}"`);
+      }
+    }
+
+    if (mismatches.length > 0) {
+      throw new Error(
+        `CSS ↔ Theme sync failure (dark mode):\n  ${mismatches.join('\n  ')}`
+      );
+    }
+  });
+
+  test('CSS contains all 69 light semantic variables', () => {
+    const { rootBlock } = extractBlocks();
+    const rootVars = parseVars(rootBlock);
+    const missing = Object.keys(semanticVarMap).filter((v) => !rootVars.has(v));
+    expect(missing).toEqual([]);
+  });
+
+  test('CSS contains all expected dark overrides', () => {
+    const { darkBlock } = extractBlocks();
+    const darkVars = parseVars(darkBlock);
+    // Dark should override all semantic vars that change between light/dark
+    expect(darkVars.size).toBeGreaterThan(50);
+  });
+});
+
+// ============================================
+// COMPONENT DARK ↔ THEME SYNC GUARD
+// Ensures componentsDark matches createTheme().dark.components
+// ============================================
+
+describe('Component Dark ↔ Theme Sync Guard', () => {
+  const theme = createTheme();
+  const themeComponents = theme.dark.components;
+
+  /**
+   * Collect all leaf key paths and values from a nested object.
+   */
+  function collectLeaves(
+    obj: Record<string, unknown>,
+    prefix = ''
+  ): Array<{ path: string; value: unknown }> {
+    const leaves: Array<{ path: string; value: unknown }> = [];
+    for (const [key, val] of Object.entries(obj)) {
+      const fullPath = prefix ? `${prefix}.${key}` : key;
+      if (typeof val === 'object' && val !== null) {
+        leaves.push(...collectLeaves(val as Record<string, unknown>, fullPath));
+      } else {
+        leaves.push({ path: fullPath, value: val });
+      }
+    }
+    return leaves;
+  }
+
+  /**
+   * Get a nested value by dot-separated path.
+   */
+  function getByPath(obj: Record<string, unknown>, dotPath: string): unknown {
+    const parts = dotPath.split('.');
+    let current: unknown = obj;
+    for (const part of parts) {
+      if (current === null || current === undefined || typeof current !== 'object') return undefined;
+      current = (current as Record<string, unknown>)[part];
+    }
+    return current;
+  }
+
+  // componentsDark has intentional overrides vs the generic theme derivation:
+  // e.g., card.bg uses gray-800 (not gray-900), badge text uses brighter shades,
+  // modal uses heavier overlay, glass uses medium (not light) for dark mode.
+  // These are curated design choices, not drift.
+  const knownOverrides = new Set([
+    'card.bg',
+    'badge.primary.text',
+    'badge.secondary.text',
+    'modal.bg',
+    'modal.overlay',
+    'glass.card.bg',
+    'glass.nav.bg',
+  ]);
+
+  test('every theme dark component value exists in componentsDark (overrides allowed)', () => {
+    const themeLeaves = collectLeaves(themeComponents as unknown as Record<string, unknown>);
+    const mismatches: string[] = [];
+
+    for (const { path: leafPath, value: themeVal } of themeLeaves) {
+      const darkVal = getByPath(componentsDark as unknown as Record<string, unknown>, leafPath);
+      if (darkVal === undefined) {
+        mismatches.push(`${leafPath}: missing in componentsDark (theme="${themeVal}")`);
+      } else if (darkVal !== themeVal && !knownOverrides.has(leafPath)) {
+        mismatches.push(`${leafPath}: componentsDark="${darkVal}" theme="${themeVal}"`);
+      }
+    }
+
+    if (mismatches.length > 0) {
+      throw new Error(
+        `componentsDark has drifted from createTheme().dark.components:\n  ${mismatches.join('\n  ')}`
+      );
+    }
+  });
+
+  test('theme dark component keys are a subset of componentsDark keys', () => {
+    const themeLeaves = collectLeaves(themeComponents as unknown as Record<string, unknown>);
+    const darkLeaves = collectLeaves(componentsDark as unknown as Record<string, unknown>);
+    const darkPaths = new Set(darkLeaves.map((l) => l.path));
+
+    const missingInDark = themeLeaves
+      .map((l) => l.path)
+      .filter((p) => !darkPaths.has(p));
+
+    expect(missingInDark).toEqual([]);
+  });
+
+  test('componentsDark has extra keys beyond theme (superset check)', () => {
+    // componentsDark is allowed to have extras (e.g., input.bgHover, badge.*.border, alert.*.icon, glass.modal)
+    const themeLeaves = collectLeaves(themeComponents as unknown as Record<string, unknown>);
+    const darkLeaves = collectLeaves(componentsDark as unknown as Record<string, unknown>);
+    const themePaths = new Set(themeLeaves.map((l) => l.path));
+
+    const extrasInDark = darkLeaves
+      .map((l) => l.path)
+      .filter((p) => !themePaths.has(p));
+
+    // Just verify extras exist (this is expected behavior, not a failure)
+    expect(extrasInDark.length).toBeGreaterThan(0);
+  });
+});
+
+// ============================================
+// FLUID TOKEN TESTS
+// Validates CSS clamp() output format and constraints
+// ============================================
+
+describe('Fluid Token Tests', () => {
+  const clampRegex = /^clamp\((\d+)px, calc\((\d+)px \+ (\d+) \* \(\(100vw - (\d+)px\) \/ (\d+)\)\), (\d+)px\)$/;
+
+  describe('clampExpr', () => {
+    test('returns plain Npx when min === max', () => {
+      expect(clampExpr(10, 10)).toBe('10px');
+      expect(clampExpr(0, 0)).toBe('0px');
+    });
+
+    test('returns valid clamp() when min < max', () => {
+      const result = clampExpr(14, 20);
+      expect(result).toMatch(/^clamp\(/);
+      expect(result).toContain('100vw');
+    });
+
+    test('uses viewportMin (375) and viewportMax (1440) in calc', () => {
+      const result = clampExpr(16, 24);
+      expect(result).toContain(`${fluidConfig.viewportMin}px`);
+      const range = fluidConfig.viewportMax - fluidConfig.viewportMin;
+      expect(result).toContain(`${range})`);
+    });
+  });
+
+  describe('fluid font-size tokens', () => {
+    test.each(Object.entries(FLUID_FONT_SIZES))(
+      'font-size %s: min (%d) <= max (%d)',
+      (_key, [min, max]) => {
+        expect(min).toBeLessThanOrEqual(max);
+      }
+    );
+
+    test('fluid font sizes produce valid clamp() or fixed Npx', () => {
+      for (const [, [min, max]] of Object.entries(FLUID_FONT_SIZES)) {
+        const result = clampExpr(min, max);
+        if (min === max) {
+          expect(result).toBe(`${min}px`);
+        } else {
+          expect(result).toMatch(clampRegex);
+        }
+      }
+    });
+
+    test('fixed-size font tokens (2xs) stay as plain Npx', () => {
+      const [min, max] = FLUID_FONT_SIZES['2xs'];
+      expect(min).toBe(max);
+      expect(clampExpr(min, max)).toBe(`${min}px`);
+    });
+  });
+
+  describe('fluid spacing tokens', () => {
+    test.each(Object.entries(FLUID_SPACINGS))(
+      'spacing %s: min (%d) <= max (%d)',
+      (_key, [min, max]) => {
+        expect(min).toBeLessThanOrEqual(max);
+      }
+    );
+
+    test('no spacing below key 4 is in the fluid map (0-3 stay fixed)', () => {
+      for (const key of ['0', '0.5', '1', '1.5', '2', '2.5', '3', '3.5']) {
+        expect(FLUID_SPACINGS[key]).toBeUndefined();
+      }
+    });
+
+    test('all fluid spacings produce valid clamp() expressions', () => {
+      for (const [, [min, max]] of Object.entries(FLUID_SPACINGS)) {
+        const result = clampExpr(min, max);
+        expect(result).toMatch(clampRegex);
+      }
+    });
+  });
+
+  describe('fluid radius tokens', () => {
+    test.each(Object.entries(FLUID_RADII))(
+      'radius %s: min (%d) <= max (%d)',
+      (_key, [min, max]) => {
+        expect(min).toBeLessThanOrEqual(max);
+      }
+    );
+
+    test('small radius tokens (xs, sm, md) are NOT in the fluid map', () => {
+      expect(FLUID_RADII['xs']).toBeUndefined();
+      expect(FLUID_RADII['sm']).toBeUndefined();
+      expect(FLUID_RADII['md']).toBeUndefined();
+    });
+
+    test('all fluid radii produce valid clamp() expressions', () => {
+      for (const [, [min, max]] of Object.entries(FLUID_RADII)) {
+        const result = clampExpr(min, max);
+        expect(result).toMatch(clampRegex);
+      }
+    });
+  });
+
+  describe('clamp() format validation', () => {
+    test('clamp min value matches first argument', () => {
+      const result = clampExpr(14, 20);
+      const match = result.match(clampRegex);
+      expect(match).not.toBeNull();
+      expect(parseInt(match![1])).toBe(14); // first clamp arg = min
+      expect(parseInt(match![6])).toBe(20); // last clamp arg = max
+    });
+
+    test('calc contains correct delta', () => {
+      const result = clampExpr(16, 24);
+      // delta = 24 - 16 = 8
+      expect(result).toContain('8 *');
+    });
   });
 });
 

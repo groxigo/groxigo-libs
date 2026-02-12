@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/tokens",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Groxigo Design Tokens - Production-grade design tokens with three-tier architecture for iOS, Android, and Web",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -54,11 +54,9 @@
     },
     "./css": "./dist/css/tokens.css",
     "./css/min": "./dist/css/tokens.min.css",
-    "./css/modules": "./dist/css/tokens.module.css",
-    "./scss": "./dist/scss/_tokens.scss",
-    "./json": "./dist/json/tokens.json",
-    "./json/flat": "./dist/json/tokens.flat.json",
-    "./preview": "./dist/preview/index.html"
+    "./css-vars": {
+      "types": "./dist/types/css-vars.d.ts"
+    }
   },
   "typesVersions": {
     "*": {
@@ -85,6 +83,9 @@
       ],
       "react-native": [
         "dist/platforms/react-native.d.ts"
+      ],
+      "css-vars": [
+        "dist/types/css-vars.d.ts"
       ]
     }
   },
@@ -106,7 +107,6 @@
     "react-native",
     "expo",
     "css",
-    "scss",
     "figma",
     "theming",
     "dark-mode",
@@ -149,6 +149,10 @@
   "files": [
     "dist",
     "!dist/generators",
+    "!dist/docs",
+    "!dist/json",
+    "!dist/scss",
+    "!dist/css/tokens.module.css",
     "README.md",
     "CHANGELOG.md"
   ]

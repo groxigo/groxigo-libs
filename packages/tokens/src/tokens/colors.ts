@@ -194,6 +194,11 @@ export const groxigoColors = primitives;
 // Meaningful names for functional purposes
 // ============================================
 
+/**
+ * Static semantic colors for light mode with default brand (blue/purple/cyan).
+ * Must stay in sync with theme/index.ts buildSemanticColors() light-mode output.
+ * Per DESIGN_RULES §24, theme/index.ts is the authority for raw values.
+ */
 export const semantic = {
   // Surface colors (backgrounds)
   surface: {
@@ -207,7 +212,7 @@ export const semantic = {
 
   // Text colors
   text: {
-    primary: primitives.gray[700],  // Softer dark gray (#334155)
+    primary: primitives.gray[900],  // #0f172a — matches theme/index.ts (DESIGN_RULES §24 authority)
     secondary: primitives.gray[600],
     tertiary: primitives.gray[500],
     disabled: primitives.gray[400],
@@ -242,9 +247,9 @@ export const semantic = {
       muted: primitives.purple[100],
     },
     accent: {
-      default: primitives.cyan[500],
-      hover: primitives.cyan[600],
-      active: primitives.cyan[700],
+      default: primitives.cyan[600],
+      hover: primitives.cyan[700],
+      active: primitives.cyan[800],
       subtle: primitives.cyan[50],
       muted: primitives.cyan[100],
     },
@@ -291,26 +296,26 @@ export const semantic = {
     focus: primitives.blue[500],
   },
 
-  // Overlay colors
+  // Overlay colors — matches theme/index.ts light mode (DESIGN_RULES §24 authority)
   overlay: {
-    light: 'rgba(255, 255, 255, 0.5)',
+    light: 'rgba(0, 0, 0, 0.1)',
     medium: 'rgba(0, 0, 0, 0.3)',
     dark: 'rgba(0, 0, 0, 0.5)',
     heavy: 'rgba(0, 0, 0, 0.7)',
   },
 
-  // Glass/Blur effects
+  // Glass/Blur effects — matches theme/index.ts light mode
   glass: {
     surface: {
-      light: 'rgba(255, 255, 255, 0.8)',
+      light: 'rgba(255, 255, 255, 0.6)',
       medium: 'rgba(255, 255, 255, 0.7)',
-      heavy: 'rgba(255, 255, 255, 0.6)',
-      dark: 'rgba(0, 0, 0, 0.3)',
+      heavy: 'rgba(255, 255, 255, 0.85)',
+      dark: 'rgba(255, 255, 255, 0.95)',
     },
     border: {
-      light: 'rgba(255, 255, 255, 0.3)',
-      default: 'rgba(255, 255, 255, 0.2)',
-      subtle: 'rgba(255, 255, 255, 0.1)',
+      light: 'rgba(255, 255, 255, 0.5)',
+      default: 'rgba(255, 255, 255, 0.3)',
+      subtle: 'rgba(255, 255, 255, 0.15)',
     },
   },
 
@@ -363,32 +368,32 @@ export const semanticDark = {
     subtle: primitives.gray[700],
     default: primitives.gray[600],
     strong: primitives.gray[500],
-    focus: primitives.blue[400],
+    focus: primitives.blue[500],
     disabled: primitives.gray[700],
   },
 
-  // Brand colors (configurable slots)
+  // Brand colors (configurable slots) — createBrandStates(family, isDark=true): [500,400,300,900,800]
   brand: {
     primary: {
       default: primitives.blue[500],
       hover: primitives.blue[400],
       active: primitives.blue[300],
-      subtle: primitives.blue[950],
-      muted: primitives.blue[900],
+      subtle: primitives.blue[900],
+      muted: primitives.blue[800],
     },
     secondary: {
       default: primitives.purple[500],
       hover: primitives.purple[400],
       active: primitives.purple[300],
-      subtle: primitives.purple[950],
-      muted: primitives.purple[900],
+      subtle: primitives.purple[900],
+      muted: primitives.purple[800],
     },
     accent: {
-      default: primitives.cyan[400],
-      hover: primitives.cyan[300],
-      active: primitives.cyan[200],
-      subtle: primitives.cyan[950],
-      muted: primitives.cyan[900],
+      default: primitives.cyan[500],
+      hover: primitives.cyan[400],
+      active: primitives.cyan[300],
+      subtle: primitives.cyan[900],
+      muted: primitives.cyan[800],
     },
   },
 
@@ -397,29 +402,29 @@ export const semanticDark = {
     success: {
       default: primitives.green[500],
       hover: primitives.green[400],
-      subtle: primitives.green[950],
-      muted: primitives.green[900],
+      subtle: primitives.green[900],
+      muted: primitives.green[800],
       text: primitives.green[400],
     },
     warning: {
-      default: primitives.yellow[400],
-      hover: primitives.yellow[300],
-      subtle: primitives.yellow[950],
-      muted: primitives.yellow[900],
+      default: primitives.yellow[500],
+      hover: primitives.yellow[400],
+      subtle: primitives.yellow[900],
+      muted: primitives.yellow[800],
       text: primitives.yellow[400],
     },
     error: {
       default: primitives.red[500],
       hover: primitives.red[400],
-      subtle: primitives.red[950],
-      muted: primitives.red[900],
+      subtle: primitives.red[900],
+      muted: primitives.red[800],
       text: primitives.red[400],
     },
     info: {
-      default: primitives.blue[400],
-      hover: primitives.blue[300],
-      subtle: primitives.blue[950],
-      muted: primitives.blue[900],
+      default: primitives.blue[500],
+      hover: primitives.blue[400],
+      subtle: primitives.blue[900],
+      muted: primitives.blue[800],
       text: primitives.blue[400],
     },
   },
@@ -430,29 +435,29 @@ export const semanticDark = {
     hover: primitives.gray[300],
     active: primitives.gray[200],
     disabled: primitives.gray[600],
-    focus: primitives.blue[400],
+    focus: primitives.blue[500],
   },
 
   // Overlay colors
   overlay: {
-    light: 'rgba(255, 255, 255, 0.1)',
-    medium: 'rgba(0, 0, 0, 0.5)',
-    dark: 'rgba(0, 0, 0, 0.7)',
-    heavy: 'rgba(0, 0, 0, 0.85)',
+    light: 'rgba(0, 0, 0, 0.2)',
+    medium: 'rgba(0, 0, 0, 0.4)',
+    dark: 'rgba(0, 0, 0, 0.6)',
+    heavy: 'rgba(0, 0, 0, 0.8)',
   },
 
   // Glass/Blur effects
   glass: {
     surface: {
-      light: 'rgba(0, 0, 0, 0.6)',
-      medium: 'rgba(0, 0, 0, 0.7)',
-      heavy: 'rgba(0, 0, 0, 0.8)',
-      dark: 'rgba(0, 0, 0, 0.9)',
+      light: 'rgba(0, 0, 0, 0.1)',
+      medium: 'rgba(0, 0, 0, 0.2)',
+      heavy: 'rgba(0, 0, 0, 0.4)',
+      dark: 'rgba(0, 0, 0, 0.6)',
     },
     border: {
-      light: 'rgba(255, 255, 255, 0.2)',
+      light: 'rgba(255, 255, 255, 0.1)',
       default: 'rgba(255, 255, 255, 0.15)',
-      subtle: 'rgba(255, 255, 255, 0.1)',
+      subtle: 'rgba(255, 255, 255, 0.05)',
     },
   },
 
