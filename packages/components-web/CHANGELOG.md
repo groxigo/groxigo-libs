@@ -1,5 +1,17 @@
 # @groxigo/components-web
 
+## 1.2.2
+
+### Patch Changes
+
+- Optimize package sizes: remove src from published files, disable declaration maps, exclude generators from tokens, fix exports to point to dist
+
+- Updated dependencies []:
+  - @groxigo/icons@1.0.1
+  - @groxigo/contracts@1.2.2
+  - @groxigo/tokens@1.0.2
+  - @groxigo/ui-elements-web@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes

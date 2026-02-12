@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/tokens",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Groxigo Design Tokens - Production-grade design tokens with three-tier architecture for iOS, Android, and Web",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -58,7 +58,7 @@
     "./scss": "./dist/scss/_tokens.scss",
     "./json": "./dist/json/tokens.json",
     "./json/flat": "./dist/json/tokens.flat.json",
-    "./preview": "./src/preview/index.html"
+    "./preview": "./dist/preview/index.html"
   },
   "typesVersions": {
     "*": {
@@ -147,8 +147,8 @@
     }
   },
   "files": [
-    "src",
     "dist",
+    "!dist/generators",
     "README.md",
     "CHANGELOG.md"
   ]

@@ -1,5 +1,11 @@
 # @groxigo/icons
 
+## 1.0.1
+
+### Patch Changes
+
+- Optimize package sizes: remove src from published files, disable declaration maps, exclude generators from tokens, fix exports to point to dist
+
 ## 1.0.0 (2026-01-15)
 
 ### Features

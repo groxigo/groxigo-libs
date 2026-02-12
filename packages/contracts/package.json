@@ -1,35 +1,35 @@
 {
   "name": "@groxigo/contracts",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Shared component contracts for cross-platform UI consistency",
   "main": "dist/index.js",
-  "module": "src/index.ts",
-  "types": "src/index.ts",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "require": "./dist/index.js",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     },
     "./elements": {
-      "import": "./src/elements/index.ts",
-      "types": "./src/elements/index.ts"
+      "types": "./dist/elements/index.d.ts",
+      "import": "./dist/elements/index.js"
     },
     "./components": {
-      "import": "./src/components/index.ts",
-      "types": "./src/components/index.ts"
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
     },
     "./animation": {
-      "import": "./src/animation/index.ts",
-      "types": "./src/animation/index.ts"
+      "types": "./dist/animation/index.d.ts",
+      "import": "./dist/animation/index.js"
     },
     "./components/*": {
-      "import": "./src/components/*.ts",
-      "types": "./src/components/*.ts"
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
     },
     "./elements/*": {
-      "import": "./src/elements/*.ts",
-      "types": "./src/elements/*.ts"
+      "types": "./dist/elements/*.d.ts",
+      "import": "./dist/elements/*.js"
     }
   },
   "scripts": {
@@ -62,7 +62,6 @@
     "typescript": "~5.9.2"
   },
   "files": [
-    "src",
     "dist"
   ]
 }
