@@ -121,8 +121,8 @@ describe('CSS Generator', () => {
     expect(cssOutput).toContain('--delay-short:');
   });
 
-  test('generates dark mode media query', () => {
-    expect(cssOutput).toContain('@media (prefers-color-scheme: dark)');
+  test('does not auto-apply dark mode via system preference', () => {
+    expect(cssOutput).not.toContain('@media (prefers-color-scheme: dark)');
   });
 
   test('generates dark mode class selector', () => {
