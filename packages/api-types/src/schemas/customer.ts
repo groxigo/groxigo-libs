@@ -9,7 +9,7 @@ import { PaginationResponseSchema } from "./common";
 export const CustomerStatusEnum = z.enum(["active", "inactive", "deleted"]);
 
 /** Loyalty program tier. */
-export const LoyaltyTierEnum = z.enum(["standard", "silver", "gold", "platinum"]);
+export const LoyaltyTierEnum = z.enum(["Bronze", "Silver", "Gold", "Platinum"]);
 
 /** How the customer wants out-of-stock items handled. */
 export const SubstitutionPreferenceEnum = z.enum([
@@ -54,7 +54,7 @@ export const CreateAddressSchema = z.object({
   city: z.string({ required_error: "City is required" }).min(1, "City cannot be empty").max(100),
   state: z.string({ required_error: "State is required" }).min(1, "State cannot be empty").max(100),
   postalCode: z.string({ required_error: "Postal code is required" }).min(1, "Postal code cannot be empty").max(20),
-  country: z.string().min(1).max(100).default("USA"),
+  country: z.string().min(1).max(100).default("US"),
   latitude: z.number().min(-90).max(90).optional(),
   longitude: z.number().min(-180).max(180).optional(),
   deliveryInstructions: z.string().max(500, "Delivery instructions too long (max 500 chars)").optional(),

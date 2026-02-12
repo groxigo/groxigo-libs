@@ -21,7 +21,7 @@ const validAddress = {
   city: "Houston",
   state: "TX",
   postalCode: "77001",
-  country: "USA",
+  country: "US",
   latitude: 29.7604,
   longitude: -95.3698,
   deliveryInstructions: null,
@@ -62,7 +62,7 @@ const validCustomer = {
   deletedAt: null,
   storeCreditBalance: 25.50,
   loyaltyPoints: 1200,
-  loyaltyTier: "gold" as const,
+  loyaltyTier: "Gold" as const,
   referralCode: "JOHND123",
   referredByCustomerId: null,
   lastLoginAt: "2026-01-15T10:30:00Z",
@@ -85,7 +85,7 @@ describe("CreateAddressSchema", () => {
       state: "TX",
       postalCode: "77002",
     });
-    expect(result.country).toBe("USA");
+    expect(result.country).toBe("US");
     expect(result.isDefault).toBe(false);
   });
 
@@ -139,7 +139,7 @@ describe("CustomerSummarySchema", () => {
       displayName: "John Doe",
       phone: "+1234567890",
       status: "active" as const,
-      loyaltyTier: "gold" as const,
+      loyaltyTier: "Gold" as const,
       loyaltyPoints: 1200,
       storeCreditBalance: 25.50,
       createdAt: validCustomer.createdAt,
