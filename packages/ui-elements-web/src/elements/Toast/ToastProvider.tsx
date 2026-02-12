@@ -69,7 +69,9 @@ function groupByPosition(toasts: ToastState[]): Record<ToastPosition, ToastState
   return groups;
 }
 
-export interface ToastProviderProps extends ToastProviderPropsBase {}
+export interface ToastProviderProps extends ToastProviderPropsBase {
+  className?: string;
+}
 
 export const ToastProvider = ({
   defaultOptions = {},

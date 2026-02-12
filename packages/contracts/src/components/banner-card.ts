@@ -26,8 +26,6 @@ export interface BannerCardPropsBase {
   onPress?: () => void;
   /** Banner size variant @default 'md' */
   size?: BannerCardSize;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

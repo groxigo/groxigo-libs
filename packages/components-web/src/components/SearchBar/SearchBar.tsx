@@ -7,7 +7,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './SearchBar.module.css';
 
-export interface SearchBarProps extends SearchBarPropsBase {}
+export interface SearchBarProps extends SearchBarPropsBase {
+  className?: string;
+}
 
 
 export const SearchBar = forwardRef<HTMLDivElement, SearchBarProps>(

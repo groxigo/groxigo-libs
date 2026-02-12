@@ -6,7 +6,9 @@ import { Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './PriceDisplay.module.css';
 
-export interface PriceDisplayProps extends PriceDisplayPropsBase {}
+export interface PriceDisplayProps extends PriceDisplayPropsBase {
+  className?: string;
+}
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
   USD: '$',

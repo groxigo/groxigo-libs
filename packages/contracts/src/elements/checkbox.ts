@@ -37,8 +37,6 @@ export interface CheckboxPropsBase {
   name?: string;
   /** Change handler */
   onChange?: (checked: boolean) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -65,6 +63,4 @@ export interface CheckboxGroupPropsBase {
   onChange?: (values: string[]) => void;
   /** Children (Checkbox components) */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }

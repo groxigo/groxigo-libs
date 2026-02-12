@@ -22,8 +22,6 @@ export interface ProductCarouselPropsBase {
   onSeeAll?: () => void;
   /** Section title */
   title?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

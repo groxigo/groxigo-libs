@@ -23,6 +23,7 @@ export interface RadioGroupContextValue {
 export const RadioGroupContext = createContext<RadioGroupContextValue>({});
 
 export interface RadioGroupProps extends RadioGroupPropsBase {
+  className?: string;
   /** Label for the radio group */
   label?: string;
   /** Label class */

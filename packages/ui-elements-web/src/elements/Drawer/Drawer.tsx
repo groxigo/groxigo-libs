@@ -59,6 +59,7 @@ const transformClosedClassMap: Record<DrawerPlacement, string> = {
 // ============================================
 
 export interface DrawerHeaderProps extends DrawerHeaderPropsBase {
+  className?: string;
   /** Whether to show close button */
   showCloseButton?: boolean;
   /** Close handler */
@@ -99,7 +100,9 @@ DrawerHeader.displayName = 'DrawerHeader';
 // DRAWER BODY COMPONENT
 // ============================================
 
-export interface DrawerBodyProps extends DrawerBodyPropsBase {}
+export interface DrawerBodyProps extends DrawerBodyPropsBase {
+  className?: string;
+}
 
 export const DrawerBody = forwardRef<HTMLDivElement, DrawerBodyProps>(
   ({ children, className, ...props }, ref) => {
@@ -121,7 +124,9 @@ DrawerBody.displayName = 'DrawerBody';
 // DRAWER FOOTER COMPONENT
 // ============================================
 
-export interface DrawerFooterProps extends DrawerFooterPropsBase {}
+export interface DrawerFooterProps extends DrawerFooterPropsBase {
+  className?: string;
+}
 
 export const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
   ({ children, className, ...props }, ref) => {
@@ -143,7 +148,9 @@ DrawerFooter.displayName = 'DrawerFooter';
 // DRAWER COMPONENT
 // ============================================
 
-export interface DrawerProps extends DrawerPropsBase {}
+export interface DrawerProps extends DrawerPropsBase {
+  className?: string;
+}
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
   (
@@ -225,16 +232,18 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
         // Focus initial element or drawer itself
         requestAnimationFrame(() => {
-          if (initialFocusRef?.current) {
-            initialFocusRef.current.focus();
+          const initial = initialFocusRef?.current as HTMLElement | null;
+          if (initial) {
+            initial.focus();
           } else if (drawerRef.current) {
             drawerRef.current.focus();
           }
         });
       } else {
         // Return focus on close
-        if (finalFocusRef?.current) {
-          finalFocusRef.current.focus();
+        const final = finalFocusRef?.current as HTMLElement | null;
+        if (final) {
+          final.focus();
         } else if (previousActiveElement.current instanceof HTMLElement) {
           previousActiveElement.current.focus();
         }

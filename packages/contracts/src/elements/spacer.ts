@@ -20,8 +20,6 @@ export interface SpacerPropsBase {
   x?: number;
   /** Vertical spacing multiplier */
   y?: number;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

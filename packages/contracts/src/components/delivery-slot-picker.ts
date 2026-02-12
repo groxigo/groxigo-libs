@@ -40,8 +40,6 @@ export interface DeliverySlotPickerPropsBase {
   onDateSelect?: (dateKey: string) => void;
   /** Callback when a time slot is selected */
   onSlotSelect?: (slotKey: string) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

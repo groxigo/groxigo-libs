@@ -52,7 +52,9 @@ const variantColorClassMap: Record<string, Record<string, string>> = {
   },
 };
 
-export interface BadgeProps extends BadgePropsBase {}
+export interface BadgeProps extends BadgePropsBase {
+  className?: string;
+}
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
   (

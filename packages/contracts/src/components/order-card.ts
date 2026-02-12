@@ -27,8 +27,6 @@ export interface OrderCardPropsBase {
   onReorder?: () => void;
   /** Callback when the card is pressed/clicked */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

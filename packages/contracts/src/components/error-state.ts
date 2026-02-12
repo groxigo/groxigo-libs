@@ -20,8 +20,6 @@ export interface ErrorStatePropsBase {
   onRetry?: () => void;
   /** Section for theming */
   section?: ErrorStateSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

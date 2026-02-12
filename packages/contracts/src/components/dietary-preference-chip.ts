@@ -16,8 +16,6 @@ export interface DietaryPreferenceChipPropsBase {
   selected?: boolean;
   /** Toggle handler */
   onToggle?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

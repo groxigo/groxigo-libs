@@ -9,7 +9,9 @@ import { clsx } from 'clsx';
 import type { DividerPropsBase } from '@groxigo/contracts';
 import styles from './Divider.module.css';
 
-export interface DividerProps extends DividerPropsBase {}
+export interface DividerProps extends DividerPropsBase {
+  className?: string;
+}
 
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   (

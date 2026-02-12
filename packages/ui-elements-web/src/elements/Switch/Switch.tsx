@@ -47,6 +47,7 @@ const labelSizeClass: Record<SwitchSize, string> = {
 // ============================================
 
 export interface SwitchProps extends SwitchPropsBase {
+  className?: string;
   /** Error message */
   error?: string;
   /** Additional CSS class for the label */

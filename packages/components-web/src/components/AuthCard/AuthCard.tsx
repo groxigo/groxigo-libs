@@ -12,7 +12,9 @@ import styles from './AuthCard.module.css';
 
 export type { AuthMode, AuthStep };
 
-export interface AuthCardProps extends AuthCardPropsBase {}
+export interface AuthCardProps extends AuthCardPropsBase {
+  className?: string;
+}
 
 /* ─── Inline SVG icons ─── */
 

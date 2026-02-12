@@ -86,6 +86,4 @@ export interface DeliveryBarPropsBase {
   /** Test ID for testing */
   testID?: string;
 
-  /** Additional CSS class (web only) */
-  className?: string;
 }

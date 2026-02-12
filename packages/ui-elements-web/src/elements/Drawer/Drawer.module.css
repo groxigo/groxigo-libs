@@ -15,7 +15,7 @@
   position: fixed;
   inset: 0;
   z-index: 1300;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-overlay, rgba(0, 0, 0, 0.5));
   transition: opacity var(--duration-moderate, 300ms) ease;
 }
 

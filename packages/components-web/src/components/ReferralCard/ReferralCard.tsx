@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './ReferralCard.module.css';
 
-export interface ReferralCardProps extends ReferralCardPropsBase {}
+export interface ReferralCardProps extends ReferralCardPropsBase {
+  className?: string;
+}
 
 export const ReferralCard = forwardRef<HTMLDivElement, ReferralCardProps>(
   (

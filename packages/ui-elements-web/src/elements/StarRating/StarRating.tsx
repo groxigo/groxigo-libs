@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import styles from './StarRating.module.css';
 
 export interface StarRatingProps extends RatingPropsBase {
+  className?: string;
   /** Number of reviews to display */
   reviewCount?: number;
 }

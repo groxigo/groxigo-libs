@@ -16,8 +16,8 @@ function TestMenu({
     <Menu defaultIsOpen={defaultIsOpen} testID="menu">
       <MenuButton testID="menu-btn">Actions</MenuButton>
       <MenuList testID="menu-list">
-        <MenuItem onClick={onItemClick} testID="item-edit">Edit</MenuItem>
-        <MenuItem onClick={onItemClick} testID="item-delete">Delete</MenuItem>
+        <MenuItem onPress={onItemClick} testID="item-edit">Edit</MenuItem>
+        <MenuItem onPress={onItemClick} testID="item-delete">Delete</MenuItem>
         <MenuItem disabled testID="item-disabled">Disabled</MenuItem>
       </MenuList>
     </Menu>
@@ -54,7 +54,7 @@ describe('Menu', () => {
     expect(screen.queryByTestId('menu-list')).not.toBeInTheDocument();
   });
 
-  it('calls onClick handler on menu item click', () => {
+  it('calls onPress handler on menu item click', () => {
     const onItemClick = vi.fn();
     render(<TestMenu onItemClick={onItemClick} defaultIsOpen />);
     fireEvent.click(screen.getByTestId('item-edit'));

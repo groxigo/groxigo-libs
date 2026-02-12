@@ -25,8 +25,6 @@ export interface RatingPropsBase {
   showValue?: boolean;
   /** Section for theming */
   section?: RatingSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

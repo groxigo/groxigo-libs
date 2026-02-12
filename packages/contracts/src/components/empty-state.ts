@@ -24,8 +24,6 @@ export interface EmptyStatePropsBase extends SDUIStyleProps {
   onAction?: () => void;
   /** Section for theming */
   section?: EmptyStateSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

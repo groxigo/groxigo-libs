@@ -19,6 +19,7 @@ const fontSizeClassMap: Record<string, string> = {
 };
 
 export interface BreadcrumbProps extends BreadcrumbPropsBase {
+  className?: string;
   /** HTML nav element props */
   'aria-label'?: string;
 }
@@ -91,7 +92,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
                   <BreadcrumbItemComponent
                     href={item.href}
                     isCurrent={item.isCurrent ?? isLast}
-                    onClick={item.onClick}
+                    onPress={item.onPress}
                   >
                     {item.icon && (
                       <span className={styles.itemIcon}>

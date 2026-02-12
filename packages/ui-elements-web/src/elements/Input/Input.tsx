@@ -19,6 +19,7 @@ const errorStyleMap: Record<string, string | undefined> = {
 };
 
 export interface InputProps extends InputPropsBase {
+  className?: string;
   /** HTML input id */
   id?: string;
   /** Autocomplete hint */

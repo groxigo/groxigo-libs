@@ -7,7 +7,9 @@ import clsx from 'clsx';
 import styles from './DietaryPreferenceChip.module.css';
 import { Check } from '@groxigo/icons/line';
 
-export interface DietaryPreferenceChipProps extends DietaryPreferenceChipPropsBase {}
+export interface DietaryPreferenceChipProps extends DietaryPreferenceChipPropsBase {
+  className?: string;
+}
 
 export const DietaryPreferenceChip = forwardRef<HTMLButtonElement, DietaryPreferenceChipProps>(
   (

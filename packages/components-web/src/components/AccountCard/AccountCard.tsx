@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import styles from './AccountCard.module.css';
 
 export interface AccountCardProps extends AccountCardPropsBase {
+  className?: string;
   children?: ReactNode;
 }
 

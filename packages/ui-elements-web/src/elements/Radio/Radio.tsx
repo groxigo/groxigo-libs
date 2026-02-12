@@ -51,6 +51,7 @@ const labelSizeClass: Record<RadioSize, string> = {
 // ============================================
 
 export interface RadioProps extends RadioPropsBase {
+  className?: string;
   /** HTML input name */
   name?: string;
   /** HTML input id */

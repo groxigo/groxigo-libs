@@ -24,8 +24,6 @@ export interface OnboardingStepPropsBase {
   onNext?: () => void;
   /** Callback when skip is pressed */
   onSkip?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

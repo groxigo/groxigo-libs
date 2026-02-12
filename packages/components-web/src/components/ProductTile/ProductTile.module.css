@@ -172,6 +172,7 @@
 .outOfStockOverlay {
   position: absolute;
   inset: 0;
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- intentional alpha overlay */
   background: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;

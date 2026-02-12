@@ -20,8 +20,6 @@ export interface PointsCardPropsBase {
   onRedeem?: () => void;
   /** Callback when view history link is pressed */
   onViewHistory?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

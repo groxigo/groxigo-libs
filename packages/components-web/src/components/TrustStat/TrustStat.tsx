@@ -5,7 +5,9 @@ import type { TrustStatPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './TrustStat.module.css';
 
-export interface TrustStatProps extends TrustStatPropsBase {}
+export interface TrustStatProps extends TrustStatPropsBase {
+  className?: string;
+}
 
 /**
  * TrustStat — horizontal icon + label stat.

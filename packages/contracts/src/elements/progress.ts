@@ -33,8 +33,6 @@ export interface ProgressPropsBase {
   borderRadius?: number | 'full';
   /** Accessibility label */
   'aria-label'?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

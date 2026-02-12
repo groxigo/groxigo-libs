@@ -10,8 +10,6 @@ export interface SpinnerPropsBase {
   color?: string;
   /** Accessibility label */
   label?: string;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

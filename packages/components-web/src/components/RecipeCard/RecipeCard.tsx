@@ -9,7 +9,9 @@ import { RecipeTagChip } from '../RecipeTagChip';
 import type { RecipeTagColorScheme } from '@groxigo/contracts/components/recipe-tag-chip';
 import { Clock } from '@groxigo/icons/line';
 
-export interface RecipeCardProps extends RecipeCardPropsBase {}
+export interface RecipeCardProps extends RecipeCardPropsBase {
+  className?: string;
+}
 
 /** Map difficulty to a human-readable label */
 const DIFFICULTY_LABEL: Record<string, string> = {

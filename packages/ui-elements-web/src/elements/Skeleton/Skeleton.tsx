@@ -18,6 +18,7 @@ const variantStyleMap: Record<string, string> = {
 };
 
 export interface SkeletonProps extends SkeletonPropsBase {
+  className?: string;
   /** Custom inline styles */
   style?: React.CSSProperties;
 }

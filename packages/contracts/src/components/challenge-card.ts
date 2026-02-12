@@ -18,8 +18,6 @@ export interface ChallengeCardPropsBase {
   reward?: string;
   /** Deadline text (e.g. "3 days left") */
   deadline?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

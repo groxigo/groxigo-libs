@@ -16,6 +16,7 @@ import styles from './Menu.module.css';
 // ============================================
 
 export interface MenuItemProps extends MenuItemPropsBase {
+  className?: string;
   /** Test ID */
   testID?: string;
 }
@@ -29,7 +30,7 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       rightElement,
       disabled = false,
       isDestructive = false,
-      onClick,
+      onPress,
       className,
       testID,
     },
@@ -40,12 +41,12 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     const handleClick = useCallback(() => {
       if (disabled) return;
 
-      onClick?.();
+      onPress?.();
       if (closeOnSelect) {
         setIsOpen(false);
         buttonRef.current?.focus();
       }
-    }, [disabled, onClick, closeOnSelect, setIsOpen, buttonRef]);
+    }, [disabled, onPress, closeOnSelect, setIsOpen, buttonRef]);
 
     const handleKeyDown = useCallback(
       (e: React.KeyboardEvent<HTMLButtonElement>) => {

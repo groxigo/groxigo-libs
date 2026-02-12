@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import styles from './LandingHeader.module.css';
 
 export interface LandingHeaderProps extends LandingHeaderPropsBase {
+  className?: string;
   /** Extra content rendered before the sign-in button (e.g. language switcher) */
   children?: ReactNode;
 }

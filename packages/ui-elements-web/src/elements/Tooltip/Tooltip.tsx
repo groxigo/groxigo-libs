@@ -61,6 +61,7 @@ const arrowClassMap: Record<TooltipPlacement, string> = {
 export type TooltipTrigger = 'hover' | 'click' | 'focus';
 
 export interface TooltipProps extends TooltipPropsBase {
+  className?: string;
   /** Trigger type for showing tooltip @default 'hover' */
   trigger?: TooltipTrigger;
   /**

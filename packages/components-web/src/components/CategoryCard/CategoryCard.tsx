@@ -6,7 +6,9 @@ import { Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './CategoryCard.module.css';
 
-export interface CategoryCardProps extends CategoryCardPropsBase {}
+export interface CategoryCardProps extends CategoryCardPropsBase {
+  className?: string;
+}
 
 export const CategoryCard = forwardRef<HTMLDivElement, CategoryCardProps>(
   (

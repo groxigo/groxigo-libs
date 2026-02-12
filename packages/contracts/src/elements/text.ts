@@ -53,8 +53,6 @@ export interface TextPropsBase {
   truncate?: boolean;
   /** Text content */
   children?: ReactNode;
-  /** Additional CSS class (web only, ignored on native) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

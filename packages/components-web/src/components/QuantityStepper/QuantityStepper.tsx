@@ -5,7 +5,9 @@ import type { QuantitySelectorPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './QuantityStepper.module.css';
 
-export interface QuantityStepperProps extends Omit<QuantitySelectorPropsBase, 'section'> {}
+export interface QuantityStepperProps extends Omit<QuantitySelectorPropsBase, 'section'> {
+  className?: string;
+}
 
 const ADD_SIZE_CLASS: Record<string, string> = {
   sm: styles.addSm,

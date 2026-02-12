@@ -18,8 +18,8 @@ export interface BreadcrumbItem {
   isCurrent?: boolean;
   /** Item icon */
   icon?: ReactNode;
-  /** Click handler */
-  onClick?: () => void;
+  /** Press handler */
+  onPress?: () => void;
 }
 
 /**
@@ -40,8 +40,6 @@ export interface BreadcrumbPropsBase {
   spacing?: number;
   /** Font size */
   fontSize?: 'sm' | 'md';
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -56,10 +54,8 @@ export interface BreadcrumbItemPropsBase {
   isCurrent?: boolean;
   /** Item content */
   children?: ReactNode;
-  /** Click handler */
-  onClick?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
+  /** Press handler */
+  onPress?: () => void;
 }
 
 /**
@@ -68,6 +64,4 @@ export interface BreadcrumbItemPropsBase {
 export interface BreadcrumbSeparatorPropsBase {
   /** Separator content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }

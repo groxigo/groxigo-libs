@@ -31,6 +31,7 @@ const defaultSpacing: Record<AvatarSize, number> = {
 };
 
 export interface AvatarGroupProps extends AvatarGroupPropsBase {
+  className?: string;
   /** Click handler for the +N badge */
   onExcessClick?: () => void;
 }

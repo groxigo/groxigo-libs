@@ -78,8 +78,6 @@ export interface RecipeSectionPropsBase {
   columns?: number;
   /** Gap between items */
   gap?: number;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

@@ -345,3 +345,32 @@ export type {
 export type {
   TrustStatPropsBase,
 } from './trust-stat';
+
+// Layout & Utility
+export type {
+  CarouselItemBase,
+  CarouselPropsBase,
+} from './carousel';
+
+export type {
+  GridItemBase,
+  GridPropsBase,
+} from './grid';
+
+export type {
+  StickyBottomBarVariant,
+  StickyBottomBarPropsBase,
+} from './sticky-bottom-bar';
+
+export type {
+  FloatingCartButtonPropsBase,
+} from './floating-cart-button';
+
+export type {
+  ProductImageCarouselPropsBase,
+} from './product-image-carousel';
+
+export type {
+  VariantOption,
+  VariantSelectorPropsBase,
+} from './variant-selector';

@@ -8,7 +8,9 @@ import styles from './TipSelector.module.css';
 
 const DEFAULT_AMOUNTS = [1, 2, 3, 5, 10];
 
-export interface TipSelectorProps extends TipSelectorPropsBase {}
+export interface TipSelectorProps extends TipSelectorPropsBase {
+  className?: string;
+}
 
 export const TipSelector = forwardRef<HTMLDivElement, TipSelectorProps>(
   (

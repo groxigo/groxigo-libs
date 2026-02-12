@@ -25,6 +25,7 @@ const errorStyleMap: Record<string, string | undefined> = {
 };
 
 export interface SelectProps extends Omit<SelectPropsBase, 'value' | 'onChange' | 'options'> {
+  className?: string;
   /** Color scheme @default 'primary' */
   colorScheme?: SelectColorScheme;
   /** Current value (broader than contract to support numbers) */

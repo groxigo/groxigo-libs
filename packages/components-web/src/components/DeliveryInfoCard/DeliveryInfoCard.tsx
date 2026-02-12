@@ -7,7 +7,9 @@ import { Truck } from '@groxigo/icons/line';
 import clsx from 'clsx';
 import styles from './DeliveryInfoCard.module.css';
 
-export interface DeliveryInfoCardProps extends DeliveryInfoCardPropsBase {}
+export interface DeliveryInfoCardProps extends DeliveryInfoCardPropsBase {
+  className?: string;
+}
 
 export const DeliveryInfoCard = forwardRef<HTMLDivElement, DeliveryInfoCardProps>(
   (

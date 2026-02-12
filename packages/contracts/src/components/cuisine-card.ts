@@ -25,8 +25,6 @@ export interface CuisineCardPropsBase {
   width?: number;
   /** Press handler */
   onPress?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

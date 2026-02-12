@@ -71,8 +71,6 @@ export interface AuthCardPropsBase {
   privacyUrl?: string;
   /** Overridable text labels for i18n */
   labels?: AuthCardLabels;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

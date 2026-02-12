@@ -22,8 +22,6 @@ export interface HeaderPropsBase {
   elevated?: boolean;
   /** Section for theming */
   section?: HeaderSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

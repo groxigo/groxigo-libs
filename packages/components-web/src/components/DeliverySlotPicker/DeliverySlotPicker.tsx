@@ -12,7 +12,9 @@ import styles from './DeliverySlotPicker.module.css';
 
 export type { DeliveryDate, DeliveryTimeSlot };
 
-export interface DeliverySlotPickerProps extends DeliverySlotPickerPropsBase {}
+export interface DeliverySlotPickerProps extends DeliverySlotPickerPropsBase {
+  className?: string;
+}
 
 export const DeliverySlotPicker = forwardRef<HTMLDivElement, DeliverySlotPickerProps>(
   (

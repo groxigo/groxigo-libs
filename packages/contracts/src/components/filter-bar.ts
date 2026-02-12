@@ -36,8 +36,6 @@ export interface FilterBarPropsBase {
   showCounts?: boolean;
   /** Section for theming */
   section?: FilterBarSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

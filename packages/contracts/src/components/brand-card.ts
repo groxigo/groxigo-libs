@@ -12,8 +12,6 @@ export interface BrandCardPropsBase {
   logoUrl?: string;
   /** Press handler */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

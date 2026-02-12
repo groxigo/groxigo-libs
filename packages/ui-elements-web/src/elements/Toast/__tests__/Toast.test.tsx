@@ -64,17 +64,17 @@ describe('Toast', () => {
   });
 
   it('renders action button when action prop is provided', () => {
-    const onClick = vi.fn();
+    const onPress = vi.fn();
     render(
       <Toast
         title="Deleted"
-        action={{ label: 'Undo', onClick }}
+        action={{ label: 'Undo', onPress }}
       />
     );
     const actionBtn = screen.getByText('Undo');
     expect(actionBtn).toBeInTheDocument();
     fireEvent.click(actionBtn);
-    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onPress).toHaveBeenCalledTimes(1);
   });
 
   it('renders with custom render function', () => {

@@ -29,8 +29,6 @@ export interface LinkPropsBase {
   children?: ReactNode;
   /** Press/click handler */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

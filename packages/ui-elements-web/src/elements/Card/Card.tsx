@@ -15,6 +15,7 @@ import type { CardPropsBase, CardHeaderPropsBase, CardBodyPropsBase, CardFooterP
 import styles from './Card.module.css';
 
 export interface CardProps extends CardPropsBase {
+  className?: string;
   style?: React.CSSProperties;
   /** Accessible label for the card when pressable */
   'aria-label'?: string;
@@ -78,7 +79,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = 'Card';
 
 // Card Header
-export interface CardHeaderProps extends CardHeaderPropsBase {}
+export interface CardHeaderProps extends CardHeaderPropsBase {
+  className?: string;
+}
 
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className, ...props }, ref) => (
@@ -95,7 +98,9 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 CardHeader.displayName = 'CardHeader';
 
 // Card Body
-export interface CardBodyProps extends CardBodyPropsBase {}
+export interface CardBodyProps extends CardBodyPropsBase {
+  className?: string;
+}
 
 export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
   ({ children, className, ...props }, ref) => (
@@ -108,7 +113,9 @@ export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
 CardBody.displayName = 'CardBody';
 
 // Card Footer
-export interface CardFooterProps extends CardFooterPropsBase {}
+export interface CardFooterProps extends CardFooterPropsBase {
+  className?: string;
+}
 
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className, ...props }, ref) => (

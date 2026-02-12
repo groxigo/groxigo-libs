@@ -21,8 +21,6 @@ export interface SpinWheelPropsBase {
   onSpin?: () => void;
   /** Callback when spin completes with winning segment index */
   onSpinComplete?: (segmentIndex: number) => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

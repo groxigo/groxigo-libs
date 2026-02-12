@@ -7,7 +7,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './AccordionSection.module.css';
 
-export interface AccordionSectionProps extends AccordionSectionPropsBase {}
+export interface AccordionSectionProps extends AccordionSectionPropsBase {
+  className?: string;
+}
 
 
 export const AccordionSection = forwardRef<HTMLDivElement, AccordionSectionProps>(

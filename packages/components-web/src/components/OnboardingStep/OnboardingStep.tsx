@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './OnboardingStep.module.css';
 
-export interface OnboardingStepProps extends OnboardingStepPropsBase {}
+export interface OnboardingStepProps extends OnboardingStepPropsBase {
+  className?: string;
+}
 
 export const OnboardingStep = forwardRef<HTMLDivElement, OnboardingStepProps>(
   (

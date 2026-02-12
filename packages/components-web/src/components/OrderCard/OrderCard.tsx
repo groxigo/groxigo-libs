@@ -11,7 +11,9 @@ import styles from './OrderCard.module.css';
 
 export type { OrderStatus };
 
-export interface OrderCardProps extends OrderCardPropsBase {}
+export interface OrderCardProps extends OrderCardPropsBase {
+  className?: string;
+}
 
 /** Map order status to Badge colorScheme */
 const STATUS_COLOR: Record<OrderStatus, 'success' | 'error' | 'warning' | 'info'> = {

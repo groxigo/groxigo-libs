@@ -51,6 +51,7 @@ export function useMenuContext() {
 // ============================================
 
 export interface MenuProps extends MenuPropsBase {
+  className?: string;
   /** Menu content (MenuButton, MenuList, etc.) */
   children?: React.ReactNode;
 }

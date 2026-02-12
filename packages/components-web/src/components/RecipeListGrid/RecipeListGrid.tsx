@@ -5,7 +5,9 @@ import type { RecipeListGridPropsBase } from '@groxigo/contracts/components/reci
 import { Grid } from '../Grid';
 import { RecipeCard } from '../RecipeCard';
 
-export interface RecipeListGridProps extends RecipeListGridPropsBase {}
+export interface RecipeListGridProps extends RecipeListGridPropsBase {
+  className?: string;
+}
 
 export const RecipeListGrid = forwardRef<HTMLDivElement, RecipeListGridProps>(
   ({ items, columns, gap = 16, onItemPress, className, testID }, ref) => {

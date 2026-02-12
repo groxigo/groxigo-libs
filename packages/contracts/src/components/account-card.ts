@@ -12,8 +12,6 @@ export interface AccountCardPropsBase {
   onEdit?: () => void;
   /** Card content */
   children?: React.ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

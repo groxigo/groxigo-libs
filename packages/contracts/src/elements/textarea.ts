@@ -60,8 +60,6 @@ export interface TextAreaPropsBase {
   onFocus?: () => void;
   /** Blur handler */
   onBlur?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

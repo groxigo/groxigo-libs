@@ -49,7 +49,6 @@ export interface SectionHeaderPropsBase {
   /**
    * Additional CSS class (web only)
    */
-  className?: string;
 
   /**
    * Test ID for testing

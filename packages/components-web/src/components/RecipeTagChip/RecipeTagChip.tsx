@@ -6,7 +6,9 @@ import { Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './RecipeTagChip.module.css';
 
-export interface RecipeTagChipProps extends RecipeTagChipPropsBase {}
+export interface RecipeTagChipProps extends RecipeTagChipPropsBase {
+  className?: string;
+}
 
 export const RecipeTagChip = forwardRef<HTMLSpanElement, RecipeTagChipProps>(
   ({ label, colorScheme = 'neutral', onPress, className, testID }, ref) => {

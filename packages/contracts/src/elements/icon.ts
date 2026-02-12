@@ -54,8 +54,6 @@ export interface IconPropsBase {
   color?: string;
   /** Accessibility label */
   accessibilityLabel?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

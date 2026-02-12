@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './MealTypeCard.module.css';
 
-export interface MealTypeCardProps extends MealTypeCardPropsBase {}
+export interface MealTypeCardProps extends MealTypeCardPropsBase {
+  className?: string;
+}
 
 export const MealTypeCard = forwardRef<HTMLButtonElement, MealTypeCardProps>(
   ({ label, icon, emoji, selected = false, onPress, className, testID }, ref) => {

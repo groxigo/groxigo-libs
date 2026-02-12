@@ -10,7 +10,9 @@ import { clsx } from 'clsx';
 import type { BreadcrumbSeparatorPropsBase } from '@groxigo/contracts';
 import styles from './Breadcrumb.module.css';
 
-export interface BreadcrumbSeparatorProps extends BreadcrumbSeparatorPropsBase {}
+export interface BreadcrumbSeparatorProps extends BreadcrumbSeparatorPropsBase {
+  className?: string;
+}
 
 export const BreadcrumbSeparator = forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
   (

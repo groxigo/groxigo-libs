@@ -5,7 +5,9 @@ import type { ProductListGridPropsBase } from '@groxigo/contracts/components/pro
 import { Grid } from '../Grid';
 import { ProductTile } from '../ProductTile';
 
-export interface ProductListGridProps extends ProductListGridPropsBase {}
+export interface ProductListGridProps extends ProductListGridPropsBase {
+  className?: string;
+}
 
 export const ProductListGrid = forwardRef<HTMLDivElement, ProductListGridProps>(
   ({ items, columns, gap = 12, onItemPress, className, testID }, ref) => {

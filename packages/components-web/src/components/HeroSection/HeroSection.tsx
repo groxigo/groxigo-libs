@@ -6,7 +6,9 @@ import type { HeroSectionPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './HeroSection.module.css';
 
-export interface HeroSectionProps extends HeroSectionPropsBase {}
+export interface HeroSectionProps extends HeroSectionPropsBase {
+  className?: string;
+}
 
 /* ─── Inline SVG brand icons (from Unicons) ─── */
 

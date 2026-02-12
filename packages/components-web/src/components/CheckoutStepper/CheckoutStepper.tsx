@@ -6,7 +6,9 @@ import clsx from 'clsx';
 import styles from './CheckoutStepper.module.css';
 import { Check } from '@groxigo/icons/line';
 
-export interface CheckoutStepperProps extends CheckoutStepperPropsBase {}
+export interface CheckoutStepperProps extends CheckoutStepperPropsBase {
+  className?: string;
+}
 
 export const CheckoutStepper = forwardRef<HTMLDivElement, CheckoutStepperProps>(
   (

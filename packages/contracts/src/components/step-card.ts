@@ -16,8 +16,6 @@ export interface StepCardPropsBase {
   description: string;
   /** Optional step number */
   stepNumber?: number;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

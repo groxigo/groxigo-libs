@@ -16,6 +16,7 @@ import styles from './Menu.module.css';
 // ============================================
 
 export interface MenuButtonProps extends MenuButtonPropsBase {
+  className?: string;
   /** HTML button type */
   type?: 'button' | 'submit' | 'reset';
   /** Whether button is disabled */

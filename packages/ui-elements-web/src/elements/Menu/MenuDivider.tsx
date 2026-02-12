@@ -15,6 +15,7 @@ import styles from './Menu.module.css';
 // ============================================
 
 export interface MenuDividerProps extends MenuDividerPropsBase {
+  className?: string;
   /** Test ID */
   testID?: string;
 }

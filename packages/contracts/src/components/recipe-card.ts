@@ -63,8 +63,6 @@ export interface RecipeCardPropsBase {
   width?: number;
   /** Callback when card is pressed */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

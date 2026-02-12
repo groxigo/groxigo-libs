@@ -7,7 +7,9 @@ import { Edit } from '@groxigo/icons/line';
 import clsx from 'clsx';
 import styles from './ProfileHeader.module.css';
 
-export interface ProfileHeaderProps extends ProfileHeaderPropsBase {}
+export interface ProfileHeaderProps extends ProfileHeaderPropsBase {
+  className?: string;
+}
 
 export const ProfileHeader = forwardRef<HTMLDivElement, ProfileHeaderProps>(
   (

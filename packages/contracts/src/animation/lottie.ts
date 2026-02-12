@@ -114,10 +114,8 @@ export interface LottiePropsBase {
   onSegmentStart?: (segment: LottieSegment) => void;
   /** Callback when a marker is reached */
   onMarkerReached?: (marker: string) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
-  /** Additional style */
-  style?: object;
+  /** Additional style (platform-specific: CSSProperties on web, ViewStyle on RN) */
+  style?: Record<string, unknown>;
   /** Test ID for testing */
   testID?: string;
 }
@@ -181,8 +179,6 @@ export interface AnimatedIconPropsBase {
   speed?: number;
   /** Callback when animation completes */
   onComplete?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

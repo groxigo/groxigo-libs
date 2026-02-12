@@ -101,7 +101,7 @@ const ToastDemo = () => {
             status: "info",
             action: {
               label: "Undo",
-              onClick: () => alert("Undo clicked!"),
+              onPress: () => alert("Undo clicked!"),
             },
           })
         }

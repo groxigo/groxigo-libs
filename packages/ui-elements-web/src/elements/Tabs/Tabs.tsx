@@ -91,6 +91,7 @@ export function getTabVariantClasses(
 // ============================================
 
 export interface TabsProps extends TabsPropsBase {
+  className?: string;
   /** HTML id attribute */
   id?: string;
 }

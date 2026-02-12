@@ -56,8 +56,6 @@ export interface TabsPropsBase {
   onChange?: (key: string) => void;
   /** Tab list children (alternative to items) */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -68,8 +66,6 @@ export interface TabsPropsBase {
 export interface TabListPropsBase {
   /** Tab buttons */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }
 
 /**
@@ -84,8 +80,6 @@ export interface TabPropsBase {
   icon?: ReactNode;
   /** Whether tab is disabled */
   disabled?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
 }
 
 /**
@@ -94,8 +88,6 @@ export interface TabPropsBase {
 export interface TabPanelsPropsBase {
   /** Tab panel content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }
 
 /**
@@ -106,6 +98,4 @@ export interface TabPanelPropsBase {
   value: string;
   /** Panel content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }

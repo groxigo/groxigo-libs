@@ -16,8 +16,6 @@ export interface ReviewCardPropsBase {
   rating: number;
   /** Review text content */
   reviewText: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

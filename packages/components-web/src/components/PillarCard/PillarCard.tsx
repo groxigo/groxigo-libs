@@ -5,7 +5,9 @@ import type { PillarCardPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './PillarCard.module.css';
 
-export interface PillarCardProps extends PillarCardPropsBase {}
+export interface PillarCardProps extends PillarCardPropsBase {
+  className?: string;
+}
 
 /**
  * PillarCard — vertical card with 16:9 image, title, description, and CTA link.
@@ -13,7 +15,7 @@ export interface PillarCardProps extends PillarCardPropsBase {}
  * Used in the "Why Groxigo" pillars section on the landing page.
  */
 export const PillarCard = forwardRef<HTMLDivElement, PillarCardProps>(
-  ({ title, description, ctaLabel, ctaHref, imageUrl, onClick, className, testID }, ref) => {
+  ({ title, description, ctaLabel, ctaHref, imageUrl, onPress, className, testID }, ref) => {
     return (
       <div
         ref={ref}
@@ -40,10 +42,10 @@ export const PillarCard = forwardRef<HTMLDivElement, PillarCardProps>(
             href={ctaHref}
             className={styles.cta}
             onClick={
-              onClick
+              onPress
                 ? (e) => {
                     e.preventDefault();
-                    onClick();
+                    onPress();
                   }
                 : undefined
             }

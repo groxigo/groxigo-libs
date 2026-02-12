@@ -1,26 +1,18 @@
 'use client';
 
-import { forwardRef, type ReactNode } from 'react';
+import { forwardRef } from 'react';
+import type { FloatingCartButtonPropsBase } from '@groxigo/contracts/components';
 import { Button, Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './FloatingCartButton.module.css';
 import { ShoppingCart } from '@groxigo/icons/line';
 
-export interface FloatingCartButtonProps {
-  /** Number of items in cart */
-  count?: number;
-  /** Custom cart icon (ReactNode) */
-  icon?: ReactNode;
-  /** Click handler */
-  onClick?: () => void;
-  /** Additional CSS class */
+export interface FloatingCartButtonProps extends FloatingCartButtonPropsBase {
   className?: string;
-  /** Test ID */
-  testID?: string;
 }
 
 export const FloatingCartButton = forwardRef<HTMLDivElement, FloatingCartButtonProps>(
-  ({ count, icon, onClick, className, testID }, ref) => {
+  ({ count, icon, onPress, className, testID }, ref) => {
     const showBadge = count !== undefined && count > 0;
 
     return (
@@ -32,7 +24,7 @@ export const FloatingCartButton = forwardRef<HTMLDivElement, FloatingCartButtonP
         <Button
           variant="solid"
           colorScheme="primary"
-          onPress={onClick}
+          onPress={onPress}
           aria-label={showBadge ? `Cart with ${count} items` : 'Cart'}
           className={styles.button}
         >

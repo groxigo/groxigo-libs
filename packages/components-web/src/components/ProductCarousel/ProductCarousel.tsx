@@ -5,7 +5,9 @@ import type { ProductCarouselPropsBase } from '@groxigo/contracts/components/pro
 import { Carousel } from '../Carousel';
 import { ProductTile } from '../ProductTile';
 
-export interface ProductCarouselProps extends ProductCarouselPropsBase {}
+export interface ProductCarouselProps extends ProductCarouselPropsBase {
+  className?: string;
+}
 
 export const ProductCarousel = forwardRef<HTMLDivElement, ProductCarouselProps>(
   ({ items, onItemPress, onRatingPress, onSeeAll, title, showArrows, gap, className, testID }, ref) => {

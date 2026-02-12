@@ -38,6 +38,7 @@ const labelSizeClass: Record<SliderSize, string> = {
 // ============================================
 
 export interface SliderProps extends SliderPropsBase {
+  className?: string;
   /** Label text */
   label?: string;
   /** Whether to show the current value */

@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './BannerCard.module.css';
 
-export interface BannerCardProps extends BannerCardPropsBase {}
+export interface BannerCardProps extends BannerCardPropsBase {
+  className?: string;
+}
 
 /** Size → CSS class mappings */
 const SIZE_ROOT: Record<string, string> = {

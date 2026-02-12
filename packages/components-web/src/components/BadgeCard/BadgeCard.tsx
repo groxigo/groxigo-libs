@@ -11,7 +11,9 @@ import styles from './BadgeCard.module.css';
 
 export type { BadgeCardState };
 
-export interface BadgeCardProps extends BadgeCardPropsBase {}
+export interface BadgeCardProps extends BadgeCardPropsBase {
+  className?: string;
+}
 
 export const BadgeCard = forwardRef<HTMLDivElement, BadgeCardProps>(
   (

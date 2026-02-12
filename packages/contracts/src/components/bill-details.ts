@@ -25,8 +25,6 @@ export interface BillDetailsPropsBase {
   items: BillDetailsLineItem[];
   /** Total row displayed below the divider */
   total: { label: string; value: string };
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

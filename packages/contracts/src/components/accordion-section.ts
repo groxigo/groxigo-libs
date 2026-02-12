@@ -24,8 +24,6 @@ export interface AccordionSectionPropsBase {
   /** Content to render when expanded */
   children?: React.ReactNode;
 
-  /** Additional CSS class (web only) */
-  className?: string;
 
   /** Test ID for testing */
   testID?: string;

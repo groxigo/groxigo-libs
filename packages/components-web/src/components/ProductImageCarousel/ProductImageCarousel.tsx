@@ -1,20 +1,12 @@
 'use client';
 
 import { forwardRef, useCallback } from 'react';
+import type { ProductImageCarouselPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './ProductImageCarousel.module.css';
 
-export interface ProductImageCarouselProps {
-  /** Array of image URLs */
-  images: string[];
-  /** Currently visible image index */
-  currentIndex?: number;
-  /** Callback when a dot is clicked to change the image */
-  onIndexChange?: (index: number) => void;
-  /** Additional CSS class */
+export interface ProductImageCarouselProps extends ProductImageCarouselPropsBase {
   className?: string;
-  /** Test ID for testing */
-  testID?: string;
 }
 
 export const ProductImageCarousel = forwardRef<HTMLDivElement, ProductImageCarouselProps>(

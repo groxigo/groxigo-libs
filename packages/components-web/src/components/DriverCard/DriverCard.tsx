@@ -7,7 +7,9 @@ import { Phone } from '@groxigo/icons/line';
 import clsx from 'clsx';
 import styles from './DriverCard.module.css';
 
-export interface DriverCardProps extends DriverCardPropsBase {}
+export interface DriverCardProps extends DriverCardPropsBase {
+  className?: string;
+}
 
 export const DriverCard = forwardRef<HTMLDivElement, DriverCardProps>(
   (

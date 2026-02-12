@@ -11,7 +11,9 @@ import type { BreadcrumbItemPropsBase } from '@groxigo/contracts';
 import { BreadcrumbLink } from './BreadcrumbLink';
 import styles from './Breadcrumb.module.css';
 
-export interface BreadcrumbItemProps extends BreadcrumbItemPropsBase {}
+export interface BreadcrumbItemProps extends BreadcrumbItemPropsBase {
+  className?: string;
+}
 
 export const BreadcrumbItemComponent = forwardRef<HTMLSpanElement, BreadcrumbItemProps>(
   (
@@ -19,7 +21,7 @@ export const BreadcrumbItemComponent = forwardRef<HTMLSpanElement, BreadcrumbIte
       href,
       isCurrent = false,
       children,
-      onClick,
+      onPress,
       className,
       ...props
     },
@@ -45,7 +47,7 @@ export const BreadcrumbItemComponent = forwardRef<HTMLSpanElement, BreadcrumbIte
       <BreadcrumbLink
         ref={ref as React.ForwardedRef<HTMLAnchorElement>}
         href={href}
-        onClick={onClick}
+        onPress={onPress}
         className={className}
         {...props}
       >

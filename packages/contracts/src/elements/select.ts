@@ -75,8 +75,6 @@ export interface SelectPropsBase {
   onSearch?: (query: string) => void;
   /** Open/close handler */
   onOpenChange?: (open: boolean) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -30,8 +30,8 @@ export interface MenuItem {
   isDestructive?: boolean;
   /** Submenu items */
   children?: MenuItem[];
-  /** Click handler */
-  onClick?: () => void;
+  /** Press handler */
+  onPress?: () => void;
 }
 
 /**
@@ -58,8 +58,6 @@ export interface MenuPropsBase {
   onClose?: () => void;
   /** Menu trigger element */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -72,8 +70,6 @@ export interface MenuButtonPropsBase {
   children?: ReactNode;
   /** Whether to show dropdown icon */
   showIcon?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -84,8 +80,6 @@ export interface MenuButtonPropsBase {
 export interface MenuListPropsBase {
   /** Menu items */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -106,10 +100,8 @@ export interface MenuItemPropsBase {
   disabled?: boolean;
   /** Whether item is destructive/danger */
   isDestructive?: boolean;
-  /** Click handler */
-  onClick?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
+  /** Press handler */
+  onPress?: () => void;
 }
 
 /**
@@ -120,8 +112,6 @@ export interface MenuGroupPropsBase {
   title?: string;
   /** Group items */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -130,8 +120,6 @@ export interface MenuGroupPropsBase {
  * Menu Divider props
  */
 export interface MenuDividerPropsBase {
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

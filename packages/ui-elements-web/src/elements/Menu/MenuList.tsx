@@ -16,6 +16,7 @@ import styles from './Menu.module.css';
 // ============================================
 
 export interface MenuListProps extends MenuListPropsBase {
+  className?: string;
   /** Test ID */
   testID?: string;
 }

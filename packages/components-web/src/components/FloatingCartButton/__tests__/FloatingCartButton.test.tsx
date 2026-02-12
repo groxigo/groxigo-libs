@@ -39,9 +39,9 @@ describe('FloatingCartButton', () => {
     expect(screen.getByText('99+')).toBeInTheDocument();
   });
 
-  it('calls onClick when button is pressed', () => {
+  it('calls onPress when button is pressed', () => {
     const handleClick = vi.fn();
-    render(<FloatingCartButton onClick={handleClick} />);
+    render(<FloatingCartButton onPress={handleClick} />);
     screen.getByLabelText('Cart').click();
     expect(handleClick).toHaveBeenCalledTimes(1);
   });

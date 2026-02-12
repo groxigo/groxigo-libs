@@ -2,32 +2,14 @@
 
 import { forwardRef } from 'react';
 import type { ReactNode } from 'react';
+import type { GridItemBase, GridPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './Grid.module.css';
 
-export interface GridItem {
-  id: string;
-}
+export type GridItem = GridItemBase;
 
-export interface GridProps<T extends GridItem = GridItem> {
-  /** Items to render */
-  items: T[];
-  /** Render function for each item */
-  renderItem: (item: T) => ReactNode;
-  /** Minimum item width for auto-fill columns @default 140 */
-  minItemWidth?: number;
-  /** Minimum item width on large screens (≥768px viewport). Falls back to minItemWidth. */
-  minItemWidthLg?: number;
-  /** Maximum item width (caps cell size so cards don't stretch too wide) */
-  maxItemWidth?: number;
-  /** Fixed number of columns (overrides minItemWidth) */
-  columns?: number;
-  /** Gap between items in pixels @default 16 */
-  gap?: number;
-  /** Additional CSS class */
+export interface GridProps<T extends GridItem = GridItem> extends GridPropsBase<T> {
   className?: string;
-  /** Test ID */
-  testID?: string;
 }
 
 function GridInner<T extends GridItem>(

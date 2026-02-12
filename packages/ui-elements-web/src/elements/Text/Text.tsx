@@ -37,6 +37,7 @@ const alignMap: Record<string, string> = {
 };
 
 export interface TextProps extends TextPropsBase {
+  className?: string;
   as?: TextElement;
 }
 

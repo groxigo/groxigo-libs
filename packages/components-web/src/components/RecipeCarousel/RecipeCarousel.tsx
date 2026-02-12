@@ -5,7 +5,9 @@ import type { RecipeCarouselPropsBase } from '@groxigo/contracts/components/reci
 import { Carousel } from '../Carousel';
 import { RecipeCard } from '../RecipeCard';
 
-export interface RecipeCarouselProps extends RecipeCarouselPropsBase {}
+export interface RecipeCarouselProps extends RecipeCarouselPropsBase {
+  className?: string;
+}
 
 export const RecipeCarousel = forwardRef<HTMLDivElement, RecipeCarouselProps>(
   ({ items, onItemPress, onSeeAll, title, showArrows, gap, className, testID }, ref) => {

@@ -48,6 +48,7 @@ function getInitials(name?: string): string {
 }
 
 export interface AvatarProps extends AvatarPropsBase {
+  className?: string;
   /** Click handler */
   onClick?: () => void;
 }

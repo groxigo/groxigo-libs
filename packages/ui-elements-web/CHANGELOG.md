@@ -1,5 +1,14 @@
 # @groxigo/ui-elements-web
 
+## 1.2.3
+
+### Patch Changes
+
+- Platform-agnostic contracts: removed className from all PropsBase interfaces, renamed onClick to onPress, added 6 new component contracts (carousel, grid, sticky-bottom-bar, floating-cart-button, product-image-carousel, variant-selector), replaced RefObject<any> with RefObject<unknown>, added missing @default JSDoc annotations, and improved lottie style typing. Web implementations updated to add className locally and cast focus refs to HTMLElement.
+
+- Updated dependencies []:
+  - @groxigo/contracts@1.3.0
+
 ## 1.2.2
 
 ### Patch Changes

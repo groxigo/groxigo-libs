@@ -50,8 +50,6 @@ export interface TooltipPropsBase {
   onOpen?: () => void;
   /** Close state change handler */
   onClose?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -7,7 +7,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './PaginationBar.module.css';
 
-export interface PaginationBarProps extends PaginationBarPropsBase {}
+export interface PaginationBarProps extends PaginationBarPropsBase {
+  className?: string;
+}
 
 
 type PageItem = { type: 'page'; page: number } | { type: 'ellipsis'; key: string };

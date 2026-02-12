@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './SectionHeader.module.css';
 
-export interface SectionHeaderProps extends SectionHeaderPropsBase {}
+export interface SectionHeaderProps extends SectionHeaderPropsBase {
+  className?: string;
+}
 
 /** Map titleVariant to CSS class and HTML heading element */
 const TITLE_VARIANT_CLASS: Record<string, string> = {

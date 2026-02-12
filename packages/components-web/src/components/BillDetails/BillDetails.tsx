@@ -6,7 +6,9 @@ import { Divider } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './BillDetails.module.css';
 
-export interface BillDetailsProps extends BillDetailsPropsBase {}
+export interface BillDetailsProps extends BillDetailsPropsBase {
+  className?: string;
+}
 
 const LINE_TYPE_CLASS: Record<string, string> = {
   savings: styles.valueSavings,

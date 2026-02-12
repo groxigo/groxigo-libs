@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import styles from './Header.module.css';
 
 export interface HeaderProps extends HeaderPropsBase {
+  className?: string;
   /** Content rendered in the center area (e.g. SearchBar, address bar) */
   children?: ReactNode;
 }

@@ -12,7 +12,9 @@ import styles from './PreferencesCard.module.css';
 
 export type { PreferenceSetting, PreferenceOption };
 
-export interface PreferencesCardProps extends PreferencesCardPropsBase {}
+export interface PreferencesCardProps extends PreferencesCardPropsBase {
+  className?: string;
+}
 
 export const PreferencesCard = forwardRef<HTMLDivElement, PreferencesCardProps>(
   (

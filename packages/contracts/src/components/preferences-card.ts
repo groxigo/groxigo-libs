@@ -30,8 +30,6 @@ export interface PreferencesCardPropsBase {
   settings: PreferenceSetting[];
   /** Callback when a preference is changed */
   onChange?: (key: string, value: string) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -18,8 +18,6 @@ export interface TipSelectorPropsBase {
   onCustomChange?: (amount: number) => void;
   /** Whether to show the custom input @default false */
   showCustom?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -49,29 +49,24 @@ export interface CardPropsBase {
   onPress?: () => void;
   /** Card content */
   children?: ReactNode;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }
 
 export interface CardHeaderPropsBase {
   children?: ReactNode;
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
 
 export interface CardBodyPropsBase {
   children?: ReactNode;
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
 
 export interface CardFooterPropsBase {
   children?: ReactNode;
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

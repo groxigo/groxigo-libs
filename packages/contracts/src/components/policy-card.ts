@@ -15,8 +15,6 @@ export interface PolicyCardPropsBase {
   message: string;
   /** Optional title above the message */
   title?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -23,8 +23,6 @@ export interface CheckoutStepperPropsBase {
   steps: CheckoutStep[];
   /** Zero-based index of the current active step */
   currentStep: number;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

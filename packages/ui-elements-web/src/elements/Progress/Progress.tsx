@@ -35,6 +35,7 @@ const labelSizeStyleMap: Record<ProgressSize, string> = {
 // ============================================
 
 export interface ProgressProps extends ProgressPropsBase {
+  className?: string;
   /** Custom inline styles for the container */
   style?: React.CSSProperties;
 }

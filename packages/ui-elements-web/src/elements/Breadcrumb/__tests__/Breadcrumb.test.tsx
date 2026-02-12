@@ -104,10 +104,10 @@ describe('Breadcrumb', () => {
     expect(ref.current?.tagName).toBe('NAV');
   });
 
-  it('renders items with onClick handlers', () => {
-    const onClick = vi.fn();
+  it('renders items with onPress handlers', () => {
+    const onPress = vi.fn();
     const items = [
-      { label: 'Home', href: '/', onClick },
+      { label: 'Home', href: '/', onPress },
       { label: 'Current' },
     ];
     render(<Breadcrumb items={items} />);

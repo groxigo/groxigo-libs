@@ -29,8 +29,6 @@ export interface QuantitySelectorPropsBase {
   label?: string;
   /** Section for theming */
   section?: QuantitySelectorSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

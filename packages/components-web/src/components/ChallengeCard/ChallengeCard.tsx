@@ -6,7 +6,9 @@ import { Progress } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './ChallengeCard.module.css';
 
-export interface ChallengeCardProps extends ChallengeCardPropsBase {}
+export interface ChallengeCardProps extends ChallengeCardPropsBase {
+  className?: string;
+}
 
 export const ChallengeCard = forwardRef<HTMLDivElement, ChallengeCardProps>(
   (

@@ -12,7 +12,9 @@ import styles from './FilterBar.module.css';
 
 export type { FilterOption, FilterBarSection };
 
-export interface FilterBarProps extends FilterBarPropsBase {}
+export interface FilterBarProps extends FilterBarPropsBase {
+  className?: string;
+}
 
 export const FilterBar = forwardRef<HTMLDivElement, FilterBarProps>(
   (

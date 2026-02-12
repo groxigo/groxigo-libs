@@ -31,9 +31,9 @@ export const Default: Story = {
     <Menu>
       <MenuButton>Actions</MenuButton>
       <MenuList>
-        <MenuItem onClick={() => console.log("Edit")}>Edit</MenuItem>
-        <MenuItem onClick={() => console.log("Duplicate")}>Duplicate</MenuItem>
-        <MenuItem onClick={() => console.log("Archive")}>Archive</MenuItem>
+        <MenuItem onPress={() => console.log("Edit")}>Edit</MenuItem>
+        <MenuItem onPress={() => console.log("Duplicate")}>Duplicate</MenuItem>
+        <MenuItem onPress={() => console.log("Archive")}>Archive</MenuItem>
       </MenuList>
     </Menu>
   ),
@@ -44,11 +44,11 @@ export const WithDivider: Story = {
     <Menu>
       <MenuButton>Options</MenuButton>
       <MenuList>
-        <MenuItem onClick={() => console.log("Profile")}>View Profile</MenuItem>
-        <MenuItem onClick={() => console.log("Settings")}>Settings</MenuItem>
+        <MenuItem onPress={() => console.log("Profile")}>View Profile</MenuItem>
+        <MenuItem onPress={() => console.log("Settings")}>Settings</MenuItem>
         <MenuDivider />
-        <MenuItem onClick={() => console.log("Help")}>Help & Support</MenuItem>
-        <MenuItem onClick={() => console.log("Logout")}>Logout</MenuItem>
+        <MenuItem onPress={() => console.log("Help")}>Help & Support</MenuItem>
+        <MenuItem onPress={() => console.log("Logout")}>Logout</MenuItem>
       </MenuList>
     </Menu>
   ),
@@ -59,11 +59,11 @@ export const WithDisabledItem: Story = {
     <Menu>
       <MenuButton>File</MenuButton>
       <MenuList>
-        <MenuItem onClick={() => console.log("New")}>New</MenuItem>
-        <MenuItem onClick={() => console.log("Open")}>Open</MenuItem>
+        <MenuItem onPress={() => console.log("New")}>New</MenuItem>
+        <MenuItem onPress={() => console.log("Open")}>Open</MenuItem>
         <MenuItem disabled>Save (disabled)</MenuItem>
         <MenuDivider />
-        <MenuItem onClick={() => console.log("Close")}>Close</MenuItem>
+        <MenuItem onPress={() => console.log("Close")}>Close</MenuItem>
       </MenuList>
     </Menu>
   ),
@@ -81,7 +81,7 @@ export const WithIcons: Story = {
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
             </svg>
           }
-          onClick={() => console.log("Edit")}
+          onPress={() => console.log("Edit")}
         >
           Edit
         </MenuItem>
@@ -92,7 +92,7 @@ export const WithIcons: Story = {
               <path d="M3 11V9a4 4 0 0 1 4-4h14" />
             </svg>
           }
-          onClick={() => console.log("Share")}
+          onPress={() => console.log("Share")}
         >
           Share
         </MenuItem>
@@ -104,7 +104,7 @@ export const WithIcons: Story = {
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
             </svg>
           }
-          onClick={() => console.log("Delete")}
+          onPress={() => console.log("Delete")}
           isDestructive
         >
           Delete
@@ -120,19 +120,19 @@ export const WithRightElement: Story = {
       <MenuButton>View</MenuButton>
       <MenuList>
         <MenuItem
-          onClick={() => console.log("Zoom In")}
+          onPress={() => console.log("Zoom In")}
           rightElement={<span style={{ fontSize: "12px", color: "#888" }}>⌘+</span>}
         >
           Zoom In
         </MenuItem>
         <MenuItem
-          onClick={() => console.log("Zoom Out")}
+          onPress={() => console.log("Zoom Out")}
           rightElement={<span style={{ fontSize: "12px", color: "#888" }}>⌘-</span>}
         >
           Zoom Out
         </MenuItem>
         <MenuItem
-          onClick={() => console.log("Reset Zoom")}
+          onPress={() => console.log("Reset Zoom")}
           rightElement={<span style={{ fontSize: "12px", color: "#888" }}>⌘0</span>}
         >
           Reset Zoom
@@ -147,10 +147,10 @@ export const Destructive: Story = {
     <Menu>
       <MenuButton>Actions</MenuButton>
       <MenuList>
-        <MenuItem onClick={() => console.log("Edit")}>Edit</MenuItem>
-        <MenuItem onClick={() => console.log("Archive")}>Archive</MenuItem>
+        <MenuItem onPress={() => console.log("Edit")}>Edit</MenuItem>
+        <MenuItem onPress={() => console.log("Archive")}>Archive</MenuItem>
         <MenuDivider />
-        <MenuItem onClick={() => console.log("Delete")} isDestructive>
+        <MenuItem onPress={() => console.log("Delete")} isDestructive>
           Delete
         </MenuItem>
       </MenuList>

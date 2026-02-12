@@ -25,8 +25,6 @@ export interface PaymentMethodCardPropsBase {
   onSelect?: () => void;
   /** Callback when the delete button is pressed */
   onDelete?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

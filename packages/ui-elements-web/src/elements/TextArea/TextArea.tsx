@@ -33,6 +33,7 @@ const resizeStyleMap: Record<TextAreaResize, string> = {
 };
 
 export interface TextAreaProps extends TextAreaPropsBase {
+  className?: string;
   /** HTML textarea id */
   id?: string;
   /** Native change handler */

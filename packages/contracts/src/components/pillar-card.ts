@@ -16,10 +16,8 @@ export interface PillarCardPropsBase {
   ctaHref: string;
   /** 16:9 image URL */
   imageUrl?: string;
-  /** Optional click handler */
-  onClick?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
+  /** Optional press handler */
+  onPress?: () => void;
   /** Test ID for testing */
   testID?: string;
 }

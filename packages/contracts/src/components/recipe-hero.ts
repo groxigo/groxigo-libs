@@ -23,8 +23,6 @@ export interface RecipeHeroPropsBase {
   onSave?: () => void;
   /** Whether the recipe is saved/bookmarked */
   isSaved?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -5,7 +5,9 @@ import type { CategoryListGridPropsBase } from '@groxigo/contracts/components/ca
 import { Grid } from '../Grid';
 import { CategoryCard } from '../CategoryCard';
 
-export interface CategoryListGridProps extends CategoryListGridPropsBase {}
+export interface CategoryListGridProps extends CategoryListGridPropsBase {
+  className?: string;
+}
 
 export const CategoryListGrid = forwardRef<HTMLDivElement, CategoryListGridProps>(
   ({ items, gap = 12, onItemPress, className, testID }, ref) => {

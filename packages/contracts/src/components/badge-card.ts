@@ -16,8 +16,6 @@ export interface BadgeCardPropsBase {
   state?: BadgeCardState;
   /** Badge description */
   description?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -29,8 +29,6 @@ export interface FooterPropsBase {
   socialLinks?: { platform: string; href: string }[];
   /** Copyright text displayed at the bottom */
   copyrightText?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

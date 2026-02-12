@@ -71,8 +71,6 @@ export interface InputPropsBase {
   onFocus?: () => void;
   /** Blur handler */
   onBlur?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

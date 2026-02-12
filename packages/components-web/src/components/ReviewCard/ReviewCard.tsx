@@ -7,7 +7,9 @@ import clsx from 'clsx';
 import styles from './ReviewCard.module.css';
 import { Star } from '@groxigo/icons/line';
 
-export interface ReviewCardProps extends ReviewCardPropsBase {}
+export interface ReviewCardProps extends ReviewCardPropsBase {
+  className?: string;
+}
 
 export const ReviewCard = forwardRef<HTMLDivElement, ReviewCardProps>(
   (

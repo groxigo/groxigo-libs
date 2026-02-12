@@ -42,6 +42,7 @@ const labelSizeClass: Record<CheckboxSize, string> = {
 // ============================================
 
 export interface CheckboxProps extends CheckboxPropsBase {
+  className?: string;
   /** Description/helper text below label */
   description?: string;
   /** HTML input id */

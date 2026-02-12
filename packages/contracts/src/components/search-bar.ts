@@ -28,8 +28,6 @@ export interface SearchBarPropsBase {
   onBlur?: () => void;
   /** Cancel handler */
   onCancel?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

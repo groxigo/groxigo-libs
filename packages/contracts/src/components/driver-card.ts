@@ -16,8 +16,6 @@ export interface DriverCardPropsBase {
   phone?: string;
   /** Callback when call button is pressed */
   onCall?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

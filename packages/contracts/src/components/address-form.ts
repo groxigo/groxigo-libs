@@ -76,8 +76,6 @@ export interface AddressFormPropsBase {
   /** Overridable text labels for i18n */
   labels?: AddressFormLabels;
 
-  /** Additional CSS class (web only) */
-  className?: string;
 
   /** Test ID for testing */
   testID?: string;

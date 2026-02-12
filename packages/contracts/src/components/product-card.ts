@@ -83,8 +83,6 @@ export interface ProductCardPropsBase extends SDUIStyleProps {
   onToggleFavorite?: () => void;
   /** Custom render function for recipe link */
   renderRecipeLink?: (recipeCount: number) => ReactNode;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

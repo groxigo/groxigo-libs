@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import styles from './CategoryChip.module.css';
 
 export interface CategoryChipProps extends CategoryChipPropsBase {
+  className?: string;
   /** Icon rendered as a ReactNode (overrides icon name hint) */
   iconNode?: ReactNode;
 }

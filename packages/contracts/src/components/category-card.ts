@@ -24,8 +24,6 @@ export interface CategoryCardPropsBase {
   backgroundColor?: string;
   /** Press handler */
   onPress?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

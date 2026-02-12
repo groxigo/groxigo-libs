@@ -61,8 +61,6 @@ export interface ButtonPropsBase {
   disabled?: boolean;
   /** Button content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
   /** Click/press handler */

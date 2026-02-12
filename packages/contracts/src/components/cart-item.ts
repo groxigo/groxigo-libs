@@ -34,8 +34,6 @@ export interface CartItemPropsBase extends SDUIStyleProps {
   disabled?: boolean;
   /** Section for theming */
   section?: CartItemSection;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -106,7 +106,9 @@ const actionColorClassMap: Record<ToastStatus, string> = {
   info: styles.actionInfo,
 };
 
-export interface ToastProps extends ToastPropsBase {}
+export interface ToastProps extends ToastPropsBase {
+  className?: string;
+}
 
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(
   (
@@ -189,7 +191,7 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
           {action && (
             <button
               type="button"
-              onClick={action.onClick}
+              onClick={action.onPress}
               className={clsx(
                 styles.actionButton,
                 actionColorClassMap[status]

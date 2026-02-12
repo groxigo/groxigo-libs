@@ -1,30 +1,13 @@
 'use client';
 
 import { forwardRef } from 'react';
-import type { ReactNode } from 'react';
+import type { StickyBottomBarPropsBase } from '@groxigo/contracts/components';
 import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './StickyBottomBar.module.css';
 
-export interface StickyBottomBarProps {
-  /** Layout variant */
-  variant?: 'singleAction' | 'withPrice';
-  /** Price label, e.g. "Total" (withPrice variant) */
-  label?: string;
-  /** Formatted price string, e.g. "$4.99" (withPrice variant) */
-  price?: string;
-  /** Button text */
-  buttonText?: string;
-  /** Button press handler */
-  onButtonPress?: () => void;
-  /** Show loading spinner on the button */
-  isLoading?: boolean;
-  /** Additional CSS class */
+export interface StickyBottomBarProps extends StickyBottomBarPropsBase {
   className?: string;
-  /** Test ID for testing */
-  testID?: string;
-  /** Custom content — replaces the default button rendering */
-  children?: ReactNode;
 }
 
 /**

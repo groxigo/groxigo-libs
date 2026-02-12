@@ -7,7 +7,9 @@ import { Phone, Envelope } from '@groxigo/icons/line';
 import clsx from 'clsx';
 import styles from './ContactCard.module.css';
 
-export interface ContactCardProps extends ContactCardPropsBase {}
+export interface ContactCardProps extends ContactCardPropsBase {
+  className?: string;
+}
 
 export const ContactCard = forwardRef<HTMLDivElement, ContactCardProps>(
   (

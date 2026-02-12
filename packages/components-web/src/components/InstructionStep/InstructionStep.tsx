@@ -5,7 +5,9 @@ import type { InstructionStepPropsBase } from '@groxigo/contracts/components/ins
 import clsx from 'clsx';
 import styles from './InstructionStep.module.css';
 
-export interface InstructionStepProps extends InstructionStepPropsBase {}
+export interface InstructionStepProps extends InstructionStepPropsBase {
+  className?: string;
+}
 
 export const InstructionStep = forwardRef<HTMLDivElement, InstructionStepProps>(
   ({ stepNumber, instruction, imageUrl, className, testID }, ref) => {

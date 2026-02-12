@@ -48,6 +48,7 @@ function isExternalUrl(href: string): boolean {
 }
 
 export interface LinkProps extends LinkPropsBase {
+  className?: string;
   /** HTML anchor target */
   target?: '_blank' | '_self' | '_parent' | '_top';
   /** HTML anchor rel */

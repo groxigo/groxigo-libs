@@ -60,8 +60,6 @@ export interface BottomNavPropsBase extends SDUIStyleProps {
   highlightColor?: string;
   /** Background color tint for the nav bar (floating variant only) */
   backgroundColor?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

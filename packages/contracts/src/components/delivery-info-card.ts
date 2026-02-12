@@ -16,8 +16,6 @@ export interface DeliveryInfoCardPropsBase {
   freeDeliveryThreshold?: string;
   /** Callback when change is pressed */
   onChange?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

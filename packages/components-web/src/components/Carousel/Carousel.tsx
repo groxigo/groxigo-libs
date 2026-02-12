@@ -2,36 +2,16 @@
 
 import { forwardRef, useRef, useCallback, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import type { CarouselItemBase, CarouselPropsBase } from '@groxigo/contracts/components';
 import { AngleLeft, AngleRight } from '@groxigo/icons/line';
 import { SectionHeader } from '../SectionHeader';
 import clsx from 'clsx';
 import styles from './Carousel.module.css';
 
-export interface CarouselItem {
-  id: string;
-}
+export type CarouselItem = CarouselItemBase;
 
-export interface CarouselProps<T extends CarouselItem = CarouselItem> {
-  /** Items to render */
-  items: T[];
-  /** Render function for each item */
-  renderItem: (item: T) => ReactNode;
-  /** Whether to show navigation arrows @default true */
-  showArrows?: boolean;
-  /** Fixed width for each slide item in pixels */
-  itemWidth?: number;
-  /** Gap between items in pixels @default 12 */
-  gap?: number;
-  /** Section title */
-  title?: string;
-  /** Whether to show "See All" link */
-  showSeeAll?: boolean;
-  /** Callback when "See All" is pressed */
-  onSeeAll?: () => void;
-  /** Additional CSS class */
+export interface CarouselProps<T extends CarouselItem = CarouselItem> extends CarouselPropsBase<T> {
   className?: string;
-  /** Test ID */
-  testID?: string;
 }
 
 function CarouselInner<T extends CarouselItem>(

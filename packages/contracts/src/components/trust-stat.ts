@@ -12,8 +12,6 @@ export interface TrustStatPropsBase {
   icon: ReactNode;
   /** Stat text (e.g., "Same-day delivery") */
   label: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -11,7 +11,9 @@ import styles from './NotificationsCard.module.css';
 
 export type { NotificationSetting };
 
-export interface NotificationsCardProps extends NotificationsCardPropsBase {}
+export interface NotificationsCardProps extends NotificationsCardPropsBase {
+  className?: string;
+}
 
 export const NotificationsCard = forwardRef<HTMLDivElement, NotificationsCardProps>(
   (

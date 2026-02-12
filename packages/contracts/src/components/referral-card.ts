@@ -20,8 +20,6 @@ export interface ReferralCardPropsBase {
   onShare?: () => void;
   /** Callback when copy code button is pressed */
   onCopyCode?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

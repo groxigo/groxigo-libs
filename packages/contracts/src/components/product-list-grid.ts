@@ -16,8 +16,6 @@ export interface ProductListGridPropsBase {
   gap?: number;
   /** Callback when an item is pressed */
   onItemPress?: (id: string) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -14,8 +14,6 @@ export interface CategoryChipPropsBase {
   selected?: boolean;
   /** Press handler */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

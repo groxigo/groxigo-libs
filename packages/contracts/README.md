@@ -20,7 +20,7 @@ Groxigo ships the same design system on mobile (React Native) and web (React/CSS
 
 - **Identical public APIs** -- a `ButtonPropsBase` accepted on mobile is accepted on web.
 - **Type-safe variant unions** -- `ButtonVariant`, `CardSize`, etc. are defined once and reused.
-- **Consistent testing hooks** -- every contract includes `testID` and `className` fields.
+- **Consistent testing hooks** -- every contract includes a `testID` field.
 - **Server-driven UI support** -- SDUI style props are baked into composite contracts.
 
 ## Usage
@@ -58,15 +58,15 @@ import type { SDUIStyleProps, ColorScheme, CustomColors } from '@groxigo/contrac
 ### Extending a contract for a platform
 
 ```typescript
-// React Native -- omit web-only props
+// React Native -- add platform-specific style prop
 import type { ButtonPropsBase } from '@groxigo/contracts';
 import type { StyleProp, ViewStyle } from 'react-native';
 
-export interface ButtonProps extends Omit<ButtonPropsBase, 'className'> {
+export interface ButtonProps extends ButtonPropsBase {
   style?: StyleProp<ViewStyle>;
 }
 
-// Web -- use the contract directly
+// Web -- add platform-specific className prop
 import type { ButtonPropsBase } from '@groxigo/contracts';
 
 export interface ButtonProps extends ButtonPropsBase {
@@ -169,10 +169,10 @@ export interface ButtonPropsBase {
   size?: ButtonSize;              // Union type for sizing
   disabled?: boolean;
   children?: ReactNode;
-  className?: string;             // Web styling hook
   testID?: string;                // Testing hook
   onPress?: (event?: unknown) => void;
 }
+// Platform implementations add className (web) or style (RN) in their own interfaces.
 ```
 
 ### Variant unions
@@ -193,7 +193,6 @@ Every contract includes these fields (where applicable):
 | `variant` | string union | Visual style |
 | `size` | string union | Sizing tier |
 | `colorScheme` | string union | Color theme |
-| `className` | `string` | CSS class (web) |
 | `testID` | `string` | Test automation selector |
 | `children` | `ReactNode` | Slot content |
 | `onPress` | function | Primary interaction handler |
@@ -220,7 +219,7 @@ Composite components that support server-driven UI extend `SDUIStyleProps`, whic
 
 ### Rules
 
-- Every `*PropsBase` must include `className?: string` and `testID?: string`.
+- Every `*PropsBase` must include `testID?: string`. Do NOT add `className` or `style` — those are platform-specific and belong in web/RN implementations.
 - Use `onPress` (not `onClick`) for the primary action handler to stay platform-neutral.
 - Variant and size types must be exported as named type aliases, not inlined.
 - Document each prop with a JSDoc comment and `@default` where applicable.

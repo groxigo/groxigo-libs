@@ -6,7 +6,9 @@ import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './Footer.module.css';
 
-export interface FooterProps extends FooterPropsBase {}
+export interface FooterProps extends FooterPropsBase {
+  className?: string;
+}
 
 /**
  * Footer -- responsive site footer with link sections, social icons,

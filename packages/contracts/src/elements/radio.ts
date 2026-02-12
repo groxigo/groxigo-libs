@@ -23,8 +23,6 @@ export interface RadioPropsBase {
   label?: ReactNode;
   /** Helper text */
   helperText?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -55,6 +53,4 @@ export interface RadioGroupPropsBase {
   onChange?: (value: string) => void;
   /** Children (Radio components) */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
 }

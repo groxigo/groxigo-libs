@@ -16,8 +16,6 @@ export interface StoryAvatarPropsBase {
   state?: StoryAvatarState;
   /** Press handler to view the story */
   onPress?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -5,7 +5,9 @@ import type { CuisineCardPropsBase } from '@groxigo/contracts/components/cuisine
 import clsx from 'clsx';
 import styles from './CuisineCard.module.css';
 
-export interface CuisineCardProps extends CuisineCardPropsBase {}
+export interface CuisineCardProps extends CuisineCardPropsBase {
+  className?: string;
+}
 
 export const CuisineCard = forwardRef<HTMLDivElement, CuisineCardProps>(
   (

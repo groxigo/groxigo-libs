@@ -13,8 +13,8 @@ export interface BreadcrumbLinkProps {
   href?: string;
   /** Link children */
   children?: React.ReactNode;
-  /** Click handler */
-  onClick?: () => void;
+  /** Press handler */
+  onPress?: () => void;
   /** Additional CSS class */
   className?: string;
 }
@@ -24,16 +24,16 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
     {
       href,
       children,
-      onClick,
+      onPress,
       className,
       ...props
     },
     ref
   ) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (onClick) {
+      if (onPress) {
         e.preventDefault();
-        onClick();
+        onPress();
       }
     };
 
@@ -41,7 +41,7 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
       <a
         ref={ref}
         href={href || '#'}
-        onClick={onClick ? handleClick : undefined}
+        onClick={onPress ? handleClick : undefined}
         className={clsx(styles.link, className)}
         {...props}
       >

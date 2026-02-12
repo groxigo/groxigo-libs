@@ -31,8 +31,6 @@ export interface AvatarPropsBase {
   fallback?: ReactNode;
   /** Border color */
   borderColor?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -49,8 +47,6 @@ export interface AvatarGroupPropsBase {
   spacing?: number;
   /** Children (Avatar components) */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

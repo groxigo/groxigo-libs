@@ -51,6 +51,7 @@
 .overlay {
   position: absolute;
   inset: 0;
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- intentional alpha overlay */
   background: rgba(0, 0, 0, 0.4);
 }
 

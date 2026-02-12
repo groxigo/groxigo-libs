@@ -25,8 +25,6 @@ export interface HeroSectionPropsBase {
   onGoogleAuth?: () => void;
   onFacebookAuth?: () => void;
   onAppleAuth?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

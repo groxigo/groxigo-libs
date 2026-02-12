@@ -17,8 +17,6 @@ export interface ProfileHeaderPropsBase {
   avatarUrl?: string;
   /** Callback when edit button is pressed */
   onEdit?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

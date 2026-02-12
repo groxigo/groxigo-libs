@@ -10,7 +10,9 @@ import styles from './NutritionTable.module.css';
 
 export type { NutritionRow };
 
-export interface NutritionTableProps extends NutritionTablePropsBase {}
+export interface NutritionTableProps extends NutritionTablePropsBase {
+  className?: string;
+}
 
 export const NutritionTable = forwardRef<HTMLDivElement, NutritionTableProps>(
   (

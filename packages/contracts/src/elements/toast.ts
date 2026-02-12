@@ -39,7 +39,7 @@ export interface ToastOptions {
   /** Action button */
   action?: {
     label: string;
-    onClick: () => void;
+    onPress: () => void;
   };
 }
 
@@ -51,8 +51,6 @@ export interface ToastPropsBase extends ToastOptions {
   id: string;
   /** Close handler */
   onClose: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -33,8 +33,6 @@ export interface SwitchPropsBase {
   name?: string;
   /** Change handler */
   onChange?: (checked: boolean) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

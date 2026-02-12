@@ -1,22 +1,15 @@
 'use client';
 
 import { forwardRef, useCallback } from 'react';
+import type { VariantSelectorPropsBase } from '@groxigo/contracts/components';
 import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './VariantSelector.module.css';
 
-export interface VariantOption {
-  label: string;
-  price?: string;
-  value: string;
-}
+export type { VariantOption } from '@groxigo/contracts/components';
 
-export interface VariantSelectorProps {
-  options: VariantOption[];
-  selectedValue?: string;
-  onSelect?: (value: string) => void;
+export interface VariantSelectorProps extends VariantSelectorPropsBase {
   className?: string;
-  testID?: string;
 }
 
 export const VariantSelector = forwardRef<HTMLDivElement, VariantSelectorProps>(

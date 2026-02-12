@@ -27,8 +27,6 @@ export interface AddressCardPropsBase {
   onEdit?: () => void;
   /** Callback when delete is pressed */
   onDelete?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

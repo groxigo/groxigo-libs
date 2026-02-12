@@ -13,10 +13,8 @@ export interface SkeletonPropsBase {
   height?: number | string;
   /** Border radius (for rounded variant) */
   borderRadius?: number;
-  /** Whether to animate */
+  /** Whether to animate @default true */
   animate?: boolean;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

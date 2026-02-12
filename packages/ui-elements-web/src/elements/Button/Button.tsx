@@ -16,6 +16,7 @@ import type { ButtonPropsBase } from '@groxigo/contracts';
 import styles from './Button.module.css';
 
 export interface ButtonProps extends ButtonPropsBase {
+  className?: string;
   /** HTML button type */
   type?: 'button' | 'submit' | 'reset';
   /** Click handler (alias for onPress) */

@@ -6,7 +6,9 @@ import clsx from 'clsx';
 import { Star } from '@groxigo/icons/line';
 import styles from './RecipeHero.module.css';
 
-export interface RecipeHeroProps extends RecipeHeroPropsBase {}
+export interface RecipeHeroProps extends RecipeHeroPropsBase {
+  className?: string;
+}
 
 export const RecipeHero = forwardRef<HTMLDivElement, RecipeHeroProps>(
   (

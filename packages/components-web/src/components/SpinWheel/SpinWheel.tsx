@@ -11,7 +11,9 @@ import styles from './SpinWheel.module.css';
 
 export type { SpinWheelSegment };
 
-export interface SpinWheelProps extends SpinWheelPropsBase {}
+export interface SpinWheelProps extends SpinWheelPropsBase {
+  className?: string;
+}
 
 /* ── Alternating segment colors ── */
 const SEGMENT_COLORS = [

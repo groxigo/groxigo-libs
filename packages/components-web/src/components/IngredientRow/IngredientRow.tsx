@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import styles from './IngredientRow.module.css';
 
 export interface IngredientRowProps extends IngredientRowPropsBase {
+  className?: string;
   /** Slot for product carousel rendered below the ingredient info */
   children?: React.ReactNode;
 }

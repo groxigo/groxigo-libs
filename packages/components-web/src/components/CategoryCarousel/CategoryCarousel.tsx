@@ -9,7 +9,9 @@ import { SectionHeader } from '../SectionHeader';
 import clsx from 'clsx';
 import styles from './CategoryCarousel.module.css';
 
-export interface CategoryCarouselProps extends CategoryCarouselPropsBase {}
+export interface CategoryCarouselProps extends CategoryCarouselPropsBase {
+  className?: string;
+}
 
 
 export const CategoryCarousel = forwardRef<HTMLDivElement, CategoryCarouselProps>(

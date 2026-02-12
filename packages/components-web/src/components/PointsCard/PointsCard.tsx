@@ -6,7 +6,9 @@ import { Button, Progress } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './PointsCard.module.css';
 
-export interface PointsCardProps extends PointsCardPropsBase {}
+export interface PointsCardProps extends PointsCardPropsBase {
+  className?: string;
+}
 
 export const PointsCard = forwardRef<HTMLDivElement, PointsCardProps>(
   (

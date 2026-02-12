@@ -11,7 +11,9 @@ import styles from './PolicyCard.module.css';
 
 export type { PolicyCardVariant };
 
-export interface PolicyCardProps extends PolicyCardPropsBase {}
+export interface PolicyCardProps extends PolicyCardPropsBase {
+  className?: string;
+}
 
 export const PolicyCard = forwardRef<HTMLDivElement, PolicyCardProps>(
   ({ variant = 'info', message, title, className, testID }, ref) => {

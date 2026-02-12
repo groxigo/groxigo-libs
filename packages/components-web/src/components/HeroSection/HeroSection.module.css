@@ -1,5 +1,6 @@
 /* HeroSection — full-bleed hero banner */
 /* Mobile-first: fluid tokens + container queries */
+/* stylelint-disable declaration-property-value-disallowed-list -- glass morphism requires rgba alpha values */
 
 .root {
   container-type: inline-size;

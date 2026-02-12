@@ -14,7 +14,9 @@ import styles from './AddressForm.module.css';
 
 export type { AddressFormValues, AddressFormType };
 
-export interface AddressFormProps extends AddressFormPropsBase {}
+export interface AddressFormProps extends AddressFormPropsBase {
+  className?: string;
+}
 
 const DEFAULT_ADDRESS_LABELS = {
   fullName: 'Full Name',

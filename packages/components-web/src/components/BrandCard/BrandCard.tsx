@@ -5,7 +5,9 @@ import type { BrandCardPropsBase } from '@groxigo/contracts/components/brand-car
 import clsx from 'clsx';
 import styles from './BrandCard.module.css';
 
-export interface BrandCardProps extends BrandCardPropsBase {}
+export interface BrandCardProps extends BrandCardPropsBase {
+  className?: string;
+}
 
 export const BrandCard = forwardRef<HTMLDivElement, BrandCardProps>(
   ({ name, logoUrl, onPress, className, testID }, ref) => {

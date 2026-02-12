@@ -27,8 +27,6 @@ export interface ImagePropsBase {
   onLoad?: () => void;
   /** Error handler */
   onError?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

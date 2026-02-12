@@ -5,7 +5,9 @@ import type { LandingCuisineCardPropsBase } from '@groxigo/contracts/components'
 import clsx from 'clsx';
 import styles from './LandingCuisineCard.module.css';
 
-export interface LandingCuisineCardProps extends LandingCuisineCardPropsBase {}
+export interface LandingCuisineCardProps extends LandingCuisineCardPropsBase {
+  className?: string;
+}
 
 /**
  * LandingCuisineCard — square image card with centered label below.
@@ -13,15 +15,15 @@ export interface LandingCuisineCardProps extends LandingCuisineCardPropsBase {}
  * Used in the "Explore by Cuisine" section on the landing page.
  */
 export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardProps>(
-  ({ name, imageUrl, href, onClick, className, testID }, ref) => {
+  ({ name, imageUrl, href, onPress, className, testID }, ref) => {
     const handleClick = () => {
-      onClick?.();
+      onPress?.();
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        onClick?.();
+        onPress?.();
       }
     };
 
@@ -43,7 +45,7 @@ export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardP
       </>
     );
 
-    if (href && !onClick) {
+    if (href && !onPress) {
       return (
         <a
           ref={ref as React.Ref<HTMLAnchorElement>}

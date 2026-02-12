@@ -18,27 +18,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onClick: () => {},
+    onPress: () => {},
   },
 };
 
 export const WithItems: Story = {
   args: {
     count: 5,
-    onClick: () => {},
+    onPress: () => {},
   },
 };
 
 export const Empty: Story = {
   args: {
     count: 0,
-    onClick: () => {},
+    onPress: () => {},
   },
 };
 
 export const HighCount: Story = {
   args: {
     count: 120,
-    onClick: () => {},
+    onPress: () => {},
   },
 };

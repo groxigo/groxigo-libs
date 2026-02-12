@@ -44,8 +44,6 @@ export interface SliderPropsBase {
   onChange?: (value: number) => void;
   /** Change end handler (on release) */
   onChangeEnd?: (value: number) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

@@ -12,8 +12,6 @@ export interface InstructionStepPropsBase {
   instruction: string;
   /** Optional image URL shown below the instruction */
   imageUrl?: string;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

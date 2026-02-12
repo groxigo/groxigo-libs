@@ -14,8 +14,6 @@ export interface LandingHeaderPropsBase {
   signInLabel?: string;
   /** Controls transparent vs solid background @default false */
   isScrolled?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

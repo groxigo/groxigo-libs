@@ -11,7 +11,9 @@ import styles from './AddressCard.module.css';
 
 export type { AddressType };
 
-export interface AddressCardProps extends AddressCardPropsBase {}
+export interface AddressCardProps extends AddressCardPropsBase {
+  className?: string;
+}
 
 export const AddressCard = forwardRef<HTMLDivElement, AddressCardProps>(
   (

@@ -20,8 +20,6 @@ export interface PriceDisplayPropsBase {
   size?: PriceDisplaySize;
   /** Whether to show currency symbol @default true */
   showCurrency?: boolean;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

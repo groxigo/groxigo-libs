@@ -11,7 +11,9 @@ import styles from './PaymentMethodCard.module.css';
 
 export type { CardBrand };
 
-export interface PaymentMethodCardProps extends PaymentMethodCardPropsBase {}
+export interface PaymentMethodCardProps extends PaymentMethodCardPropsBase {
+  className?: string;
+}
 
 const BRAND_LABELS: Record<CardBrand, string> = {
   visa: 'VISA',

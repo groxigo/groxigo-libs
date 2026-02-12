@@ -36,17 +36,15 @@ export interface DrawerPropsBase {
   /** Whether to preserve content when closed @default false */
   preserveContent?: boolean;
   /** Initial focus element ref */
-  initialFocusRef?: React.RefObject<any>;
+  initialFocusRef?: React.RefObject<unknown>;
   /** Final focus element ref (on close) */
-  finalFocusRef?: React.RefObject<any>;
+  finalFocusRef?: React.RefObject<unknown>;
   /** Open animation callback */
   onOpen?: () => void;
   /** Animation complete callback */
   onAnimationComplete?: () => void;
   /** Drawer content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -57,8 +55,6 @@ export interface DrawerPropsBase {
 export interface DrawerHeaderPropsBase {
   /** Header content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -69,8 +65,6 @@ export interface DrawerHeaderPropsBase {
 export interface DrawerBodyPropsBase {
   /** Body content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -81,8 +75,6 @@ export interface DrawerBodyPropsBase {
 export interface DrawerFooterPropsBase {
   /** Footer content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

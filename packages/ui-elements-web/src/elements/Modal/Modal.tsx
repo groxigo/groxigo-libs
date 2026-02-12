@@ -52,6 +52,7 @@ interface ModalContextValue {
 const ModalContext = createContext<ModalContextValue | null>(null);
 
 export interface ModalProps extends ModalPropsBase {
+  className?: string;
   /** ID for the modal element */
   id?: string;
 }
@@ -154,7 +155,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       previousActiveElement.current = document.activeElement as HTMLElement;
 
       // Focus initial element or modal
-      const elementToFocus = initialFocusRef?.current || modalRef.current;
+      const elementToFocus = (initialFocusRef?.current as HTMLElement) || modalRef.current;
       if (elementToFocus) {
         // Delay focus to ensure modal is visible
         requestAnimationFrame(() => {
@@ -165,7 +166,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       return () => {
         // Restore focus on close
         const elementToRestore =
-          finalFocusRef?.current || previousActiveElement.current;
+          (finalFocusRef?.current as HTMLElement) || previousActiveElement.current;
         if (elementToRestore) {
           elementToRestore.focus();
         }
@@ -315,6 +316,7 @@ Modal.displayName = 'Modal';
 // ============================================
 
 export interface ModalHeaderProps extends ModalHeaderPropsBase {
+  className?: string;
   /** ID for aria-labelledby */
   id?: string;
 }
@@ -348,7 +350,9 @@ ModalHeader.displayName = 'ModalHeader';
 // MODAL BODY COMPONENT
 // ============================================
 
-export interface ModalBodyProps extends ModalBodyPropsBase {}
+export interface ModalBodyProps extends ModalBodyPropsBase {
+  className?: string;
+}
 
 export const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(
   ({ children, className, ...props }, ref) => (
@@ -368,7 +372,9 @@ ModalBody.displayName = 'ModalBody';
 // MODAL FOOTER COMPONENT
 // ============================================
 
-export interface ModalFooterProps extends ModalFooterPropsBase {}
+export interface ModalFooterProps extends ModalFooterPropsBase {
+  className?: string;
+}
 
 export const ModalFooter = forwardRef<HTMLDivElement, ModalFooterProps>(
   ({ children, className, ...props }, ref) => (

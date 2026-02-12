@@ -7,7 +7,9 @@ import { clsx } from 'clsx';
 import type { SpinnerPropsBase } from '@groxigo/contracts';
 import styles from './Spinner.module.css';
 
-export interface SpinnerProps extends SpinnerPropsBase {}
+export interface SpinnerProps extends SpinnerPropsBase {
+  className?: string;
+}
 
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   (

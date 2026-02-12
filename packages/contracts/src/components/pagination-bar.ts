@@ -12,8 +12,6 @@ export interface PaginationBarPropsBase {
   totalPages: number;
   /** Callback when a page is selected */
   onPageChange?: (page: number) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

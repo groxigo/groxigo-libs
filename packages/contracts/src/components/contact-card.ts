@@ -16,8 +16,6 @@ export interface ContactCardPropsBase {
   phone?: string;
   /** Callback when contact action is pressed */
   onContact?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

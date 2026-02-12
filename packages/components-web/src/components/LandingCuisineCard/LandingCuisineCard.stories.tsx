@@ -15,14 +15,14 @@ export const Default: Story = {
   args: {
     name: 'Indian',
     imageUrl: 'https://placehold.co/120x120/FFC107/333?text=🇮🇳',
-    onClick: () => {},
+    onPress: () => {},
   },
 };
 
 export const WithoutImage: Story = {
   args: {
     name: 'Pakistani',
-    onClick: () => {},
+    onPress: () => {},
   },
 };
 
@@ -52,7 +52,7 @@ export const CuisineGrid: Story = {
             key={c.name}
             name={c.name}
             imageUrl={`https://placehold.co/120x120/${c.color}/fff?text=${c.name.charAt(0)}`}
-            onClick={() => {}}
+            onPress={() => {}}
           />
         ))}
       </div>

@@ -5,7 +5,9 @@ import type { StepCardPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
 import styles from './StepCard.module.css';
 
-export interface StepCardProps extends StepCardPropsBase {}
+export interface StepCardProps extends StepCardPropsBase {
+  className?: string;
+}
 
 /**
  * StepCard — vertical card showing an icon in a circle, title, and description.

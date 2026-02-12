@@ -35,8 +35,6 @@ export interface NutritionTablePropsBase {
   rows: NutritionRow[];
   /** Vitamins and minerals section */
   vitamins?: { label: string; value: string }[];
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

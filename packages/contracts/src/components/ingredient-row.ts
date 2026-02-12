@@ -14,8 +14,6 @@ export interface IngredientRowPropsBase {
   checked?: boolean;
   /** Callback when the checkbox is toggled */
   onToggle?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

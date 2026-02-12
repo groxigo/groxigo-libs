@@ -26,7 +26,9 @@ function formatPrice(value: number | string, currency: string): string {
   return `${symbol}${numValue.toFixed(2)}`;
 }
 
-export interface CartItemProps extends CartItemPropsBase {}
+export interface CartItemProps extends CartItemPropsBase {
+  className?: string;
+}
 
 export const CartItem = forwardRef<HTMLDivElement, CartItemProps>(
   (

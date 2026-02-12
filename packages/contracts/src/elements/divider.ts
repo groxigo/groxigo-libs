@@ -21,8 +21,6 @@ export interface DividerPropsBase {
   color?: string;
   /** Spacing around divider */
   spacing?: number;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

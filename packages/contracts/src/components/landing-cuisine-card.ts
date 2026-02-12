@@ -12,10 +12,8 @@ export interface LandingCuisineCardPropsBase {
   imageUrl?: string;
   /** Link destination */
   href?: string;
-  /** Click handler */
-  onClick?: () => void;
-  /** Additional CSS class (web only) */
-  className?: string;
+  /** Press handler */
+  onPress?: () => void;
   /** Test ID for testing */
   testID?: string;
 }

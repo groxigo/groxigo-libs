@@ -65,17 +65,15 @@ export interface ModalPropsBase {
   /** Whether to use portal @default true */
   usePortal?: boolean;
   /** Initial focus element ref */
-  initialFocusRef?: React.RefObject<any>;
+  initialFocusRef?: React.RefObject<unknown>;
   /** Final focus element ref (on close) */
-  finalFocusRef?: React.RefObject<any>;
+  finalFocusRef?: React.RefObject<unknown>;
   /** Open animation callback */
   onOpen?: () => void;
   /** Animation complete callback */
   onAnimationComplete?: () => void;
   /** Modal content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -86,8 +84,6 @@ export interface ModalPropsBase {
 export interface ModalHeaderPropsBase {
   /** Header content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -98,8 +94,6 @@ export interface ModalHeaderPropsBase {
 export interface ModalBodyPropsBase {
   /** Body content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -110,8 +104,6 @@ export interface ModalBodyPropsBase {
 export interface ModalFooterPropsBase {
   /** Footer content */
   children?: ReactNode;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }
@@ -123,5 +115,5 @@ export interface AlertDialogPropsBase extends Omit<ModalPropsBase, 'closeOnOverl
   /** Whether clicking backdrop closes dialog @default false */
   closeOnOverlayClick?: boolean;
   /** Reference to the least destructive button */
-  leastDestructiveRef?: React.RefObject<any>;
+  leastDestructiveRef?: React.RefObject<unknown>;
 }

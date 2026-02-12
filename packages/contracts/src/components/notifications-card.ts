@@ -21,8 +21,6 @@ export interface NotificationsCardPropsBase {
   settings: NotificationSetting[];
   /** Callback when a toggle is changed */
   onToggle?: (key: string, enabled: boolean) => void;
-  /** Additional CSS class (web only) */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

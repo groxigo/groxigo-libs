@@ -6,7 +6,9 @@ import { Avatar } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './StoryAvatar.module.css';
 
-export interface StoryAvatarProps extends StoryAvatarPropsBase {}
+export interface StoryAvatarProps extends StoryAvatarPropsBase {
+  className?: string;
+}
 
 export const StoryAvatar = forwardRef<HTMLDivElement, StoryAvatarProps>(
   (

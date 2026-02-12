@@ -19,12 +19,10 @@ export interface BadgePropsBase {
   leftIcon?: ReactNode;
   /** Right icon */
   rightIcon?: ReactNode;
-  /** Rounded pill style */
+  /** Rounded pill style @default false */
   rounded?: boolean;
   /** Badge content */
   children?: ReactNode;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID */
   testID?: string;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/components-web",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Groxigo Composite Components for Web - Built on ui-elements-web",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -44,9 +44,9 @@
   },
   "dependencies": {
     "@groxigo/tokens": "^1.0.2",
-    "@groxigo/contracts": "^1.2.2",
+    "@groxigo/contracts": "^1.3.0",
     "@groxigo/icons": "^1.0.1",
-    "@groxigo/ui-elements-web": "^1.2.2",
+    "@groxigo/ui-elements-web": "^1.2.3",
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.0"
   },
