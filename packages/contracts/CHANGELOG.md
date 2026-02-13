@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.3.3
+
+### Patch Changes
+
+- Add display:flex to Carousel slides for even-height tiles; add showCheckbox prop to IngredientRow
+
 ## 1.3.1
 
 ### Patch Changes
