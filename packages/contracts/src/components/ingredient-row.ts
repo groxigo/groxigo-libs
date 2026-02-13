@@ -10,6 +10,8 @@ export interface IngredientRowPropsBase {
   name: string;
   /** Quantity string (e.g., "2 cups", "1 tsp") */
   quantity: string;
+  /** Whether to show the checkbox @default true */
+  showCheckbox?: boolean;
   /** Whether the ingredient is checked off */
   checked?: boolean;
   /** Callback when the checkbox is toggled */

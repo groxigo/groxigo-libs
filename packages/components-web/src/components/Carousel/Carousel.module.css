@@ -25,6 +25,7 @@
 }
 
 .slide {
+  display: flex;
   flex-shrink: 0;
   scroll-snap-align: start;
 }

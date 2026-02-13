@@ -13,7 +13,7 @@ export interface IngredientRowProps extends IngredientRowPropsBase {
 }
 
 export const IngredientRow = forwardRef<HTMLDivElement, IngredientRowProps>(
-  ({ name, quantity, checked = false, onToggle, children, className, testID }, ref) => {
+  ({ name, quantity, showCheckbox = true, checked = false, onToggle, children, className, testID }, ref) => {
     return (
       <div
         ref={ref}
@@ -21,13 +21,15 @@ export const IngredientRow = forwardRef<HTMLDivElement, IngredientRowProps>(
         data-testid={testID}
       >
         <div className={styles.ingredientInfo}>
-          <Checkbox
-            checked={checked}
-            onChange={onToggle ? () => onToggle() : undefined}
-            size="md"
-            className={styles.checkbox}
-            aria-label={`Mark ${name} as ${checked ? 'needed' : 'done'}`}
-          />
+          {showCheckbox && (
+            <Checkbox
+              checked={checked}
+              onChange={onToggle ? () => onToggle() : undefined}
+              size="md"
+              className={styles.checkbox}
+              aria-label={`Mark ${name} as ${checked ? 'needed' : 'done'}`}
+            />
+          )}
           <div className={styles.content}>
             <span className={clsx(styles.name, checked && styles.nameChecked)}>
               {name}
