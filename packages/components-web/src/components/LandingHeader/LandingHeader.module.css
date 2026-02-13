@@ -3,7 +3,6 @@
 /* stylelint-disable declaration-property-value-disallowed-list -- glass morphism requires rgba alpha values */
 
 .root {
-  container-type: inline-size;
   display: flex;
   align-items: center;
   height: var(--spacing-14, 56px);
@@ -109,15 +108,14 @@
   background: var(--surface-secondary, #f8fafc);
 }
 
-/* ------- Container: 768px+ ------- */
-@container (min-width: 768px) {
+/* ------- @media (not @container — fixed elements can't use containment) ------- */
+@media (min-width: 768px) {
   .root {
     padding: 0 var(--spacing-8, 32px);
   }
 }
 
-/* ------- Container: 1024px+ ------- */
-@container (min-width: 1024px) {
+@media (min-width: 1024px) {
   .root {
     padding: 0 var(--spacing-20, 80px);
   }
