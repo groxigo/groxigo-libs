@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 480px;
+  min-height: 480px;
   overflow: hidden;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
   background-color: var(--text-primary, #0f172a);
@@ -35,7 +35,7 @@
   );
 }
 
-/* Content container */
+/* Content container — padding-top clears the fixed LandingHeader (56px) */
 .content {
   position: relative;
   z-index: 1;
@@ -44,7 +44,7 @@
   align-items: center;
   text-align: center;
   max-width: 343px;
-  padding: 0 var(--spacing-4, 16px);
+  padding: var(--spacing-14, 56px) var(--spacing-4, 16px) var(--spacing-6, 24px);
   gap: var(--spacing-4, 16px);
 }
 
@@ -160,15 +160,15 @@
   height: 48px;
   border-radius: var(--radius-full, 9999px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-inverse, #ffffff);
+  background: var(--surface-primary, #ffffff);
+  color: var(--text-primary, #0f172a);
   cursor: pointer;
   padding: 0;
   transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .ssoIcon:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--surface-secondary, #f8fafc);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -182,7 +182,7 @@
 /* ------- Container: 768px+ (Tablet) ------- */
 @container (min-width: 768px) {
   .root {
-    height: 520px;
+    min-height: 520px;
   }
 
   .content {
@@ -193,7 +193,7 @@
 /* ------- Container: 1024px+ (Large) ------- */
 @container (min-width: 1024px) {
   .root {
-    height: 600px;
+    min-height: 600px;
   }
 
   .content {
