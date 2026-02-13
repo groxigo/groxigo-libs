@@ -7,10 +7,13 @@ import clsx from 'clsx';
 import styles from './ProductTile.module.css';
 import { PriceDisplay } from '../PriceDisplay';
 import { Heart } from '@groxigo/icons/line';
+import { buildSrcSetFromUrl } from '../../utils/image-url';
 
 export interface ProductTileProps extends ProductTilePropsBase {
   /** Additional CSS class */
   className?: string;
+  /** Load image eagerly (for above-the-fold tiles) */
+  priority?: boolean;
 }
 
 const BADGE_COLOR_MAP: Record<string, 'primary' | 'success' | 'warning' | 'error'> = {
@@ -60,6 +63,7 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
       onPress,
       testID,
       className,
+      priority = false,
     },
     ref
   ) => {
@@ -121,7 +125,14 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
         {/* ── Image section ── */}
         <div className={styles.imageSection}>
           {imageUrl ? (
-            <img src={imageUrl} alt={name} className={styles.image} />
+            <img
+              src={imageUrl}
+              srcSet={buildSrcSetFromUrl(imageUrl, ['sm', 'md', 'lg'])}
+              sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 200px"
+              alt={name}
+              loading={priority ? 'eager' : 'lazy'}
+              className={styles.image}
+            />
           ) : (
             <div className={styles.imagePlaceholder} />
           )}

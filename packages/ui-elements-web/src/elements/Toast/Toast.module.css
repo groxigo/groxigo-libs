@@ -48,6 +48,8 @@
 
 .icon {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .iconSvg {
@@ -70,8 +72,10 @@
 }
 
 .title {
+  margin: 0;
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal, 1.5);
 }
 
 .titleSubtle {
@@ -79,8 +83,10 @@
 }
 
 .description {
-  font-size: var(--font-size-sm);
+  margin: 0;
   margin-top: var(--spacing-0-5, 2px);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal, 1.5);
 }
 
 .descriptionSubtle {

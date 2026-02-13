@@ -48,6 +48,7 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
       setActiveIndex,
       closeOnSelect,
       setItemCount,
+      placement,
     } = useMenuContext();
 
     // Sync the forwarded ref with the context ref
@@ -118,10 +119,6 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
       },
       [menuRef, buttonRef, setIsOpen, setActiveIndex]
     );
-
-    // Get placement from parent
-    const parent = menuRef.current?.parentElement;
-    const placement = parent?.dataset?.placement || 'bottom-start';
 
     if (!isOpen) return null;
 

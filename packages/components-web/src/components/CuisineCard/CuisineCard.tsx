@@ -48,7 +48,7 @@ export const CuisineCard = forwardRef<HTMLDivElement, CuisineCardProps>(
       >
         {/* Background image or placeholder */}
         {imageUrl ? (
-          <img src={imageUrl} alt="" className={styles.image} />
+          <img src={imageUrl} alt="" loading="lazy" className={styles.image} />
         ) : (
           <div className={styles.imagePlaceholder} aria-hidden="true" />
         )}

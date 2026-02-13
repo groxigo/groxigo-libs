@@ -93,10 +93,7 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
 
         {/* Copyright */}
         {copyrightText && (
-          <div className={styles.copyright}>
-            <span>&copy;</span>
-            <span>{copyrightText}</span>
-          </div>
+          <p className={styles.copyright}>{copyrightText}</p>
         )}
         </div>
       </footer>

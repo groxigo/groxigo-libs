@@ -8,6 +8,7 @@ import styles from './RecipeCard.module.css';
 import { RecipeTagChip } from '../RecipeTagChip';
 import type { RecipeTagColorScheme } from '@groxigo/contracts/components/recipe-tag-chip';
 import { Clock } from '@groxigo/icons/line';
+import { buildSrcSetFromUrl } from '../../utils/image-url';
 
 export interface RecipeCardProps extends RecipeCardPropsBase {
   className?: string;
@@ -99,7 +100,14 @@ export const RecipeCard = forwardRef<HTMLDivElement, RecipeCardProps>(
           )}
         >
           {imageUrl ? (
-            <img src={imageUrl} alt={title} className={styles.image} />
+            <img
+              src={imageUrl}
+              srcSet={buildSrcSetFromUrl(imageUrl, ['sm', 'md', 'lg'])}
+              sizes="(max-width: 640px) 50vw, 300px"
+              alt={title}
+              loading="lazy"
+              className={styles.image}
+            />
           ) : (
             <div className={styles.imagePlaceholder} aria-hidden="true" />
           )}

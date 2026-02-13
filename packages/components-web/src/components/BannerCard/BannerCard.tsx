@@ -5,6 +5,7 @@ import type { BannerCardPropsBase } from '@groxigo/contracts/components/banner-c
 import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './BannerCard.module.css';
+import { buildSrcSetFromUrl } from '../../utils/image-url';
 
 export interface BannerCardProps extends BannerCardPropsBase {
   className?: string;
@@ -117,8 +118,11 @@ export const BannerCard = forwardRef<HTMLDivElement, BannerCardProps>(
           <img
             className={styles.backgroundImage}
             src={imageUrl}
+            srcSet={buildSrcSetFromUrl(imageUrl, ['md', 'lg', 'xl', '2xl'])}
+            sizes="100vw"
             alt=""
             aria-hidden="true"
+            loading="lazy"
           />
         )}
 

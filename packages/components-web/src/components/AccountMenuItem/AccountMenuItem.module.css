@@ -22,12 +22,6 @@
   flex-shrink: 0;
   border-radius: var(--radius-full, 9999px);
   background: var(--surface-secondary, #f8fafc);
-  overflow: hidden;
-}
-
-.iconText {
-  font-size: var(--font-size-lg, 18px);
-  line-height: 1;
   color: var(--text-secondary, #475569);
 }
 

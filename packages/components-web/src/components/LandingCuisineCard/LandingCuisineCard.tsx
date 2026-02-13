@@ -48,7 +48,8 @@ export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardP
     if (href && !onPress) {
       return (
         <a
-          ref={ref as Ref<HTMLAnchorElement>}
+          /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+          ref={ref as any}
           href={href}
           className={clsx(styles.root, className)}
           data-testid={testID}

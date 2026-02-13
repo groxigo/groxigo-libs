@@ -34,6 +34,7 @@ interface MenuContextValue {
   itemCount: number;
   setItemCount: (count: number) => void;
   registerItem: () => number;
+  placement: string;
 }
 
 const MenuContext = createContext<MenuContextValue | null>(null);
@@ -158,6 +159,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
       itemCount,
       setItemCount,
       registerItem,
+      placement,
     };
 
     return (

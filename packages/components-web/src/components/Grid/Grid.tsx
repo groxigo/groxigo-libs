@@ -19,6 +19,7 @@ function GridInner<T extends GridItem>(
     minItemWidthLg,
     maxItemWidth,
     columns,
+    minColumns,
     gap = 16,
     className,
     testID,
@@ -32,7 +33,17 @@ function GridInner<T extends GridItem>(
   if (columns) {
     gridStyle.gridTemplateColumns = `repeat(${columns}, 1fr)`;
   } else {
-    gridStyle['--grid-min'] = `${minItemWidth}px`;
+    // When minColumns is set, cap minItemWidth so that many columns
+    // always fit on the narrowest supported screen (360px - 2×12px padding = 336px)
+    let effectiveMin = minItemWidth;
+    if (minColumns != null) {
+      const narrowestContent = 336;
+      const narrowestItemWidth = Math.floor(
+        (narrowestContent - (minColumns - 1) * gap) / minColumns
+      );
+      effectiveMin = Math.min(minItemWidth, narrowestItemWidth);
+    }
+    gridStyle['--grid-min'] = `${effectiveMin}px`;
     if (minItemWidthLg != null) {
       gridStyle['--grid-min-lg'] = `${minItemWidthLg}px`;
     }

@@ -25,18 +25,12 @@
     0 0 0 5px var(--border-focus, #3b82f6);
 }
 
-/* Sizes (max-width for standalone use; fills parent in grids) */
-.sm {
-  max-width: 80px;
-}
+/* Sizes — cards fill their parent (grid cell) width; no max-width constraints */
+.sm {}
 
-.md {
-  max-width: 100px;
-}
+.md {}
 
-.lg {
-  max-width: 120px;
-}
+.lg {}
 
 /* Variants */
 .circular .imageWrapper {

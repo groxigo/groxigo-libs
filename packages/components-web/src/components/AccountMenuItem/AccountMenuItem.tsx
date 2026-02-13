@@ -7,8 +7,8 @@ import clsx from 'clsx';
 import styles from './AccountMenuItem.module.css';
 
 export interface AccountMenuItemProps {
-  /** Material icon name or emoji to display in the icon circle */
-  icon?: string;
+  /** Icon element (e.g. from @groxigo/icons) to display in the icon circle */
+  icon?: ReactNode;
   /** Primary label text */
   label: string;
   /** Optional secondary description text */
@@ -53,7 +53,7 @@ export const AccountMenuItem = forwardRef<HTMLButtonElement, AccountMenuItemProp
         {/* Icon circle */}
         {icon && (
           <span className={styles.iconCircle} aria-hidden="true">
-            <span className={styles.iconText}>{icon}</span>
+            {icon}
           </span>
         )}
 

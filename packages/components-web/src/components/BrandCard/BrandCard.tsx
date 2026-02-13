@@ -33,6 +33,7 @@ export const BrandCard = forwardRef<HTMLDivElement, BrandCardProps>(
               className={styles.logo}
               src={logoUrl}
               alt={`${name} logo`}
+              loading="lazy"
             />
           ) : (
             <div className={styles.logoPlaceholder} aria-hidden="true" />

@@ -38,12 +38,16 @@
 .track {
   position: relative;
   display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
   border-radius: var(--radius-full, 9999px);
-  border: 2px solid transparent;
+  border: none;
+  padding: 2px;
+  box-sizing: border-box;
   transition: background-color 200ms ease-in-out;
   cursor: inherit;
   outline: none;
+  overflow: hidden;
   /* §22: Off state */
   background-color: var(--border-default, #d1d5db);
 }
@@ -61,7 +65,6 @@
   pointer-events: none;
   /* §22: Disabled — semantic tokens, NOT opacity */
   background-color: var(--surface-disabled, #f1f5f9);
-  border-color: var(--border-disabled, #e2e8f0);
 }
 
 /* ============================================
@@ -79,7 +82,6 @@
 /* Disabled + checked */
 .track.checked:disabled {
   background-color: var(--surface-disabled, #f1f5f9);
-  border-color: var(--border-disabled, #e2e8f0);
 }
 
 /* ============================================
@@ -130,12 +132,12 @@
   height: var(--spacing-6, 24px);
 }
 
-/* Thumb unchecked position — small offset from left */
+/* Thumb unchecked position */
 .thumb.unchecked {
-  transform: translateX(2px);
+  transform: translateX(0);
 }
 
-/* Thumb checked positions */
+/* Thumb checked positions — slide to right edge of content area */
 .thumbSm.thumbChecked {
   transform: translateX(var(--spacing-4, 16px));
 }

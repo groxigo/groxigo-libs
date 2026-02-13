@@ -23,6 +23,8 @@ export interface GridPropsBase<T extends GridItemBase = GridItemBase> {
   maxItemWidth?: number;
   /** Fixed number of columns (overrides minItemWidth) */
   columns?: number;
+  /** Minimum number of columns to show regardless of item width */
+  minColumns?: number;
   /** Gap between items in pixels @default 16 */
   gap?: number;
   /** Test ID for testing */
