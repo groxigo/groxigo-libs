@@ -1,44 +1,83 @@
-/* ───── HorizontalNav ───── */
+/* ───── HorizontalNav — Modern icon-above-text category bar ───── */
 
 .root {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background: var(--surface-primary, #ffffff);
-  height: 44px;
-  padding-left: var(--spacing-4, 16px);
-  padding-right: var(--spacing-4, 16px);
   width: 100%;
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
 }
 
 /* Scrollable row */
 .scrollContainer {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-2, 8px);
+  align-items: stretch;
+  gap: var(--spacing-1, 4px);
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  width: 100%;
 }
 
 .scrollContainer::-webkit-scrollbar {
   display: none;
 }
 
-/* Individual nav item (pill chip) */
+/* ─── Nav item: vertical icon + label ─── */
 .navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1, 4px);
+  min-width: 64px;
+  padding: var(--spacing-2, 8px) var(--spacing-2, 8px);
+  border: none;
+  border-radius: var(--radius-lg, 10px);
+  background: transparent;
+  color: var(--text-secondary, #64748b);
+  cursor: pointer;
   flex-shrink: 0;
-  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease;
+  position: relative;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  background: var(--surface-secondary, #f1f5f9);
+  color: var(--text-primary, #0f172a);
+}
+
+.navItem:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
 }
 
 /* Active state */
 .navItemActive {
-  font-weight: var(--font-weight-medium, 500);
+  background: var(--brand-primary-subtle, #eff6ff);
+  color: var(--brand-primary, #2563eb);
 }
 
-/* Inactive state */
-.navItemInactive {
-  font-weight: var(--font-weight-normal, 400);
+.navItemActive:hover {
+  background: var(--brand-primary-subtle, #eff6ff);
+  color: var(--brand-primary, #2563eb);
+}
+
+/* Active bottom indicator */
+.navItemActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--brand-primary, #2563eb);
 }
 
 /* Icon wrapper */
@@ -46,13 +85,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-sm, 14px);
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
 }
 
 /* Label text */
 .label {
-  line-height: normal;
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: 1.2;
+  white-space: nowrap;
+  text-align: center;
 }
 
-/* Badge is now rendered via Badge primitive from @groxigo/ui-elements-web */
+/* Badge */
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}

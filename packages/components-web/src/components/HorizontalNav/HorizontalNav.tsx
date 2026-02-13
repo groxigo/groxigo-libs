@@ -1,7 +1,7 @@
 'use client';
 
-import { forwardRef, useCallback } from 'react';
-import { Button, Badge } from '@groxigo/ui-elements-web';
+import { forwardRef, useCallback, type ReactNode } from 'react';
+import { Badge } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './HorizontalNav.module.css';
 
@@ -10,8 +10,8 @@ export interface NavItem {
   key: string;
   /** Display label */
   label: string;
-  /** Optional icon (emoji, character, or image URL) */
-  icon?: string;
+  /** Optional icon element */
+  icon?: ReactNode;
   /** Optional badge count */
   badge?: number;
 }
@@ -43,23 +43,21 @@ export const HorizontalNav = forwardRef<HTMLElement, HorizontalNavProps>(
         ref={ref}
         className={clsx(styles.root, className)}
         data-testid={testID}
-        aria-label="Horizontal navigation"
+        aria-label="Category navigation"
       >
         <div className={styles.scrollContainer}>
           {items.map((item) => {
             const isActive = activeKey === item.key;
 
             return (
-              <Button
+              <button
                 key={item.key}
-                variant={isActive ? 'solid' : 'ghost'}
-                colorScheme="primary"
-                size="sm"
-                onPress={() => handleItemClick(item.key)}
+                type="button"
                 className={clsx(
                   styles.navItem,
-                  isActive ? styles.navItemActive : styles.navItemInactive
+                  isActive && styles.navItemActive
                 )}
+                onClick={() => handleItemClick(item.key)}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {item.icon && (
@@ -74,12 +72,13 @@ export const HorizontalNav = forwardRef<HTMLElement, HorizontalNavProps>(
                     colorScheme="error"
                     size="xs"
                     rounded
+                    className={styles.badge}
                     aria-label={`${item.badge} notifications`}
                   >
                     {item.badge > 99 ? '99+' : item.badge}
                   </Badge>
                 )}
-              </Button>
+              </button>
             );
           })}
         </div>

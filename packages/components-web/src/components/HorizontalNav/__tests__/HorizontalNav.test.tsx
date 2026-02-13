@@ -55,7 +55,7 @@ describe('HorizontalNav', () => {
 
   it('has navigation landmark with aria-label', () => {
     render(<HorizontalNav items={defaultItems} />);
-    expect(screen.getByRole('navigation', { name: 'Horizontal navigation' })).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Category navigation' })).toBeInTheDocument();
   });
 
   it('applies testID as data-testid', () => {
