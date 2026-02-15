@@ -153,6 +153,12 @@ export interface ProductTilePropsBase {
   onRatingPress?: () => void;
 
   /**
+   * Callback when user selects a star rating inline (zoom-to-rate).
+   * Receives the rating value (1-5).
+   */
+  onRatingSubmit?: (rating: number) => void;
+
+  /**
    * Callback when tile is pressed
    */
   onPress?: () => void;

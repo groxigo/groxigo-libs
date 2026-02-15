@@ -9,4 +9,4 @@
 //   3. Export it from this barrel file:
 //        export { Logo } from './Logo';
 
-export {};
+export { HeartFilled } from './HeartFilled';

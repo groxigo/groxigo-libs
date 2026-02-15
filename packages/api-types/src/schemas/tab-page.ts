@@ -108,6 +108,10 @@ export const ProductSectionItemSchema = BaseSectionItemSchema.extend({
     .optional(),
   dietaryTags: z.array(z.string().max(50)).max(50).optional(),
   inStock: z.boolean().optional(),
+  /** Average user rating (0–5, null if no reviews). */
+  ratingAvg: z.number().min(0).max(5).nullable().optional(),
+  /** Total number of approved reviews. */
+  ratingCount: z.number().int().nonnegative().optional(),
   /** Number of recipes that use this product as an ingredient. */
   recipeCount: z.number().int().nonnegative().optional(),
   // Deal-specific fields
