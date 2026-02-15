@@ -1,5 +1,14 @@
 # @groxigo/components-web
 
+## 1.2.11
+
+### Patch Changes
+
+- Add imageUrl prop to CategoryChip, add 'use client' to all web elements, mobile cleanup
+
+- Updated dependencies []:
+  - @groxigo/contracts@1.3.4
+
 ## 1.2.10
 
 ### Patch Changes

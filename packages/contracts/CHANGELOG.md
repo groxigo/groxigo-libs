@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.3.4
+
+### Patch Changes
+
+- Add imageUrl prop to CategoryChip, add 'use client' to all web elements, mobile cleanup
+
 ## 1.3.3
 
 ### Patch Changes
