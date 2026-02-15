@@ -190,6 +190,8 @@ export const ImageGallery = ({
   );
 };
 
+ImageGallery.displayName = 'ImageGallery';
+
 const styles = StyleSheet.create({
   container: {
     position: 'relative',

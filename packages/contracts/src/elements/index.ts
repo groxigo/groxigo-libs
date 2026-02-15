@@ -218,3 +218,9 @@ export type {
 export type {
   SpacerPropsBase,
 } from './spacer';
+
+// StarRating
+export type {
+  StarRatingSize,
+  StarRatingPropsBase,
+} from './star-rating';

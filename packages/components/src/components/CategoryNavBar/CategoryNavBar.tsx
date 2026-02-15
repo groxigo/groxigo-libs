@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 import { Icon, useTheme } from '@groxigo/ui-elements';
 import { Header } from '../Header';
@@ -135,6 +135,8 @@ export const CategoryNavBar = ({
     />
   );
 };
+
+CategoryNavBar.displayName = 'CategoryNavBar';
 
 const styles = StyleSheet.create({
   iconButton: {

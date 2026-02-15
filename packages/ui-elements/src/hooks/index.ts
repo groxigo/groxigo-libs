@@ -1,7 +1,7 @@
 /**
  * Hooks Module Exports
  *
- * All hooks for accessing theme tokens and responsive utilities.
+ * Theme access hooks. Responsive hooks live in @groxigo/ui-core.
  */
 
 export {
@@ -16,24 +16,5 @@ export {
   useTypography,
   useRadius,
   useShadows,
-  useAnimation,
-  useZIndex,
-  useBorder,
-  useIcon,
-  useFocus,
-  useBlur,
-  useOpacity,
-  useTextStyles,
   useBreakpoints,
 } from './useTheme';
-
-export {
-  useResponsive,
-  useWindowDimensions,
-  useResponsiveValue,
-  useResponsiveStyles,
-  useBreakpoint,
-  usePlatformValue,
-} from './useResponsive';
-
-export { useColorScheme } from './useColorScheme';

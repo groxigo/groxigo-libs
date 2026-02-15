@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
   FlatList,
   View,
@@ -260,6 +260,8 @@ export function PaginatedFlatList<T>({
     />
   );
 }
+
+PaginatedFlatList.displayName = 'PaginatedFlatList';
 
 const styles = StyleSheet.create({
   loadingFooter: {

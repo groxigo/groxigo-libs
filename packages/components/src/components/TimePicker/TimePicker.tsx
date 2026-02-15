@@ -66,5 +66,7 @@ export const TimePicker = ({
   );
 };
 
+TimePicker.displayName = 'TimePicker';
+
 export default TimePicker;
 

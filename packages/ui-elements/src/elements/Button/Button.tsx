@@ -142,13 +142,6 @@ function getColorSchemeColors(theme: Theme, colorScheme: ButtonColorScheme) {
       subtle: colors.secondarySubtle,
       text: colors.textInverse,
     },
-    accent: {
-      main: colors.accent,
-      hover: colors.accentHover,
-      active: colors.accentActive,
-      subtle: colors.accentSubtle,
-      text: colors.textInverse,
-    },
     success: {
       main: colors.success,
       hover: colors.success,

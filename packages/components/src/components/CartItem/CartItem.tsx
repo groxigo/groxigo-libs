@@ -113,6 +113,8 @@ export const CartItem = ({
   );
 };
 
+CartItem.displayName = 'CartItem';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

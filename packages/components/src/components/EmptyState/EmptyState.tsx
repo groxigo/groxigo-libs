@@ -64,6 +64,8 @@ export const EmptyState = ({
   );
 };
 
+EmptyState.displayName = 'EmptyState';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

@@ -73,5 +73,7 @@ export const DatePicker = ({
   );
 };
 
+DatePicker.displayName = 'DatePicker';
+
 export default DatePicker;
 

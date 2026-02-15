@@ -1,8 +1,10 @@
 /**
  * @groxigo/ui-elements
  *
- * Primitive UI building blocks for cross-platform React Native applications.
- * Theme-driven components that work seamlessly across iOS, Android, and Web.
+ * Primitive UI building blocks for React Native applications.
+ * Theme-driven components that work across iOS, Android, and Web (Expo).
+ *
+ * Responsive hooks (useDeviceType, useResponsiveValue, etc.) live in @groxigo/ui-core.
  */
 
 // ============================================
@@ -58,16 +60,8 @@ export {
   useTypography,
   useRadius,
   useShadows,
+  useBreakpoints,
   useIsDarkMode,
-  // Responsive hooks
-  useResponsive,
-  useWindowDimensions,
-  useResponsiveValue,
-  useResponsiveStyles,
-  useBreakpoint,
-  usePlatformValue,
-  // Color scheme
-  useColorScheme,
 } from './hooks';
 
 // ============================================
@@ -116,11 +110,3 @@ export * from './elements/Modal';
 export * from './elements/Drawer';
 export * from './elements/Menu';
 export * from './elements/Tooltip';
-
-// ============================================
-// UTILITIES
-// ============================================
-
-export { Container } from './utils/Container';
-export type { ContainerProps } from './utils/Container';
-export * from './utils/responsive';

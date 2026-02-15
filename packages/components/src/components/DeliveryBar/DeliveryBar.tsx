@@ -228,6 +228,8 @@ export const DeliveryBar = ({
   );
 };
 
+DeliveryBar.displayName = 'DeliveryBar';
+
 const styles = StyleSheet.create({
   container: {
     position: 'relative',

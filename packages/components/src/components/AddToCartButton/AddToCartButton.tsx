@@ -37,4 +37,6 @@ export const AddToCartButton = ({
   );
 };
 
+AddToCartButton.displayName = 'AddToCartButton';
+
 export default AddToCartButton;

@@ -195,6 +195,8 @@ export const RecipeCard = ({
   );
 };
 
+RecipeCard.displayName = 'RecipeCard';
+
 const styles = StyleSheet.create({
   card: {
     overflow: 'hidden',

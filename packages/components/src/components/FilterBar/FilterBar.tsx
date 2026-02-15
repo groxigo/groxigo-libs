@@ -105,6 +105,8 @@ export const FilterBar = ({
   );
 };
 
+FilterBar.displayName = 'FilterBar';
+
 const styles = StyleSheet.create({
   filterButton: {},
   filterContent: {

@@ -40,7 +40,6 @@ function getColorSchemeColor(theme: Theme, colorScheme: SwitchColorScheme): stri
   const colorMap: Record<SwitchColorScheme, string> = {
     primary: colors.primary,
     secondary: colors.secondary,
-    accent: colors.accent,
     success: colors.success,
     warning: colors.warning,
     error: colors.error,

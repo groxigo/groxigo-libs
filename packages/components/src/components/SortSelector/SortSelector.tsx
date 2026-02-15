@@ -39,4 +39,6 @@ export const SortSelector = ({
   );
 };
 
+SortSelector.displayName = 'SortSelector';
+
 export default SortSelector;

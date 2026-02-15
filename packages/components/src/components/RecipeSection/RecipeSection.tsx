@@ -160,6 +160,8 @@ export const RecipeSection = ({
   );
 };
 
+RecipeSection.displayName = 'RecipeSection';
+
 const styles = StyleSheet.create({
   container: {},
   grid: {

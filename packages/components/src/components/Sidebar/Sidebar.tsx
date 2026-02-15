@@ -129,6 +129,8 @@ export const Sidebar = ({
   );
 };
 
+Sidebar.displayName = 'Sidebar';
+
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,

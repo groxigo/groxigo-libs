@@ -72,6 +72,8 @@ export const BottomSheet = ({
   );
 };
 
+BottomSheet.displayName = 'BottomSheet';
+
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,

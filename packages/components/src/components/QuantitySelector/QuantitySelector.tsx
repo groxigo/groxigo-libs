@@ -98,6 +98,8 @@ export const QuantitySelector = ({
   );
 };
 
+QuantitySelector.displayName = 'QuantitySelector';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

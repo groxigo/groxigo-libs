@@ -179,6 +179,8 @@ export const ProductSection = ({
   );
 };
 
+ProductSection.displayName = 'ProductSection';
+
 const styles = StyleSheet.create({
   container: {},
   grid: {

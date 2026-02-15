@@ -27,7 +27,6 @@ const sizeConfig: Record<BadgeSize, {
   xs: { paddingH: 6, paddingV: 2, fontSize: 10, borderRadius: 4, gap: 4 },
   sm: { paddingH: 8, paddingV: 3, fontSize: 11, borderRadius: 4, gap: 4 },
   md: { paddingH: 10, paddingV: 4, fontSize: 12, borderRadius: 6, gap: 6 },
-  lg: { paddingH: 12, paddingV: 5, fontSize: 14, borderRadius: 6, gap: 6 },
 };
 
 // ============================================
@@ -53,12 +52,6 @@ function getColorSchemeColors(theme: Theme, colorScheme: BadgeColorScheme) {
       main: colors.secondary,
       subtle: colors.secondarySubtle,
       text: colors.secondary,
-      textInverse: colors.textInverse,
-    },
-    accent: {
-      main: colors.accent,
-      subtle: colors.accentSubtle,
-      text: colors.accent,
       textInverse: colors.textInverse,
     },
     success: {

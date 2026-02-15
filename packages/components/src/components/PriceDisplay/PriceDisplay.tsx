@@ -88,6 +88,8 @@ export const PriceDisplay = ({
   );
 };
 
+PriceDisplay.displayName = 'PriceDisplay';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

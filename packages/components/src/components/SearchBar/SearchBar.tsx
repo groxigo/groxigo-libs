@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { View, Pressable, Platform, Animated, TouchableOpacity, FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { Input, Icon, useTheme } from '@groxigo/ui-elements';
+import { tokens } from '@groxigo/tokens/react-native';
 import { useDeviceType } from '@groxigo/ui-core';
 import type { SearchBarProps } from './SearchBar.types';
 import {
@@ -248,6 +249,8 @@ export const SearchBar = ({
   );
 };
 
+SearchBar.displayName = 'SearchBar';
+
 const styles = StyleSheet.create({
   resultsDropdown: {
     position: 'absolute',
@@ -260,7 +263,7 @@ const styles = StyleSheet.create({
         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
       } as any,
       default: {
-        shadowColor: '#000',
+        shadowColor: tokens.colors.primitives.black,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,

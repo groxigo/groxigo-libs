@@ -114,6 +114,8 @@ export const ListItem = ({
   return content;
 };
 
+ListItem.displayName = 'ListItem';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

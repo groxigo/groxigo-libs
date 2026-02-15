@@ -67,6 +67,8 @@ export const CategorySection = ({
   );
 };
 
+CategorySection.displayName = 'CategorySection';
+
 const styles = StyleSheet.create({
   container: {},
 });

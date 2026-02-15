@@ -26,7 +26,6 @@ const sizeConfig: Record<TabsSize, {
 }> = {
   sm: { height: 36, paddingH: 12, fontSize: 13, gap: 6 },
   md: { height: 44, paddingH: 16, fontSize: 14, gap: 8 },
-  lg: { height: 52, paddingH: 20, fontSize: 16, gap: 10 },
 };
 
 // ============================================
@@ -39,7 +38,6 @@ function getColorSchemeColor(theme: Theme, colorScheme: TabsColorScheme): string
   const colorMap: Record<TabsColorScheme, string> = {
     primary: colors.primary,
     secondary: colors.secondary,
-    accent: colors.accent,
     gray: colors.text,
   };
 

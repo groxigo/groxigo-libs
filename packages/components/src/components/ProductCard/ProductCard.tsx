@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pressable, View, Image, StyleSheet } from 'react-native';
 import { Card, Text, Button, Badge, Icon, useTheme } from '@groxigo/ui-elements';
+import { tokens } from '@groxigo/tokens/react-native';
 import { QuantitySelector } from '../QuantitySelector';
 import { Rating } from '../Rating';
 import type { ProductCardProps } from './ProductCard.types';
@@ -160,7 +161,7 @@ export const ProductCard = ({
             <Text
               variant="caption"
               weight="bold"
-              style={{ color: '#FFFFFF' }}
+              style={{ color: tokens.colors.primitives.white }}
             >
               Out of Stock
             </Text>
@@ -203,7 +204,7 @@ export const ProductCard = ({
             <Icon
               name={isFavorite ? 'heart-fill' : 'heart'}
               size="md"
-              color={isFavorite ? theme.colors.error : '#FFFFFF'}
+              color={isFavorite ? theme.colors.error : tokens.colors.primitives.white}
             />
           </Pressable>
         )}
@@ -346,6 +347,8 @@ export const ProductCard = ({
   return <View style={style} testID={testID}>{content}</View>;
 };
 
+ProductCard.displayName = 'ProductCard';
+
 const styles = StyleSheet.create({
   imageContainer: {
     position: 'relative',
@@ -378,7 +381,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   discountText: {
-    color: '#000000',
+    color: tokens.colors.primitives.black,
     fontSize: 9,
     lineHeight: 12,
   },

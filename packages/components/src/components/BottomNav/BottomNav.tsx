@@ -1,5 +1,6 @@
 import { View, Pressable, Platform, StyleSheet } from 'react-native';
 import { Text, Icon, Badge, useTheme } from '@groxigo/ui-elements';
+import { tokens } from '@groxigo/tokens/react-native';
 import { useDeviceType } from '@groxigo/ui-core';
 import type { BottomNavProps } from './BottomNav.types';
 
@@ -170,7 +171,7 @@ export const BottomNav = ({
               boxShadow: '0px -2px 4px rgba(0, 0, 0, 0.1)',
             } as any,
             ios: {
-              shadowColor: '#000',
+              shadowColor: tokens.colors.primitives.black,
               shadowOffset: { width: 0, height: -2 },
               shadowOpacity: 0.1,
               shadowRadius: 4,
@@ -234,6 +235,8 @@ export const BottomNav = ({
   );
 };
 
+BottomNav.displayName = 'BottomNav';
+
 const styles = StyleSheet.create({
   // Default variant styles
   container: {
@@ -266,7 +269,7 @@ const styles = StyleSheet.create({
         backdropFilter: 'blur(20px)',
       } as any,
       ios: {
-        shadowColor: '#000',
+        shadowColor: tokens.colors.primitives.black,
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.15,
         shadowRadius: 24,

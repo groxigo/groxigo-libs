@@ -17,8 +17,8 @@
  * the calculated width automatically via cloneElement.
  */
 
-import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, LayoutChangeEvent, StyleProp, ViewStyle } from 'react-native';
+import { Children, isValidElement, cloneElement, useState, useCallback, type ReactNode, type ReactElement } from 'react';
+import { View, StyleSheet, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
 import { useDeviceType } from '@groxigo/ui-core';
 
 export interface FluidGridProps {
@@ -40,7 +40,7 @@ export interface FluidGridProps {
   /**
    * Children to render in the grid
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Container style
    */
@@ -106,7 +106,7 @@ export const FluidGrid = ({
 
   const { itemWidth } = calculateGrid();
 
-  const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const childrenArray = Children.toArray(children).filter(Boolean);
 
   return (
     <View style={[styles.container, style]} onLayout={handleLayout} testID={testID}>
@@ -114,8 +114,8 @@ export const FluidGrid = ({
         <View style={[styles.grid, { gap: scaledGap }]}>
           {childrenArray.map((child, index) => {
             // Clone child and pass width prop if it's a valid React element
-            const childWithWidth = React.isValidElement(child)
-              ? React.cloneElement(child as React.ReactElement<any>, { width: itemWidth })
+            const childWithWidth = isValidElement(child)
+              ? cloneElement(child as ReactElement<any>, { width: itemWidth })
               : child;
 
             return (
@@ -137,6 +137,8 @@ export const FluidGrid = ({
     </View>
   );
 };
+
+FluidGrid.displayName = 'FluidGrid';
 
 const styles = StyleSheet.create({
   container: {

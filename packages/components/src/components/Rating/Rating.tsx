@@ -101,6 +101,8 @@ export const Rating = ({
   );
 };
 
+Rating.displayName = 'Rating';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

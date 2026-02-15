@@ -70,6 +70,8 @@ export const Header = ({
   );
 };
 
+Header.displayName = 'Header';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

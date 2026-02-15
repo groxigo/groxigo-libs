@@ -85,6 +85,8 @@ export const Modal = ({
   );
 };
 
+Modal.displayName = 'Modal';
+
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,

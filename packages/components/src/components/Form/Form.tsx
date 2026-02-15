@@ -161,4 +161,6 @@ export function Form<T extends Record<string, any>>({
   );
 }
 
+Form.displayName = 'Form';
+
 export default Form;

@@ -87,6 +87,8 @@ export const SectionHeader = ({
   );
 };
 
+SectionHeader.displayName = 'SectionHeader';
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

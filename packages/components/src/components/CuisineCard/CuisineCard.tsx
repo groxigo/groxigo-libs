@@ -5,7 +5,7 @@
  * Clean design with good text readability.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import {
   View,
   Pressable,

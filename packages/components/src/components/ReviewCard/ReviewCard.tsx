@@ -81,6 +81,8 @@ export const ReviewCard = ({
   );
 };
 
+ReviewCard.displayName = 'ReviewCard';
+
 const styles = StyleSheet.create({
   container: {},
   header: {

@@ -59,6 +59,8 @@ export const ErrorState = ({
   );
 };
 
+ErrorState.displayName = 'ErrorState';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

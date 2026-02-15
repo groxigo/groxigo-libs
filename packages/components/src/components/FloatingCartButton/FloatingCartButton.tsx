@@ -133,6 +133,8 @@ export const FloatingCartButton = ({
   );
 };
 
+FloatingCartButton.displayName = 'FloatingCartButton';
+
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',

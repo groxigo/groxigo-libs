@@ -44,4 +44,6 @@ export const TabBar = ({
   );
 };
 
+TabBar.displayName = 'TabBar';
+
 export default TabBar;

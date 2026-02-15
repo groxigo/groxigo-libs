@@ -11,12 +11,14 @@ import type {
   TabItem as ContractTabItem,
   TabsSize,
   TabsVariant as ContractTabsVariant,
-  TabsColorScheme,
   TabPanelPropsBase,
 } from '@groxigo/contracts';
 
 // Re-export contract types
-export type { TabsSize, TabsColorScheme } from '@groxigo/contracts';
+export type { TabsSize } from '@groxigo/contracts';
+
+// TabsColorScheme is defined locally (not in contracts)
+export type TabsColorScheme = 'primary' | 'secondary' | 'gray';
 
 /**
  * Tabs variant - includes contract variants plus RN-specific ones

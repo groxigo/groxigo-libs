@@ -122,4 +122,6 @@ export const ResponsiveGrid = ({
   );
 };
 
+ResponsiveGrid.displayName = 'ResponsiveGrid';
+
 export default ResponsiveGrid;

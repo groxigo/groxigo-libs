@@ -138,6 +138,8 @@ export const CategoryTile = ({
   return <View style={style}>{content}</View>;
 };
 
+CategoryTile.displayName = 'CategoryTile';
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

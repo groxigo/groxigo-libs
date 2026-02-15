@@ -77,7 +77,7 @@ export const ProductTile = ({
   // Shadow style
   const shadowStyle = Platform.select({
     ios: {
-      shadowColor: '#000',
+      shadowColor: tokens.colors.primitives.black,
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.06,
       shadowRadius: 4,
@@ -127,7 +127,7 @@ export const ProductTile = ({
             <Text
               variant="caption"
               weight="bold"
-              style={{ color: '#FFFFFF', fontSize: fontSize(9) }}
+              style={{ color: tokens.colors.primitives.white, fontSize: fontSize(9) }}
             >
               {badge}
             </Text>
@@ -277,7 +277,7 @@ export const ProductTile = ({
       >
         {/* Weight/Size - shown prominently (only for products with price) */}
         {weight && price !== undefined && (
-          <View style={[styles.weightBadge, { paddingHorizontal: uiSize(4), paddingVertical: uiSize(1), borderRadius: uiSize(2) }]}>
+          <View style={[styles.weightBadge, { backgroundColor: theme.colors.surfaceSecondary, paddingHorizontal: uiSize(4), paddingVertical: uiSize(1), borderRadius: uiSize(2) }]}>
             <Text
               variant="caption"
               weight="medium"
@@ -328,7 +328,7 @@ export const ProductTile = ({
             variant="caption"
             weight="semibold"
             style={{
-              color: '#2E7D32',
+              color: theme.colors.successText,
               fontSize: fontSize(10),
               marginTop: uiSize(2),
               lineHeight: fontSize(12),
@@ -380,6 +380,8 @@ export const ProductTile = ({
   return content;
 };
 
+ProductTile.displayName = 'ProductTile';
+
 const styles = StyleSheet.create({
   container: {
     overflow: 'visible',
@@ -429,7 +431,7 @@ const styles = StyleSheet.create({
   infoSection: {},
   weightBadge: {
     alignSelf: 'flex-start',
-    backgroundColor: '#F5F5F5',
+    // backgroundColor set dynamically via theme.colors.surfaceSecondary inline
   },
   ratingRow: {
     flexDirection: 'row',

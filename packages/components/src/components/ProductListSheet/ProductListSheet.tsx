@@ -5,7 +5,7 @@
  * using FluidGrid. Supports swipe to dismiss.
  */
 
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import {
   View,
   Modal,
@@ -18,6 +18,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Text, Icon, useTheme } from '@groxigo/ui-elements';
+import { tokens } from '@groxigo/tokens/react-native';
 import { useDeviceType } from '@groxigo/ui-core';
 import { FluidGrid } from '../FluidGrid';
 import { ProductTile } from '../ProductTile';
@@ -345,6 +346,8 @@ export const ProductListSheet = ({
   );
 };
 
+ProductListSheet.displayName = 'ProductListSheet';
+
 const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -354,7 +357,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    shadowColor: '#000',
+    shadowColor: tokens.colors.primitives.black,
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.15,
     shadowRadius: 12,

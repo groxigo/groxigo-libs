@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { Text, Icon, Image, useTheme } from '@groxigo/ui-elements';
 import type { SubCategoryTileProps } from './SubCategoryTile.types';
@@ -139,6 +138,8 @@ export const SubCategoryTile = ({
 
   return <View style={style}>{content}</View>;
 };
+
+SubCategoryTile.displayName = 'SubCategoryTile';
 
 const styles = StyleSheet.create({
   container: {
