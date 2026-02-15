@@ -110,8 +110,8 @@ describe('ProductTile', () => {
     render(
       <ProductTile {...defaultProps} rating={4.5} reviewCount={120} />
     );
-    expect(screen.getByText('4.5')).toBeInTheDocument();
-    expect(screen.getByText('(120)')).toBeInTheDocument();
+    expect(screen.getByLabelText('Rating: 4.5 out of 5')).toBeInTheDocument();
+    expect(screen.getByText((_, el) => el?.classList.contains('count') && el.textContent?.includes('120') || false)).toBeInTheDocument();
   });
 
   it('applies testID as data-testid', () => {

@@ -10,7 +10,7 @@ describe('AccountMenuItem', () => {
 
   it('renders the icon when provided', () => {
     const { container } = render(<AccountMenuItem label="Settings" icon="⚙️" />);
-    expect(container.querySelector('.iconText')).toHaveTextContent('⚙️');
+    expect(container.querySelector('.iconCircle')).toHaveTextContent('⚙️');
   });
 
   it('renders subtitle when provided', () => {

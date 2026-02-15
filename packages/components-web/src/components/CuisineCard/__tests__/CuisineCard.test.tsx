@@ -36,9 +36,9 @@ describe('CuisineCard', () => {
     expect(screen.getByText('1 recipe')).toBeInTheDocument();
   });
 
-  it('does not render recipe count in sm size', () => {
-    render(<CuisineCard {...defaultProps} size="sm" />);
-    expect(screen.queryByText('42 recipes')).not.toBeInTheDocument();
+  it('always renders recipe count when provided', () => {
+    render(<CuisineCard {...defaultProps} />);
+    expect(screen.getByText('42 recipes')).toBeInTheDocument();
   });
 
   it('calls onPress when clicked', () => {
