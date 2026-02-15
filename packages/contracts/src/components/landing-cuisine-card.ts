@@ -2,7 +2,7 @@
  * LandingCuisineCard Component Contract
  *
  * A square image card with a centered label below.
- * Used in the "Explore by Cuisine" section on the landing page.
+ * Used in "Explore by Cuisine" sections on both landing and recipes pages.
  */
 
 export interface LandingCuisineCardPropsBase {
@@ -10,6 +10,8 @@ export interface LandingCuisineCardPropsBase {
   name: string;
   /** Square image URL */
   imageUrl?: string;
+  /** Number of recipes in this cuisine */
+  recipeCount?: number;
   /** Link destination */
   href?: string;
   /** Press handler */

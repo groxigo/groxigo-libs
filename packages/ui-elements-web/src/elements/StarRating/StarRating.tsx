@@ -1,14 +1,12 @@
 'use client';
 
 import { forwardRef, useCallback } from 'react';
-import type { RatingPropsBase } from '@groxigo/contracts/components/rating';
+import type { StarRatingPropsBase } from '@groxigo/contracts/elements/star-rating';
 import clsx from 'clsx';
 import styles from './StarRating.module.css';
 
-export interface StarRatingProps extends RatingPropsBase {
+export interface StarRatingProps extends StarRatingPropsBase {
   className?: string;
-  /** Number of reviews to display */
-  reviewCount?: number;
 }
 
 const STAR_SIZES: Record<string, number> = {

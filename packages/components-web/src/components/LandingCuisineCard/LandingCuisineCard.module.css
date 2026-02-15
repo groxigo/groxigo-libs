@@ -1,8 +1,6 @@
 /* LandingCuisineCard — square image + label card */
-/* Mobile-first: container queries for responsive sizing */
 
 .root {
-  container-type: inline-size;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +9,7 @@
   cursor: pointer;
   transition: transform 150ms ease;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  width: 100%;
 }
 
 .root:hover {
@@ -25,11 +24,11 @@
     0 0 0 5px var(--border-focus, #3b82f6);
 }
 
-/* Square image frame */
+/* Square image frame — fills parent width, 1:1 ratio */
 .imageFrame {
-  width: 96px;
-  height: 96px;
-  border-radius: var(--radius-lg, 10px);
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-xl, 12px);
   overflow: hidden;
   flex-shrink: 0;
   background: var(--surface-secondary, #f8fafc);
@@ -47,6 +46,14 @@
   background: var(--surface-secondary, #f8fafc);
 }
 
+/* Text group below image */
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-0-5, 2px);
+}
+
 /* Label */
 .name {
   font-size: var(--font-size-sm, 14px);
@@ -56,10 +63,11 @@
   line-height: normal;
 }
 
-/* ------- Container: 1024px+ (Large) ------- */
-@container (min-width: 1024px) {
-  .imageFrame {
-    width: 120px;
-    height: 120px;
-  }
+/* Recipe count */
+.recipeCount {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-secondary, #64748b);
+  text-align: center;
+  line-height: normal;
 }

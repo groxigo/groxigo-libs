@@ -16,23 +16,16 @@ export const CuisineCard = forwardRef<HTMLDivElement, CuisineCardProps>(
       name,
       imageUrl,
       recipeCount,
-      size = 'md',
       onPress,
       className,
       testID,
     },
     ref
   ) => {
-    const isSm = size === 'sm';
-
     return (
       <div
         ref={ref}
-        className={clsx(
-          styles.root,
-          isSm ? styles.rootSm : styles.rootMd,
-          className
-        )}
+        className={clsx(styles.root, className)}
         data-testid={testID}
         role="button"
         tabIndex={0}
@@ -46,22 +39,17 @@ export const CuisineCard = forwardRef<HTMLDivElement, CuisineCardProps>(
         aria-label={name}
         data-slug={slug}
       >
-        {/* Background image or placeholder */}
         {imageUrl ? (
           <img src={imageUrl} alt="" loading="lazy" className={styles.image} />
         ) : (
           <div className={styles.imagePlaceholder} aria-hidden="true" />
         )}
 
-        {/* Dark overlay */}
         <div className={styles.overlay} aria-hidden="true" />
 
-        {/* Centered text */}
         <div className={styles.textGroup}>
-          <p className={clsx(styles.name, isSm ? styles.nameSm : styles.nameMd)}>
-            {name}
-          </p>
-          {!isSm && recipeCount != null && (
+          <p className={styles.name}>{name}</p>
+          {recipeCount != null && (
             <span className={styles.recipeCount}>
               {recipeCount} {recipeCount === 1 ? 'recipe' : 'recipes'}
             </span>

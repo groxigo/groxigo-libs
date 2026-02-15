@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Menu Component (Web)
  *

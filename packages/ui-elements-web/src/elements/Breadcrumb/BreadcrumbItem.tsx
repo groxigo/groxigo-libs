@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * BreadcrumbItem Component (Web)
  *

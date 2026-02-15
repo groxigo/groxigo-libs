@@ -1,66 +1,83 @@
-/* MealTypeCard -- vertical icon + label button for meal type selection */
+/* MealTypeCard -- vertical emoji + label card for meal type selection */
 
 .root {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2, 8px);
   align-items: center;
-  width: 100%;
+  gap: var(--spacing-1-5, 6px);
+  padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+  border-radius: var(--radius-xl, 12px);
+  border: 1px solid transparent;
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
   box-sizing: border-box;
   cursor: pointer;
-}
-
-.root:hover .iconCircle {
-  background: var(--brand-primary-muted, #dbeafe);
+  transition: all 150ms ease;
+  min-width: 80px;
+  user-select: none;
 }
 
 .root:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
-    0 0 0 5px var(--border-focus, #3b82f6);
-  border-radius: var(--radius-lg, 10px);
+    0 0 0 4px var(--brand-primary, #16a34a);
 }
 
-/* ── Icon circle ── */
+/* ── Default (unselected) ── */
 
-.iconCircle {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full, 9999px);
-  background: var(--brand-primary-subtle, #eff6ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  transition: var(--transition-colors, background-color 150ms ease, color 150ms ease, border-color 150ms ease);
-  border: 2px solid transparent;
-  box-sizing: border-box;
+.default {
+  background: var(--surface-secondary, #f1f5f9);
+  color: var(--text-secondary, #64748b);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.iconCircleSelected {
-  background: var(--brand-primary, #2563eb);
-  border-color: var(--brand-primary, #2563eb);
+.default:hover {
+  background: var(--surface-tertiary, #e2e8f0);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* ── Emoji / icon text ── */
+.default:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
 
-.emoji {
-  font-size: var(--font-size-2xl, 24px);
-  line-height: normal;
+/* ── Selected ── */
+
+.selected {
+  background: var(--brand-primary, #16a34a);
+  color: var(--text-inverse, #ffffff);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+}
+
+.selected:hover {
+  background: var(--brand-primary-hover, #15803d);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+.selected:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
+}
+
+/* ── Emoji ── */
+
+.emojiWrap {
+  font-size: var(--font-size-xl, 20px);
+  line-height: 1;
 }
 
 /* ── Label ── */
 
 .label {
-  font-size: var(--font-size-xs, 12px);
+  font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-medium, 500);
-  color: var(--text-primary, #0f172a);
   text-align: center;
   line-height: normal;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
+}
+
+.selected .label {
+  font-weight: var(--font-weight-semibold, 600);
 }

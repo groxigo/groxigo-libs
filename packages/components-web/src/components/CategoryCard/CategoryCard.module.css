@@ -5,17 +5,17 @@
   width: 100%;
   border-radius: var(--radius-lg, 10px);
   background: var(--surface-primary, #ffffff);
-  border: 1px solid var(--border-default, #e2e8f0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  transition: box-shadow 150ms ease, border-color 150ms ease;
+  transition: box-shadow 150ms ease, transform 150ms ease;
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .root:hover {
-  border-color: var(--border-hover, #cbd5e1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .root:focus-visible {

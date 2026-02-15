@@ -15,7 +15,7 @@ export interface LandingCuisineCardProps extends LandingCuisineCardPropsBase {
  * Used in the "Explore by Cuisine" section on the landing page.
  */
 export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardProps>(
-  ({ name, imageUrl, href, onPress, className, testID }, ref) => {
+  ({ name, imageUrl, recipeCount, href, onPress, className, testID }, ref) => {
     const handleClick = () => {
       onPress?.();
     };
@@ -41,7 +41,14 @@ export const LandingCuisineCard = forwardRef<HTMLDivElement, LandingCuisineCardP
             <div className={styles.imagePlaceholder} aria-hidden="true" />
           )}
         </div>
-        <span className={styles.name}>{name}</span>
+        <div className={styles.textGroup}>
+          <span className={styles.name}>{name}</span>
+          {recipeCount != null && (
+            <span className={styles.recipeCount}>
+              {recipeCount} {recipeCount === 1 ? 'recipe' : 'recipes'}
+            </span>
+          )}
+        </div>
       </>
     );
 

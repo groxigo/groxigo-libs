@@ -10,6 +10,8 @@ export interface CategoryChipPropsBase {
   label: string;
   /** Optional icon name */
   icon?: string;
+  /** Optional thumbnail image URL (circular, displayed before label) */
+  imageUrl?: string;
   /** Whether this chip is selected @default false */
   selected?: boolean;
   /** Press handler */

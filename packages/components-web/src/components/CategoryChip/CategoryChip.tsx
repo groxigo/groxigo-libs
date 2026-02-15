@@ -2,7 +2,6 @@
 
 import { forwardRef, type ReactNode } from 'react';
 import type { CategoryChipPropsBase } from '@groxigo/contracts/components/category-chip';
-import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './CategoryChip.module.css';
 
@@ -10,6 +9,8 @@ export interface CategoryChipProps extends CategoryChipPropsBase {
   className?: string;
   /** Icon rendered as a ReactNode (overrides icon name hint) */
   iconNode?: ReactNode;
+  /** Thumbnail image URL (overrides imageUrl from contract for web-specific rendering) */
+  imageUrl?: string;
 }
 
 export const CategoryChip = forwardRef<HTMLButtonElement, CategoryChipProps>(
@@ -18,6 +19,7 @@ export const CategoryChip = forwardRef<HTMLButtonElement, CategoryChipProps>(
       label,
       icon,
       iconNode,
+      imageUrl,
       selected = false,
       onPress,
       className,
@@ -26,25 +28,31 @@ export const CategoryChip = forwardRef<HTMLButtonElement, CategoryChipProps>(
     ref
   ) => {
     return (
-      <Button
+      <button
         ref={ref}
-        variant={selected ? 'solid' : 'outline'}
-        colorScheme="primary"
-        size="sm"
-        onPress={onPress}
+        type="button"
+        onClick={onPress}
         className={clsx(
           styles.root,
           selected ? styles.selected : styles.default,
+          imageUrl && styles.withImage,
           className
         )}
         aria-pressed={selected}
-        testID={testID}
+        data-testid={testID}
       >
-        {iconNode && (
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt=""
+            className={styles.thumbnail}
+            loading="lazy"
+          />
+        ) : iconNode ? (
           <span className={styles.icon} aria-hidden="true">
             {iconNode}
           </span>
-        )}
+        ) : null}
         <span
           className={clsx(
             styles.label,
@@ -53,7 +61,7 @@ export const CategoryChip = forwardRef<HTMLButtonElement, CategoryChipProps>(
         >
           {label}
         </span>
-      </Button>
+      </button>
     );
   }
 );

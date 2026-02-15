@@ -1,0 +1,48 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "declaration-property-value-disallowed-list": [{
+      "/^color$/": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "/^background(-color)?$/": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "/^border(-top|-right|-bottom|-left)?-color$/": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "outline-color": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "fill": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "stroke": ["/^#[0-9a-fA-F]/", "/^rgba?\\(/"],
+      "border-radius": ["/^\\d+px/"],
+      "/^(padding|margin|gap|row-gap|column-gap)$/": ["/^\\d{2,}px/"]
+    }, {
+      "message": "Use design token var(--*) instead of hardcoded value (${value}) for \"${property}\". See token-reference.md."
+    }],
+    "comment-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "custom-property-pattern": null,
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "declaration-block-single-line-max-declarations": null,
+    "shorthand-property-no-redundant-values": null,
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "import-notation": null,
+    "keyframes-name-pattern": null,
+    "selector-not-notation": null,
+    "declaration-empty-line-before": null,
+    "value-keyword-case": null,
+    "function-name-case": null,
+    "color-hex-length": null,
+    "length-zero-no-unit": null,
+    "block-no-empty": null,
+    "property-no-deprecated": null,
+    "media-feature-range-notation": null,
+    "declaration-property-value-no-unknown": null
+  },
+  "overrides": [
+    {
+      "files": ["**/dist/**/*.css", "**/tokens.css", "**/tokens.min.css", "**/tokens.module.css", "**/containers.css", "**/globals.css"],
+      "rules": {
+        "declaration-property-value-disallowed-list": null
+      }
+    }
+  ]
+}

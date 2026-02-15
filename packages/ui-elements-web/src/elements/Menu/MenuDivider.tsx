@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * MenuDivider Component (Web)
  *
