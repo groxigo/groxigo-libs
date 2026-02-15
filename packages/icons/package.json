@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/icons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tree-shakable Unicons icon components for React Native and Web",
   "main": "dist/index.js",
   "module": "dist/index.js",

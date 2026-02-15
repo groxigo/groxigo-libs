@@ -1,5 +1,11 @@
 # @groxigo/icons
 
+## 1.0.3
+
+### Patch Changes
+
+- Add HeartFilled custom icon for product tile favorites
+
 ## 1.0.1
 
 ### Patch Changes
