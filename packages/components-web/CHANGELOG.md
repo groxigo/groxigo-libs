@@ -1,5 +1,11 @@
 # @groxigo/components-web
 
+## 1.2.12
+
+### Patch Changes
+
+- fix: require icons>=1.0.3 to ensure HeartFilled is available
+
 ## 1.2.11
 
 ### Patch Changes
