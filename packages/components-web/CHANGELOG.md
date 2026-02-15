@@ -1,5 +1,16 @@
 # @groxigo/components-web
 
+## 1.2.13
+
+### Patch Changes
+
+- fix: prevent zoom-to-rate popup from flashing on touch devices
+
+  The rating popup was immediately closing on touch/mobile because mouseleave
+  triggered scheduleClose, and touch devices don't maintain :hover state.
+  Now tracks whether popup was opened by click (vs hover) and skips auto-close
+  for click-opened popups. Also increases ratingArea touch target with padding.
+
 ## 1.2.12
 
 ### Patch Changes

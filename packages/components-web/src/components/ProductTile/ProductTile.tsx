@@ -106,16 +106,22 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
     const ratingAreaRef = useRef<HTMLDivElement>(null);
     const popupRef = useRef<HTMLDivElement>(null);
     const closeTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    // Track whether popup was opened by click/tap (vs hover) to prevent
+    // mouseleave from closing it on touch devices
+    const openedByClickRef = useRef(false);
 
-    const openRatingPopup = useCallback(() => {
+    const openRatingPopup = useCallback((fromClick = false) => {
+      if (!ratingZoomed && fromClick) openedByClickRef.current = true;
       if (ratingAreaRef.current) {
         const rect = ratingAreaRef.current.getBoundingClientRect();
         setPopupPos({ top: rect.top, left: rect.left });
       }
       setRatingZoomed(true);
-    }, []);
+    }, [ratingZoomed]);
 
     const scheduleClose = useCallback(() => {
+      // Don't auto-close on mouseleave if opened by click/tap (touch devices)
+      if (openedByClickRef.current) return;
       closeTimerRef.current = setTimeout(() => {
         // Don't close if pointer is still over the popup or rating area
         // (mouseenter may not fire on a portal that appeared under a stationary cursor)
@@ -132,6 +138,11 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
     useEffect(() => {
       return () => { if (closeTimerRef.current) clearTimeout(closeTimerRef.current); };
     }, []);
+
+    // Reset openedByClick when popup closes
+    useEffect(() => {
+      if (!ratingZoomed) openedByClickRef.current = false;
+    }, [ratingZoomed]);
 
     // Close on outside click/tap (mobile dismiss)
     useEffect(() => {
@@ -285,11 +296,11 @@ export const ProductTile = forwardRef<HTMLDivElement, ProductTileProps>(
                 <div
                   ref={ratingAreaRef}
                   className={styles.ratingArea}
-                  onMouseEnter={() => { cancelClose(); openRatingPopup(); }}
+                  onMouseEnter={() => { cancelClose(); openRatingPopup(false); }}
                   onMouseLeave={scheduleClose}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (!ratingZoomed) openRatingPopup();
+                    if (!ratingZoomed) openRatingPopup(true);
                   }}
                 >
                   <StarRating

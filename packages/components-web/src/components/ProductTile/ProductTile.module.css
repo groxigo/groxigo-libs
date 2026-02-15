@@ -238,6 +238,8 @@
 /* Rating area (zoom-to-rate trigger) */
 .ratingArea {
   cursor: pointer;
+  padding: var(--spacing-1, 4px) 0;
+  margin: calc(-1 * var(--spacing-1, 4px)) 0;
 }
 
 /* Rating popup (portal, fixed position) */
