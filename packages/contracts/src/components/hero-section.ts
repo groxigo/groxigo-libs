@@ -25,6 +25,10 @@ export interface HeroSectionPropsBase {
   onGoogleAuth?: () => void;
   onFacebookAuth?: () => void;
   onAppleAuth?: () => void;
+  /** Callback when user clicks "Continue as guest" */
+  onContinueAsGuest?: () => void;
+  /** Guest CTA label @default "Just browsing? Continue as guest" */
+  guestLabel?: string;
   /** Test ID for testing */
   testID?: string;
 }

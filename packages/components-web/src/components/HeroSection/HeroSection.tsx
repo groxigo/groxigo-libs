@@ -53,6 +53,8 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
       onGoogleAuth,
       onFacebookAuth,
       onAppleAuth,
+      onContinueAsGuest,
+      guestLabel = 'Just browsing? Continue as guest',
       className,
       testID,
     },
@@ -146,6 +148,16 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                 )}
               </div>
             </>
+          )}
+
+          {onContinueAsGuest && (
+            <button
+              type="button"
+              className={styles.guestCta}
+              onClick={onContinueAsGuest}
+            >
+              {guestLabel}
+            </button>
           )}
         </div>
       </section>

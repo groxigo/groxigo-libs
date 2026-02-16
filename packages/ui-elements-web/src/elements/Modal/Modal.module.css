@@ -48,6 +48,8 @@
   position: fixed;
   inset: 0;
   background: var(--overlay-bg, rgba(0, 0, 0, 0.5));
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   transition: opacity var(--duration-normal, 200ms) ease;
   z-index: 1300;
 }

@@ -16,11 +16,14 @@
   box-sizing: border-box;
   padding: 0 var(--spacing-4, 16px);
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
-  transition: background-color 200ms ease, box-shadow 200ms ease;
+  transition: background-color 200ms ease, box-shadow 200ms ease,
+    backdrop-filter 200ms ease, -webkit-backdrop-filter 200ms ease;
 }
 
 .scrolled {
-  background: var(--surface-primary, #ffffff);
+  background: color-mix(in srgb, var(--surface-primary, #ffffff), transparent 15%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
 }
 
