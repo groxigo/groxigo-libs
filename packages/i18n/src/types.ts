@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'hi' | 'ar' | 'ur';
+export type Locale = 'en' | 'hi' | 'ar' | 'ur' | 'te' | 'ta' | 'kn' | 'ml' | 'gu';
 
 export type Direction = 'ltr' | 'rtl';
 
