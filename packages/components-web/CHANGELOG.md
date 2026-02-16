@@ -1,5 +1,14 @@
 # @groxigo/components-web
 
+## 1.2.14
+
+### Patch Changes
+
+- Add onContinueAsGuest and guestLabel props to HeroSection for guest browsing
+
+- Updated dependencies []:
+  - @groxigo/contracts@1.3.5
+
 ## 1.2.13
 
 ### Patch Changes
