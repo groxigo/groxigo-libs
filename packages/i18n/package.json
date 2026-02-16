@@ -1,0 +1,58 @@
+{
+  "name": "@groxigo/i18n",
+  "version": "1.0.0",
+  "description": "Shared i18n messages, locale constants, and types for web and mobile",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./messages": {
+      "types": "./dist/messages.d.ts",
+      "import": "./dist/messages.js",
+      "require": "./dist/messages.js"
+    },
+    "./messages/en": "./dist/messages/en.json",
+    "./messages/hi": "./dist/messages/hi.json",
+    "./messages/ar": "./dist/messages/ar.json",
+    "./messages/ur": "./dist/messages/ur.json"
+  },
+  "typesVersions": {
+    "*": {
+      "messages": ["dist/messages.d.ts"]
+    }
+  },
+  "scripts": {
+    "build": "tsc && bun run src/build.ts",
+    "build:watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "vitest run"
+  },
+  "keywords": ["i18n", "localization", "groxigo"],
+  "author": "Groxigo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groxigo/groxigo-libs.git",
+    "directory": "packages/i18n"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "~5.9.2",
+    "vitest": "^3.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

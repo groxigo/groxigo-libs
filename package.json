@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "bun run build:core && bun run build:ui && bun run build:components",
-    "build:core": "bun run --filter '@groxigo/tokens' build && bun run --filter '@groxigo/contracts' build && bun run --filter '@groxigo/api-types' build && bun run --filter '@groxigo/sdui' build && bun run --filter '@groxigo/icons' build",
+    "build:core": "bun run --filter '@groxigo/tokens' build && bun run --filter '@groxigo/contracts' build && bun run --filter '@groxigo/api-types' build && bun run --filter '@groxigo/sdui' build && bun run --filter '@groxigo/icons' build && bun run --filter '@groxigo/i18n' build",
     "build:ui": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements-web' build",
     "build:ui:all": "bun run --filter '@groxigo/ui-core' build && bun run --filter '@groxigo/ui-elements' build && bun run --filter '@groxigo/ui-elements-web' build",
     "build:components": "bun run --filter '@groxigo/components-web' build",
