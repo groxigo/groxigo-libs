@@ -48,10 +48,7 @@ export const LandingHeader = forwardRef<HTMLElement, LandingHeaderProps>(
             {children}
             <button
               type="button"
-              className={clsx(
-                styles.signInButton,
-                isScrolled && styles.signInButtonScrolled
-              )}
+              className={styles.signInButton}
               onClick={onSignIn}
             >
               {signInLabel}

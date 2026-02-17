@@ -3,8 +3,9 @@
 
 .root {
   container-type: inline-size;
-  background: var(--surface-secondary, #f8fafc);
-  border-top: 1px solid var(--border-subtle, #e2e8f0);
+  background: color-mix(in srgb, var(--brand-primary-muted, #dbeafe), transparent 50%);
+  -webkit-backdrop-filter: blur(var(--blur-lg, 30px));
+  backdrop-filter: blur(var(--blur-lg, 30px));
   width: 100%;
   box-sizing: border-box;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
@@ -30,6 +31,8 @@
 .section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: var(--spacing-3, 12px);
   min-width: 0;
 }

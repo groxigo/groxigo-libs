@@ -1,6 +1,6 @@
-/* HeroSection — full-bleed hero banner */
+/* HeroSection — full-bleed hero banner with animated grocery icons */
 /* Mobile-first: fluid tokens + container queries */
-/* stylelint-disable declaration-property-value-disallowed-list -- glass morphism requires rgba alpha values */
+/* stylelint-disable declaration-property-value-disallowed-list -- rgba values for form styling */
 
 .root {
   container-type: inline-size;
@@ -12,10 +12,10 @@
   min-height: 480px;
   overflow: hidden;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
-  background-color: var(--text-primary, #0f172a);
+  background-color: var(--brand-primary-muted, #dbeafe);
 }
 
-/* Background image */
+/* Background image (optional, kept for flexibility) */
 .background {
   position: absolute;
   inset: 0;
@@ -24,16 +24,55 @@
   background-repeat: no-repeat;
 }
 
-/* Scrim gradient overlay */
-.scrim {
+/* Animated grocery icons container */
+.iconsContainer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  overflow: hidden;
+  z-index: 0;
 }
+
+.iconsStrip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+  animation: marquee 80s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconsStrip {
+    animation: none;
+  }
+}
+
+.scatterIcon {
+  position: absolute;
+  color: #73522e;
+}
+
+/* Mobile: show only every 3rd icon + shrink */
+@media (max-width: 767px) {
+  .scatterIcon:not(:nth-child(3n+1)) {
+    display: none;
+  }
+
+  .scatterIcon {
+    transform: scale(0.7);
+  }
+}
+
 
 /* Content container — padding-top clears the fixed LandingHeader (56px) */
 .content {
@@ -53,7 +92,7 @@
   margin: 0;
   font-size: var(--font-size-3xl, 30px);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--text-inverse, #ffffff);
+  color: var(--text-primary, #1a1814);
   line-height: var(--line-height-tight, 1.25);
 }
 
@@ -62,8 +101,7 @@
   margin: 0;
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-regular, 400);
-  color: var(--text-inverse, #ffffff);
-  opacity: 0.85;
+  color: var(--text-secondary, #5a5247);
   line-height: var(--line-height-relaxed, 1.5);
 }
 
@@ -80,10 +118,10 @@
   width: 100%;
   height: 48px;
   padding: 0 var(--spacing-4, 16px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: var(--radius-lg, 10px);
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--text-inverse, #ffffff);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-primary, #1a1814);
   font-size: var(--font-size-base, 16px);
   font-family: inherit;
   outline: none;
@@ -92,12 +130,12 @@
 }
 
 .emailInput::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .emailInput:focus {
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--brand-primary, #2563eb);
+  background: #ffffff;
 }
 
 /* CTA button */
@@ -122,7 +160,7 @@
 .ctaButton:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 2px var(--brand-primary-muted, #dbeafe),
     0 0 0 5px var(--border-focus, #3b82f6);
 }
 
@@ -137,12 +175,12 @@
 .dividerLine {
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .dividerText {
   font-size: var(--font-size-sm, 14px);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.45);
 }
 
 /* SSO icon row */
@@ -159,9 +197,9 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-full, 9999px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   background: var(--surface-primary, #ffffff);
-  color: var(--text-primary, #0f172a);
+  color: var(--text-primary, #1a1814);
   cursor: pointer;
   padding: 0;
   transition: background-color 150ms ease, border-color 150ms ease;
@@ -169,13 +207,13 @@
 
 .ssoIcon:hover {
   background: var(--surface-secondary, #f8fafc);
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 .ssoIcon:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 2px var(--brand-primary-muted, #dbeafe),
     0 0 0 5px var(--border-focus, #3b82f6);
 }
 
@@ -185,11 +223,11 @@
   padding: 0;
   border: none;
   background: none;
-  color: var(--text-inverse, #ffffff);
+  color: var(--text-secondary, #5a5247);
   font-size: var(--font-size-xs, 12px);
   font-family: inherit;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 150ms ease;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -202,7 +240,7 @@
 .guestCta:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 2px var(--brand-primary-muted, #dbeafe),
     0 0 0 5px var(--border-focus, #3b82f6);
   border-radius: var(--radius-sm, 4px);
 }

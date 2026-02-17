@@ -37,7 +37,7 @@
 .title {
   font-size: var(--font-size-xl, 20px);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--brand-primary, #2563eb);
+  color: var(--text-primary, #0f172a);
   line-height: var(--line-height-tight, 1.25);
   white-space: nowrap;
   overflow: hidden;

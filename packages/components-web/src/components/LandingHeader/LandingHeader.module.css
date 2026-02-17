@@ -21,9 +21,9 @@
 }
 
 .scrolled {
-  background: color-mix(in srgb, var(--surface-primary, #ffffff), transparent 15%);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--brand-primary-muted, #dbeafe), transparent 50%);
+  -webkit-backdrop-filter: blur(var(--blur-lg, 30px));
+  backdrop-filter: blur(var(--blur-lg, 30px));
   box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
 }
 
@@ -53,13 +53,9 @@
 .logoText {
   font-size: var(--font-size-xl, 20px);
   font-weight: var(--font-weight-bold, 700);
-  color: var(--text-inverse, #ffffff);
+  color: var(--text-primary, #1a1814);
   line-height: var(--line-height-tight, 1.25);
   transition: color 200ms ease;
-}
-
-.scrolled .logoText {
-  color: var(--brand-primary, #2563eb);
 }
 
 /* Actions container */
@@ -83,14 +79,14 @@
   cursor: pointer;
   transition: background-color 200ms ease, color 200ms ease,
     border-color 200ms ease;
-  /* Ghost style: transparent bg, white text */
+  /* Ghost style: transparent bg, dark text for cream background */
   background: transparent;
-  color: var(--text-inverse, #ffffff);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--text-primary, #1a1814);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .signInButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .signInButton:focus-visible {
@@ -98,17 +94,6 @@
   box-shadow:
     0 0 0 2px var(--surface-primary, #ffffff),
     0 0 0 5px var(--border-focus, #3b82f6);
-}
-
-/* Scrolled: outline style */
-.signInButtonScrolled {
-  color: var(--brand-primary, #2563eb);
-  border: 1px solid var(--border-default, #cbd5e1);
-  background: transparent;
-}
-
-.signInButtonScrolled:hover {
-  background: var(--surface-secondary, #f8fafc);
 }
 
 /* ------- @media (not @container — fixed elements can't use containment) ------- */

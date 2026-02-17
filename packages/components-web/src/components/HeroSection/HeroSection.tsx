@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, useMemo } from 'react';
 import type { FormEvent } from 'react';
 import type { HeroSectionPropsBase } from '@groxigo/contracts/components';
 import clsx from 'clsx';
@@ -33,12 +33,212 @@ const AppleIcon = () => (
   </svg>
 );
 
+/* ─── Grocery & utensil SVG icons for animated background ─── */
+
+const groceryIcons = [
+  // Chili pepper — red body, green stem
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M24 8C24 8 22 6 20 6C18 6 16 8 16 8" stroke="#2D5A27" strokeWidth="2" strokeLinecap="round" />
+      <path d="M20 10C14 14 8 22 10 32C12 40 20 44 28 40C36 36 40 26 36 18C34 14 30 12 26 12C22 12 20 14 20 18C20 22 22 26 26 28" stroke="#962D22" strokeWidth="2" strokeLinecap="round" fill="#E74C3C" />
+    </svg>
+  ),
+  // Onion — purple body, green sprout
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <ellipse cx="24" cy="30" rx="14" ry="12" stroke="#6C3483" strokeWidth="2" fill="#C39BD3" />
+      <path d="M24 18C24 18 20 10 24 6C28 10 24 18 24 18Z" stroke="#2D5A27" strokeWidth="2" fill="#58D68D" />
+      <path d="M18 22C20 28 20 36 18 42" stroke="#6C3483" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M30 22C28 28 28 36 30 42" stroke="#6C3483" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
+    </svg>
+  ),
+  // Mortar & pestle — stone gray bowl, wood pestle
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M10 24C10 24 8 38 12 40C16 42 32 42 36 40C40 38 38 24 38 24Z" stroke="#5D6D7E" strokeWidth="2" strokeLinecap="round" fill="#ABB2B9" />
+      <line x1="8" y1="24" x2="40" y2="24" stroke="#5D6D7E" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="30" y1="22" x2="38" y2="8" stroke="#6F4E37" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="39" cy="7" r="2.5" stroke="#6F4E37" strokeWidth="2" fill="#A0724A" />
+    </svg>
+  ),
+  // Rolling pin — warm wood
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <rect x="12" y="18" width="24" height="12" rx="6" stroke="#6F4E37" strokeWidth="2" fill="#C4956A" />
+      <line x1="12" y1="24" x2="6" y2="24" stroke="#5C3D2E" strokeWidth="2.5" strokeLinecap="round" />
+      <line x1="36" y1="24" x2="42" y2="24" stroke="#5C3D2E" strokeWidth="2.5" strokeLinecap="round" />
+      <circle cx="5" cy="24" r="2" stroke="#5C3D2E" strokeWidth="2" fill="#8B6B4A" />
+      <circle cx="43" cy="24" r="2" stroke="#5C3D2E" strokeWidth="2" fill="#8B6B4A" />
+    </svg>
+  ),
+  // Pan — dark metal, wood handle
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <circle cx="20" cy="26" r="14" stroke="#3D4F5F" strokeWidth="2" fill="#85929E" />
+      <line x1="32" y1="20" x2="46" y2="10" stroke="#6F4E37" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  ),
+  // Leaf / herb — green
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M8 40C8 40 10 20 24 10C38 20 40 40 40 40Z" stroke="#1E8449" strokeWidth="2" strokeLinecap="round" fill="#58D68D" />
+      <path d="M24 10C24 10 24 25 24 40" stroke="#1E8449" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M16 28C20 24 24 22 24 22" stroke="#1E8449" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M32 28C28 24 24 22 24 22" stroke="#1E8449" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  // Banana — yellow
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M12 8C12 8 8 16 8 24C8 36 18 42 30 40C38 38 42 32 42 28L12 8Z" stroke="#B7950B" strokeWidth="2" strokeLinecap="round" fill="#F9E154" />
+      <path d="M12 8C16 10 28 14 42 28" stroke="#B7950B" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  // Garlic — off-white bulb
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M24 42C16 42 10 36 10 28C10 20 16 16 20 14L24 6L28 14C32 16 38 20 38 28C38 36 32 42 24 42Z" stroke="#A09070" strokeWidth="2" fill="#F5F0E1" />
+      <path d="M24 16L24 42" stroke="#C8BFA6" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+    </svg>
+  ),
+  // Spoon — silver
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <ellipse cx="24" cy="14" rx="8" ry="10" stroke="#717D7E" strokeWidth="2" fill="#BDC3C7" />
+      <line x1="24" y1="24" x2="24" y2="44" stroke="#717D7E" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  ),
+  // Pot — copper body, metal handles
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="16" width="32" height="24" rx="4" stroke="#8B5A2B" strokeWidth="2" fill="#D4956A" />
+      <line x1="6" y1="16" x2="42" y2="16" stroke="#8B5A2B" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M6 16C4 16 4 12 6 12" stroke="#5D6D7E" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <path d="M42 16C44 16 44 12 42 12" stroke="#5D6D7E" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      <path d="M20 8C20 6 22 4 24 4C26 4 28 6 28 8" stroke="#5D6D7E" strokeWidth="2" strokeLinecap="round" fill="none" />
+    </svg>
+  ),
+  // Whisk — silver wires, wood handle
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <line x1="24" y1="20" x2="24" y2="44" stroke="#6F4E37" strokeWidth="3" strokeLinecap="round" />
+      <path d="M16 20C16 10 20 4 24 4C28 4 32 10 32 20Z" stroke="#717D7E" strokeWidth="2" strokeLinecap="round" fill="#BDC3C7" />
+      <path d="M18 20C18 12 21 6 24 6C27 6 30 12 30 20" stroke="#717D7E" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.4" />
+    </svg>
+  ),
+  // Carrot — orange body, green top
+  (s: number) => (
+    <svg width={s} height={s} viewBox="0 0 48 48" fill="none">
+      <path d="M24 44L16 16L32 16Z" stroke="#CA6F1E" strokeWidth="2" strokeLinejoin="round" fill="#F0B27A" />
+      <path d="M18 8C20 12 22 14 24 16" stroke="#1E8449" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M30 8C28 12 26 14 24 16" stroke="#1E8449" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M24 4C24 8 24 14 24 16" stroke="#1E8449" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  ),
+];
+
+/* ─── Deterministic scatter position generator ─── */
+
+function seededRandom(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 16807) % 2147483647;
+    return s / 2147483647;
+  };
+}
+
+interface ScatterPosition {
+  x: number;
+  y: number;
+  iconIndex: number;
+  size: number;
+  rotation: number;
+  opacity: number;
+}
+
+function generateScatterPositions(seed: number): ScatterPosition[] {
+  const rand = seededRandom(seed);
+  const positions: ScatterPosition[] = [];
+  const sizes = [28, 32, 36, 40, 44];
+  const opacities = [0.25, 0.30, 0.35, 0.40, 0.45];
+
+  // Grid-with-jitter: divide into cells, place one icon per cell with random offset
+  const cols = 10;
+  const rows = 7;
+  const cellW = 100 / cols;
+  const cellH = 100 / rows;
+  const jitter = 0.6; // how far within cell the icon can shift (0-1)
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const x = (col + 0.2 + rand() * jitter) * cellW;
+      const y = (row + 0.2 + rand() * jitter) * cellH;
+
+      positions.push({
+        x,
+        y,
+        iconIndex: Math.floor(rand() * groceryIcons.length),
+        size: sizes[Math.floor(rand() * sizes.length)],
+        rotation: (rand() - 0.5) * 40,
+        opacity: opacities[Math.floor(rand() * opacities.length)],
+      });
+    }
+  }
+
+  return positions;
+}
+
+/* ─── Animated icons background ─── */
+
+function AnimatedIconsBackground() {
+  const positions = useMemo(() => generateScatterPositions(42), []);
+
+  return (
+    <div className={styles.iconsContainer} aria-hidden="true">
+      <div className={styles.iconsStrip}>
+        {/* First tile (left half of strip: 0-50%) */}
+        {positions.map((pos, i) => (
+          <div
+            key={i}
+            className={styles.scatterIcon}
+            style={{
+              left: `${pos.x / 2}%`,
+              top: `${pos.y}%`,
+              transform: `rotate(${pos.rotation}deg)`,
+              opacity: pos.opacity,
+            }}
+          >
+            {groceryIcons[pos.iconIndex](pos.size)}
+          </div>
+        ))}
+        {/* Second tile (right half: 50-100%) — duplicate for seamless loop */}
+        {positions.map((pos, i) => (
+          <div
+            key={`d-${i}`}
+            className={styles.scatterIcon}
+            style={{
+              left: `${pos.x / 2 + 50}%`,
+              top: `${pos.y}%`,
+              transform: `rotate(${pos.rotation}deg)`,
+              opacity: pos.opacity,
+            }}
+          >
+            {groceryIcons[pos.iconIndex](pos.size)}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /**
  * HeroSection — full-bleed hero banner with headline, subheadline,
  * email capture form, "or" divider, and SSO icon buttons.
  *
+ * Warm cream background with animated scattered grocery/utensil
+ * SVG icons scrolling left-to-right via CSS marquee.
+ *
  * Heights: 480px mobile, 520px tablet, 600px large.
- * Background image with scrim gradient overlay.
  */
 export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
   (
@@ -86,7 +286,8 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
             aria-hidden="true"
           />
         )}
-        <div className={styles.scrim} aria-hidden="true" />
+
+        <AnimatedIconsBackground />
 
         <div className={styles.content}>
           <h1 className={styles.headline}>{headline}</h1>
