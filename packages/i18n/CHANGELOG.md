@@ -1,5 +1,11 @@
 # @groxigo/i18n
 
+## 1.1.2
+
+### Patch Changes
+
+- Fix message JSON exports: add .json suffix variants to exports map so `import('@groxigo/i18n/messages/hi.json')` resolves correctly.
+
 ## 1.1.1
 
 ### Patch Changes

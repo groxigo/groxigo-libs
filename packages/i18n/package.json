@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/i18n",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shared i18n messages, locale constants, and types for web and mobile",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,14 +18,23 @@
       "require": "./dist/messages.js"
     },
     "./messages/en": "./dist/messages/en.json",
+    "./messages/en.json": "./dist/messages/en.json",
     "./messages/hi": "./dist/messages/hi.json",
+    "./messages/hi.json": "./dist/messages/hi.json",
     "./messages/ar": "./dist/messages/ar.json",
+    "./messages/ar.json": "./dist/messages/ar.json",
     "./messages/ur": "./dist/messages/ur.json",
+    "./messages/ur.json": "./dist/messages/ur.json",
     "./messages/te": "./dist/messages/te.json",
+    "./messages/te.json": "./dist/messages/te.json",
     "./messages/ta": "./dist/messages/ta.json",
+    "./messages/ta.json": "./dist/messages/ta.json",
     "./messages/kn": "./dist/messages/kn.json",
+    "./messages/kn.json": "./dist/messages/kn.json",
     "./messages/ml": "./dist/messages/ml.json",
-    "./messages/gu": "./dist/messages/gu.json"
+    "./messages/ml.json": "./dist/messages/ml.json",
+    "./messages/gu": "./dist/messages/gu.json",
+    "./messages/gu.json": "./dist/messages/gu.json"
   },
   "typesVersions": {
     "*": {
