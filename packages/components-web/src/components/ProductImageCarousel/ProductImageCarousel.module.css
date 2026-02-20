@@ -14,6 +14,15 @@
   background: var(--surface-secondary, #f8fafc);
   border-radius: var(--radius-lg, 10px);
   overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.imageContainer:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
 }
 
 .image {
@@ -40,6 +49,13 @@
   justify-content: center;
 }
 
+/* Hide dots on desktop when thumbnails are present */
+@container (min-width: 768px) {
+  .dotsHideDesktop {
+    display: none;
+  }
+}
+
 .dot {
   width: 8px;
   height: 8px;
@@ -60,4 +76,85 @@
 
 .dotActive {
   background: var(--brand-primary, #2563eb);
+}
+
+/* Thumbnail strip — desktop only */
+.thumbnails {
+  display: none;
+}
+
+@container (min-width: 768px) {
+  .thumbnails {
+    display: flex;
+    gap: var(--spacing-2, 8px);
+    overflow-x: auto;
+    padding-block: var(--spacing-1, 4px);
+  }
+
+  .thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Gallery layout (vertical thumbnails on left) ─── */
+
+@container (min-width: 768px) {
+  .rootGallery {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .rootGallery .imageContainer {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .thumbnailsGallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2, 8px);
+    overflow-y: auto;
+    overflow-x: visible;
+    max-height: 100%;
+    padding-inline-end: var(--spacing-1, 4px);
+    padding-block: 0;
+  }
+
+  .thumbnailsGallery::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.thumbnailButton {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  background: var(--surface-secondary, #f8fafc);
+  transition: border-color var(--duration-fast, 150ms);
+}
+
+.thumbnailButton:hover {
+  border-color: var(--border-default, #cbd5e1);
+}
+
+.thumbnailButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #ffffff),
+    0 0 0 4px var(--border-focus, #3b82f6);
+}
+
+.thumbnailActive {
+  border-color: var(--brand-primary, #2563eb);
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

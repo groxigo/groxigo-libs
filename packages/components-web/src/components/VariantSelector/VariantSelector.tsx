@@ -2,7 +2,6 @@
 
 import { forwardRef, useCallback } from 'react';
 import type { VariantSelectorPropsBase } from '@groxigo/contracts/components';
-import { Button } from '@groxigo/ui-elements-web';
 import clsx from 'clsx';
 import styles from './VariantSelector.module.css';
 
@@ -37,16 +36,16 @@ export const VariantSelector = forwardRef<HTMLDivElement, VariantSelectorProps>(
             const isDisabled = option.disabled === true;
 
             return (
-              <Button
+              <button
                 key={option.value}
-                variant={isSelected ? 'solid' : 'outline'}
-                colorScheme="primary"
+                type="button"
+                role="radio"
                 disabled={isDisabled}
-                onPress={() => handleSelect(option.value)}
+                onClick={() => handleSelect(option.value)}
                 aria-checked={isSelected}
                 className={clsx(
                   styles.option,
-                  isSelected ? styles.optionSelected : styles.optionDefault,
+                  isSelected && styles.optionSelected,
                   isDisabled && styles.optionDisabled
                 )}
               >
@@ -76,7 +75,7 @@ export const VariantSelector = forwardRef<HTMLDivElement, VariantSelectorProps>(
                     {option.price}
                   </span>
                 )}
-              </Button>
+              </button>
             );
           })}
         </div>

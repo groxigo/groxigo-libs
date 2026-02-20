@@ -26,18 +26,10 @@
   align-items: center;
 }
 
-/* Size max-widths (used when standalone, not in a grid cell) */
-.sizeSm {
-  max-width: 100px;
-}
-
-.sizeMd {
-  max-width: 130px;
-}
-
-.sizeLg {
-  max-width: 160px;
-}
+/* Size classes — no max-width; parent container (Grid, Carousel, custom grid) controls width */
+.sizeSm {}
+.sizeMd {}
+.sizeLg {}
 
 /* ───── Image section ───── */
 .imageSection {
@@ -97,19 +89,35 @@
   right: var(--spacing-1-5, 6px);
   width: 28px;
   height: 28px;
-  background: var(--brand-primary, #2563eb);
+  background: color-mix(in srgb, var(--brand-primary, #2563eb), transparent 30%);
   border-radius: var(--radius-xl, 14px);
   color: var(--text-inverse, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   font-size: var(--font-size-lg, 18px);
   font-weight: var(--font-weight-bold, 700);
   padding: 0;
   line-height: 1;
   z-index: 1;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .addButton {
+    -webkit-backdrop-filter: blur(var(--blur-lg, 30px));
+    backdrop-filter: blur(var(--blur-lg, 30px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .addButton {
+    background: var(--brand-primary, #2563eb);
+    border-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .addButton:focus-visible {
@@ -127,10 +135,27 @@
   display: flex;
   align-items: center;
   gap: 0;
-  background: var(--brand-primary, #2563eb);
+  background: color-mix(in srgb, var(--brand-primary, #2563eb), transparent 30%);
   border-radius: var(--radius-xl, 14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .quantityStepper {
+    -webkit-backdrop-filter: blur(var(--blur-lg, 30px));
+    backdrop-filter: blur(var(--blur-lg, 30px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .quantityStepper {
+    background: var(--brand-primary, #2563eb);
+    border-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .stepperButton {
@@ -231,39 +256,18 @@
   margin: 0;
 }
 
-.nameCategory {
-  text-align: center;
-}
-
-/* Rating area (zoom-to-rate trigger) */
-.ratingArea {
-  cursor: pointer;
-  padding: var(--spacing-1, 4px) 0;
-  margin: calc(-1 * var(--spacing-1, 4px)) 0;
-}
-
-/* Rating popup (portal, fixed position) */
-.ratingPopup {
-  position: fixed;
-  z-index: 10000;
-  background: var(--surface-primary, #ffffff);
-  border-radius: var(--radius-md, 8px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: var(--spacing-1-5, 6px) var(--spacing-2, 8px);
-  pointer-events: auto;
-}
-
-/* Rating button wrapper (legacy) */
-.ratingButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: inline-flex;
-}
-
-/* Rating row */
-.ratingRow {
+/* Brand name */
+.brand {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-secondary, #475569);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   width: 100%;
 }
 
+.nameCategory {
+  text-align: center;
+}

@@ -374,3 +374,7 @@ export type {
   VariantOption,
   VariantSelectorPropsBase,
 } from './variant-selector';
+
+export type {
+  RatingSummaryPropsBase,
+} from './rating-summary';

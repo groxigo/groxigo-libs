@@ -73,11 +73,26 @@
   max-width: min(280px, calc(100vw - var(--spacing-8, 32px)));
   padding: var(--spacing-1, 4px) 0;
   border-radius: var(--radius-xs);
-  background-color: var(--surface-primary);
+  background: var(--glass-surface-heavy, rgba(255, 255, 255, 0.85));
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1));
   outline: none;
   animation: menuFadeIn var(--duration-fast) ease-out;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .menuList {
+    -webkit-backdrop-filter: blur(var(--blur-sm, 10px));
+    backdrop-filter: blur(var(--blur-sm, 10px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .menuList {
+    background-color: var(--surface-primary);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 @keyframes menuFadeIn {

@@ -4,7 +4,7 @@
   container-type: inline-size;
   display: flex;
   flex-direction: column;
-  background: var(--surface-primary, #ffffff);
+  background: var(--glass-surface-dark, rgba(255, 255, 255, 0.95));
   border: 1px solid var(--border-subtle, #e2e8f0);
   border-radius: var(--radius-2xl, 20px);
   box-shadow: var(--shadow-xl, 0 8px 24px -4px rgba(0, 0, 0, 0.15));
@@ -12,6 +12,21 @@
   width: 100%;
   max-width: 608px;
   max-height: 80vh;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .root {
+    -webkit-backdrop-filter: blur(var(--blur-sm, 10px));
+    backdrop-filter: blur(var(--blur-sm, 10px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .root {
+    background: var(--surface-primary, #ffffff);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 /* Compact layout when container is narrow */

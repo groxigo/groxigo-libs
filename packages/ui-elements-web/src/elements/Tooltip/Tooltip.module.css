@@ -49,11 +49,26 @@
   padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
   font-size: var(--font-size-sm);
   color: var(--text-inverse, #fff);
-  background-color: var(--surface-inverse, #111827);
+  background-color: rgba(17, 24, 39, 0.85);
   border-radius: var(--radius-sm, 6px);
   box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
   white-space: nowrap;
   animation: tooltipFadeIn var(--duration-fast, 150ms) ease-out;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .tooltip {
+    -webkit-backdrop-filter: blur(var(--blur-sm, 10px));
+    backdrop-filter: blur(var(--blur-sm, 10px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .tooltip {
+    background-color: var(--surface-inverse, #111827);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 /* ------------------------------------------------------------------ */

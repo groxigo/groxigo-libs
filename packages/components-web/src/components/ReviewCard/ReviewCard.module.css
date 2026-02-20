@@ -36,10 +36,25 @@
   line-height: normal;
 }
 
-.stars {
+.ratingRow {
   display: flex;
-  gap: var(--spacing-0-5, 2px);
-  color: var(--status-warning, #f59e0b);
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  flex-wrap: wrap;
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+}
+
+.title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #334155);
+  margin: 0;
+  line-height: 1.4;
 }
 
 .text {
@@ -47,4 +62,83 @@
   color: var(--text-secondary, #475569);
   line-height: 1.5;
   margin: 0;
+}
+
+.images {
+  display: flex;
+  gap: var(--spacing-2, 8px);
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border-default, #e2e8f0);
+  cursor: pointer;
+}
+
+.helpfulRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3, 12px);
+  padding-block-start: var(--spacing-1, 4px);
+  border-top: 1px solid var(--border-subtle, #f1f5f9);
+}
+
+.helpfulCount {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-tertiary, #94a3b8);
+}
+
+.helpfulButton {
+  margin-inline-start: auto;
+}
+
+/* ─── Own review ─── */
+
+.ownReview {
+  border-color: var(--brand-primary, #2563eb);
+  border-width: 1px;
+}
+
+.youBadge {
+  margin-inline-start: var(--spacing-1-5, 6px);
+  font-size: var(--font-size-2xs, 10px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--brand-primary, #2563eb);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ownerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  margin-inline-start: auto;
+}
+
+.ownerAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  border-radius: var(--radius-md, 8px);
+  color: var(--text-tertiary, #94a3b8);
+  cursor: pointer;
+  transition: background var(--duration-fast, 150ms), color var(--duration-fast, 150ms);
+}
+
+.ownerAction:hover {
+  background: var(--surface-secondary, #f8fafc);
+  color: var(--text-primary, #334155);
+}
+
+.deleteAction:hover {
+  background: var(--status-error-subtle, #fef2f2);
+  color: var(--status-error, #dc2626);
 }

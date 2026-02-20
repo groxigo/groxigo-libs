@@ -10,16 +10,15 @@ export interface ProductCarouselProps extends ProductCarouselPropsBase {
 }
 
 export const ProductCarousel = forwardRef<HTMLDivElement, ProductCarouselProps>(
-  ({ items, onItemPress, onRatingPress, onSeeAll, title, showArrows, gap, className, testID }, ref) => {
+  ({ items, onItemPress, onSeeAll, title, showArrows, gap, className, testID }, ref) => {
     const renderItem = useCallback(
       (item: ProductCarouselProps['items'][number]) => (
         <ProductTile
           {...item}
           onPress={onItemPress ? () => onItemPress(item.id) : item.onPress}
-          onRatingPress={onRatingPress ? () => onRatingPress(item.id) : undefined}
         />
       ),
-      [onItemPress, onRatingPress]
+      [onItemPress]
     );
 
     return (
@@ -28,7 +27,7 @@ export const ProductCarousel = forwardRef<HTMLDivElement, ProductCarouselProps>(
         items={items}
         renderItem={renderItem}
         showArrows={showArrows}
-        itemWidth={140}
+        itemWidth="clamp(110px, 16vw, 192px)"
         gap={gap}
         title={title}
         onSeeAll={onSeeAll}

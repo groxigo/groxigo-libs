@@ -99,7 +99,7 @@ function CarouselInner<T extends CarouselItem>(
             <div
               key={item.id}
               className={styles.slide}
-              style={itemWidth ? { width: `${itemWidth}px` } : undefined}
+              style={itemWidth ? { width: typeof itemWidth === 'number' ? `${itemWidth}px` : itemWidth } : undefined}
             >
               {renderItem(item)}
             </div>

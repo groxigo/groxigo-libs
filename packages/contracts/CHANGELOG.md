@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.3.6
+
+### Patch Changes
+
+- Progressive enhancement glass effect across Drawer, Tooltip, Menu, StickyBottomBar, ProductListModal, ProductTile, CategoryChip. 3-tier pattern: semi-transparent base, @supports backdrop-filter blur, prefers-reduced-transparency opaque fallback. New carousel/product contracts. i18n message updates for te, ta, kn, ml, gu.
+
 ## 1.3.5
 
 ### Patch Changes

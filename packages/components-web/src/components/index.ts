@@ -133,7 +133,10 @@ export type { PaymentMethodCardProps } from './PaymentMethodCard';
 export { DeliveryTag } from './DeliveryTag';
 export type { DeliveryTagProps } from './DeliveryTag';
 
-// P2 Composites
+// Ratings & Reviews
+export { RatingSummary } from './RatingSummary';
+export type { RatingSummaryProps } from './RatingSummary';
+
 export { ReviewCard } from './ReviewCard';
 export type { ReviewCardProps } from './ReviewCard';
 

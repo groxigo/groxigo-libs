@@ -11,6 +11,8 @@ export interface ProductImageCarouselPropsBase {
   currentIndex?: number;
   /** Callback when image index changes */
   onIndexChange?: (index: number) => void;
+  /** Layout mode: 'stacked' (default) or 'gallery' (vertical thumbs on left, desktop only) */
+  layout?: 'stacked' | 'gallery';
   /** Test ID for testing */
   testID?: string;
 }

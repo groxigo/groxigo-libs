@@ -291,6 +291,21 @@ export const ProductTile = ({
           </View>
         )}
 
+        {/* Brand Name - single line, secondary text */}
+        {brand && price !== undefined && (
+          <Text
+            variant="caption"
+            weight="semibold"
+            numberOfLines={1}
+            style={{
+              color: theme.colors.textSecondary,
+              fontSize: fontSize(12),
+            }}
+          >
+            {brand}
+          </Text>
+        )}
+
         {/* Product Name - 2 lines max with ellipsis */}
         <Text
           variant="h6"
@@ -300,25 +315,23 @@ export const ProductTile = ({
             fontSize: fontSize(12),
             lineHeight: fontSize(15),
             height: fontSize(15) * 2,
-            marginTop: price !== undefined ? uiSize(4) : 0,
+            marginTop: price !== undefined && !brand ? uiSize(4) : 0,
             textAlign: price === undefined ? 'center' : 'left',
           }}
         >
           {name}
         </Text>
 
-        {/* Rating - compact with reviews on right (only for products) */}
-        {price !== undefined && (
+        {/* Rating - only show when product has reviews */}
+        {price !== undefined && reviewCount != null && reviewCount > 0 && (
           <View style={[styles.ratingRow, { marginTop: uiSize(4) }]}>
             <Rating value={rating ?? 0} size="xs" />
-            {reviewCount !== undefined && reviewCount > 0 && (
-              <Text
-                variant="caption"
-                style={{ color: theme.colors.textSecondary, fontSize: fontSize(9), marginLeft: 'auto' }}
-              >
-                {reviewCount.toLocaleString()}
-              </Text>
-            )}
+            <Text
+              variant="caption"
+              style={{ color: theme.colors.textSecondary, fontSize: fontSize(9), marginLeft: 'auto' }}
+            >
+              {reviewCount.toLocaleString()}
+            </Text>
           </View>
         )}
 

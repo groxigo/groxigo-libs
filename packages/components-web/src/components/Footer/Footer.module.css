@@ -4,11 +4,24 @@
 .root {
   container-type: inline-size;
   background: color-mix(in srgb, var(--brand-primary-muted, #dbeafe), transparent 50%);
-  -webkit-backdrop-filter: blur(var(--blur-lg, 30px));
-  backdrop-filter: blur(var(--blur-lg, 30px));
   width: 100%;
   box-sizing: border-box;
   font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .root {
+    -webkit-backdrop-filter: blur(var(--blur-sm, 10px));
+    backdrop-filter: blur(var(--blur-sm, 10px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .root {
+    background: var(--brand-primary-muted, #dbeafe);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .inner {

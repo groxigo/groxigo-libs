@@ -30,6 +30,12 @@
   scroll-snap-align: start;
 }
 
+/* Force child card to fill the slide width (overrides standalone max-width) */
+.slide > * {
+  max-width: none !important;
+  width: 100% !important;
+}
+
 /* Arrow buttons */
 .arrowLeft,
 .arrowRight {

@@ -17,8 +17,8 @@ export interface CarouselPropsBase<T extends CarouselItemBase = CarouselItemBase
   renderItem: (item: T) => ReactNode;
   /** Whether to show navigation arrows @default true */
   showArrows?: boolean;
-  /** Fixed width for each slide item in pixels */
-  itemWidth?: number;
+  /** Width for each slide item — number (px) or string (CSS value like clamp()) */
+  itemWidth?: number | string;
   /** Gap between items in pixels @default 12 */
   gap?: number;
   /** Section title */

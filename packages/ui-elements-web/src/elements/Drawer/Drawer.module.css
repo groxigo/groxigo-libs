@@ -19,6 +19,21 @@
   transition: opacity var(--duration-moderate, 300ms) ease;
 }
 
+@supports (backdrop-filter: blur(1px)) {
+  .backdrop {
+    -webkit-backdrop-filter: blur(var(--blur-sm, 10px));
+    backdrop-filter: blur(var(--blur-sm, 10px));
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 .backdropVisible {
   opacity: 1;
 }

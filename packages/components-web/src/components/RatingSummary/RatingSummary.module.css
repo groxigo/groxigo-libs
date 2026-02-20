@@ -1,0 +1,104 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+  padding: var(--spacing-4, 16px);
+  border-radius: var(--radius-lg, 10px);
+  background: var(--surface-primary, #ffffff);
+  border: 1px solid var(--border-default, #e2e8f0);
+  font-family: var(--font-family-sans, 'Google Sans Flex', sans-serif);
+  box-sizing: border-box;
+}
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+}
+
+@container (min-width: 480px) {
+  .overview {
+    flex-direction: row;
+    gap: var(--spacing-6, 24px);
+    align-items: flex-start;
+  }
+}
+
+/* Left: average rating block */
+.averageBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1, 4px);
+  flex-shrink: 0;
+}
+
+@container (min-width: 480px) {
+  .averageBlock {
+    min-width: 120px;
+  }
+}
+
+.averageValue {
+  font-size: var(--font-size-3xl, 30px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-primary, #0f172a);
+  line-height: 1.2;
+}
+
+.totalCount {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-tertiary, #94a3b8);
+  line-height: normal;
+}
+
+/* Right: distribution bars */
+.bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1-5, 6px);
+  min-width: 0;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+}
+
+.barLabel {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-secondary, #64748b);
+  width: 12px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.barTrack {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-tertiary, #f1f5f9);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--status-warning, #f59e0b);
+  border-radius: var(--radius-full, 9999px);
+  transition: width 300ms ease;
+}
+
+.barCount {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--text-tertiary, #94a3b8);
+  width: 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.writeButton {
+  align-self: flex-start;
+}

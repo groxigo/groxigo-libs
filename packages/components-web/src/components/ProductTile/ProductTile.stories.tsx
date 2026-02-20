@@ -30,10 +30,11 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     id: 'prod-001',
-    name: 'Tata Sampann Turmeric Powder',
+    name: 'Turmeric Powder',
     imageUrl: 'https://placehold.co/200x200/FFC107/333?text=Turmeric',
     price: 4.99,
     weight: '200g',
+    brand: 'Tata Sampann',
     rating: 4.3,
     reviewCount: 128,
     showAddButton: true,
@@ -47,12 +48,13 @@ export const Default: Story = {
 export const WithDiscount: Story = {
   args: {
     id: 'prod-002',
-    name: 'MDH Garam Masala',
+    name: 'Garam Masala',
     imageUrl: 'https://placehold.co/200x200/FF5722/fff?text=Masala',
     price: 3.49,
     originalPrice: 5.99,
     discountPercent: 42,
     weight: '100g',
+    brand: 'MDH',
     rating: 4.7,
     reviewCount: 312,
     badge: 'Best Seller',
@@ -91,10 +93,11 @@ export const OutOfStock: Story = {
 export const WithFavorite: Story = {
   args: {
     id: 'prod-004',
-    name: 'Shan Biryani Masala',
+    name: 'Biryani Masala',
     imageUrl: 'https://placehold.co/200x200/9C27B0/fff?text=Biryani',
     price: 2.49,
     weight: '60g',
+    brand: 'Shan',
     rating: 4.5,
     reviewCount: 89,
     showFavorite: true,
@@ -102,6 +105,19 @@ export const WithFavorite: Story = {
     showAddButton: true,
     onAddPress: () => {},
     onFavoritePress: () => {},
+    onPress: () => {},
+  },
+};
+
+export const NoBrand: Story = {
+  args: {
+    id: 'prod-005',
+    name: 'Organic Basmati Rice',
+    imageUrl: 'https://placehold.co/200x200/8BC34A/fff?text=Rice',
+    price: 12.99,
+    weight: '5lb',
+    showAddButton: true,
+    onAddPress: () => {},
     onPress: () => {},
   },
 };

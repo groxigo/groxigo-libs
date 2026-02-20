@@ -215,7 +215,12 @@
 
 /* ============================================
    VARIANT + COLOR SCHEME: OUTLINE
+   §13: Same pill radius as solid CTA
    ============================================ */
+
+.outline {
+  border-radius: var(--radius-full, 9999px);
+}
 
 .outline.primary {
   border: 2px solid var(--brand-primary, #2563eb);

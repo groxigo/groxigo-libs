@@ -47,7 +47,8 @@ export interface ProductTilePropsBase {
   weight?: string;
 
   /**
-   * Brand name
+   * Brand name — displayed as a separate line above the product name
+   * in secondary text style. Not rendered for category tiles.
    */
   brand?: string;
 
@@ -146,17 +147,6 @@ export interface ProductTilePropsBase {
    * Tile width (overrides size-based width)
    */
   width?: number;
-
-  /**
-   * Callback when the rating row is pressed (e.g., to open a rating dialog)
-   */
-  onRatingPress?: () => void;
-
-  /**
-   * Callback when user selects a star rating inline (zoom-to-rate).
-   * Receives the rating value (1-5).
-   */
-  onRatingSubmit?: (rating: number) => void;
 
   /**
    * Callback when tile is pressed
