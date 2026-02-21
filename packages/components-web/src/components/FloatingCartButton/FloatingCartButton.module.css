@@ -12,7 +12,7 @@
   width: var(--spacing-14, 56px);
   height: var(--spacing-14, 56px);
   border-radius: var(--radius-full, 9999px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.15));
   cursor: pointer;
   transition: transform var(--duration-fast, 150ms) ease,
     box-shadow var(--duration-fast, 150ms) ease;
@@ -20,7 +20,7 @@
 
 .button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-xl, 0 6px 16px rgba(0, 0, 0, 0.2));
 }
 
 .button:active {
@@ -44,7 +44,7 @@
 
 .badge {
   position: absolute;
-  top: var(--spacing-0.5, 2px);
-  right: var(--spacing-0.5, 2px);
+  top: var(--spacing-0_5, 2px);
+  right: var(--spacing-0_5, 2px);
   pointer-events: none;
 }

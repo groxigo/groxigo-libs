@@ -1,20 +1,45 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
-// Bun workspaces use broken relative symlinks for hoisted deps.
-// Resolve the real paths so Vite can find them.
-const bunModules = path.resolve(__dirname, '../../node_modules/.bun');
-const reactDir = path.join(bunModules, 'react@19.1.0/node_modules/react');
-const reactDomDir = path.join(bunModules, 'react-dom@19.1.0/node_modules/react-dom');
+// Resolve modules dynamically from Bun's cache (avoids hardcoding version)
+function resolveModule(name: string): string {
+  try {
+    const resolved = import.meta.resolve(name);
+    return path.dirname(fileURLToPath(resolved));
+  } catch {
+    const bunCache = path.resolve(__dirname, '../../node_modules/.bun');
+    const entries = fs.readdirSync(bunCache).filter((e: string) => e.startsWith(`${name}@`));
+    if (entries.length > 0) {
+      return path.join(bunCache, entries[0], 'node_modules', name);
+    }
+    throw new Error(`Cannot resolve ${name}`);
+  }
+}
+
+// Resolve a module's package directory (for packages with subpath exports)
+function resolvePackageDir(name: string): string {
+  const bunCache = path.resolve(__dirname, '../../node_modules/.bun');
+  const safeName = name.replace(/\//g, '+');
+  const entries = fs.readdirSync(bunCache).filter((e: string) => e.startsWith(`${safeName}@`));
+  if (entries.length > 0) {
+    return path.join(bunCache, entries[entries.length - 1], 'node_modules', ...name.split('/'));
+  }
+  throw new Error(`Cannot resolve package ${name}`);
+}
+
+const jestDomDir = resolvePackageDir('@testing-library/jest-dom');
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     extensions: ['.web.tsx', '.web.ts', '.tsx', '.ts', '.js', '.jsx'],
     alias: {
-      react: reactDir,
-      'react-dom': reactDomDir,
+      'react': resolveModule('react'),
+      'react-dom': resolveModule('react-dom'),
+      '@testing-library/jest-dom': jestDomDir,
     },
   },
   test: {

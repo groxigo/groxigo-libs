@@ -35,6 +35,14 @@
   line-height: normal;
 }
 
+.subtitle {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--text-primary, #0f172a);
+  line-height: normal;
+  margin-top: var(--spacing-1, 4px);
+}
+
 /* ── Step header (sign-in / sign-up steps) ── */
 
 .stepHeader {
@@ -64,8 +72,10 @@
 }
 
 .backButton:focus-visible {
-  outline: 3px solid var(--border-focus, #3b82f6);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #fff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .stepHeading {
@@ -166,12 +176,16 @@
 }
 
 .ssoIcon:focus-visible {
-  outline: 3px solid var(--border-focus, #3b82f6);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #fff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .ssoIcon:disabled {
-  opacity: 0.5;
+  background-color: var(--surface-disabled, #f1f5f9);
+  color: var(--text-disabled, #94a3b8);
+  border-color: var(--border-disabled, #e2e8f0);
   cursor: not-allowed;
 }
 
@@ -215,8 +229,10 @@
 }
 
 .forgotLink:focus-visible {
-  outline: 3px solid var(--border-focus, #3b82f6);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #fff),
+    0 0 0 5px var(--border-focus, #3b82f6);
   border-radius: var(--radius-xs, 4px);
 }
 

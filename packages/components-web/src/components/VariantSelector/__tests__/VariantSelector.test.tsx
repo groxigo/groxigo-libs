@@ -27,7 +27,7 @@ describe('VariantSelector', () => {
     render(
       <VariantSelector options={sampleOptions} selectedValue="500g" />
     );
-    const buttons = screen.getAllByRole('button');
+    const buttons = screen.getAllByRole('radio');
     expect(buttons[1]).toHaveAttribute('aria-checked', 'true');
     expect(buttons[0]).toHaveAttribute('aria-checked', 'false');
     expect(buttons[2]).toHaveAttribute('aria-checked', 'false');
@@ -42,7 +42,7 @@ describe('VariantSelector', () => {
         onSelect={onSelect}
       />
     );
-    fireEvent.click(screen.getAllByRole('button')[2]);
+    fireEvent.click(screen.getAllByRole('radio')[2]);
     expect(onSelect).toHaveBeenCalledWith('1kg');
   });
 
@@ -89,7 +89,7 @@ describe('VariantSelector', () => {
       { label: '500g', value: '500g', price: '$4.99', disabled: true },
     ];
     render(<VariantSelector options={optionsWithDisabled} />);
-    const buttons = screen.getAllByRole('button');
+    const buttons = screen.getAllByRole('radio');
     expect(buttons[0]).not.toBeDisabled();
     expect(buttons[1]).toBeDisabled();
   });
@@ -103,7 +103,7 @@ describe('VariantSelector', () => {
     render(
       <VariantSelector options={optionsWithDisabled} onSelect={onSelect} />
     );
-    fireEvent.click(screen.getAllByRole('button')[1]);
+    fireEvent.click(screen.getAllByRole('radio')[1]);
     expect(onSelect).not.toHaveBeenCalled();
   });
 });

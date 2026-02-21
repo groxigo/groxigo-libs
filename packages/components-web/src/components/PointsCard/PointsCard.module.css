@@ -29,7 +29,7 @@
 .tier {
   font-size: var(--font-size-xs, 12px);
   font-weight: var(--font-weight-medium, 500);
-  opacity: 0.8;
+  color: var(--text-inverse-secondary, rgba(255, 255, 255, 0.8));
 }
 
 /* Points display */
@@ -49,7 +49,7 @@
 .pointsUnit {
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-normal, 400);
-  opacity: 0.8;
+  color: var(--text-inverse-secondary, rgba(255, 255, 255, 0.8));
 }
 
 /* Progress section */
@@ -63,14 +63,14 @@
 .progressBar {
   width: 100%;
   /* Override Progress tokens so bar is visible on brand-primary background */
-  --surface-secondary: rgba(255, 255, 255, 0.25);
+  --surface-secondary: var(--glass-surface-light, rgba(255, 255, 255, 0.25));
   --brand-primary: var(--text-inverse, #ffffff);
 }
 
 .progressLabel {
   font-size: var(--font-size-xs, 12px);
   font-weight: var(--font-weight-normal, 400);
-  opacity: 0.8;
+  color: var(--text-inverse-secondary, rgba(255, 255, 255, 0.8));
 }
 
 /* Actions */
@@ -85,18 +85,17 @@
 .historyLink {
   background: none;
   border: none;
-  color: var(--text-inverse, #ffffff);
   font-size: var(--font-size-sm, 14px);
   font-weight: var(--font-weight-medium, 500);
   cursor: pointer;
   padding: var(--spacing-1, 4px) var(--spacing-2, 8px);
-  opacity: 0.9;
+  color: var(--text-inverse-secondary, rgba(255, 255, 255, 0.9));
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .historyLink:hover {
-  opacity: 1;
+  color: var(--text-inverse, #ffffff);
 }
 
 .historyLink:focus-visible {

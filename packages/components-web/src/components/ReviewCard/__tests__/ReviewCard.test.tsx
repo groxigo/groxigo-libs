@@ -28,7 +28,7 @@ describe('ReviewCard', () => {
 
   it('renders the star rating with aria-label', () => {
     render(<ReviewCard {...defaultProps} />);
-    expect(screen.getByRole('img', { name: '4 out of 5 stars' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Rating: 4 out of 5')).toBeInTheDocument();
   });
 
   it('applies testID as data-testid', () => {

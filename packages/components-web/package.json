@@ -1,15 +1,15 @@
 {
   "name": "@groxigo/components-web",
-  "version": "1.2.16",
+  "version": "1.2.17",
   "description": "Groxigo Composite Components for Web - Built on ui-elements-web",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
@@ -43,10 +43,10 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@groxigo/tokens": "^1.0.2",
-    "@groxigo/contracts": "^1.3.6",
-    "@groxigo/icons": "^1.0.3",
-    "@groxigo/ui-elements-web": "^1.2.7",
+    "@groxigo/tokens": "^1.1.1",
+    "@groxigo/contracts": "^1.3.7",
+    "@groxigo/icons": "^1.0.4",
+    "@groxigo/ui-elements-web": "^1.2.8",
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.0"
   },

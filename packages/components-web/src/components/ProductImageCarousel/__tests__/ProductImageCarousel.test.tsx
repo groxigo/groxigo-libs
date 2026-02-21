@@ -28,8 +28,10 @@ describe('ProductImageCarousel', () => {
 
   it('renders navigation dots for multiple images', () => {
     render(<ProductImageCarousel images={images} />);
-    const tabs = screen.getAllByRole('tab');
-    expect(tabs).toHaveLength(3);
+    const tablists = screen.getAllByRole('tablist');
+    const dotTablist = tablists.find(t => t.getAttribute('aria-label') === 'Image navigation');
+    const dots = dotTablist!.querySelectorAll('[role="tab"]');
+    expect(dots).toHaveLength(3);
   });
 
   it('does not render dots for a single image', () => {

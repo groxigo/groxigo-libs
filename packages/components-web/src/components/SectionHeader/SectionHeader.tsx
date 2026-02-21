@@ -57,6 +57,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
             variant="ghost"
             colorScheme="primary"
             size="sm"
+            className={styles.seeAllButton}
             onPress={onSeeAllPress}
             aria-label={`${seeAllText} ${title}`}
           >

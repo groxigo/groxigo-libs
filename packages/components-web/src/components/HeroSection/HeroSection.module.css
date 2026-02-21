@@ -59,7 +59,7 @@
 
 .scatterIcon {
   position: absolute;
-  color: #73522e;
+  color: var(--brand-accent, #73522e);
 }
 
 /* Mobile: show only every 3rd icon + shrink */
@@ -118,9 +118,9 @@
   width: 100%;
   height: 48px;
   padding: 0 var(--spacing-4, 16px);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.2));
   border-radius: var(--radius-lg, 10px);
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass-surface-heavy, rgba(255, 255, 255, 0.85));
   color: var(--text-primary, #1a1814);
   font-size: var(--font-size-base, 16px);
   font-family: inherit;
@@ -130,12 +130,12 @@
 }
 
 .emailInput::placeholder {
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--text-tertiary, rgba(0, 0, 0, 0.45));
 }
 
-.emailInput:focus {
+.emailInput:focus-visible {
   border-color: var(--brand-primary, #2563eb);
-  background: #ffffff;
+  background: var(--surface-primary, #ffffff);
 }
 
 /* CTA button */
@@ -175,12 +175,12 @@
 .dividerLine {
   flex: 1;
   height: 1px;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--border-subtle, rgba(0, 0, 0, 0.15));
 }
 
 .dividerText {
   font-size: var(--font-size-sm, 14px);
-  color: rgba(0, 0, 0, 0.45);
+  color: var(--text-tertiary, rgba(0, 0, 0, 0.45));
 }
 
 /* SSO icon row */
@@ -197,7 +197,7 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-full, 9999px);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.15));
   background: var(--surface-primary, #ffffff);
   color: var(--text-primary, #1a1814);
   cursor: pointer;
@@ -207,7 +207,7 @@
 
 .ssoIcon:hover {
   background: var(--surface-secondary, #f8fafc);
-  border-color: rgba(0, 0, 0, 0.3);
+  border-color: var(--border-default, rgba(0, 0, 0, 0.3));
 }
 
 .ssoIcon:focus-visible {

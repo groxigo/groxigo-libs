@@ -54,7 +54,9 @@
 
 .option:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--border-focus, #3b82f6);
+  box-shadow:
+    0 0 0 2px var(--surface-primary, #fff),
+    0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .optionSelected {
@@ -71,7 +73,8 @@
 /* ── Disabled option ── */
 
 .optionDisabled {
-  opacity: 0.5;
+  background-color: var(--surface-disabled, #f1f5f9);
+  border-color: var(--border-disabled, #e2e8f0);
   cursor: not-allowed;
   pointer-events: none;
 }

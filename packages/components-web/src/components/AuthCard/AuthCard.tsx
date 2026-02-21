@@ -57,6 +57,7 @@ function getInitialStep(mode?: AuthMode, initialEmail?: string): AuthStep {
 
 const DEFAULT_AUTH_LABELS = {
   tagline: 'Fresh groceries delivered fast',
+  subtitle: 'Sign in or create an account',
   continueButton: 'Continue',
   orDivider: 'or',
   welcomeBack: 'Welcome back',
@@ -201,6 +202,7 @@ export const AuthCard = forwardRef<HTMLDivElement, AuthCardProps>(
             <div className={styles.logoArea}>
               <span className={styles.brand}>Groxigo</span>
               <span className={styles.tagline}>{l.tagline}</span>
+              <span className={styles.subtitle}>{l.subtitle}</span>
             </div>
 
             <form className={styles.formArea} onSubmit={handleContinue} noValidate>

@@ -15,12 +15,12 @@
 
 .root:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
 .root:active {
   transform: scale(0.97);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm, 0 1px 4px rgba(0, 0, 0, 0.1));
 }
 
 .root:focus-visible {
@@ -54,8 +54,8 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.15) 100%
+    var(--overlay-dark, rgba(0, 0, 0, 0.55)) 0%,
+    var(--overlay-light, rgba(0, 0, 0, 0.15)) 100%
   );
 }
 
