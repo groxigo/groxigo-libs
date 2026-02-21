@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * TabPanels Component (Web)
  *
@@ -5,9 +7,7 @@
  * Implements @groxigo/contracts TabPanelsPropsBase for web platform.
  */
 
-'use client';
-
-import React, { forwardRef, type ReactNode } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import { clsx } from 'clsx';
 import type { TabPanelsPropsBase } from '@groxigo/contracts';
 import styles from './Tabs.module.css';

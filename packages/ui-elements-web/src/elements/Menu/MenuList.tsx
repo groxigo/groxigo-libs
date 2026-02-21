@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts MenuListPropsBase for web platform.
  */
 
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, Children } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, Children, isValidElement, type ComponentType, type KeyboardEvent, type RefObject } from 'react';
 import { clsx } from 'clsx';
 import { useMenuContext } from './Menu';
 import type { MenuListPropsBase } from '@groxigo/contracts';
@@ -59,8 +59,8 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
     // Count menu items (excluding dividers)
     const itemChildren = Children.toArray(children).filter(
       (child) =>
-        React.isValidElement(child) &&
-        (child.type as React.ComponentType)?.displayName !== 'MenuDivider'
+        isValidElement(child) &&
+        (child.type as ComponentType)?.displayName !== 'MenuDivider'
     );
     const itemCountValue = itemChildren.length;
 
@@ -71,7 +71,7 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
 
     // Keyboard navigation
     const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent<HTMLDivElement>) => {
+      (e: KeyboardEvent<HTMLDivElement>) => {
         const menuItems = menuRef.current?.querySelectorAll(
           '[role="menuitem"]:not([aria-disabled="true"])'
         );
@@ -126,7 +126,7 @@ export const MenuList = forwardRef<HTMLDivElement, MenuListProps>(
 
     return (
       <div
-        ref={menuRef as React.RefObject<HTMLDivElement>}
+        ref={menuRef as RefObject<HTMLDivElement>}
         className={clsx(
           styles.menuList,
           placementClassMap[placement],

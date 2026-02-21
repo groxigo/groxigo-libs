@@ -64,8 +64,8 @@ describe('useId', () => {
 
   it('should handle empty string as provided ID', () => {
     const { result } = renderHook(() => useId(''));
-    // Empty string is falsy, so it should generate an ID
-    expect(result.current).toMatch(/^groxigo-\d+$/);
+    // Empty string is an explicit value — returned as-is (not treated as "no ID")
+    expect(result.current).toBe('');
   });
 });
 

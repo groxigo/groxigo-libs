@@ -61,7 +61,7 @@
 
 @media (prefers-reduced-transparency: reduce) {
   .backdrop {
-    background: rgba(0, 0, 0, 0.85);
+    background: var(--overlay-bg-solid, rgba(0, 0, 0, 0.85));
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -159,9 +159,9 @@
   color: var(--text-primary);
 }
 
-.closeButton:focus {
+.closeButton:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .closeIcon {

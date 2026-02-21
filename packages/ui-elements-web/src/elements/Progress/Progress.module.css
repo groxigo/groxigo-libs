@@ -21,7 +21,7 @@
   width: 100%;
   overflow: hidden;
   background: var(--surface-secondary);
-  border-radius: var(--radius-full, 9999px);
+  border-radius: var(--progress-radius, var(--radius-full, 9999px));
 }
 
 /* ============================================
@@ -46,8 +46,9 @@
 
 .bar {
   height: 100%;
+  width: var(--progress-width, 0%);
   transition: width 300ms ease-out;
-  border-radius: var(--radius-full, 9999px);
+  border-radius: var(--progress-radius, var(--radius-full, 9999px));
 }
 
 .barPrimary {
@@ -69,7 +70,7 @@
     transparent 75%,
     transparent
   );
-  background-size: 1rem 1rem;
+  background-size: var(--spacing-4, 16px) var(--spacing-4, 16px);
 }
 
 .stripeAnimated {
@@ -78,7 +79,7 @@
 
 @keyframes stripe-move {
   from {
-    background-position: 1rem 0;
+    background-position: var(--spacing-4, 16px) 0;
   }
   to {
     background-position: 0 0;
@@ -183,5 +184,5 @@
 .circularValue {
   position: absolute;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium, 500);
 }

@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts BreadcrumbPropsBase for web platform.
  */
 
-import React, { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { clsx } from 'clsx';
 import type { BreadcrumbPropsBase, BreadcrumbItem } from '@groxigo/contracts';
 import { BreadcrumbItemComponent } from './BreadcrumbItem';
@@ -76,6 +76,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
         >
           {displayItems.map((item, index) => {
             const isLast = index === displayItems.length - 1;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any -- displayItems includes extended BreadcrumbItem with optional isCollapsed flag
             const isCollapsed = (item as any).isCollapsed;
 
             return (

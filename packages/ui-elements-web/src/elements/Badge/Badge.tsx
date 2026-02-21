@@ -4,7 +4,7 @@
  * Badge Component (Web)
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { clsx } from 'clsx';
 import type { BadgePropsBase } from '@groxigo/contracts';
 import styles from './Badge.module.css';

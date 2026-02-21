@@ -7,7 +7,7 @@
  * Displays user avatars with image support, initials fallback, and status badges.
  */
 
-import React, { forwardRef, useState, useCallback, useMemo } from 'react';
+import { forwardRef, useState, useCallback, useMemo, type CSSProperties } from 'react';
 import { clsx } from 'clsx';
 import type { AvatarPropsBase, AvatarSize, AvatarVariant } from '@groxigo/contracts';
 import styles from './Avatar.module.css';
@@ -92,18 +92,11 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const variantClass = variantClassMap[variant];
     const badgeColorClass = badgeColorClassMap[badgeColor] || badgeColorClassMap.green;
 
-    // Build inline styles for border color if provided
-    const style: React.CSSProperties = {};
-    if (borderColor) {
-      style.borderColor = borderColor;
-      style.borderWidth = '2px';
-      style.borderStyle = 'solid';
-    }
-
     const containerClasses = clsx(
       styles.avatar,
       currentSize.container,
       variantClass,
+      borderColor && styles.bordered,
       onClick && styles.clickable,
       className
     );
@@ -130,7 +123,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       <div
         ref={ref}
         className={containerClasses}
-        style={style}
+        style={borderColor ? { '--avatar-border-color': borderColor } as CSSProperties : undefined}
         role="img"
         aria-label={alt || (name ? `Avatar for ${name}` : 'Avatar')}
         data-testid={testID}

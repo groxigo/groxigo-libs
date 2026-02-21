@@ -1,5 +1,23 @@
 import { defineConfig } from 'vitest/config';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Resolve react from Bun's module cache dynamically (avoids hardcoding version)
+function resolveModule(name: string): string {
+  try {
+    const resolved = import.meta.resolve(name);
+    return path.dirname(fileURLToPath(resolved));
+  } catch {
+    // Fallback: walk Bun's .bun cache
+    const bunCache = path.resolve(__dirname, '../../node_modules/.bun');
+    const fs = require('fs') as typeof import('fs');
+    const entries = fs.readdirSync(bunCache).filter((e: string) => e.startsWith(`${name}@`));
+    if (entries.length > 0) {
+      return path.join(bunCache, entries[0], 'node_modules', name);
+    }
+    throw new Error(`Cannot resolve ${name}`);
+  }
+}
 
 export default defineConfig({
   test: {
@@ -7,12 +25,9 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/**/__tests__/**/*.test.{ts,tsx}'],
     setupFiles: ['./vitest.setup.ts'],
-    deps: {
-      inline: [/react/, /react-dom/],
-    },
     alias: {
-      'react': path.resolve(__dirname, '../../node_modules/.bun/react@19.1.0/node_modules/react'),
-      'react-dom': path.resolve(__dirname, '../../node_modules/.bun/react-dom@19.1.0/node_modules/react-dom'),
+      'react': resolveModule('react'),
+      'react-dom': resolveModule('react-dom'),
       '@groxigo/tokens': path.resolve(__dirname, '../tokens/src'),
       '@groxigo/contracts': path.resolve(__dirname, '../contracts/src'),
     },

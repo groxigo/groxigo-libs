@@ -5,7 +5,7 @@
  * Shared by both React Native and Web implementations.
  */
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, type DependencyList } from 'react';
 
 /**
  * Hook for debouncing a value
@@ -70,7 +70,7 @@ export function useDebounce<T>(value: T, delay: number): T {
 export function useDebouncedCallback<T extends (...args: any[]) => any>(
   callback: T,
   delay: number,
-  deps: React.DependencyList = []
+  deps: DependencyList = []
 ): [(...args: Parameters<T>) => void, () => void] {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const callbackRef = useRef<T>(callback);

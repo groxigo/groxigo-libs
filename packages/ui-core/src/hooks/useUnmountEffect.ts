@@ -5,7 +5,7 @@
  * Shared by both React Native and Web implementations.
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type MutableRefObject } from 'react';
 
 /**
  * Hook that runs a callback when the component unmounts
@@ -61,7 +61,7 @@ export function useUnmountEffect(callback: () => void): void {
  * }
  * ```
  */
-export function useIsMounted(): React.MutableRefObject<boolean> {
+export function useIsMounted(): MutableRefObject<boolean> {
   const isMounted = useRef(false);
 
   useEffect(() => {

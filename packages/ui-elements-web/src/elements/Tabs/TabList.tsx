@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * TabList Component (Web)
  *
@@ -5,9 +7,7 @@
  * Implements @groxigo/contracts TabListPropsBase for web platform.
  */
 
-'use client';
-
-import React, { forwardRef, type ReactNode } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import { clsx } from 'clsx';
 import { useTabsContext } from './Tabs';
 import type { TabListPropsBase, TabsSize, TabsVariant } from '@groxigo/contracts';

@@ -1,7 +1,7 @@
 /**
  * @groxigo/ui-elements-web
  *
- * Primitive UI building blocks for web applications using React + Tailwind.
+ * Primitive UI building blocks for web applications using React + CSS Modules.
  * API-compatible with @groxigo/ui-elements (React Native) for consistency.
  *
  * Usage:

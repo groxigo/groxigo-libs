@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Tab Component (Web)
  *
@@ -5,9 +7,7 @@
  * Implements @groxigo/contracts TabPropsBase for web platform.
  */
 
-'use client';
-
-import React, { forwardRef, useCallback, type ReactNode } from 'react';
+import { forwardRef, useCallback, type ReactNode, type KeyboardEvent } from 'react';
 import { clsx } from 'clsx';
 import { useTabsContext, getTabVariantClasses } from './Tabs';
 import type { TabPropsBase, TabsSize } from '@groxigo/contracts';
@@ -59,7 +59,7 @@ export const Tab = forwardRef<HTMLButtonElement, TabProps>(
     }, [disabled, onChange, value]);
 
     const handleKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      (event: KeyboardEvent<HTMLButtonElement>) => {
         if (isManual) return;
 
         // Keyboard navigation for tabs

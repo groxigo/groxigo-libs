@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts MenuItemPropsBase for web platform.
  */
 
-import React, { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, type KeyboardEvent } from 'react';
 import { clsx } from 'clsx';
 import { useMenuContext } from './Menu';
 import type { MenuItemPropsBase } from '@groxigo/contracts';
@@ -51,7 +51,7 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
     }, [disabled, onPress, closeOnSelect, setIsOpen, buttonRef]);
 
     const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      (e: KeyboardEvent<HTMLButtonElement>) => {
         if (disabled) return;
 
         if (e.key === 'Enter' || e.key === ' ') {

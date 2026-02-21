@@ -7,7 +7,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useState, useCallback } from 'react';
+import { forwardRef, useState, useCallback, type ChangeEvent } from 'react';
 import { clsx } from 'clsx';
 import type { InputPropsBase } from '@groxigo/contracts';
 import styles from './Input.module.css';
@@ -37,7 +37,7 @@ export interface InputProps extends InputPropsBase {
   /** HTML input name (web-specific, not in contract) */
   name?: string;
   /** Native change handler */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -86,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }, [onBlur]);
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e);
         onChangeText?.(e.target.value);
       },

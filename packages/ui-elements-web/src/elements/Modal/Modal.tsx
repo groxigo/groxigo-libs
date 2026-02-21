@@ -7,7 +7,7 @@
  * Provides a flexible modal/dialog with overlay, focus management, and accessibility.
  */
 
-import React, {
+import {
   forwardRef,
   useEffect,
   useCallback,
@@ -16,6 +16,8 @@ import React, {
   useId,
   createContext,
   useContext,
+  type MouseEvent,
+  type MutableRefObject,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { clsx } from 'clsx';
@@ -212,7 +214,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     // Handle overlay click
     const handleOverlayClick = useCallback(
-      (event: React.MouseEvent) => {
+      (event: MouseEvent) => {
         if (closeOnOverlayClick && event.target === event.currentTarget) {
           onClose();
         }
@@ -249,7 +251,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         <div
           ref={(node) => {
             // Handle both refs
-            (modalRef as React.MutableRefObject<HTMLDivElement | null>).current =
+            (modalRef as MutableRefObject<HTMLDivElement | null>).current =
               node;
             if (typeof ref === 'function') {
               ref(node);

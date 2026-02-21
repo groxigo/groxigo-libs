@@ -8,7 +8,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useState, useCallback, useRef, useEffect } from 'react';
+import { forwardRef, useState, useCallback, useRef, useEffect, type CSSProperties, type PointerEvent as ReactPointerEvent, type KeyboardEvent } from 'react';
 import { clsx } from 'clsx';
 import type { SliderPropsBase, SliderSize } from '@groxigo/contracts';
 import styles from './Slider.module.css';
@@ -141,7 +141,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
     // Mouse/Touch event handlers
     const handlePointerDown = useCallback(
-      (e: React.PointerEvent) => {
+      (e: ReactPointerEvent) => {
         if (disabled) return;
         e.preventDefault();
         setIsDragging(true);
@@ -154,7 +154,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     useEffect(() => {
       if (!isDragging) return;
 
-      const handlePointerMove = (e: PointerEvent) => {
+      const handlePointerMove = (e: globalThis.PointerEvent) => {
         const newValue = getValueFromPosition(e.clientX);
         handleValueChange(newValue);
       };
@@ -175,7 +175,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
     // Keyboard navigation
     const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent) => {
+      (e: KeyboardEvent) => {
         if (disabled) return;
 
         let newValue = currentValue;
@@ -261,8 +261,12 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       valueClassName
     );
 
+    const sliderVars = {
+      '--slider-percent': `${percentage}%`,
+    } as CSSProperties;
+
     return (
-      <div ref={ref} className={containerClasses} data-testid={testID}>
+      <div ref={ref} className={containerClasses} style={sliderVars} data-testid={testID}>
         {(label || showValue) && (
           <div className={styles.header}>
             {label && <span className={labelClasses}>{label}</span>}
@@ -274,7 +278,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
           className={trackClasses}
           onPointerDown={handlePointerDown}
         >
-          <div className={fillClasses} style={{ width: `${percentage}%` }} />
+          <div className={fillClasses} />
           <div
             role="slider"
             tabIndex={disabled ? -1 : 0}
@@ -285,7 +289,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
             aria-valuetext={displayValue}
             aria-disabled={disabled}
             className={thumbClasses}
-            style={{ left: `${percentage}%`, transform: 'translate(-50%, -50%)' }}
             onKeyDown={handleKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}

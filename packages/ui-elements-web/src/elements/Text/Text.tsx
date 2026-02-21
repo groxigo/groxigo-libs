@@ -7,7 +7,7 @@
  * Uses CSS custom properties from @groxigo/tokens for fluid scaling.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, createElement } from 'react';
 import { clsx } from 'clsx';
 import type { TextPropsBase } from '@groxigo/contracts';
 import styles from './Text.module.css';
@@ -67,7 +67,7 @@ export const Text = forwardRef<HTMLElement, TextProps>(
       className
     );
 
-    return React.createElement(
+    return createElement(
       Element,
       {
         ref,

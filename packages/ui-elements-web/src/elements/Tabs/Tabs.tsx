@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Tabs Component (Web)
  *
@@ -5,9 +7,7 @@
  * Implements @groxigo/contracts TabsPropsBase for web platform.
  */
 
-'use client';
-
-import React, {
+import {
   forwardRef,
   createContext,
   useContext,

@@ -4,7 +4,7 @@
  * Spinner Component (Web)
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { clsx } from 'clsx';
 import type { SpinnerPropsBase } from '@groxigo/contracts';
 import styles from './Spinner.module.css';

@@ -13,13 +13,16 @@
  * - aria-label fallback when tooltip is closed
  */
 
-import React, {
+import {
   forwardRef,
   useState,
   useCallback,
   useEffect,
   useRef,
   useId,
+  isValidElement,
+  type HTMLAttributes,
+  type CSSProperties,
 } from 'react';
 import { clsx } from 'clsx';
 import type { TooltipPropsBase, TooltipPlacement } from '@groxigo/contracts';
@@ -112,7 +115,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     const labelText = typeof label === 'string' ? label : triggerAriaLabel;
 
     // Check if children is likely interactive
-    const isChildInteractive = React.isValidElement(children) &&
+    const isChildInteractive = isValidElement(children) &&
       typeof children.type === 'string' &&
       ['button', 'a', 'input', 'select', 'textarea'].includes(children.type);
 
@@ -218,7 +221,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     }, [isOpen, hide]);
 
     // Event handlers based on trigger type
-    const triggerProps: React.HTMLAttributes<HTMLDivElement> = {};
+    const triggerProps: HTMLAttributes<HTMLDivElement> = {};
 
     // Always enable focus/blur for keyboard accessibility
     // This ensures tooltip is accessible via keyboard regardless of trigger type
@@ -237,7 +240,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     }
 
     // Calculate arrow border width style
-    const arrowStyle: React.CSSProperties = {
+    const arrowStyle: CSSProperties = {
       borderWidth: arrowSize,
     };
 

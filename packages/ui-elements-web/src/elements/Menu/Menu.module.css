@@ -42,11 +42,13 @@
 }
 
 .menuButton:focus-visible {
-  box-shadow: 0 0 0 3px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .menuButton:disabled {
-  opacity: 0.5;
+  background-color: var(--surface-disabled, #f1f5f9);
+  color: var(--text-disabled, #94a3b8);
+  border-color: var(--border-disabled, #e2e8f0);
   cursor: not-allowed;
 }
 

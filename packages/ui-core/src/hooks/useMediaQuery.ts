@@ -9,6 +9,7 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
+import { responsive } from '@groxigo/tokens';
 
 /**
  * Breakpoint keys
@@ -547,11 +548,11 @@ function getDeviceResponsiveValue<T>(
  */
 function getDeviceCategoryFromDimensions(width: number, height: number): DeviceCategory {
   const diagonal = Math.sqrt(width * width + height * height);
+  const { viewport } = responsive;
 
-  // Thresholds match the responsive config in tokens
-  if (diagonal < 600) {
+  if (diagonal < viewport.tabletStart) {
     return 'phone';
-  } else if (diagonal <= 1400) {
+  } else if (diagonal <= viewport.tabletEnd) {
     return 'tablet';
   } else {
     return 'desktop';

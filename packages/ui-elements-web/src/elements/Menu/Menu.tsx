@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts MenuPropsBase for web platform.
  */
 
-import React, {
+import {
   forwardRef,
   createContext,
   useContext,
@@ -15,6 +15,8 @@ import React, {
   useCallback,
   useRef,
   useEffect,
+  type RefObject,
+  type ReactNode,
 } from 'react';
 import { clsx } from 'clsx';
 import type { MenuPropsBase, MenuPlacement } from '@groxigo/contracts';
@@ -31,8 +33,8 @@ interface MenuContextValue {
   autoSelect: boolean;
   activeIndex: number;
   setActiveIndex: (index: number) => void;
-  menuRef: React.RefObject<HTMLDivElement | null>;
-  buttonRef: React.RefObject<HTMLButtonElement | null>;
+  menuRef: RefObject<HTMLDivElement | null>;
+  buttonRef: RefObject<HTMLButtonElement | null>;
   itemCount: number;
   setItemCount: (count: number) => void;
   registerItem: () => number;
@@ -56,7 +58,7 @@ export function useMenuContext() {
 export interface MenuProps extends MenuPropsBase {
   className?: string;
   /** Menu content (MenuButton, MenuList, etc.) */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(

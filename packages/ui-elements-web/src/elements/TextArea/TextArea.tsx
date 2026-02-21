@@ -8,7 +8,7 @@
  * A multi-line text input component with support for various variants and sizes.
  */
 
-import React, { forwardRef, useState, useCallback } from 'react';
+import { forwardRef, useState, useCallback, type ChangeEvent } from 'react';
 import { clsx } from 'clsx';
 import type {
   TextAreaPropsBase,
@@ -39,7 +39,7 @@ export interface TextAreaProps extends TextAreaPropsBase {
   /** HTML textarea id */
   id?: string;
   /** Native change handler */
-  onChangeNative?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeNative?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -94,7 +94,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     }, [onBlur]);
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newValue = e.target.value;
         setCharCount(newValue.length);
         onChangeNative?.(e);

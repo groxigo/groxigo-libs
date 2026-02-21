@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, useId } from 'react';
 import type { StarRatingPropsBase } from '@groxigo/contracts/elements/star-rating';
 import clsx from 'clsx';
 import styles from './StarRating.module.css';
@@ -16,9 +16,6 @@ const STAR_SIZES: Record<string, number> = {
   lg: 24,
 };
 
-const FILLED_COLOR = 'var(--status-warning, #eab308)';
-const EMPTY_COLOR = 'var(--border-default, #cbd5e1)';
-
 function StarIcon({
   size,
   fill,
@@ -30,7 +27,7 @@ function StarIcon({
   className?: string;
   onClick?: () => void;
 }) {
-  const id = `half-${Math.random().toString(36).slice(2, 8)}`;
+  const gradientId = useId();
 
   return (
     <svg
@@ -54,21 +51,22 @@ function StarIcon({
     >
       {fill === 'half' && (
         <defs>
-          <linearGradient id={id}>
-            <stop offset="50%" stopColor={FILLED_COLOR} />
-            <stop offset="50%" stopColor={EMPTY_COLOR} />
+          <linearGradient id={gradientId}>
+            <stop offset="50%" className={styles.starHalfFilled} />
+            <stop offset="50%" className={styles.starHalfEmpty} />
           </linearGradient>
         </defs>
       )}
       <path
         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-        fill={
+        className={
           fill === 'full'
-            ? FILLED_COLOR
+            ? styles.starFilled
             : fill === 'empty'
-              ? EMPTY_COLOR
-              : `url(#${id})`
+              ? styles.starEmpty
+              : undefined
         }
+        fill={fill === 'half' ? `url(#${gradientId})` : undefined}
       />
     </svg>
   );

@@ -6,7 +6,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type CSSProperties } from 'react';
 import { clsx } from 'clsx';
 import type { SkeletonPropsBase } from '@groxigo/contracts';
 import styles from './Skeleton.module.css';
@@ -21,8 +21,6 @@ const variantStyleMap: Record<string, string> = {
 
 export interface SkeletonProps extends SkeletonPropsBase {
   className?: string;
-  /** Custom inline styles */
-  style?: React.CSSProperties;
 }
 
 export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
@@ -34,18 +32,17 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       borderRadius,
       animate = true,
       className,
-      style: customStyle,
       testID,
       ...props
     },
     ref
   ) => {
-    const style: React.CSSProperties = {
-      width: typeof width === 'number' ? `${width}px` : width,
-      height: typeof height === 'number' ? `${height}px` : height,
-      borderRadius: borderRadius !== undefined ? `${borderRadius}px` : undefined,
-      ...customStyle,
-    };
+    // Dynamic dimensions via CSS custom properties (CLAUDE.md approved pattern)
+    const cssVars = {
+      '--skeleton-width': typeof width === 'number' ? `${width}px` : width,
+      '--skeleton-height': typeof height === 'number' ? `${height}px` : height,
+      '--skeleton-radius': borderRadius !== undefined ? `${borderRadius}px` : undefined,
+    } as CSSProperties;
 
     return (
       <div
@@ -56,7 +53,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
           animate && styles.animate,
           className
         )}
-        style={style}
+        style={cssVars}
         data-testid={testID}
         {...props}
       />

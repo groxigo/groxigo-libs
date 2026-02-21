@@ -6,7 +6,7 @@
  * A divider/separator component for web platform.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type CSSProperties } from 'react';
 import { clsx } from 'clsx';
 import type { DividerPropsBase } from '@groxigo/contracts';
 import styles from './Divider.module.css';
@@ -29,13 +29,11 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   ) => {
     const isHorizontal = orientation === 'horizontal';
 
-    const spacingStyle: React.CSSProperties = isHorizontal
-      ? { marginTop: spacing, marginBottom: spacing }
-      : { marginLeft: spacing, marginRight: spacing };
-
-    const colorStyle: React.CSSProperties = color
-      ? { borderColor: color }
-      : {};
+    // Dynamic values via CSS custom properties
+    const cssVars = {
+      '--divider-spacing': spacing ? `${spacing}px` : undefined,
+      '--divider-color': color || undefined,
+    } as CSSProperties;
 
     const lineClasses = clsx(
       styles.divider,
@@ -47,7 +45,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
       <div
         ref={ref}
         className={clsx(lineClasses, className)}
-        style={{ ...spacingStyle, ...colorStyle }}
+        style={cssVars}
         data-testid={testID}
         role="separator"
         aria-orientation={orientation}

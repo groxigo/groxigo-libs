@@ -72,12 +72,9 @@
   transform: scale(0.98);
 }
 
-.pressable:focus {
-  outline: none;
-}
-
 .pressable:focus-visible {
-  box-shadow: 0 0 0 3px var(--border-focus, #3b82f6);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 /* ============================================

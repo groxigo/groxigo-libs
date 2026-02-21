@@ -13,7 +13,7 @@
  * - No need to add redundant ARIA attributes to native form controls
  */
 
-import React, { forwardRef, useCallback, useContext } from 'react';
+import { forwardRef, useCallback, useContext, type ChangeEvent } from 'react';
 import { clsx } from 'clsx';
 import type { RadioPropsBase } from '@groxigo/contracts';
 import { RadioGroupContext } from './RadioGroup';
@@ -100,7 +100,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       : checked ?? false;
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
           if (groupContext.onChange) {
             groupContext.onChange(value);

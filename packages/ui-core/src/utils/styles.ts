@@ -23,7 +23,9 @@ export function extractStyleProps<T extends object, K extends keyof T>(
 
   for (const key of styleKeys) {
     if (key in props) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic key access on constrained generic requires type assertion
       (styleProps as any)[key] = props[key];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic key deletion on Omit<T,K> requires type assertion
       delete (otherProps as any)[key];
     }
   }

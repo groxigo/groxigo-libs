@@ -48,19 +48,14 @@ function generateId(prefix: string = 'groxigo'): string {
  * ```
  */
 export function useId(providedId?: string, prefix: string = 'groxigo'): string {
-  // If an ID is provided, use it
-  if (providedId) {
-    return providedId;
-  }
-
-  // Generate a stable ID on mount
+  // Hook must be called unconditionally (Rules of Hooks)
   const idRef = useRef<string | undefined>(undefined);
 
   if (!idRef.current) {
     idRef.current = generateId(prefix);
   }
 
-  return idRef.current;
+  return providedId ?? idRef.current;
 }
 
 /**

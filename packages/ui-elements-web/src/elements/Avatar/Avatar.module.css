@@ -21,6 +21,10 @@
   flex-shrink: 0;
 }
 
+.bordered {
+  border: 2px solid var(--avatar-border-color, var(--border-default));
+}
+
 .clickable {
   cursor: pointer;
   transition: opacity 200ms ease;
@@ -50,8 +54,8 @@
 }
 
 .sizeLg {
-  width: var(--spacing-12, 48px);
-  height: var(--spacing-12, 48px);
+  width: var(--spacing-11, 44px);
+  height: var(--spacing-11, 44px);
 }
 
 .sizeXl {
@@ -121,8 +125,8 @@
 }
 
 .badgeXl {
-  width: 14px;
-  height: 14px;
+  width: var(--spacing-3-5, 14px);
+  height: var(--spacing-3-5, 14px);
   border-width: 2px;
 }
 

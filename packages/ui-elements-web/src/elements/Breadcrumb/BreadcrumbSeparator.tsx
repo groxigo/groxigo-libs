@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts BreadcrumbSeparatorPropsBase for web platform.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { clsx } from 'clsx';
 import type { BreadcrumbSeparatorPropsBase } from '@groxigo/contracts';
 import styles from './Breadcrumb.module.css';

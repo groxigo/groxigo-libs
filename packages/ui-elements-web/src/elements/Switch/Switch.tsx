@@ -8,7 +8,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useState, type KeyboardEvent } from 'react';
 import { clsx } from 'clsx';
 import type { SwitchPropsBase, SwitchSize } from '@groxigo/contracts';
 import styles from './Switch.module.css';
@@ -102,7 +102,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     }, [disabled, isChecked, isControlled, onChange]);
 
     const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent) => {
+      (e: KeyboardEvent) => {
         if (e.key === ' ' || e.key === 'Enter') {
           e.preventDefault();
           handleToggle();

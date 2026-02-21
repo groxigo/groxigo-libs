@@ -113,9 +113,9 @@
   text-decoration: underline;
 }
 
-.actionButton:focus {
+.actionButton:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 /* ------------------------------------------------------------------ */
@@ -134,9 +134,9 @@
               background-color var(--duration-fast, 150ms) ease;
 }
 
-.closeButton:focus {
+.closeButton:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .closeButtonSubtle {
@@ -148,8 +148,8 @@
   background-color: var(--surface-secondary);
 }
 
-.closeButtonSubtle:focus {
-  box-shadow: 0 0 0 2px var(--border-focus);
+.closeButtonSubtle:focus-visible {
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 /* ------------------------------------------------------------------ */

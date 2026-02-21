@@ -26,6 +26,23 @@
   transition: transform 100ms ease;
 }
 
+/* Star fill colors — driven by semantic tokens, no hardcoded hex */
+.starFilled {
+  fill: var(--status-warning);
+}
+
+.starEmpty {
+  fill: var(--border-default);
+}
+
+.starHalfFilled {
+  stop-color: var(--status-warning);
+}
+
+.starHalfEmpty {
+  stop-color: var(--border-default);
+}
+
 /* Value text */
 .value {
   font-weight: var(--font-weight-medium, 500);

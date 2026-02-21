@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts BreadcrumbItemPropsBase for web platform.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type ForwardedRef } from 'react';
 import { clsx } from 'clsx';
 import type { BreadcrumbItemPropsBase } from '@groxigo/contracts';
 import { BreadcrumbLink } from './BreadcrumbLink';
@@ -47,7 +47,7 @@ export const BreadcrumbItemComponent = forwardRef<HTMLSpanElement, BreadcrumbIte
 
     return (
       <BreadcrumbLink
-        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+        ref={ref as ForwardedRef<HTMLAnchorElement>}
         href={href}
         onPress={onPress}
         className={className}

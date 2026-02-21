@@ -6,7 +6,7 @@
  * A clickable link element within a breadcrumb trail.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type ReactNode, type MouseEvent } from 'react';
 import { clsx } from 'clsx';
 import styles from './Breadcrumb.module.css';
 
@@ -14,7 +14,7 @@ export interface BreadcrumbLinkProps {
   /** Link destination */
   href?: string;
   /** Link children */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Press handler */
   onPress?: () => void;
   /** Additional CSS class */
@@ -32,7 +32,7 @@ export const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>
     },
     ref
   ) => {
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
       if (onPress) {
         e.preventDefault();
         onPress();

@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts DrawerPropsBase.
  */
 
-import React, { forwardRef, useEffect, useCallback, useRef } from 'react';
+import { forwardRef, useEffect, useCallback, useRef, Children, isValidElement, cloneElement, type MouseEvent, type ReactElement } from 'react';
 import { createPortal } from 'react-dom';
 import { clsx } from 'clsx';
 import type {
@@ -291,7 +291,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
 
     // Handle overlay click
     const handleOverlayClick = useCallback(
-      (e: React.MouseEvent) => {
+      (e: MouseEvent) => {
         if (closeOnOverlayClick && e.target === e.currentTarget) {
           onClose();
         }
@@ -345,10 +345,10 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
           {...props}
         >
           {/* Inject close handler and showCloseButton into DrawerHeader if present */}
-          {React.Children.map(children, (child) => {
-            if (React.isValidElement(child) && child.type === DrawerHeader) {
-              return React.cloneElement(
-                child as React.ReactElement<DrawerHeaderProps>,
+          {Children.map(children, (child) => {
+            if (isValidElement(child) && child.type === DrawerHeader) {
+              return cloneElement(
+                child as ReactElement<DrawerHeaderProps>,
                 {
                   showCloseButton:
                     (child.props as DrawerHeaderProps).showCloseButton ??

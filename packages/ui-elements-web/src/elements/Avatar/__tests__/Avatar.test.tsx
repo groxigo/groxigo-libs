@@ -116,12 +116,10 @@ describe('Avatar', () => {
 
   // ===== Border Color =====
   describe('Border Color', () => {
-    it('applies border color style when borderColor is provided', () => {
+    it('applies border color via CSS custom property when borderColor is provided', () => {
       render(<Avatar borderColor="#ff0000" testID="bordered" />);
       const el = screen.getByTestId('bordered');
-      expect(el.style.borderColor).toBe('rgb(255, 0, 0)');
-      expect(el.style.borderWidth).toBe('2px');
-      expect(el.style.borderStyle).toBe('solid');
+      expect(el.style.getPropertyValue('--avatar-border-color')).toBe('#ff0000');
     });
   });
 

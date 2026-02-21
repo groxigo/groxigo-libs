@@ -5,7 +5,7 @@
  * Shared by both React Native and Web implementations.
  */
 
-import { useRef, useLayoutEffect, useEffect } from 'react';
+import { useRef, useLayoutEffect, useEffect, type MutableRefObject } from 'react';
 
 // Use useLayoutEffect on client, useEffect on server
 const useIsomorphicLayoutEffect =
@@ -33,7 +33,7 @@ const useIsomorphicLayoutEffect =
  * }
  * ```
  */
-export function useLatest<T>(value: T): React.MutableRefObject<T> {
+export function useLatest<T>(value: T): MutableRefObject<T> {
   const ref = useRef(value);
 
   useIsomorphicLayoutEffect(() => {

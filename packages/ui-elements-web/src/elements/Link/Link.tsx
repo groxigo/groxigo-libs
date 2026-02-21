@@ -6,7 +6,7 @@
  * Implements @groxigo/contracts LinkPropsBase for web platform.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef, type MouseEvent } from 'react';
 import { clsx } from 'clsx';
 import type { LinkPropsBase, LinkColorScheme, LinkSize } from '@groxigo/contracts';
 import styles from './Link.module.css';
@@ -56,7 +56,7 @@ export interface LinkProps extends LinkPropsBase {
   /** HTML anchor rel */
   rel?: string;
   /** Click handler (alias for onPress) */
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
@@ -94,7 +94,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
           : 'none'
         : underline;
 
-    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
       if (disabled) {
         event.preventDefault();
         return;

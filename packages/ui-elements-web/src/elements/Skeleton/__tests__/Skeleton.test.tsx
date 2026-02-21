@@ -25,34 +25,34 @@ describe('Skeleton', () => {
 
   // ===== Dimensions =====
   describe('Dimensions', () => {
-    it('applies numeric width as pixels', () => {
+    it('applies numeric width as pixels via CSS custom property', () => {
       render(<Skeleton width={200} testID="w-num" />);
-      expect(screen.getByTestId('w-num').style.width).toBe('200px');
+      expect(screen.getByTestId('w-num').style.getPropertyValue('--skeleton-width')).toBe('200px');
     });
 
-    it('applies string width directly', () => {
+    it('applies string width directly via CSS custom property', () => {
       render(<Skeleton width="50%" testID="w-str" />);
-      expect(screen.getByTestId('w-str').style.width).toBe('50%');
+      expect(screen.getByTestId('w-str').style.getPropertyValue('--skeleton-width')).toBe('50%');
     });
 
-    it('applies numeric height as pixels', () => {
+    it('applies numeric height as pixels via CSS custom property', () => {
       render(<Skeleton height={100} testID="h-num" />);
-      expect(screen.getByTestId('h-num').style.height).toBe('100px');
+      expect(screen.getByTestId('h-num').style.getPropertyValue('--skeleton-height')).toBe('100px');
     });
 
-    it('applies string height directly', () => {
+    it('applies string height directly via CSS custom property', () => {
       render(<Skeleton height="3rem" testID="h-str" />);
-      expect(screen.getByTestId('h-str').style.height).toBe('3rem');
+      expect(screen.getByTestId('h-str').style.getPropertyValue('--skeleton-height')).toBe('3rem');
     });
 
-    it('applies custom borderRadius', () => {
+    it('applies custom borderRadius via CSS custom property', () => {
       render(<Skeleton borderRadius={8} testID="radius" />);
-      expect(screen.getByTestId('radius').style.borderRadius).toBe('8px');
+      expect(screen.getByTestId('radius').style.getPropertyValue('--skeleton-radius')).toBe('8px');
     });
 
-    it('does not apply borderRadius style when not provided', () => {
+    it('does not apply borderRadius when not provided', () => {
       render(<Skeleton testID="no-radius" />);
-      expect(screen.getByTestId('no-radius').style.borderRadius).toBe('');
+      expect(screen.getByTestId('no-radius').style.getPropertyValue('--skeleton-radius')).toBe('');
     });
   });
 
@@ -93,13 +93,8 @@ describe('Skeleton', () => {
     });
   });
 
-  // ===== Custom Style =====
-  describe('Custom Style', () => {
-    it('merges custom inline style', () => {
-      render(<Skeleton style={{ opacity: 0.5 }} testID="styled" />);
-      expect(screen.getByTestId('styled').style.opacity).toBe('0.5');
-    });
-
+  // ===== Custom className =====
+  describe('Custom className', () => {
     it('applies additional className', () => {
       render(<Skeleton className="extra" testID="classed" />);
       expect(screen.getByTestId('classed').classList.contains('extra')).toBe(true);

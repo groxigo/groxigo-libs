@@ -34,31 +34,29 @@ describe('Divider', () => {
       expect(screen.getByTestId('vertical')).toHaveAttribute('aria-orientation', 'vertical');
     });
 
-    it('applies horizontal spacing as margin top/bottom', () => {
+    it('applies spacing via CSS custom property', () => {
       render(<Divider spacing={16} testID="h-space" />);
       const el = screen.getByTestId('h-space');
-      expect(el.style.marginTop).toBe('16px');
-      expect(el.style.marginBottom).toBe('16px');
+      expect(el.style.getPropertyValue('--divider-spacing')).toBe('16px');
     });
 
-    it('applies vertical spacing as margin left/right', () => {
+    it('applies vertical spacing via CSS custom property', () => {
       render(<Divider orientation="vertical" spacing={8} testID="v-space" />);
       const el = screen.getByTestId('v-space');
-      expect(el.style.marginLeft).toBe('8px');
-      expect(el.style.marginRight).toBe('8px');
+      expect(el.style.getPropertyValue('--divider-spacing')).toBe('8px');
     });
   });
 
   // ===== Custom Color =====
   describe('Custom Color', () => {
-    it('applies custom border color via inline style', () => {
+    it('applies custom border color via CSS custom property', () => {
       render(<Divider color="red" testID="colored" />);
-      expect(screen.getByTestId('colored').style.borderColor).toBe('red');
+      expect(screen.getByTestId('colored').style.getPropertyValue('--divider-color')).toBe('red');
     });
 
-    it('does not apply borderColor when no color prop', () => {
+    it('does not apply color when no color prop', () => {
       render(<Divider testID="no-color" />);
-      expect(screen.getByTestId('no-color').style.borderColor).toBe('');
+      expect(screen.getByTestId('no-color').style.getPropertyValue('--divider-color')).toBe('');
     });
   });
 

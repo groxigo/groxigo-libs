@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts MenuButtonPropsBase for web platform.
  */
 
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, type KeyboardEvent, type RefObject } from 'react';
 import { clsx } from 'clsx';
 import { useMenuContext } from './Menu';
 import type { MenuButtonPropsBase } from '@groxigo/contracts';
@@ -52,7 +52,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
     }, [disabled, isOpen, setIsOpen]);
 
     const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      (e: KeyboardEvent<HTMLButtonElement>) => {
         if (disabled) return;
 
         switch (e.key) {
@@ -93,7 +93,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
 
     return (
       <button
-        ref={buttonRef as React.RefObject<HTMLButtonElement>}
+        ref={buttonRef as RefObject<HTMLButtonElement>}
         type={type}
         className={clsx(styles.menuButton, className)}
         onClick={handleClick}

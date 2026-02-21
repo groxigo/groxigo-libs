@@ -87,7 +87,7 @@
 }
 
 .tab:focus-visible {
-  box-shadow: 0 0 0 3px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 /* — Tab sizes — */
@@ -147,7 +147,7 @@
 .tabEnclosedSelected {
   background-color: var(--surface-primary);
   color: var(--tab-text-active);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05));
 }
 
 .tabEnclosed:not(.tabEnclosedSelected):hover {
@@ -208,7 +208,7 @@
 }
 
 .tabPanel:focus-visible {
-  box-shadow: 0 0 0 3px var(--border-focus);
+  box-shadow: 0 0 0 2px var(--surface-primary, #fff), 0 0 0 5px var(--border-focus, #3b82f6);
 }
 
 .tabPanelHidden {

@@ -49,7 +49,7 @@
   padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
   font-size: var(--font-size-sm);
   color: var(--text-inverse, #fff);
-  background-color: rgba(17, 24, 39, 0.85);
+  background-color: var(--glass-surface-inverse, rgba(17, 24, 39, 0.85));
   border-radius: var(--radius-sm, 6px);
   box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
   white-space: nowrap;

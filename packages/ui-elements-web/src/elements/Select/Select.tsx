@@ -8,7 +8,7 @@
  * Uses native select for better accessibility and mobile experience.
  */
 
-import React, { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, type ChangeEvent, type CSSProperties } from 'react';
 import { clsx } from 'clsx';
 import type { SelectPropsBase, SelectOption as ContractSelectOption } from '@groxigo/contracts';
 import styles from './Select.module.css';
@@ -43,7 +43,7 @@ export interface SelectProps extends Omit<SelectPropsBase, 'value' | 'onChange' 
   /** Label class */
   labelClassName?: string;
   /** Native change handler */
-  onNativeChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onNativeChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -75,7 +75,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const inputId = id || name;
 
     const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLSelectElement>) => {
+      (e: ChangeEvent<HTMLSelectElement>) => {
         const newValue = e.target.value;
         // Try to convert back to number if original options used numbers
         const numValue = Number(newValue);
@@ -96,7 +96,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     );
 
     // Custom chevron as background image using data URI
-    const chevronStyle: React.CSSProperties = {
+    const chevronStyle: CSSProperties = {
       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239E9E9E'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
     };
 

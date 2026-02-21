@@ -11,7 +11,7 @@
  * - Proper role and tabIndex for interactive cards
  */
 
-import React, { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, type KeyboardEvent } from 'react';
 import { clsx } from 'clsx';
 import type { CardPropsBase, CardHeaderPropsBase, CardBodyPropsBase, CardFooterPropsBase } from '@groxigo/contracts';
 import styles from './Card.module.css';
@@ -39,7 +39,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     // Handle keyboard interaction for pressable cards
     const handleKeyDown = useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
+      (event: KeyboardEvent<HTMLDivElement>) => {
         if (!pressable || !onPress) return;
 
         if (event.key === 'Enter' || event.key === ' ') {

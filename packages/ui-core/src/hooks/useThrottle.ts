@@ -5,7 +5,7 @@
  * Shared by both React Native and Web implementations.
  */
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, type DependencyList } from 'react';
 
 /**
  * Hook for throttling a value
@@ -81,7 +81,7 @@ export function useThrottle<T>(value: T, interval: number): T {
 export function useThrottledCallback<T extends (...args: any[]) => any>(
   callback: T,
   interval: number,
-  deps: React.DependencyList = []
+  deps: DependencyList = []
 ): (...args: Parameters<T>) => void {
   const lastExecuted = useRef<number>(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);

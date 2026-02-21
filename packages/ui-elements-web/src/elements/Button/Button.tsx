@@ -12,7 +12,7 @@
  * - Accessible loading state with aria-busy
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { clsx } from 'clsx';
 import type { ButtonPropsBase } from '@groxigo/contracts';
 import styles from './Button.module.css';

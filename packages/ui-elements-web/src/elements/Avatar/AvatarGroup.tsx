@@ -7,7 +7,7 @@
  * Shows a +N indicator when there are more avatars than the max.
  */
 
-import React, { forwardRef, Children, isValidElement, cloneElement } from 'react';
+import { forwardRef, Children, isValidElement, cloneElement, type ReactElement } from 'react';
 import { clsx } from 'clsx';
 import type { AvatarGroupPropsBase, AvatarSize } from '@groxigo/contracts';
 import styles from './AvatarGroup.module.css';
@@ -73,11 +73,11 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
                 zIndex: visibleAvatars.length - index,
               }}
             >
-              {cloneElement(child as React.ReactElement<any>, {
+              {cloneElement(child as ReactElement<any>, {
                 size,
                 className: clsx(
                   styles.avatarBorder,
-                  (child as React.ReactElement<any>).props.className
+                  (child as ReactElement<any>).props.className
                 ),
               })}
             </div>

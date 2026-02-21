@@ -7,7 +7,7 @@
  * Implements @groxigo/contracts MenuDividerPropsBase for web platform.
  */
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { clsx } from 'clsx';
 import type { MenuDividerPropsBase } from '@groxigo/contracts';
 import styles from './Menu.module.css';

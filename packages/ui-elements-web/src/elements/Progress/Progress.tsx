@@ -8,7 +8,7 @@
  * Uses CSS Modules + design token CSS custom properties instead of Tailwind.
  */
 
-import React, { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, type CSSProperties } from 'react';
 import { clsx } from 'clsx';
 import type {
   ProgressPropsBase,
@@ -38,8 +38,6 @@ const labelSizeStyleMap: Record<ProgressSize, string> = {
 
 export interface ProgressProps extends ProgressPropsBase {
   className?: string;
-  /** Custom inline styles for the container */
-  style?: React.CSSProperties;
 }
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
@@ -57,7 +55,6 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       borderRadius,
       'aria-label': ariaLabel,
       className,
-      style,
       testID,
       ...props
     },
@@ -80,17 +77,19 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
       return `${Math.round(normalizedValue)}%`;
     }, [value, max, normalizedValue, formatValue, isIndeterminate]);
 
-    const radiusStyle = useMemo(() => {
-      if (borderRadius === undefined) return undefined;
-      if (borderRadius === 'full') return '9999px';
-      return `${borderRadius}px`;
-    }, [borderRadius]);
+    // Dynamic values via CSS custom properties
+    const cssVars = {
+      '--progress-radius': borderRadius !== undefined
+        ? (borderRadius === 'full' ? '9999px' : `${borderRadius}px`)
+        : undefined,
+      '--progress-width': isIndeterminate ? undefined : `${normalizedValue}%`,
+    } as CSSProperties;
 
     return (
       <div
         ref={ref}
         className={clsx(styles.wrapper, className)}
-        style={style}
+        style={cssVars}
         data-testid={testID}
         {...props}
       >
@@ -104,7 +103,6 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
             styles.track,
             trackSizeStyleMap[size]
           )}
-          style={{ borderRadius: radiusStyle }}
         >
           <div
             className={clsx(
@@ -114,10 +112,6 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               isAnimated && hasStripe && styles.stripeAnimated,
               isIndeterminate && styles.indeterminate
             )}
-            style={{
-              width: isIndeterminate ? undefined : `${normalizedValue}%`,
-              borderRadius: radiusStyle,
-            }}
           />
         </div>
         {showValue && displayValue && (
