@@ -4,6 +4,9 @@
   "workspaces": {
     "": {
       "name": "groxigo-libs",
+      "dependencies": {
+        "@groxigo/i18n": "1.1.2",
+      },
       "devDependencies": {
         "@changesets/changelog-github": "^0.5.2",
         "@changesets/cli": "^2.29.8",
@@ -114,7 +117,7 @@
     },
     "packages/components-web": {
       "name": "@groxigo/components-web",
-      "version": "1.2.14",
+      "version": "1.2.15",
       "dependencies": {
         "@groxigo/contracts": "^1.0.1",
         "@groxigo/icons": "^1.0.0",
@@ -141,7 +144,7 @@
     },
     "packages/contracts": {
       "name": "@groxigo/contracts",
-      "version": "1.3.5",
+      "version": "1.3.6",
       "devDependencies": {
         "@types/react": "^19.2.9",
         "typescript": "~5.9.2",
@@ -153,7 +156,7 @@
     },
     "packages/i18n": {
       "name": "@groxigo/i18n",
-      "version": "1.0.0",
+      "version": "1.1.2",
       "devDependencies": {
         "@types/node": "^22.15.0",
         "typescript": "~5.9.2",
@@ -255,7 +258,7 @@
     },
     "packages/ui-elements-web": {
       "name": "@groxigo/ui-elements-web",
-      "version": "1.2.6",
+      "version": "1.2.7",
       "dependencies": {
         "@groxigo/contracts": "*",
         "@groxigo/tokens": "*",

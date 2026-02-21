@@ -232,12 +232,15 @@
   justify-content: center;
 }
 
-/* Weight badge */
+/* Weight badge — prominent pill for variant differentiation */
 .weightBadge {
-  font-size: var(--font-size-2xs, 10px);
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--text-secondary, #475569);
-  padding: 1px var(--spacing-1, 4px);
+  display: inline-block;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--text-primary, #0f172a);
+  background: var(--surface-secondary, #f1f5f9);
+  padding: var(--spacing-0\.5, 2px) var(--spacing-1\.5, 6px);
+  border-radius: var(--radius-sm, 6px);
   line-height: normal;
 }
 

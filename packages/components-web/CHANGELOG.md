@@ -1,5 +1,11 @@
 # @groxigo/components-web
 
+## 1.2.16
+
+### Patch Changes
+
+- Make ProductTile weight badge a prominent pill (larger font, semibold, colored bg, rounded) for better variant differentiation
+
 ## 1.2.15
 
 ### Patch Changes
