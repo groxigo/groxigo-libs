@@ -48,7 +48,7 @@
     }
   },
   "scripts": {
-    "build": "tsc && bun run src/build.ts",
+    "build": "tsc -p tsconfig.build.json && bun run src/build.ts",
     "build:watch": "tsc --watch",
     "clean": "rm -rf dist",
     "test": "vitest run"
@@ -67,7 +67,8 @@
     "directory": "packages/i18n"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "engines": {
     "node": ">=18.0.0"

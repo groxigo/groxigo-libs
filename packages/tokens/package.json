@@ -125,12 +125,12 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "@types/node": "^25.0.0",
     "@vitest/coverage-v8": "^4.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "~5.9.2",
     "vitest": "^4.0.0"
   },
   "peerDependencies": {

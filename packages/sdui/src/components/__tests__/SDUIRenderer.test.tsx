@@ -4,9 +4,10 @@ import { SDUIRenderer, SDUISectionRenderer, SDUIScreenRenderer } from '../SDUIRe
 import { createRegistry } from '../../registry/createRegistry';
 import type { SDUIComponent, SDUISection } from '../../types/components';
 import type { ComponentRegistry } from '../../types/registry';
+import type { ReactNode } from 'react';
 
 // Test components
-function TestCard({ title, subtitle, children }: { title: string; subtitle?: string; children?: React.ReactNode }) {
+function TestCard({ title, subtitle, children }: { title: string; subtitle?: string; children?: ReactNode }) {
   return (
     <div data-testid="test-card">
       <span data-testid="card-title">{title}</span>
@@ -172,7 +173,7 @@ describe('SDUISectionRenderer', () => {
       ],
     };
 
-    function Wrapper({ section: sec, children }: { section: SDUISection; children: React.ReactNode }) {
+    function Wrapper({ section: sec, children }: { section: SDUISection; children: ReactNode }) {
       return (
         <div data-testid="section-wrapper" data-section-id={sec.id}>
           {children}
