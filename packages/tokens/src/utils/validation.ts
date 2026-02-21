@@ -253,27 +253,29 @@ export function validateContrast(
 
   // Validate semantic text on surface
   if (colors.semantic) {
-    const semantic = colors.semantic as Record<string, any>;
+    const semantic = colors.semantic;
+    const text = semantic.text as Record<string, unknown> | undefined;
+    const surface = semantic.surface as Record<string, unknown> | undefined;
 
-    if (semantic.text && semantic.surface) {
+    if (text && surface) {
       // Primary text on primary surface
       checkContrast(
-        semantic.text?.primary,
-        semantic.surface?.primary,
+        text.primary,
+        surface.primary,
         'semantic.text.primary on semantic.surface.primary'
       );
 
       // Secondary text on primary surface
       checkContrast(
-        semantic.text?.secondary,
-        semantic.surface?.primary,
+        text.secondary,
+        surface.primary,
         'semantic.text.secondary on semantic.surface.primary'
       );
 
       // Primary text on secondary surface
       checkContrast(
-        semantic.text?.primary,
-        semantic.surface?.secondary,
+        text.primary,
+        surface.secondary,
         'semantic.text.primary on semantic.surface.secondary'
       );
     }
@@ -281,23 +283,23 @@ export function validateContrast(
 
   // Validate component button text
   if (colors.components) {
-    const components = colors.components as Record<string, any>;
+    const components = colors.components;
 
     if (components.button) {
-      for (const [variant, tokens] of Object.entries(components.button)) {
-        if (tokens && typeof tokens === 'object') {
-          const { bg, text } = tokens as { bg?: unknown; text?: unknown };
-          checkContrast(text, bg, `components.button.${variant}`);
+      for (const [variant, variantTokens] of Object.entries(components.button as Record<string, unknown>)) {
+        if (variantTokens && typeof variantTokens === 'object') {
+          const t = variantTokens as Record<string, unknown>;
+          checkContrast(t.text, t.bg, `components.button.${variant}`);
         }
       }
     }
 
     // Validate badge text
     if (components.badge) {
-      for (const [variant, tokens] of Object.entries(components.badge)) {
-        if (tokens && typeof tokens === 'object') {
-          const { bg, text } = tokens as { bg?: unknown; text?: unknown };
-          checkContrast(text, bg, `components.badge.${variant}`);
+      for (const [variant, variantTokens] of Object.entries(components.badge as Record<string, unknown>)) {
+        if (variantTokens && typeof variantTokens === 'object') {
+          const t = variantTokens as Record<string, unknown>;
+          checkContrast(t.text, t.bg, `components.badge.${variant}`);
         }
       }
     }

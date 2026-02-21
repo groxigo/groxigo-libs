@@ -25,9 +25,8 @@ describe('CSS Generator', () => {
     expect(cssOutput).toContain('}');
   });
 
-  test('includes font import', () => {
-    expect(cssOutput).toContain('@import url(');
-    expect(cssOutput).toContain('Inter');
+  test('does not include inline font import (font loading is app-level)', () => {
+    expect(cssOutput).not.toContain('@import url(');
   });
 
   test('generates primitive color variables', () => {

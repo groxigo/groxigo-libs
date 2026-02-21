@@ -281,11 +281,11 @@ describe('Color Tokens', () => {
       expect(tokens.colors.dark.components).toBeDefined();
     });
 
-    test('legacy compatibility exports exist', () => {
-      // These are deprecated but should still work for backwards compat
-      expect(tokens.colors.groxigo).toBeDefined();
-      expect(tokens.colors.alias).toBeDefined();
-      expect(tokens.colors.mapped).toBeDefined();
+    test('does not include deprecated legacy properties', () => {
+      // Legacy properties (groxigo, alias, mapped) were removed
+      expect((tokens.colors as Record<string, unknown>).groxigo).toBeUndefined();
+      expect((tokens.colors as Record<string, unknown>).alias).toBeUndefined();
+      expect((tokens.colors as Record<string, unknown>).mapped).toBeUndefined();
     });
   });
 });

@@ -5,6 +5,7 @@
     "dist",
     "src/__tests__",
     "src/build.ts",
-    "src/preview"
+    "src/preview",
+    "src/generators"
   ]
 }

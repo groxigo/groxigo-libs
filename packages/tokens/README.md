@@ -50,19 +50,13 @@ const styles = StyleSheet.create({
 @import '@groxigo/tokens/css';
 
 .button {
-  background-color: var(--brand-primary-default);
+  background-color: var(--brand-primary);
   padding: var(--spacing-4);
   border-radius: var(--radius-lg);
   color: var(--color-white);
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface-primary: var(--color-gray-900);
-    --text-primary: var(--color-gray-50);
-  }
-}
+/* Dark mode — toggle .dark class on <html> */
 ```
 
 ### Web (JavaScript/TypeScript)
@@ -183,8 +177,9 @@ tokens.spacing[24]  // 96
 
 ```typescript
 // Font families
-tokens.typography.fontFamily.sans  // 'Inter', system-ui, sans-serif
-tokens.typography.fontFamily.mono  // 'JetBrains Mono', monospace
+tokens.typography.fontFamily.sans     // 'GoogleSansFlex_400Regular' (React Native)
+tokens.typography.fontFamily.sansWeb  // 'Google Sans Flex', system-ui, sans-serif (Web)
+tokens.typography.fontFamily.mono     // 'JetBrains Mono', monospace
 
 // Font sizes
 tokens.typography.fontSize.xs      // 12
@@ -212,12 +207,15 @@ tokens.typography.lineHeight.normal    // 1.5
 
 ```typescript
 tokens.radius.none  // 0
-tokens.radius.sm    // 4
-tokens.radius.md    // 6
-tokens.radius.lg    // 8
-tokens.radius.xl    // 12
-tokens.radius['2xl'] // 16
+tokens.radius.xs    // 4
+tokens.radius.sm    // 6
+tokens.radius.md    // 8
+tokens.radius.lg    // 10
+tokens.radius.xl    // 14
+tokens.radius['2xl'] // 20
 tokens.radius['3xl'] // 24
+tokens.radius['4xl'] // 28
+tokens.radius['5xl'] // 32
 tokens.radius.full  // 9999
 ```
 
@@ -316,19 +314,14 @@ const customTheme = createTheme({
 
 ### CSS
 
-```css
-/* Auto dark mode via media query */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface-primary: var(--color-gray-900);
-    --text-primary: var(--color-gray-50);
-  }
-}
+Dark mode is applied via the `.dark` class on `<html>` (opt-in, not automatic).
+The generated CSS does **not** include a `@media (prefers-color-scheme: dark)` block —
+your app must toggle the `.dark` class to switch themes.
 
-/* Manual dark mode via class */
+```css
+/* Add .dark class to <html> to switch to dark mode */
 .dark {
-  --surface-primary: var(--color-gray-900);
-  --text-primary: var(--color-gray-50);
+  /* All semantic/component tokens are overridden automatically */
 }
 ```
 

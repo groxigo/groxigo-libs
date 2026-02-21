@@ -7,6 +7,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import { generateCSS } from './generators/css';
 import { generateReactNative } from './generators/react-native';
 import { generateJSON } from './generators/json';
@@ -16,6 +17,8 @@ import { generateDocs } from './generators/docs';
 import { validateTokens } from './utils/validation';
 import { tokens } from './tokens';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const DIST_DIR = path.join(__dirname, '../dist');
 
 // Ensure dist directories exist
@@ -34,23 +37,6 @@ function ensureDirs() {
       fs.mkdirSync(dir, { recursive: true });
     }
   }
-}
-
-// Generate TypeScript declaration file
-function generateTypeDeclaration(): string {
-  return `/**
- * Groxigo Design Tokens - Type Declarations
- * Auto-generated - Do not edit directly
- */
-
-export * from '../src/types';
-export * from '../src/tokens';
-export * from '../src/theme';
-export * from '../src/utils';
-
-import { tokens } from '../src/tokens';
-export default tokens;
-`;
 }
 
 // Validate tokens before build
@@ -142,16 +128,9 @@ function build() {
     fs.writeFileSync(flatJsonPath, flatJson, 'utf-8');
     console.log(`   ✅ ${flatJsonPath}`);
 
-    // Generate TypeScript declarations
-    console.log('📘 Generating TypeScript declarations...');
-    const dts = generateTypeDeclaration();
-    const dtsPath = path.join(DIST_DIR, 'types', 'index.d.ts');
-    fs.writeFileSync(dtsPath, dts, 'utf-8');
-    console.log(`   ✅ ${dtsPath}`);
-
-    // Generate CSS variable TypeScript types
+    // Generate CSS variable TypeScript types (reuses the css string from above)
     console.log('📘 Generating CSS variable types...');
-    const cssTypes = generateCSSTypes();
+    const cssTypes = generateCSSTypes(css);
     const cssTypesPath = path.join(DIST_DIR, 'types', 'css-vars.d.ts');
     fs.writeFileSync(cssTypesPath, cssTypes, 'utf-8');
     console.log(`   ✅ ${cssTypesPath}`);
@@ -172,7 +151,6 @@ function build() {
     console.log('   - dist/js/tokens.js          (React Native/JS)');
     console.log('   - dist/json/tokens.json      (Figma Tokens Studio)');
     console.log('   - dist/json/tokens.flat.json (Flat JSON)');
-    console.log('   - dist/types/index.d.ts      (TypeScript declarations)');
     console.log('   - dist/types/css-vars.d.ts   (CSS variable types)');
     console.log('   - dist/docs/token-catalog.md (Token documentation)');
   } catch (error) {
@@ -200,6 +178,7 @@ function generateFlatJSON(): string {
 
   // Flatten spacing
   for (const [key, value] of Object.entries(tokens.spacing)) {
+    if (key === 'base') continue; // internal multiplier, not a public token
     flat[`spacing.${key}`] = value;
   }
 
@@ -213,6 +192,7 @@ function generateFlatJSON(): string {
 
   // Flatten radius
   for (const [key, value] of Object.entries(tokens.radius)) {
+    if (key === 'base') continue; // internal value, not a public token
     flat[`radius.${key}`] = value;
   }
 
@@ -220,6 +200,10 @@ function generateFlatJSON(): string {
   for (const [key, value] of Object.entries(tokens.shadows)) {
     if (typeof value === 'string') {
       flat[`shadow.${key}`] = value;
+    } else if (typeof value === 'object') {
+      for (const [subKey, subValue] of Object.entries(value)) {
+        flat[`shadow.${key}.${subKey}`] = subValue;
+      }
     }
   }
 
@@ -233,11 +217,65 @@ function generateFlatJSON(): string {
     flat[`duration.${key}`] = value;
   }
 
+  // Flatten chart colors (§36)
+  for (const [key, value] of Object.entries(tokens.colors.chart.categorical)) {
+    flat[`chart.categorical.${key}`] = value;
+  }
+  for (const [key, value] of Object.entries(tokens.colors.chart.sequential)) {
+    flat[`chart.sequential.${key}`] = value;
+  }
+  tokens.colors.chart.diverging.forEach((value, i) => {
+    flat[`chart.diverging.${i + 1}`] = value;
+  });
+  flat['chart.neutral'] = tokens.colors.chart.neutral;
+
+  // Flatten opacity
+  for (const [key, value] of Object.entries(tokens.opacity)) {
+    flat[`opacity.${key}`] = value;
+  }
+
+  // Flatten z-index
+  for (const [key, value] of Object.entries(tokens.zIndex)) {
+    flat[`zIndex.${key}`] = value;
+  }
+
+  // Flatten border widths
+  for (const [key, value] of Object.entries(tokens.border.width)) {
+    flat[`borderWidth.${key}`] = value;
+  }
+
+  // Flatten icon sizes
+  for (const [key, value] of Object.entries(tokens.icon.size)) {
+    flat[`iconSize.${key}`] = value;
+  }
+  for (const [key, value] of Object.entries(tokens.icon.container)) {
+    flat[`iconContainer.${key}`] = value;
+  }
+
+  // Flatten layout
+  flat['layout.pageMaxWidth'] = tokens.layout.pageMaxWidth;
+  flat['layout.contentMaxWidth'] = tokens.layout.contentMaxWidth;
+  flat['layout.narrowMaxWidth'] = tokens.layout.narrowMaxWidth;
+  flat['layout.sidebarWidth'] = tokens.layout.sidebarWidth;
+  flat['layout.screenMargin.mobile'] = tokens.layout.screenMargin.mobile;
+  flat['layout.screenMargin.tablet'] = tokens.layout.screenMargin.tablet;
+  flat['layout.gridGutter.mobile'] = tokens.layout.gridGutter.mobile;
+  flat['layout.gridGutter.tablet'] = tokens.layout.gridGutter.tablet;
+  flat['layout.gridGutter.desktop'] = tokens.layout.gridGutter.desktop;
+
+  // Flatten focus ring
+  for (const [key, value] of Object.entries(tokens.focus.width)) {
+    flat[`focusRing.width.${key}`] = value;
+  }
+  for (const [key, value] of Object.entries(tokens.focus.offset)) {
+    flat[`focusRing.offset.${key}`] = value;
+  }
+
   return JSON.stringify(flat, null, 2);
 }
 
 // Run build if executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith('/build.ts')) {
   build();
 }
 

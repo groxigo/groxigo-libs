@@ -34,6 +34,19 @@ export const breakpoints = {
 export type BreakpointKey = keyof typeof breakpoints;
 
 /**
+ * Container query breakpoints (§27)
+ * Used with @container queries for component-level responsive layouts.
+ */
+export const containerBreakpoints = {
+  /** Below this: compact layout */
+  compact: 480,
+  /** At or above this: expanded layout */
+  expanded: 768,
+} as const;
+
+export type ContainerBreakpointKey = keyof typeof containerBreakpoints;
+
+/**
  * Media query helpers for web
  * Returns CSS media query strings
  */

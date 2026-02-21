@@ -121,6 +121,7 @@ export function generateSCSS(): string {
 
   lines.push('$spacing: (');
   for (const [key, value] of Object.entries(tokens.spacing)) {
+    if (key === 'base') continue;
     lines.push(`  '${key}': ${value}px,`);
   }
   lines.push(');');
@@ -178,6 +179,7 @@ export function generateSCSS(): string {
 
   lines.push('$radius: (');
   for (const [key, value] of Object.entries(tokens.radius)) {
+    if (key === 'base') continue;
     lines.push(`  '${key}': ${value}px,`);
   }
   lines.push(');');
@@ -360,11 +362,14 @@ export function generateCSSModules(): string {
 
   // Spacing
   for (const [key, value] of Object.entries(tokens.spacing)) {
-    lines.push(`  --spacing-${key}: ${value}px;`);
+    if (key === 'base') continue;
+    const cssKey = key.replace('.', '_');
+    lines.push(`  --spacing-${cssKey}: ${value}px;`);
   }
 
   // Radius
   for (const [key, value] of Object.entries(tokens.radius)) {
+    if (key === 'base') continue;
     lines.push(`  --radius-${key}: ${value}px;`);
   }
 
@@ -390,6 +395,7 @@ export function generateCSSModules(): string {
 
   // Border radius
   for (const key of Object.keys(tokens.radius)) {
+    if (key === 'base') continue;
     lines.push(`.rounded-${key} { border-radius: var(--radius-${key}); }`);
   }
   lines.push('');

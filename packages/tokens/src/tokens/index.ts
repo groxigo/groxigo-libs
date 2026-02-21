@@ -37,6 +37,7 @@ export * from './border';
 export * from './icon-size';
 export * from './focus';
 export * from './responsive';
+export * from './layout';
 
 // Import for combined tokens object
 import { colors } from './colors';
@@ -47,13 +48,14 @@ import { shadows } from './shadows';
 import { radius } from './radius';
 import { opacity } from './opacity';
 import { blur } from './blur';
-import { breakpoints, mediaQueries } from './breakpoints';
+import { breakpoints, containerBreakpoints, mediaQueries } from './breakpoints';
 import { animation } from './animation';
 import { zIndex } from './z-index';
 import { border } from './border';
 import { icon } from './icon-size';
 import { focus } from './focus';
 import { responsive } from './responsive';
+import { layout } from './layout';
 
 /**
  * Complete tokens object containing all design tokens
@@ -82,8 +84,14 @@ export const tokens = {
   spacingSemantic,
   spacingNegative,
 
+  // Container query breakpoints (§27)
+  containerBreakpoints,
+
   // Breakpoint utilities
   mediaQueries,
+
+  // Layout (§27)
+  layout,
 } as const;
 
 export default tokens;

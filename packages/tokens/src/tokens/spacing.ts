@@ -24,7 +24,7 @@ export const spacing = {
   // Core spacing scale (4pt increments)
   /** 0px */
   0: 0,
-  /** 2px - Hairline spacing (half base) */
+  /** 1px - Hairline spacing */
   px: 1,
   /** 2px - Micro spacing */
   0.5: 2,
@@ -131,8 +131,8 @@ export const spacingSemantic = {
     horizontal: spacing[4],
     /** Vertical padding (16px) */
     vertical: spacing[4],
-    /** Safe area bottom (34px approximation) */
-    safeBottom: spacing[8],
+    /** Safe area bottom fallback (32px). Use env(safe-area-inset-bottom, 32px) in CSS — §34: never hardcode safe areas. */
+    safeBottomFallback: spacing[8],
   },
 
   /** Card spacing */

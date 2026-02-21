@@ -24,6 +24,10 @@ export const duration = {
   slower: 500,
   /** Deliberate animations - full page, major transitions (700ms) */
   deliberate: 700,
+  /** Toast auto-dismiss - success, info (§10/§30) */
+  toastDefault: 4000,
+  /** Toast auto-dismiss - warning, undo (§10/§30) */
+  toastWarning: 6000,
 } as const;
 
 export type DurationKey = keyof typeof duration;

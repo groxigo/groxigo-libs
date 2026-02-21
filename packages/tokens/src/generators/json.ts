@@ -217,9 +217,9 @@ export function generateJSON(): string {
       Muted: '→ Primitives/Purple/100',
     },
     Accent: {
-      Default: '→ Primitives/Cyan/500',
-      Hover: '→ Primitives/Cyan/600',
-      Active: '→ Primitives/Cyan/700',
+      Default: '→ Primitives/Cyan/600',
+      Hover: '→ Primitives/Cyan/700',
+      Active: '→ Primitives/Cyan/800',
       Subtle: '→ Primitives/Cyan/50',
       Muted: '→ Primitives/Cyan/100',
     },

@@ -7,13 +7,10 @@
  * autocomplete.
  */
 
-import { generateCSS } from './css';
-
 /**
- * Extract all CSS custom property names from the generated CSS output.
+ * Extract all CSS custom property names from a CSS string.
  */
-function extractCSSVarNames(): string[] {
-  const css = generateCSS();
+function extractCSSVarNames(css: string): string[] {
   const varNames: Set<string> = new Set();
 
   // Match all `--variable-name:` declarations (includes dots for keys like spacing-0.5)
@@ -29,9 +26,10 @@ function extractCSSVarNames(): string[] {
 
 /**
  * Generate TypeScript declaration file with a union type of all CSS variable names.
+ * @param css - The already-generated CSS string (avoids re-running generateCSS)
  */
-export function generateCSSTypes(): string {
-  const varNames = extractCSSVarNames();
+export function generateCSSTypes(css: string): string {
+  const varNames = extractCSSVarNames(css);
 
   const lines: string[] = [];
   lines.push('/**');

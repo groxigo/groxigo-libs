@@ -186,9 +186,6 @@ export const primitives = {
   },
 } as const;
 
-// Legacy export for backwards compatibility
-export const groxigoColors = primitives;
-
 // ============================================
 // TIER 2: SEMANTIC ALIASES - Light Mode
 // Meaningful names for functional purposes
@@ -337,10 +334,6 @@ export const semantic = {
   },
 } as const;
 
-// Legacy exports for backwards compatibility
-export const aliasShared = semantic;
-export const aliasGlass = semantic.glass;
-
 // ============================================
 // TIER 2: SEMANTIC ALIASES - Dark Mode
 // ============================================
@@ -372,7 +365,7 @@ export const semanticDark = {
     subtle: primitives.gray[700],
     default: primitives.gray[600],
     strong: primitives.gray[500],
-    focus: primitives.blue[500],
+    focus: primitives.blue[400], // DESIGN_RULES §18: dark focus ring = blue/400
     disabled: primitives.gray[700],
   },
 
@@ -443,7 +436,7 @@ export const semanticDark = {
     hover: primitives.gray[300],
     active: primitives.gray[200],
     disabled: primitives.gray[600],
-    focus: primitives.blue[500],
+    focus: primitives.blue[400], // DESIGN_RULES §18: dark focus = blue/400
   },
 
   // Overlay colors
@@ -476,10 +469,6 @@ export const semanticDark = {
     imageBg: primitives.gray[800],
   },
 } as const;
-
-// Legacy exports
-export const aliasSharedDark = semanticDark;
-export const aliasGlassDark = semanticDark.glass;
 
 // ============================================
 // TIER 3: COMPONENT MAPPED - Light Mode
@@ -559,8 +548,8 @@ export const components = {
     bgHover: semantic.surface.primary,
     border: semantic.border.subtle,
     borderHover: semantic.border.default,
-    shadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-    shadowHover: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    shadow: '0 1px 3px rgb(0 0 0 / 0.1)',
+    shadowHover: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
   },
 
   // Badge component
@@ -653,13 +642,15 @@ export const components = {
     strong: semantic.border.default,
   },
 
-  // Toggle/Switch component
+  // Toggle/Switch component — §22 state matrix
   toggle: {
-    bgOff: semantic.surface.tertiary,
+    bgOff: semantic.surface.primary,
     bgOn: semantic.brand.primary.default,
     bgDisabled: semantic.surface.disabled,
     thumb: primitives.white,
     thumbDisabled: primitives.gray[300],
+    borderOff: semantic.border.default,
+    borderDisabled: semantic.border.disabled,
   },
 
   // Progress component
@@ -728,10 +719,6 @@ export const components = {
     },
   },
 } as const;
-
-// Legacy exports
-export const mappedShared = components;
-export const mappedGlass = components.glass;
 
 // ============================================
 // TIER 3: COMPONENT MAPPED - Dark Mode
@@ -810,8 +797,8 @@ export const componentsDark = {
     bgHover: semanticDark.surface.secondary,
     border: semanticDark.border.subtle,
     borderHover: semanticDark.border.default,
-    shadow: '0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)',
-    shadowHover: '0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3)',
+    shadow: '0 1px 3px rgb(0 0 0 / 0.3)',
+    shadowHover: '0 4px 6px -1px rgb(0 0 0 / 0.3)',
   },
 
   // Badge component
@@ -904,13 +891,15 @@ export const componentsDark = {
     strong: semanticDark.border.default,
   },
 
-  // Toggle/Switch component
+  // Toggle/Switch component — §22 state matrix
   toggle: {
-    bgOff: semanticDark.surface.tertiary,
+    bgOff: semanticDark.surface.primary,
     bgOn: semanticDark.brand.primary.default,
     bgDisabled: semanticDark.surface.disabled,
     thumb: primitives.white,
     thumbDisabled: primitives.gray[500],
+    borderOff: semanticDark.border.default,
+    borderDisabled: semanticDark.border.disabled,
   },
 
   // Progress component
@@ -980,9 +969,47 @@ export const componentsDark = {
   },
 } as const;
 
-// Legacy exports
-export const mappedSharedDark = componentsDark;
-export const mappedGlassDark = componentsDark.glass;
+// ============================================
+// CHART & DATA VISUALIZATION COLORS (§36)
+// ============================================
+
+export const chart = {
+  /** Qualitative palette for distinct categories (§36) */
+  categorical: {
+    1:  primitives.blue[500],
+    2:  primitives.green[500],
+    3:  primitives.orange[500],
+    4:  primitives.purple[500],
+    5:  primitives.cyan[500],
+    6:  primitives.pink[500],
+    7:  primitives.teal[500],
+    8:  primitives.indigo[500],
+    9:  primitives.yellow[600],
+    10: primitives.red[500],
+  },
+  /** Sequential blue palette for progressions (§36) */
+  sequential: {
+    100: primitives.blue[100],
+    200: primitives.blue[200],
+    300: primitives.blue[300],
+    400: primitives.blue[400],
+    500: primitives.blue[500],
+    600: primitives.blue[600],
+    700: primitives.blue[700],
+    800: primitives.blue[800],
+    900: primitives.blue[900],
+  },
+  /** Diverging palette for performance vs target (§36) */
+  diverging: [
+    primitives.red[600],
+    primitives.red[300],
+    primitives.yellow[400],
+    primitives.green[300],
+    primitives.green[600],
+  ],
+  /** Neutral reference data */
+  neutral: primitives.gray[400],
+} as const;
 
 // ============================================
 // MAIN EXPORT
@@ -998,24 +1025,13 @@ export const colors = {
   // Tier 3: Components (Light)
   components,
 
+  // Chart & data visualization (§36)
+  chart,
+
   // Dark mode
   dark: {
     semantic: semanticDark,
     components: componentsDark,
-  },
-
-  // Legacy compatibility (deprecated - use new structure)
-  /** @deprecated Use colors.primitives instead */
-  groxigo: primitives,
-  /** @deprecated Use colors.semantic instead */
-  alias: {
-    shared: semantic,
-    glass: semantic.glass,
-  },
-  /** @deprecated Use colors.components instead */
-  mapped: {
-    shared: components,
-    glass: components.glass,
   },
 } as const;
 

@@ -3,7 +3,24 @@
  *
  * Comprehensive type exports for better developer experience.
  * These types ensure type safety when consuming tokens in TypeScript projects.
+ *
+ * Two categories of types:
+ * 1. DERIVED — auto-synced from source token objects via `typeof` (can never drift)
+ * 2. STRUCTURAL CONTRACTS — manually defined interfaces for the theme system
  */
+
+// Module type aliases for inline `typeof import(...)` pattern.
+// This avoids runtime imports in the compiled JS — TypeScript resolves
+// these at the type level only, so dist/types/index.js stays import-free.
+type SpacingModule = typeof import('../tokens/spacing');
+type TypographyModule = typeof import('../tokens/typography');
+type RadiusModule = typeof import('../tokens/radius');
+type ShadowsModule = typeof import('../tokens/shadows');
+type OpacityModule = typeof import('../tokens/opacity');
+type BlurModule = typeof import('../tokens/blur');
+type BreakpointsModule = typeof import('../tokens/breakpoints');
+type AnimationModule = typeof import('../tokens/animation');
+type TokensModule = typeof import('../tokens');
 
 // ============================================
 // PRIMITIVE TYPES
@@ -194,6 +211,8 @@ export interface ButtonTokens {
 
 export interface InputTokens {
   bg: CSSColor;
+  bgHover: CSSColor;
+  bgFocus: CSSColor;
   bgDisabled: CSSColor;
   text: CSSColor;
   textDisabled: CSSColor;
@@ -209,6 +228,8 @@ export interface CardTokens {
   bg: CSSColor;
   border: CSSColor;
   borderHover: CSSColor;
+  shadow: string;
+  shadowHover: string;
 }
 
 export interface BadgeVariantTokens {
@@ -258,6 +279,9 @@ export interface ToggleTokens {
   bgOn: CSSColor;
   bgDisabled: CSSColor;
   thumb: CSSColor;
+  thumbDisabled: CSSColor;
+  borderOff: CSSColor;
+  borderDisabled: CSSColor;
 }
 
 export interface ProgressTokens {
@@ -272,6 +296,7 @@ export interface AlertVariantTokens {
   bg: CSSColor;
   border: CSSColor;
   text: CSSColor;
+  icon: CSSColor;
 }
 
 export interface AlertTokens {
@@ -335,266 +360,65 @@ export interface ColorTokens {
 }
 
 // ============================================
-// SPACING TYPES
+// DERIVED TOKEN TYPES
 // ============================================
+// These types are derived from the source token objects via `typeof`.
+// They can never drift out of sync — if a token is added or removed
+// in its source file, the type updates automatically.
 
-export type SpacingKey = 0 | 0.5 | 1 | 1.5 | 2 | 2.5 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 44 | 48 | 52 | 56 | 60 | 64 | 72 | 80 | 96;
+// Re-export key types already defined in source files
+export type { SpacingKey } from '../tokens/spacing';
+export type { RadiusKey } from '../tokens/radius';
+export type { OpacityKey } from '../tokens/opacity';
+export type { BlurKey } from '../tokens/blur';
+export type { BreakpointKey } from '../tokens/breakpoints';
+export type { DurationKey, EasingKey, TransitionKey, KeyframeKey, SpringKey, DelayKey } from '../tokens/animation';
 
-export type SpacingTokens = Record<SpacingKey, number>;
+// Spacing
+export type SpacingTokens = SpacingModule['spacing'];
 
-// ============================================
-// TYPOGRAPHY TYPES
-// ============================================
+// Typography
+export type FontFamilyTokens = TypographyModule['typography']['fontFamily'];
+export type FontSizeTokens = TypographyModule['typography']['fontSize'];
+export type FontWeightTokens = TypographyModule['typography']['fontWeight'];
+export type LineHeightTokens = TypographyModule['typography']['lineHeight'];
+export type LetterSpacingTokens = TypographyModule['typography']['letterSpacing'];
+export type TypographyTokens = TypographyModule['typography'];
 
-export interface FontFamilyTokens {
-  sans: string;
-  sansLight: string;
-  sansMedium: string;
-  sansSemiBold: string;
-  sansBold: string;
-  sansWeb: string;
-  mono: string;
-}
+// Radius
+export type RadiusTokens = RadiusModule['radius'];
 
-export interface FontSizeTokens {
-  xs: number;
-  sm: number;
-  base: number;
-  lg: number;
-  xl: number;
-  '2xl': number;
-  '3xl': number;
-  '4xl': number;
-  '5xl': number;
-  '6xl': number;
-}
+// Shadows
+export type ShadowTokens = ShadowsModule['shadows'];
 
-export interface FontWeightTokens {
-  thin: number;
-  extralight: number;
-  light: number;
-  normal: number;
-  medium: number;
-  semibold: number;
-  bold: number;
-  extrabold: number;
-  black: number;
-}
+// Opacity
+export type OpacityTokens = OpacityModule['opacity'];
 
-export interface LineHeightTokens {
-  none: number;
-  tight: number;
-  snug: number;
-  normal: number;
-  loose: number;
-}
+// Blur
+export type BlurTokens = BlurModule['blur'];
 
-export interface LetterSpacingTokens {
-  tighter: number;
-  tight: number;
-  normal: number;
-  wide: number;
-  wider: number;
-  widest: number;
-}
+// Breakpoints
+export type BreakpointTokens = BreakpointsModule['breakpoints'];
 
-export interface TypographyTokens {
-  fontFamily: FontFamilyTokens;
-  fontSize: FontSizeTokens;
-  fontWeight: FontWeightTokens;
-  lineHeight: LineHeightTokens;
-  letterSpacing: LetterSpacingTokens;
-}
+// Animation
+export type DurationTokens = AnimationModule['duration'];
+export type EasingTokens = AnimationModule['easing'];
+export type TransitionTokens = AnimationModule['transition'];
+export type KeyframeTokens = AnimationModule['keyframes'];
+export type SpringTokens = AnimationModule['spring'];
+export type DelayTokens = AnimationModule['delay'];
+export type ReducedMotionTokens = AnimationModule['reducedMotion'];
+export type AnimationTokens = AnimationModule['animation'];
 
-// ============================================
-// RADIUS TYPES
-// ============================================
-
-export interface RadiusTokens {
-  base: number;
-  none: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  full: number;
-}
-
-// ============================================
-// SHADOW TYPES
-// ============================================
-
-export interface ShadowTokens {
-  none: string;
-  xs: string;
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
-  '2xl': string;
-  inner: string;
-  glass: {
-    sm: string;
-    md: string;
-    lg: string;
-  };
-}
-
-// ============================================
-// OPACITY TYPES
-// ============================================
-
-export type OpacityKey = 0 | 5 | 10 | 20 | 25 | 30 | 40 | 50 | 60 | 70 | 75 | 80 | 90 | 95 | 100;
-
-export type OpacityTokens = Record<OpacityKey, number>;
-
-// ============================================
-// BLUR TYPES
-// ============================================
-
-export interface BlurTokens {
-  none: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  '2xl': number;
-  '3xl': number;
-}
-
-// ============================================
-// BREAKPOINT TYPES
-// ============================================
-
-export interface BreakpointTokens {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  '2xl': number;
-}
-
-// ============================================
-// ANIMATION TYPES
-// ============================================
-
-export interface DurationTokens {
-  instant: number;
-  fast: number;
-  normal: number;
-  slow: number;
-  slower: number;
-  slowest: number;
-}
-
-export interface EasingTokens {
-  linear: string;
-  ease: string;
-  easeIn: string;
-  easeOut: string;
-  easeInOut: string;
-  standard: string;
-  emphasized: string;
-  decelerate: string;
-  accelerate: string;
-  bounce: string;
-  elastic: string;
-}
-
-export interface TransitionTokens {
-  none: string;
-  all: string;
-  colors: string;
-  opacity: string;
-  shadow: string;
-  transform: string;
-  button: string;
-  input: string;
-  card: string;
-  modal: string;
-  tooltip: string;
-}
-
-export interface KeyframeStep {
-  transform?: string;
-  opacity?: number;
-}
-
-export interface KeyframeDefinition {
-  from?: KeyframeStep;
-  to?: KeyframeStep;
-  '0%'?: KeyframeStep;
-  '50%'?: KeyframeStep;
-  '100%'?: KeyframeStep;
-}
-
-export interface KeyframeTokens {
-  fadeIn: KeyframeDefinition;
-  fadeOut: KeyframeDefinition;
-  scaleIn: KeyframeDefinition;
-  scaleOut: KeyframeDefinition;
-  slideInUp: KeyframeDefinition;
-  slideInDown: KeyframeDefinition;
-  slideInLeft: KeyframeDefinition;
-  slideInRight: KeyframeDefinition;
-  pulse: KeyframeDefinition;
-  spin: KeyframeDefinition;
-  bounce: KeyframeDefinition;
-}
-
+/** Spring configuration shape (standalone contract) */
 export interface SpringConfig {
   tension: number;
   friction: number;
   mass: number;
 }
 
-export interface SpringTokens {
-  default: SpringConfig;
-  gentle: SpringConfig;
-  wobbly: SpringConfig;
-  stiff: SpringConfig;
-  slow: SpringConfig;
-  molasses: SpringConfig;
-}
-
-export interface DelayTokens {
-  none: number;
-  short: number;
-  medium: number;
-  long: number;
-}
-
-export interface ReducedMotionTokens {
-  duration: number;
-  transition: string;
-}
-
-export interface AnimationTokens {
-  duration: DurationTokens;
-  easing: EasingTokens;
-  transition: TransitionTokens;
-  keyframes: KeyframeTokens;
-  spring: SpringTokens;
-  delay: DelayTokens;
-  reducedMotion: ReducedMotionTokens;
-}
-
-// ============================================
-// COMPLETE TOKEN TYPES
-// ============================================
-
-export interface DesignTokens {
-  colors: ColorTokens;
-  spacing: SpacingTokens;
-  typography: TypographyTokens;
-  shadows: ShadowTokens;
-  radius: RadiusTokens;
-  opacity: OpacityTokens;
-  blur: BlurTokens;
-  breakpoints: BreakpointTokens;
-  animation: AnimationTokens;
-}
+// Complete token type
+export type DesignTokens = TokensModule['tokens'];
 
 // ============================================
 // THEME TYPES

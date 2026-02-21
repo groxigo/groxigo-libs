@@ -111,7 +111,7 @@ function buildSemanticColors(
         subtle: gray[700],
         default: gray[600],
         strong: gray[500],
-        focus: primaryFamily[500],
+        focus: primaryFamily[400], // DESIGN_RULES §18: dark focus ring = blue/400
         disabled: gray[700],
       },
       brand: {
@@ -158,7 +158,7 @@ function buildSemanticColors(
         hover: gray[300],
         active: gray[200],
         disabled: gray[600],
-        focus: primaryFamily[500],
+        focus: primaryFamily[400], // DESIGN_RULES §18: dark focus = blue/400
       },
       overlay: {
         light: 'rgba(0, 0, 0, 0.2)',
@@ -333,6 +333,8 @@ function buildComponentColors(
     },
     input: {
       bg: isDark ? primitives.gray[800] : semantic.surface.primary,
+      bgHover: isDark ? primitives.gray[800] : semantic.surface.primary,
+      bgFocus: isDark ? primitives.gray[800] : semantic.surface.primary,
       bgDisabled: semantic.surface.disabled,
       text: semantic.text.primary,
       textDisabled: semantic.text.disabled,
@@ -347,6 +349,8 @@ function buildComponentColors(
       bg: semantic.surface.primary,
       border: semantic.border.subtle,
       borderHover: semantic.border.default,
+      shadow: isDark ? '0 1px 3px rgb(0 0 0 / 0.3)' : '0 1px 3px rgb(0 0 0 / 0.1)',
+      shadowHover: isDark ? '0 4px 6px -1px rgb(0 0 0 / 0.3)' : '0 4px 6px -1px rgb(0 0 0 / 0.1)',
     },
     badge: {
       default: {
@@ -403,10 +407,13 @@ function buildComponentColors(
       borderActive: semantic.brand.primary.default,
     },
     toggle: {
-      bgOff: semantic.surface.tertiary,
+      bgOff: semantic.surface.primary,
       bgOn: semantic.brand.primary.default,
       bgDisabled: semantic.surface.disabled,
       thumb: primitives.white,
+      thumbDisabled: isDark ? primitives.gray[500] : primitives.gray[300],
+      borderOff: semantic.border.default,
+      borderDisabled: semantic.border.disabled,
     },
     progress: {
       bg: semantic.surface.tertiary,
@@ -420,21 +427,25 @@ function buildComponentColors(
         bg: semantic.status.success.subtle,
         border: semantic.status.success.muted,
         text: semantic.status.success.text,
+        icon: semantic.status.success.default,
       },
       warning: {
         bg: semantic.status.warning.subtle,
         border: semantic.status.warning.muted,
         text: semantic.status.warning.text,
+        icon: semantic.status.warning.default,
       },
       error: {
         bg: semantic.status.error.subtle,
         border: semantic.status.error.muted,
         text: semantic.status.error.text,
+        icon: semantic.status.error.default,
       },
       info: {
         bg: semantic.status.info.subtle,
         border: semantic.status.info.muted,
         text: semantic.status.info.text,
+        icon: semantic.status.info.default,
       },
     },
     glass: {

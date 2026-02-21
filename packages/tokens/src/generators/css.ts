@@ -203,6 +203,7 @@ function generateComponents(): string {
   lines.push('  /* Button - Secondary */');
   lines.push(`  --button-secondary-bg: var(--surface-secondary);`);
   lines.push(`  --button-secondary-bg-hover: var(--surface-tertiary);`);
+  lines.push(`  --button-secondary-bg-active: var(--color-gray-200);`);
   lines.push(`  --button-secondary-text: var(--text-primary);`);
   lines.push(`  --button-secondary-border: var(--border-default);`);
   lines.push('');
@@ -229,6 +230,8 @@ function generateComponents(): string {
   // Input
   lines.push('  /* Input */');
   lines.push(`  --input-bg: var(--surface-primary);`);
+  lines.push(`  --input-bg-hover: var(--surface-primary);`);
+  lines.push(`  --input-bg-focus: var(--surface-primary);`);
   lines.push(`  --input-bg-disabled: var(--surface-disabled);`);
   lines.push(`  --input-text: var(--text-primary);`);
   lines.push(`  --input-text-disabled: var(--text-disabled);`);
@@ -245,26 +248,33 @@ function generateComponents(): string {
   lines.push(`  --card-bg: var(--surface-primary);`);
   lines.push(`  --card-border: var(--border-subtle);`);
   lines.push(`  --card-border-hover: var(--border-default);`);
-  lines.push(`  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);`);
-  lines.push(`  --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);`);
+  lines.push(`  --card-shadow: var(--shadow-card);`);
+  lines.push(`  --card-shadow-hover: var(--shadow-md);`);
   lines.push('');
 
   // Badge
   lines.push('  /* Badge */');
   lines.push(`  --badge-default-bg: var(--surface-tertiary);`);
   lines.push(`  --badge-default-text: var(--text-secondary);`);
+  lines.push(`  --badge-default-border: var(--border-subtle);`);
   lines.push(`  --badge-primary-bg: var(--brand-primary-subtle);`);
   lines.push(`  --badge-primary-text: var(--brand-primary);`);
+  lines.push(`  --badge-primary-border: var(--brand-primary-muted);`);
   lines.push(`  --badge-secondary-bg: var(--brand-secondary-subtle);`);
   lines.push(`  --badge-secondary-text: var(--brand-secondary);`);
+  lines.push(`  --badge-secondary-border: var(--brand-secondary-muted);`);
   lines.push(`  --badge-success-bg: var(--status-success-subtle);`);
   lines.push(`  --badge-success-text: var(--status-success-text);`);
+  lines.push(`  --badge-success-border: var(--status-success-muted);`);
   lines.push(`  --badge-warning-bg: var(--status-warning-subtle);`);
   lines.push(`  --badge-warning-text: var(--status-warning-text);`);
+  lines.push(`  --badge-warning-border: var(--status-warning-muted);`);
   lines.push(`  --badge-error-bg: var(--status-error-subtle);`);
   lines.push(`  --badge-error-text: var(--status-error-text);`);
+  lines.push(`  --badge-error-border: var(--status-error-muted);`);
   lines.push(`  --badge-info-bg: var(--status-info-subtle);`);
   lines.push(`  --badge-info-text: var(--status-info-text);`);
+  lines.push(`  --badge-info-border: var(--status-info-muted);`);
   lines.push('');
 
   // Modal
@@ -272,7 +282,7 @@ function generateComponents(): string {
   lines.push(`  --modal-bg: var(--surface-primary);`);
   lines.push(`  --modal-border: var(--border-subtle);`);
   lines.push(`  --modal-overlay: var(--overlay-dark);`);
-  lines.push(`  --modal-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);`);
+  lines.push(`  --modal-shadow: var(--shadow-2xl);`);
   lines.push('');
 
   // Tooltip
@@ -306,12 +316,14 @@ function generateComponents(): string {
   lines.push('');
 
   // Toggle
-  lines.push('  /* Toggle/Switch */');
-  lines.push(`  --toggle-bg-off: var(--surface-tertiary);`);
+  lines.push('  /* Toggle/Switch — §22 state matrix */');
+  lines.push(`  --toggle-bg-off: var(--surface-primary);`);
   lines.push(`  --toggle-bg-on: var(--brand-primary);`);
   lines.push(`  --toggle-bg-disabled: var(--surface-disabled);`);
   lines.push(`  --toggle-thumb: var(--color-white);`);
   lines.push(`  --toggle-thumb-disabled: var(--color-gray-300);`);
+  lines.push(`  --toggle-border-off: var(--border-default);`);
+  lines.push(`  --toggle-border-disabled: var(--border-disabled);`);
   lines.push('');
 
   // Avatar
@@ -347,22 +359,26 @@ function generateComponents(): string {
   lines.push(`  --alert-success-bg: var(--status-success-subtle);`);
   lines.push(`  --alert-success-border: var(--status-success-muted);`);
   lines.push(`  --alert-success-text: var(--status-success-text);`);
+  lines.push(`  --alert-success-icon: var(--status-success);`);
   lines.push(`  --alert-warning-bg: var(--status-warning-subtle);`);
   lines.push(`  --alert-warning-border: var(--status-warning-muted);`);
   lines.push(`  --alert-warning-text: var(--status-warning-text);`);
+  lines.push(`  --alert-warning-icon: var(--status-warning);`);
   lines.push(`  --alert-error-bg: var(--status-error-subtle);`);
   lines.push(`  --alert-error-border: var(--status-error-muted);`);
   lines.push(`  --alert-error-text: var(--status-error-text);`);
+  lines.push(`  --alert-error-icon: var(--status-error);`);
   lines.push(`  --alert-info-bg: var(--status-info-subtle);`);
   lines.push(`  --alert-info-border: var(--status-info-muted);`);
   lines.push(`  --alert-info-text: var(--status-info-text);`);
+  lines.push(`  --alert-info-icon: var(--status-info);`);
   lines.push('');
 
   // Glass components
   lines.push('  /* Glass Card */');
   lines.push(`  --glass-card-bg: var(--glass-surface-light);`);
   lines.push(`  --glass-card-border: var(--glass-border-default);`);
-  lines.push(`  --glass-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);`);
+  lines.push(`  --glass-card-shadow: var(--shadow-glass-md);`);
   lines.push('');
   lines.push('  /* Glass Button */');
   lines.push(`  --glass-button-bg: var(--glass-surface-light);`);
@@ -373,6 +389,21 @@ function generateComponents(): string {
   lines.push('  /* Glass Nav */');
   lines.push(`  --glass-nav-bg: var(--glass-surface-light);`);
   lines.push(`  --glass-nav-border: var(--glass-border-subtle);`);
+  lines.push('');
+
+  // Chart & Data Visualization (§36)
+  lines.push('  /* Chart Colors (§36) */');
+  const chart = tokens.colors.chart;
+  for (const [key, value] of Object.entries(chart.categorical)) {
+    lines.push(`  --chart-categorical-${key}: ${value};`);
+  }
+  for (const [key, value] of Object.entries(chart.sequential)) {
+    lines.push(`  --chart-sequential-${key}: ${value};`);
+  }
+  chart.diverging.forEach((value, i) => {
+    lines.push(`  --chart-diverging-${i + 1}: ${value};`);
+  });
+  lines.push(`  --chart-neutral: ${chart.neutral};`);
 
   return lines.join('\n');
 }
@@ -398,6 +429,8 @@ function generateAnimationTokens(): string {
   lines.push(`  --duration-slow: ${anim.duration.slow}ms;`);
   lines.push(`  --duration-slower: ${anim.duration.slower}ms;`);
   lines.push(`  --duration-deliberate: ${anim.duration.deliberate}ms;`);
+  lines.push(`  --duration-toast-default: ${anim.duration.toastDefault}ms;`);
+  lines.push(`  --duration-toast-warning: ${anim.duration.toastWarning}ms;`);
   lines.push('');
 
   // Easing
@@ -460,7 +493,9 @@ function generateLayoutTokens(): string {
   // Spacing
   lines.push('  /* Spacing (4px base unit) */');
   for (const [key, value] of Object.entries(tokens.spacing)) {
-    lines.push(`  --spacing-${key}: ${value}px;`);
+    if (key === 'base') continue; // internal multiplier, not a public token
+    const cssKey = key.replace('.', '_'); // 0.5 → 0_5 (safe for PostCSS)
+    lines.push(`  --spacing-${cssKey}: ${value}px;`);
   }
   lines.push('');
 
@@ -491,6 +526,7 @@ function generateLayoutTokens(): string {
   // Radius
   lines.push('  /* Border Radius */');
   for (const [key, value] of Object.entries(tokens.radius)) {
+    if (key === 'base') continue; // internal value, not a public token
     lines.push(`  --radius-${key}: ${value}px;`);
   }
   lines.push('');
@@ -512,6 +548,89 @@ function generateLayoutTokens(): string {
         lines.push(`  --shadow-${key}-${subKey}: ${subValue};`);
       }
     }
+  }
+  lines.push('');
+
+  // Z-Index (§9)
+  lines.push('  /* Z-Index (§9) */');
+  for (const [key, value] of Object.entries(tokens.zIndex)) {
+    const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase(); // camelCase → kebab-case
+    lines.push(`  --z-index-${cssKey}: ${value};`);
+  }
+  lines.push('');
+
+  // Layout (§27)
+  lines.push('  /* Layout (§27) */');
+  lines.push(`  --layout-page-max-width: ${tokens.layout.pageMaxWidth}px;`);
+  lines.push(`  --layout-content-max-width: ${tokens.layout.contentMaxWidth}px;`);
+  lines.push(`  --layout-narrow-max-width: ${tokens.layout.narrowMaxWidth}px;`);
+  lines.push(`  --layout-sidebar-width: ${tokens.layout.sidebarWidth}px;`);
+  lines.push(`  --layout-screen-margin-mobile: ${tokens.layout.screenMargin.mobile}px;`);
+  lines.push(`  --layout-screen-margin-tablet: ${tokens.layout.screenMargin.tablet}px;`);
+  lines.push(`  --layout-grid-gutter-mobile: ${tokens.layout.gridGutter.mobile}px;`);
+  lines.push(`  --layout-grid-gutter-tablet: ${tokens.layout.gridGutter.tablet}px;`);
+  lines.push(`  --layout-grid-gutter-desktop: ${tokens.layout.gridGutter.desktop}px;`);
+  lines.push('');
+
+  // Navigation heights
+  lines.push('  /* Navigation */');
+  lines.push(`  --nav-header-height: ${tokens.spacingSemantic.nav.headerHeight}px;`);
+  lines.push(`  --nav-tab-bar-height: ${tokens.spacingSemantic.nav.tabBarHeight}px;`);
+  lines.push('');
+
+  // Touch targets
+  lines.push('  /* Touch Targets */');
+  lines.push(`  --touch-target-sm: ${tokens.icon.container.sm}px;`);
+  lines.push(`  --touch-target-md: ${tokens.icon.container.md}px;`);
+  lines.push(`  --touch-target-ios: ${tokens.icon.container.lg}px;`);
+  lines.push(`  --touch-target-android: ${tokens.icon.container.xl}px;`);
+  lines.push('');
+
+  // Safe area fallback (§34: use env(safe-area-inset-bottom) in actual CSS)
+  lines.push('  /* Safe Area Fallback (§34) */');
+  lines.push(`  --safe-area-bottom-fallback: ${tokens.spacingSemantic.screen.safeBottomFallback}px;`);
+  lines.push('');
+
+  // Opacity
+  lines.push('  /* Opacity */');
+  for (const [key, value] of Object.entries(tokens.opacity)) {
+    lines.push(`  --opacity-${key}: ${value};`);
+  }
+  lines.push('');
+
+  // Border widths
+  lines.push('  /* Border Width */');
+  for (const [key, value] of Object.entries(tokens.border.width)) {
+    lines.push(`  --border-width-${key}: ${value}px;`);
+  }
+  lines.push('');
+
+  // Focus rings
+  lines.push('  /* Focus Ring */');
+  lines.push(`  --focus-ring-width-thin: ${tokens.focus.width.thin}px;`);
+  lines.push(`  --focus-ring-width-default: ${tokens.focus.width.default}px;`);
+  lines.push(`  --focus-ring-width-thick: ${tokens.focus.width.thick}px;`);
+  lines.push(`  --focus-ring-offset-none: ${tokens.focus.offset.none}px;`);
+  lines.push(`  --focus-ring-offset-tight: ${tokens.focus.offset.tight}px;`);
+  lines.push(`  --focus-ring-offset-default: ${tokens.focus.offset.default}px;`);
+  lines.push(`  --focus-ring-offset-spacious: ${tokens.focus.offset.spacious}px;`);
+  lines.push(`  --focus-ring-color-primary: ${tokens.focus.colors.primary};`);
+  lines.push(`  --focus-ring-color-error: ${tokens.focus.colors.error};`);
+  lines.push(`  --focus-ring-color-success: ${tokens.focus.colors.success};`);
+  lines.push(`  --focus-ring-color-neutral: ${tokens.focus.colors.neutral};`);
+  lines.push('');
+
+  // Icon sizes
+  lines.push('  /* Icon Sizes */');
+  for (const [key, value] of Object.entries(tokens.icon.size)) {
+    lines.push(`  --icon-size-${key}: ${value}px;`);
+  }
+  lines.push('');
+
+  // Icon stroke widths
+  lines.push('  /* Icon Stroke */');
+  for (const [key, value] of Object.entries(tokens.icon.stroke)) {
+    lines.push(`  --icon-stroke-${key}: ${value}px;`);
   }
 
   return lines.join('\n');
@@ -554,7 +673,7 @@ function generateDarkMode(): string {
   lines.push(`  --border-subtle: var(--color-gray-700);`);
   lines.push(`  --border-default: var(--color-gray-600);`);
   lines.push(`  --border-strong: var(--color-gray-500);`);
-  lines.push(`  --border-focus: var(--color-blue-500);`);
+  lines.push(`  --border-focus: var(--color-blue-400);`);
   lines.push(`  --border-disabled: var(--color-gray-700);`);
   lines.push('');
 
@@ -615,7 +734,7 @@ function generateDarkMode(): string {
   lines.push(`  --interactive-hover: var(--color-gray-300);`);
   lines.push(`  --interactive-active: var(--color-gray-200);`);
   lines.push(`  --interactive-disabled: var(--color-gray-600);`);
-  lines.push(`  --interactive-focus: var(--color-blue-500);`);
+  lines.push(`  --interactive-focus: var(--color-blue-400);`);
   lines.push('');
 
   // Overlays — matches theme/index.ts dark mode overlay
@@ -637,12 +756,23 @@ function generateDarkMode(): string {
   lines.push(`  --glass-border-subtle: rgba(255, 255, 255, 0.05);`);
   lines.push('');
 
+  // Shadow overrides (higher opacity for visibility on dark backgrounds)
+  lines.push('  /* Shadow Overrides */');
+  lines.push(`  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.15);`);
+  lines.push(`  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);`);
+  lines.push(`  --shadow-card: 0 1px 3px rgb(0 0 0 / 0.3);`);
+  lines.push(`  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);`);
+  lines.push(`  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);`);
+  lines.push(`  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3);`);
+  lines.push(`  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);`);
+  lines.push(`  --shadow-glass-sm: 0 2px 8px rgba(0, 0, 0, 0.24);`);
+  lines.push(`  --shadow-glass-md: 0 4px 16px rgba(0, 0, 0, 0.4);`);
+  lines.push(`  --shadow-glass-lg: 0 8px 24px rgba(0, 0, 0, 0.48);`);
+  lines.push('');
+
   // Component overrides
-  lines.push('  /* Component Shadows */');
-  lines.push(`  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);`);
-  lines.push(`  --card-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);`);
-  lines.push(`  --modal-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);`);
-  lines.push(`  --glass-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);`);
+  lines.push('  /* Component Overrides */');
+  lines.push(`  --button-secondary-bg-active: var(--color-gray-600);`);
   lines.push('');
 
   // Tooltip inverted
@@ -660,6 +790,14 @@ function generateDarkMode(): string {
   // Skeleton shimmer (reduced opacity in dark)
   lines.push('  /* Skeleton */');
   lines.push(`  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);`);
+  lines.push('');
+
+  // Focus ring color overrides for dark mode
+  lines.push('  /* Focus Ring (dark) */');
+  lines.push(`  --focus-ring-color-primary: ${tokens.focus.colorsDark.primary};`);
+  lines.push(`  --focus-ring-color-error: ${tokens.focus.colorsDark.error};`);
+  lines.push(`  --focus-ring-color-success: ${tokens.focus.colorsDark.success};`);
+  lines.push(`  --focus-ring-color-neutral: ${tokens.focus.colorsDark.neutral};`);
 
   return lines.join('\n');
 }
@@ -714,7 +852,7 @@ export const FLUID_FONT_SIZES: Record<string, [number, number]> = {
  * Small spacings (0 through 3) stay fixed.
  */
 export const FLUID_SPACINGS: Record<string, [number, number]> = {
-  // [min, max]
+  // [min, max] — all scale by ~1.25× from mobile to desktop
   4:  [16, 20],
   5:  [20, 24],
   6:  [24, 32],
@@ -728,6 +866,11 @@ export const FLUID_SPACINGS: Record<string, [number, number]> = {
   16: [64, 80],
   20: [80, 100],
   24: [96, 120],
+  28: [112, 140],
+  32: [128, 160],
+  40: [160, 200],
+  48: [192, 240],
+  64: [256, 320],
 };
 
 /**
@@ -845,6 +988,12 @@ function generateFluidTokens(): string {
   lines.push(`  --breakpoint-tablet: ${tokens.breakpoints.tablet}px;`);
   lines.push(`  --breakpoint-desktop: ${tokens.breakpoints.desktop}px;`);
   lines.push(`  --breakpoint-large: ${tokens.breakpoints.large}px;`);
+  lines.push('');
+
+  // Container query breakpoints (§27)
+  lines.push('  /* Container query breakpoints (§27) */');
+  lines.push(`  --container-compact: ${tokens.containerBreakpoints.compact}px;`);
+  lines.push(`  --container-expanded: ${tokens.containerBreakpoints.expanded}px;`);
 
   return lines.join('\n');
 }
@@ -855,9 +1004,10 @@ function generateFluidTokens(): string {
 export function generateCSS(): string {
   const lines: string[] = [];
 
-  // Use Google Sans Flex font to match typography.ts
-  lines.push('@import url(\'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300;400;500;600;700&display=swap\');');
-  lines.push('');
+  // NOTE: Font loading is an app-level concern. Consumers should load
+  // Google Sans Flex via <link>, next/font/google, or their own @font-face.
+  // The --font-family-sans variable references the font name but does not
+  // trigger the network request.
   lines.push(':root {');
 
   lines.push(generatePrimitives());

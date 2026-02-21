@@ -41,6 +41,7 @@ export const typography = {
   },
   
   lineHeight: {
+    none: 1,     // labels, buttons, badges, prices (§25)
     tight: 1.25,
     normal: 1.5,
   },

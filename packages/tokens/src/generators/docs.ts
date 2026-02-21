@@ -203,9 +203,11 @@ function generateSpacingSection(): string {
   lines.push('|---|---|---|---|');
 
   for (const [key, value] of Object.entries(tokens.spacing)) {
+    if (key === 'base') continue;
+    const cssKey = key.replace('.', '_');
     const fluid = FLUID_SPACINGS[key];
     const range = fluid ? `${fluid[0]}px → ${fluid[1]}px` : 'Fixed';
-    lines.push(`| ${key} | \`--spacing-${key}\` | ${value}px | ${range} |`);
+    lines.push(`| ${key} | \`--spacing-${cssKey}\` | ${value}px | ${range} |`);
   }
 
   lines.push('');
@@ -295,6 +297,7 @@ function generateRadiusSection(): string {
   lines.push('|---|---|---|---|');
 
   for (const [key, value] of Object.entries(tokens.radius)) {
+    if (key === 'base') continue;
     const fluid = FLUID_RADII[key];
     const range = fluid ? `${fluid[0]}px → ${fluid[1]}px` : 'Fixed';
     lines.push(`| ${key} | \`--radius-${key}\` | ${value}px | ${range} |`);
