@@ -4,10 +4,11 @@
  * Provides SDUI context to the component tree.
  */
 
-import React, { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo, type ReactElement, type ReactNode } from 'react';
 import type { ComponentRegistry } from '../types/registry';
 import type { SDUIAction } from '../types/actions';
-import { useActionHandler, UseActionHandlerOptions } from '../hooks/useActionHandler';
+import { useActionHandler } from '../hooks/useActionHandler';
+import type { UseActionHandlerOptions } from '../hooks/useActionHandler';
 
 /**
  * SDUI Context value
@@ -34,7 +35,7 @@ export interface SDUIProviderProps {
   /** Action handler options */
   actionHandlers: UseActionHandlerOptions;
   /** Children */
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /**
@@ -44,7 +45,7 @@ export function SDUIProvider({
   registry,
   actionHandlers,
   children,
-}: SDUIProviderProps): React.ReactElement {
+}: SDUIProviderProps): ReactElement {
   const { handleAction, mapActionsToProps } = useActionHandler(actionHandlers);
 
   const value = useMemo<SDUIContextValue>(

@@ -4,7 +4,7 @@
  * Renders components from server-driven UI data.
  */
 
-import React, { useMemo } from 'react';
+import { useMemo, type ComponentType, type ReactElement, type ReactNode } from 'react';
 import type { ComponentRegistry } from '../types/registry';
 import type { SDUIComponent, SDUISection } from '../types/components';
 import type { SDUIAction } from '../types/actions';
@@ -17,7 +17,7 @@ export interface SDUIRendererProps {
   /** Action handler function */
   onAction?: (action: SDUIAction) => void;
   /** Fallback component for unknown types */
-  fallback?: React.ComponentType<{ type: string }>;
+  fallback?: ComponentType<{ type: string }>;
 }
 
 /**
@@ -28,25 +28,17 @@ export function SDUIRenderer({
   registry,
   onAction,
   fallback: Fallback,
-}: SDUIRendererProps): React.ReactElement | null {
+}: SDUIRendererProps): ReactElement | null {
   const { type, props, actions, children, style } = data;
 
   // Get registered component
   const registered = registry[type];
+  const { component: Component, defaultProps, actionProps = [] } = registered ?? {};
 
-  if (!registered) {
-    console.warn(`SDUIRenderer: Unknown component type "${type}"`);
-    if (Fallback) {
-      return <Fallback type={type} />;
-    }
-    return null;
-  }
-
-  const { component: Component, defaultProps, actionProps = [] } = registered;
-
-  // Build final props
+  // Build final props — must be called unconditionally (Rules of Hooks)
   const finalProps = useMemo(() => {
-    // Start with default props
+    if (!registered) return {};
+
     const result: Record<string, unknown> = { ...defaultProps, ...props };
 
     // Convert actions to handler functions
@@ -74,11 +66,11 @@ export function SDUIRenderer({
     }
 
     return result;
-  }, [props, actions, onAction, actionProps, defaultProps, style]);
+  }, [registered, props, actions, onAction, actionProps, defaultProps, style]);
 
-  // Render children if present
+  // Render children — must be called unconditionally (Rules of Hooks)
   const renderedChildren = useMemo(() => {
-    if (!children || children.length === 0) return undefined;
+    if (!registered || !children || children.length === 0) return undefined;
 
     return children.map((child, index) => (
       <SDUIRenderer
@@ -89,7 +81,15 @@ export function SDUIRenderer({
         fallback={Fallback}
       />
     ));
-  }, [children, registry, onAction, Fallback]);
+  }, [registered, children, registry, onAction, Fallback]);
+
+  // Early return for unknown types — after all hooks
+  if (!registered || !Component) {
+    if (Fallback) {
+      return <Fallback type={type} />;
+    }
+    return null;
+  }
 
   return <Component {...finalProps}>{renderedChildren}</Component>;
 }
@@ -105,11 +105,11 @@ export interface SDUISectionRendererProps {
   /** Action handler function */
   onAction?: (action: SDUIAction) => void;
   /** Fallback component for unknown types */
-  fallback?: React.ComponentType<{ type: string }>;
+  fallback?: ComponentType<{ type: string }>;
   /** Section wrapper component */
-  SectionWrapper?: React.ComponentType<{
+  SectionWrapper?: ComponentType<{
     section: SDUISection;
-    children: React.ReactNode;
+    children: ReactNode;
   }>;
 }
 
@@ -122,7 +122,7 @@ export function SDUISectionRenderer({
   onAction,
   fallback,
   SectionWrapper,
-}: SDUISectionRendererProps): React.ReactElement {
+}: SDUISectionRendererProps): ReactElement {
   const content = (
     <>
       {section.components.map((component, index) => (
@@ -155,13 +155,13 @@ export interface SDUIScreenRendererProps {
   /** Action handler function */
   onAction?: (action: SDUIAction) => void;
   /** Fallback component for unknown types */
-  fallback?: React.ComponentType<{ type: string }>;
+  fallback?: ComponentType<{ type: string }>;
   /** Check if data is sections (has 'components' property) */
   isSections?: boolean;
   /** Section wrapper component */
-  SectionWrapper?: React.ComponentType<{
+  SectionWrapper?: ComponentType<{
     section: SDUISection;
-    children: React.ReactNode;
+    children: ReactNode;
   }>;
 }
 
@@ -175,7 +175,7 @@ export function SDUIScreenRenderer({
   fallback,
   isSections,
   SectionWrapper,
-}: SDUIScreenRendererProps): React.ReactElement {
+}: SDUIScreenRendererProps): ReactElement {
   // Determine if we're rendering sections or components
   const renderingSections =
     isSections ?? (data.length > 0 && 'components' in data[0]);

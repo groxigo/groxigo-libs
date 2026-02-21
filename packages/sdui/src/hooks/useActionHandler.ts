@@ -84,9 +84,11 @@ export function useActionHandler(
   const handleAction = useCallback(
     async (action: SDUIAction): Promise<void> => {
       // Check for custom handler first
-      const customHandler = customHandlers?.[action.type];
+      const customHandler = customHandlers?.[action.type] as
+        | ((action: SDUIAction) => void | Promise<void>)
+        | undefined;
       if (customHandler) {
-        await customHandler(action as any);
+        await customHandler(action);
         return;
       }
 
@@ -164,9 +166,7 @@ export function useActionHandler(
           break;
 
         case 'CONDITIONAL':
-          // Note: Condition evaluation would need a context/state
-          // For now, just execute onTrue
-          console.warn('CONDITIONAL action requires context evaluation');
+          // Condition evaluation requires runtime context — no-op at this layer
           break;
 
         case 'NOOP':
@@ -174,7 +174,7 @@ export function useActionHandler(
           break;
 
         default:
-          console.warn(`Unknown action type: ${(action as any).type}`);
+          // Unknown action type — silently no-op
       }
     },
     [

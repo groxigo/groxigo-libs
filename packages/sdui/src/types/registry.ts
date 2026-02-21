@@ -9,6 +9,7 @@ import type { ComponentType } from 'react';
 /**
  * A registered component with metadata
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- type-erasure boundary: registry stores heterogeneous component types
 export interface RegisteredComponent<P = any> {
   /** The React component */
   component: ComponentType<P>;

@@ -1,29 +1,32 @@
 {
   "name": "@groxigo/sdui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Server-Driven UI utilities for Groxigo",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "require": "./src/index.ts",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./native": {
-      "import": "./src/native/index.ts",
-      "require": "./src/native/index.ts",
-      "types": "./src/native/index.ts"
+      "types": "./dist/native/index.d.ts",
+      "import": "./dist/native/index.js"
     },
     "./web": {
-      "import": "./src/web/index.ts",
-      "require": "./src/web/index.ts",
-      "types": "./src/web/index.ts"
+      "types": "./dist/web/index.d.ts",
+      "import": "./dist/web/index.js"
     }
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf dist"
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json --watch",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [
     "sdui",
@@ -32,19 +35,31 @@
   ],
   "author": "Groxigo",
   "license": "MIT",
-  "peerDependencies": {
-    "react": ">=18.0.0"
-  },
-  "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/react": "^19.0.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/groxigo/groxigo-libs.git",
     "directory": "packages/sdui"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.9",
+    "jsdom": "^28.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

@@ -131,7 +131,7 @@ const COLOR_SCHEME_PRESETS: Record<
     accent: theme.warning,
     border: '#FFE0B2',
     badgeBackground: theme.warning,
-    badgeText: '#000000',
+    badgeText: theme.text,
   }),
 
   error: (theme) => ({
