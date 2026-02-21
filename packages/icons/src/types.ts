@@ -3,7 +3,7 @@ import type { FC } from 'react';
 export interface IconComponentProps {
   size?: number;
   color?: string;
-  style?: any;
+  style?: unknown;
   accessibilityLabel?: string;
   testID?: string;
   className?: string;

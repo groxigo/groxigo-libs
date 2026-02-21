@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { IconComponent, IconComponentProps } from './types';
 
 export function createIcon(name: string, pathData: string | string[]): IconComponent {
@@ -16,7 +17,7 @@ export function createIcon(name: string, pathData: string | string[]): IconCompo
       width={size}
       height={size}
       fill={color}
-      style={style}
+      style={style as CSSProperties}
       aria-label={accessibilityLabel}
       data-testid={testID}
       className={className}

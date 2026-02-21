@@ -3,6 +3,11 @@ import en from '../messages/en.json';
 import hi from '../messages/hi.json';
 import ar from '../messages/ar.json';
 import ur from '../messages/ur.json';
+import te from '../messages/te.json';
+import ta from '../messages/ta.json';
+import kn from '../messages/kn.json';
+import ml from '../messages/ml.json';
+import gu from '../messages/gu.json';
 
 function getKeys(obj: Record<string, unknown>, prefix = ''): string[] {
   const keys: string[] = [];
@@ -30,7 +35,7 @@ function getValues(obj: Record<string, unknown>, prefix = ''): Array<{ key: stri
   return entries;
 }
 
-const locales = { en, hi, ar, ur };
+const locales = { en, hi, ar, ur, te, ta, kn, ml, gu };
 const enKeys = getKeys(en);
 
 describe('message files', () => {

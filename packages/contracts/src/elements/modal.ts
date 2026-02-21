@@ -4,7 +4,7 @@
  * Platform-agnostic interface for Modal/Dialog component.
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 
 export type ModalSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
 export type ModalPlacement = 'center' | 'top' | 'bottom';
@@ -65,9 +65,9 @@ export interface ModalPropsBase {
   /** Whether to use portal @default true */
   usePortal?: boolean;
   /** Initial focus element ref */
-  initialFocusRef?: React.RefObject<unknown>;
+  initialFocusRef?: RefObject<unknown>;
   /** Final focus element ref (on close) */
-  finalFocusRef?: React.RefObject<unknown>;
+  finalFocusRef?: RefObject<unknown>;
   /** Open animation callback */
   onOpen?: () => void;
   /** Animation complete callback */
@@ -115,5 +115,5 @@ export interface AlertDialogPropsBase extends Omit<ModalPropsBase, 'closeOnOverl
   /** Whether clicking backdrop closes dialog @default false */
   closeOnOverlayClick?: boolean;
   /** Reference to the least destructive button */
-  leastDestructiveRef?: React.RefObject<unknown>;
+  leastDestructiveRef?: RefObject<unknown>;
 }

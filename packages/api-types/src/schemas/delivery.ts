@@ -10,9 +10,9 @@ export const DeliverySlotSchema = z.object({
   /** YYYY-MM-DD date for this slot. */
   date: z.string().date(),
   /** HH:mm format (e.g., "09:00") */
-  startTime: z.string().max(5),
+  startTime: z.string().regex(/^\d{2}:\d{2}$/, "Must be in HH:mm format"),
   /** HH:mm format (e.g., "11:00") */
-  endTime: z.string().max(5),
+  endTime: z.string().regex(/^\d{2}:\d{2}$/, "Must be in HH:mm format"),
   capacity: z.number().int().nonnegative(),
   bookedCount: z.number().int().nonnegative(),
   /** Computed: capacity - bookedCount. */

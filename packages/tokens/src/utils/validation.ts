@@ -378,9 +378,10 @@ export function validateTokens(tokens: unknown): ValidationResult {
 // ============================================
 
 /**
- * Assert that tokens are valid, throwing if not
+ * Assert that tokens are valid, throwing if not.
+ * Returns the validation result so callers can inspect warnings.
  */
-export function assertValidTokens(tokens: unknown): void {
+export function assertValidTokens(tokens: unknown): ValidationResult {
   const result = validateTokens(tokens);
 
   if (!result.valid) {
@@ -388,10 +389,7 @@ export function assertValidTokens(tokens: unknown): void {
     throw new Error(`Invalid tokens:\n${errorMessages}`);
   }
 
-  if (result.warnings.length > 0) {
-    const warningMessages = result.warnings.map((w) => `${w.path}: ${w.message}`).join('\n');
-    console.warn(`Token warnings:\n${warningMessages}`);
-  }
+  return result;
 }
 
 /**

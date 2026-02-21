@@ -76,9 +76,21 @@
     "title": "تلاش",
     "placeholder": "گروسری تلاش کریں...",
     "trending": "ٹرینڈنگ تلاش",
+    "popularSearches": "Popular searches",
+    "recentSearches": "Recent searches",
     "noResults": "\"{query}\" کے لیے کوئی نتائج نہیں",
     "tryDifferent": "کوئی اور تلاش کا لفظ آزمائیں یا زمرے دیکھیں۔",
-    "searching": "تلاش ہو رہی ہے..."
+    "searching": "تلاش ہو رہی ہے...",
+    "seeAllResults": "See all results for \"{query}\"",
+    "startTyping": "Start typing to search...",
+    "resultCount": "{count, plural, =1 {result for} other {results for}}",
+    "sortBy": "Sort by",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "clearAll": "Clear all",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "pageNumber": "Page {page}"
   },
   "categories": {
     "title": "زمرے",

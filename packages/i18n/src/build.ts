@@ -48,3 +48,12 @@ ${generateInterface(en)}
 
 writeFileSync(join(DIST_GENERATED, 'message-keys.d.ts'), dts);
 console.log('Generated dist/generated/message-keys.d.ts');
+
+// 3. Append MessageKeys re-export to dist/index.d.ts so it's available from the barrel
+const indexDts = join(DIST, 'index.d.ts');
+const indexDtsContent = readFileSync(indexDts, 'utf-8');
+if (!indexDtsContent.includes('MessageKeys')) {
+  const separator = indexDtsContent.endsWith('\n') ? '' : '\n';
+  writeFileSync(indexDts, indexDtsContent + separator + `export type { MessageKeys } from './generated/message-keys';\n`);
+  console.log('Added MessageKeys re-export to dist/index.d.ts');
+}

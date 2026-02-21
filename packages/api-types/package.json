@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/api-types",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Shared API types and Zod schemas for Groxigo frontend and backend",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -31,11 +31,20 @@
       "types": "./dist/constants/*.d.ts",
       "import": "./dist/constants/*.mjs",
       "require": "./dist/constants/*.js"
+    },
+    "./endpoints": {
+      "types": "./dist/endpoints.d.ts",
+      "import": "./dist/endpoints.mjs",
+      "require": "./dist/endpoints.js"
+    },
+    "./field-selector": {
+      "types": "./dist/field-selector.d.ts",
+      "import": "./dist/field-selector.mjs",
+      "require": "./dist/field-selector.js"
     }
   },
   "files": [
     "dist",
-    "src",
     "README.md"
   ],
   "scripts": {
@@ -76,7 +85,7 @@
   "devDependencies": {
     "tsup": "^8.0.1",
     "typescript": "^5.9.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "peerDependencies": {
     "zod": ">=3.20.0"

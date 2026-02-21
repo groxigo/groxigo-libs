@@ -1,16 +1,16 @@
 {
   "name": "@groxigo/icons",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tree-shakable Unicons icon components for React Native and Web",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./line": {
       "types": "./dist/line/index.d.ts",
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "generate": "bun run scripts/generate.ts",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -54,7 +54,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "peerDependencies": {
-    "react": "19.1.0",
+    "react": "^19.0.0",
     "react-native-svg": ">=15.0.0"
   },
   "peerDependenciesMeta": {
@@ -63,16 +63,17 @@
     }
   },
   "devDependencies": {
-    "@iconscout/unicons": "^4.0.8",
+    "@iconscout/unicons": "^4.2.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.2.9",
-    "@vitest/coverage-v8": "^3.0.0",
-    "jsdom": "^25.0.0",
-    "react-dom": "19.1.0",
+    "@vitest/coverage-v8": "^4.0.0",
+    "jsdom": "^28.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-native-svg": ">=15.0.0",
     "typescript": "~5.9.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "files": [
     "dist"

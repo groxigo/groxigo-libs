@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/tokens",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Groxigo Design Tokens - Production-grade design tokens with three-tier architecture for iOS, Android, and Web",
   "type": "module",
   "main": "dist/index.js",
@@ -13,48 +13,39 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./colors": {
       "types": "./dist/tokens/colors.d.ts",
-      "import": "./dist/tokens/colors.js",
-      "require": "./dist/tokens/colors.js"
+      "import": "./dist/tokens/colors.js"
     },
     "./spacing": {
       "types": "./dist/tokens/spacing.d.ts",
-      "import": "./dist/tokens/spacing.js",
-      "require": "./dist/tokens/spacing.js"
+      "import": "./dist/tokens/spacing.js"
     },
     "./typography": {
       "types": "./dist/tokens/typography.d.ts",
-      "import": "./dist/tokens/typography.js",
-      "require": "./dist/tokens/typography.js"
+      "import": "./dist/tokens/typography.js"
     },
     "./animation": {
       "types": "./dist/tokens/animation.d.ts",
-      "import": "./dist/tokens/animation.js",
-      "require": "./dist/tokens/animation.js"
+      "import": "./dist/tokens/animation.js"
     },
     "./theme": {
       "types": "./dist/theme/index.d.ts",
-      "import": "./dist/theme/index.js",
-      "require": "./dist/theme/index.js"
+      "import": "./dist/theme/index.js"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.js"
+      "import": "./dist/utils/index.js"
     },
     "./web": {
       "types": "./dist/platforms/web.d.ts",
-      "import": "./dist/platforms/web.js",
-      "require": "./dist/platforms/web.js"
+      "import": "./dist/platforms/web.js"
     },
     "./react-native": {
       "types": "./dist/platforms/react-native.d.ts",
-      "import": "./dist/platforms/react-native.js",
-      "require": "./dist/platforms/react-native.js"
+      "import": "./dist/platforms/react-native.js"
     },
     "./css": "./dist/css/tokens.css",
     "./css/min": "./dist/css/tokens.min.css",
@@ -137,10 +128,10 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
-    "@vitest/coverage-v8": "^3.0.0",
+    "@types/node": "^25.0.0",
+    "@vitest/coverage-v8": "^4.0.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "peerDependencies": {
     "typescript": ">=4.7.0"

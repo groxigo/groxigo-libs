@@ -76,9 +76,21 @@
     "title": "Search",
     "placeholder": "Search groceries...",
     "trending": "Trending searches",
+    "popularSearches": "Popular searches",
+    "recentSearches": "Recent searches",
     "noResults": "No results for \"{query}\"",
     "tryDifferent": "Try a different search term or browse categories.",
-    "searching": "Searching..."
+    "searching": "Searching...",
+    "seeAllResults": "See all results for \"{query}\"",
+    "startTyping": "Start typing to search...",
+    "resultCount": "{count, plural, =1 {result for} other {results for}}",
+    "sortBy": "Sort by",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "clearAll": "Clear all",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "pageNumber": "Page {page}"
   },
   "categories": {
     "title": "Categories",

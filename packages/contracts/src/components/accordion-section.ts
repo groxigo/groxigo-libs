@@ -5,6 +5,8 @@
  * Supports both controlled and uncontrolled expand/collapse state.
  */
 
+import type { ReactNode } from 'react';
+
 /**
  * AccordionSection component props contract
  */
@@ -22,7 +24,7 @@ export interface AccordionSectionPropsBase {
   onToggle?: (expanded: boolean) => void;
 
   /** Content to render when expanded */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
 
   /** Test ID for testing */

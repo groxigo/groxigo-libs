@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { PaginationQuerySchema, PaginationResponseSchema } from "./common";
+import { SubstitutionPreferenceEnum } from "./customer";
 
 // ============================================================================
 // ENUMS
@@ -61,8 +62,8 @@ export const OrderItemSchema = z.object({
 // ORDER SCHEMAS
 // ============================================================================
 
-/** Full order entity as returned by the API. */
-export const OrderSchema = z.object({
+/** Full order entity (mutable base for schema extension). */
+const OrderBaseSchema = z.object({
   id: z.string().uuid(),
   /** Human-readable order number (e.g., "GRX-20260115-001"). */
   orderNumber: z.string().max(50),
@@ -94,12 +95,7 @@ export const OrderSchema = z.object({
   deliveryInstructions: z.string().max(500).nullable(),
   specialInstructions: z.string().max(500).nullable(),
   /** How out-of-stock items should be handled. */
-  substitutionPreference: z.enum([
-    "allow_similar",
-    "allow_any",
-    "contact_me",
-    "no_substitution",
-  ]),
+  substitutionPreference: SubstitutionPreferenceEnum,
   pickedAt: z.string().datetime().nullable(),
   packedAt: z.string().datetime().nullable(),
   deliveredAt: z.string().datetime().nullable(),
@@ -117,8 +113,11 @@ export const OrderSchema = z.object({
   updatedAt: z.string().datetime(),
 });
 
+/** Full order entity as returned by the API. */
+export const OrderSchema = OrderBaseSchema.readonly();
+
 /** Order with nested line-items. */
-export const OrderWithItemsSchema = OrderSchema.extend({
+export const OrderWithItemsSchema = OrderBaseSchema.extend({
   items: z.array(OrderItemSchema),
 }).readonly();
 
@@ -165,12 +164,7 @@ export const CreateOrderSchema = z.object({
   tip: z.number().min(0, "Tip cannot be negative").default(0),
   deliveryInstructions: z.string().max(500).optional(),
   specialInstructions: z.string().max(500).optional(),
-  substitutionPreference: z.enum([
-    "allow_similar",
-    "allow_any",
-    "contact_me",
-    "no_substitution",
-  ]).default("allow_similar"),
+  substitutionPreference: SubstitutionPreferenceEnum.default("allow_similar"),
 });
 
 /** Payload for admin order-status update. */

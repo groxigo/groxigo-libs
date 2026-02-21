@@ -76,3 +76,4 @@ export type CreateCategory = z.infer<typeof CreateCategorySchema>;
 export type UpdateCategory = z.infer<typeof UpdateCategorySchema>;
 export type CategoryResponse = z.infer<typeof CategoryResponseSchema>;
 export type CategoryListResponse = z.infer<typeof CategoryListResponseSchema>;
+export type CategoryTreeResponse = z.infer<typeof CategoryTreeResponseSchema>;

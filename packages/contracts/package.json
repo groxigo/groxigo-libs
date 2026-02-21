@@ -1,15 +1,15 @@
 {
   "name": "@groxigo/contracts",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Shared component contracts for cross-platform UI consistency",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./elements": {
       "types": "./dist/elements/index.d.ts",
@@ -23,6 +23,10 @@
       "types": "./dist/animation/index.d.ts",
       "import": "./dist/animation/index.js"
     },
+    "./sdui": {
+      "types": "./dist/sdui/index.d.ts",
+      "import": "./dist/sdui/index.js"
+    },
     "./components/*": {
       "types": "./dist/components/*.d.ts",
       "import": "./dist/components/*.js"
@@ -33,7 +37,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "build:watch": "tsc --watch",
     "clean": "rm -rf dist",
     "test": "vitest run"
@@ -64,7 +68,7 @@
   "devDependencies": {
     "@types/react": "^19.2.9",
     "typescript": "~5.9.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "files": [
     "dist"

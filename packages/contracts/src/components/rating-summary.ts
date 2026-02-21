@@ -14,8 +14,6 @@ export interface RatingSummaryPropsBase {
   distribution: Record<1 | 2 | 3 | 4 | 5, number>;
   /** Callback when "Write a Review" is pressed */
   onWriteReview?: () => void;
-  /** Additional CSS class */
-  className?: string;
   /** Test ID for testing */
   testID?: string;
 }

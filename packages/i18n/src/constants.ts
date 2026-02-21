@@ -1,6 +1,16 @@
 import type { Locale, LocaleMeta } from './types';
 
-export const SUPPORTED_LOCALES: readonly Locale[] = ['en', 'hi', 'ar', 'ur', 'te', 'ta', 'kn', 'ml', 'gu'] as const;
+export const SUPPORTED_LOCALES: readonly Locale[] = [
+  'en',
+  'hi',
+  'ar',
+  'ur',
+  'te', // stub — English translations (awaiting Telugu translation)
+  'ta', // stub — English translations (awaiting Tamil translation)
+  'kn', // stub — English translations (awaiting Kannada translation)
+  'ml', // stub — English translations (awaiting Malayalam translation)
+  'gu', // stub — English translations (awaiting Gujarati translation)
+] as const;
 
 export const DEFAULT_LOCALE: Locale = 'en';
 

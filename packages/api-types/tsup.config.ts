@@ -1,6 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
+  tsconfig: "tsconfig.build.json",
   entry: {
     index: "src/index.ts",
     "schemas/index": "src/schemas/index.ts",
@@ -26,6 +27,8 @@ export default defineConfig({
     "constants/pricing": "src/constants/pricing.ts",
     "constants/geo": "src/constants/geo.ts",
     "constants/audiences": "src/constants/audiences.ts",
+    endpoints: "src/endpoints.ts",
+    "field-selector": "src/field-selector.ts",
   },
   format: ["cjs", "esm"],
   dts: true,

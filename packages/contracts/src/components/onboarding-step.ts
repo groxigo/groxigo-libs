@@ -5,13 +5,15 @@
  * step indicators, and a call-to-action button.
  */
 
+import type { ReactNode } from 'react';
+
 export interface OnboardingStepPropsBase {
   /** Step title text */
   title: string;
   /** Step description text */
   description: string;
   /** Custom illustration node (replaces imageUrl) */
-  illustration?: React.ReactNode;
+  illustration?: ReactNode;
   /** URL for step illustration image */
   imageUrl?: string;
   /** Current step number (1-based) */

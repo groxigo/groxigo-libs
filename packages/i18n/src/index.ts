@@ -8,3 +8,4 @@ export {
   isRtlLocale,
 } from './constants';
 export type { Messages } from './messages';
+export { allMessages } from './messages';

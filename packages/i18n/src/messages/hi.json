@@ -76,9 +76,21 @@
     "title": "खोजें",
     "placeholder": "किराना खोजें...",
     "trending": "ट्रेंडिंग खोज",
+    "popularSearches": "Popular searches",
+    "recentSearches": "Recent searches",
     "noResults": "\"{query}\" के लिए कोई परिणाम नहीं",
     "tryDifferent": "कोई अन्य खोज शब्द आज़माएं या श्रेणियां ब्राउज़ करें।",
-    "searching": "खोज रहे हैं..."
+    "searching": "खोज रहे हैं...",
+    "seeAllResults": "See all results for \"{query}\"",
+    "startTyping": "Start typing to search...",
+    "resultCount": "{count, plural, =1 {result for} other {results for}}",
+    "sortBy": "Sort by",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "clearAll": "Clear all",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "pageNumber": "Page {page}"
   },
   "categories": {
     "title": "श्रेणियां",

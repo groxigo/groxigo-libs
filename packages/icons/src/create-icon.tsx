@@ -1,3 +1,4 @@
+import type { StyleProp, ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import type { IconComponent, IconComponentProps } from './types';
 
@@ -15,7 +16,7 @@ export function createIcon(name: string, pathData: string | string[]): IconCompo
       viewBox="0 0 24 24"
       width={size}
       height={size}
-      style={style}
+      style={style as StyleProp<ViewStyle>}
       accessibilityLabel={accessibilityLabel}
       testID={testID}
     >

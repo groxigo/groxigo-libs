@@ -76,9 +76,21 @@
     "title": "بحث",
     "placeholder": "ابحث عن البقالة...",
     "trending": "عمليات البحث الرائجة",
+    "popularSearches": "Popular searches",
+    "recentSearches": "Recent searches",
     "noResults": "لا توجد نتائج لـ \"{query}\"",
     "tryDifferent": "جرب مصطلح بحث مختلف أو تصفح الفئات.",
-    "searching": "جاري البحث..."
+    "searching": "جاري البحث...",
+    "seeAllResults": "See all results for \"{query}\"",
+    "startTyping": "Start typing to search...",
+    "resultCount": "{count, plural, =1 {result for} other {results for}}",
+    "sortBy": "Sort by",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "clearAll": "Clear all",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "pageNumber": "Page {page}"
   },
   "categories": {
     "title": "الفئات",

@@ -84,8 +84,8 @@ export const ErrorResponseSchema = ApiErrorSchema;
  * // { brands: Brand[], pagination: PaginationResponse }
  * ```
  */
-export function paginatedListResponse<T extends z.ZodTypeAny>(
-  key: string,
+export function paginatedListResponse<T extends z.ZodTypeAny, K extends string>(
+  key: K,
   itemSchema: T,
 ) {
   return z.object({

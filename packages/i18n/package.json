@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/i18n",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Shared i18n messages, locale constants, and types for web and mobile",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -9,13 +9,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./messages": {
       "types": "./dist/messages.d.ts",
-      "import": "./dist/messages.js",
-      "require": "./dist/messages.js"
+      "import": "./dist/messages.js"
     },
     "./messages/en": "./dist/messages/en.json",
     "./messages/en.json": "./dist/messages/en.json",
@@ -34,12 +32,18 @@
     "./messages/ml": "./dist/messages/ml.json",
     "./messages/ml.json": "./dist/messages/ml.json",
     "./messages/gu": "./dist/messages/gu.json",
-    "./messages/gu.json": "./dist/messages/gu.json"
+    "./messages/gu.json": "./dist/messages/gu.json",
+    "./generated/message-keys": {
+      "types": "./dist/generated/message-keys.d.ts"
+    }
   },
   "typesVersions": {
     "*": {
       "messages": [
         "dist/messages.d.ts"
+      ],
+      "generated/message-keys": [
+        "dist/generated/message-keys.d.ts"
       ]
     }
   },
@@ -55,6 +59,7 @@
     "groxigo"
   ],
   "author": "Groxigo",
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -68,9 +73,9 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
+    "@types/node": "^25.0.0",
     "typescript": "~5.9.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "files": [
     "dist"

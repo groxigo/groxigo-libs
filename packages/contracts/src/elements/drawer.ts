@@ -4,7 +4,7 @@
  * Platform-agnostic interface for Drawer/Sheet component.
  */
 
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 
 export type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 export type DrawerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
@@ -36,9 +36,9 @@ export interface DrawerPropsBase {
   /** Whether to preserve content when closed @default false */
   preserveContent?: boolean;
   /** Initial focus element ref */
-  initialFocusRef?: React.RefObject<unknown>;
+  initialFocusRef?: RefObject<unknown>;
   /** Final focus element ref (on close) */
-  finalFocusRef?: React.RefObject<unknown>;
+  finalFocusRef?: RefObject<unknown>;
   /** Open animation callback */
   onOpen?: () => void;
   /** Animation complete callback */

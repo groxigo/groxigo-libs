@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SubstitutionPreferenceEnum } from "./customer";
 
 // ============================================================================
 // CHECKOUT SCHEMAS
@@ -32,12 +33,7 @@ export const CheckoutSessionSchema = z.object({
   /** Store credit amount to apply (USD). */
   storeCreditAmount: z.number().nonnegative().nullable(),
   /** How out-of-stock items should be handled. */
-  substitutionPreference: z.enum([
-    "allow_similar",
-    "allow_any",
-    "contact_me",
-    "no_substitution",
-  ]).nullable(),
+  substitutionPreference: SubstitutionPreferenceEnum.nullable(),
   /** Customer notes for the order. */
   customerNotes: z.string().max(1000).nullable(),
   /** Applied coupon code. */
@@ -83,12 +79,7 @@ export const UpdateCheckoutSessionSchema = z.object({
   /** Store credit amount in USD (max 2 decimal places). */
   storeCreditAmount: z.number().nonnegative().max(10000).optional(),
   /** Substitution preference for out-of-stock items. */
-  substitutionPreference: z.enum([
-    "allow_similar",
-    "allow_any",
-    "contact_me",
-    "no_substitution",
-  ]).optional(),
+  substitutionPreference: SubstitutionPreferenceEnum.optional(),
   /** Customer notes for the delivery. */
   customerNotes: z.string().max(1000).optional(),
 });
