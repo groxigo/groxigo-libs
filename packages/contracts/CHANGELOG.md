@@ -1,5 +1,11 @@
 # @groxigo/contracts
 
+## 1.3.8
+
+### Patch Changes
+
+- Align foundation package conventions: engine >=18, typescript ~5.9.2 (tilde), access: public in publishConfig, tsconfig.build.json for i18n
+
 ## 1.3.6
 
 ### Patch Changes

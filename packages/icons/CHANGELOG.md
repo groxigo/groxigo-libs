@@ -1,5 +1,11 @@
 # @groxigo/icons
 
+## 1.0.5
+
+### Patch Changes
+
+- Align foundation package conventions: engine >=18, typescript ~5.9.2 (tilde), access: public in publishConfig, tsconfig.build.json for i18n
+
 ## 1.0.3
 
 ### Patch Changes

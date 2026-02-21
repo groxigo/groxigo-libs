@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/i18n",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Shared i18n messages, locale constants, and types for web and mobile",
   "main": "dist/index.js",
   "module": "dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@groxigo/sdui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Server-Driven UI utilities for Groxigo",
   "type": "module",
   "main": "dist/index.js",
